@@ -3,35 +3,19 @@
 /* This is your Sass entry file         */
 /* ------------------------------------ */
 
-// CORE FUNCTIONS
+// Configuration
 @import "./styles/bootstrap/functions";
-@import "./styles/free/functions";
-
-// CORE VARIABLES
-@import "./styles/custom/variables";
-@import "./styles/free/variables";
 @import "./styles/bootstrap/variables";
-
-// BOOTSTRAP CORE
 @import "./styles/bootstrap/mixins";
 @import "./styles/bootstrap/utilities";
 
+// Layout & components
 @import "./styles/bootstrap/root";
-
-// Helpers
-@import "./styles/bootstrap/helpers";
-
-// Utilities
-@import "./styles/bootstrap/utilities/api";
-
-// MDB CORE
-@import "./styles/free/mixins";
-@import "./styles/free/root";
 
 .cpred.window-app {
   @import "./styles/custom/vtt-reset";
 
   .window-content {
-    @import "./styles/mdb-custom";
+    @import "./styles/bootstrap/bootstrap";
   }
 }

@@ -9,4 +9,4 @@
  * Software License: [your license] Put your desired license here, which
  * 					 determines how others may use and modify your system
  */
-export * from "./module/mdb/styles";
+export * from "./module/bootstrap/index.esm";

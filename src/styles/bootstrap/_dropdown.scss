@@ -49,14 +49,14 @@
 
     .dropdown-menu#{$infix}-start {
       --bs-position: start;
-      right: auto #{'/* rtl:ignore */'};
-      left: 0 #{'/* rtl:ignore */'};
+      right: auto #{"/* rtl:ignore */"};
+      left: 0 #{"/* rtl:ignore */"};
     }
 
     .dropdown-menu#{$infix}-end {
       --bs-position: end;
-      right: 0 #{'/* rtl:ignore */'};
-      left: auto #{'/* rtl:ignore */'};
+      right: 0 #{"/* rtl:ignore */"};
+      left: auto #{"/* rtl:ignore */"};
     }
   }
 }
@@ -110,6 +110,7 @@
     }
   }
 }
+
 
 // Dividers (basically an `<hr>`) within the dropdown
 .dropdown-divider {
