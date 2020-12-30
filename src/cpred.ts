@@ -64,10 +64,4 @@ Hooks.once("ready", function () {
   // Do anything once the system is ready
 });
 
-// Hooks.on("renderActorSheetCpRed", function () {
-//   document.querySelectorAll(".form-outline").forEach((formOutline) => {
-//     new Input(formOutline).update();
-//   });
-// });
-
 // Add any additional hooks if necessary

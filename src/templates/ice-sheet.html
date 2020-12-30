@@ -1,3 +1,90 @@
 <form class="{{cssClass}}" autocomplete="off">
-  <h1>{{ localize "cpred.sheet.ice"}}: {{actor.name}}</h1>
+  <div class="row g-0">
+    <div class="col-md-7 d-flex">
+      <div class="p-1 align-self-center">
+        <img src="{{actor.img}}" data-edit="img" class="img-fluid avatar small" />
+      </div>
+      <div class="d-flex flex-grow-1 flex-column">
+        <div class="form-floating p-1">
+          <input type="text" class="form-control" id="actor.name" name="name" placeholder="Name" value="{{actor.name}}" />
+          <label for="actor.name">Name</label>
+        </div>
+        <div class="p-1 d-flex flex-grow-1">
+          <select class="form-select">
+            {{#select data.attributes.class}}
+            <option>Select ICE class...</option>
+            <option value="antipersonnel">Anti-Personnel</option>
+            <option value="antiprogram">Anti-Program</option>
+            {{/select}}
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5 d-flex">
+      <div class="flex-fill d-flex flex-column">
+        <div class="form-floating p-1">
+          <input
+            type="number"
+            class="form-control"
+            id="data.attributes.per.value"
+            name="data.attributes.per.value"
+            placeholder="PER"
+            value="{{data.attributes.per.value}}"
+          />
+          <label for="data.attributes.per.value">PER</label>
+        </div>
+        <div class="p-1 flex-grow-1 d-flex">
+          <button type="button" class="btn btn-primary">Block slide</button>
+        </div>
+      </div>
+      <div class="flex-fill d-flex flex-column">
+        <div class="form-floating p-1">
+          <input
+            type="number"
+            class="form-control"
+            id="data.attributes.spd.value"
+            name="data.attributes.spd.value"
+            placeholder="SPD"
+            value="{{data.attributes.spd.value}}"
+          />
+          <label for="data.attributes.spd.value">SPD</label>
+        </div>
+        <div class="p-1 flex-grow-1 d-flex">
+          <button type="button" class="btn btn-primary">Ambush</button>
+        </div>
+      </div>
+      <div class="flex-fill d-flex flex-column">
+        <div class="form-floating p-1">
+          <input
+            type="number"
+            class="form-control"
+            id="data.attributes.atk.value"
+            name="data.attributes.atk.value"
+            placeholder="ATK"
+            value="{{data.attributes.atk.value}}"
+          />
+          <label for="data.attributes.atk.value flex-grow-1">ATK</label>
+        </div>
+        <div class="p-1 flex-grow-1 d-flex">
+          <button type="button" class="btn btn-primary">Attack</button>
+        </div>
+      </div>
+      <div class="flex-fill d-flex flex-column">
+        <div class="form-floating p-1">
+          <input
+            type="number"
+            class="form-control"
+            id="data.attributes.def.value"
+            name="data.attributes.def.value"
+            placeholder="DEF"
+            value="{{data.attributes.def.value}}"
+          />
+          <label for="data.attributes.def.value">DEF</label>
+        </div>
+        <div class="p-1 flex-grow-1 d-flex">
+          <button type="button" class="btn btn-primary">Defend</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </form>

@@ -1,0 +1,8 @@
+img {
+  &.avatar {
+    background-color: #aaaaaaaa;
+    &.small {
+      max-width: 8rem;
+    }
+  }
+}

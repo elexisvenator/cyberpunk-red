@@ -12,6 +12,7 @@
   background-color: $body-bg; // 2
   -webkit-text-size-adjust: 100%; // 3
   -webkit-tap-highlight-color: rgba($black, 0); // 4
+  padding: 0;
 }
 
 h1,
@@ -50,4 +51,28 @@ input {
       box-shadow: initial;
     }
   }
+}
+
+select {
+  height: initial;
+  background: initial;
+  border: initial;
+  border-radius: initial;
+  padding: initial;
+  text-overflow: initial;
+  &:focus {
+    box-shadow: initial;
+    outline: initial;
+  }
+  &[multiple] {
+    height: initial;
+    padding: initial;
+  }
+}
+
+img {
+  box-sizing: initial;
+  border: initial;
+  border-radius: initial;
+  max-width: initial;
 }

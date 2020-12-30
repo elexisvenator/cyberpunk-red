@@ -15,4 +15,8 @@ export default class ActorSheetCpRed<
     });
     return options;
   }
+
+  protected activateListeners(html: any) {
+    super.activateListeners(html);
+  }
 }

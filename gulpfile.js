@@ -12,6 +12,10 @@ const sass = require('gulp-sass');
 const git = require('gulp-git');
 const webpack = require('webpack');
 
+const autoprefixer = require('autoprefixer')
+const postcss = require('gulp-postcss')
+const sourcemaps = require('gulp-sourcemaps')
+
 const webpackDevConfig = require('./webpack.dev.js');
 const webpackProdConfig = require('./webpack.prod.js');
 const argv = require('yargs').argv;
@@ -179,7 +183,10 @@ function buildLess() {
 function buildSASS() {
 	return gulp
 		.src('src/*.scss')
+		.pipe(sourcemaps.init())
 		.pipe(sass().on('error', sass.logError))
+		.pipe(postcss([autoprefixer()]))
+		.pipe(sourcemaps.write('.'))
 		.pipe(gulp.dest('dist'));
 }
 

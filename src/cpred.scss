@@ -6,6 +6,7 @@
 // Configuration
 @import "./styles/bootstrap/functions";
 @import "./styles/bootstrap/variables";
+@import "./styles/custom/_variables";
 @import "./styles/bootstrap/mixins";
 @import "./styles/bootstrap/utilities";
 
@@ -17,5 +18,6 @@
 
   .window-content {
     @import "./styles/bootstrap/bootstrap";
+    @import "./styles/custom/cpred-styles";
   }
 }

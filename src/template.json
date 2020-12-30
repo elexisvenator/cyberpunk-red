@@ -27,57 +27,60 @@
       "stats": {
         "attributes": {
           "int": {
-            "value": 10
+            "value": 0
           },
           "ref": {
-            "value": 10
+            "value": 0
           },
           "dex": {
-            "value": 10
+            "value": 0
           },
           "tech": {
-            "value": 10
+            "value": 0
           },
           "cool": {
-            "value": 10
+            "value": 0
           },
           "will": {
-            "value": 10
+            "value": 0
           },
           "luck": {
-            "value": 10,
+            "value": 0,
             "min": 0,
-            "max": 10
+            "max": 0
           },
           "move": {
-            "value": 10
+            "value": 0
           },
           "body": {
-            "value": 10
+            "value": 0
           },
           "emp": {
-            "value": 10,
+            "value": 0,
             "min": 0,
-            "max": 10
+            "max": 0
           }
         }
       },
       "ice": {
         "attributes": {
           "per": {
-            "value": 10
+            "value": 0
           },
           "spd": {
-            "value": 10
+            "value": 0
           },
           "atk": {
-            "value": 10
+            "value": 0
           },
           "def": {
-            "value": 10
+            "value": 0
           },
           "damage": {
-            "value": "3d6"
+            "value": ""
+          },
+          "class": {
+            "value": ""
           }
         }
       }

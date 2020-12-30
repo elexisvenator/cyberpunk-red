@@ -30,6 +30,7 @@ interface IceTemplate {
     atk: NumberProp;
     def: NumberProp;
     damage: StringProp;
+    class: StringProp;
   };
 }
 
