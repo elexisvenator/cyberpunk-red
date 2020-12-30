@@ -1,0 +1,109 @@
+{
+  "Actor": {
+    "types": [
+      "character",
+      "npc",
+      "ice"
+    ],
+    "templates": {
+      "common": {
+        "attributes": {
+          "hp": {
+            "value": 10,
+            "min": 0,
+            "max": 10
+          }
+        }
+      },
+      "character": {
+        "attributes": {
+          "humanity": {
+            "value": 10,
+            "min": 0,
+            "max": 10
+          }
+        }
+      },
+      "stats": {
+        "attributes": {
+          "int": {
+            "value": 10
+          },
+          "ref": {
+            "value": 10
+          },
+          "dex": {
+            "value": 10
+          },
+          "tech": {
+            "value": 10
+          },
+          "cool": {
+            "value": 10
+          },
+          "will": {
+            "value": 10
+          },
+          "luck": {
+            "value": 10,
+            "min": 0,
+            "max": 10
+          },
+          "move": {
+            "value": 10
+          },
+          "body": {
+            "value": 10
+          },
+          "emp": {
+            "value": 10,
+            "min": 0,
+            "max": 10
+          }
+        }
+      },
+      "ice": {
+        "attributes": {
+          "per": {
+            "value": 10
+          },
+          "spd": {
+            "value": 10
+          },
+          "atk": {
+            "value": 10
+          },
+          "def": {
+            "value": 10
+          },
+          "damage": {
+            "value": "3d6"
+          }
+        }
+      }
+    },
+    "character": {
+      "templates": [
+        "common",
+        "character",
+        "stats"
+      ]
+    },
+    "npc": {
+      "templates": [
+        "common",
+        "stats"
+      ]
+    },
+    "ice": {
+      "templates": [
+        "common",
+        "ice"
+      ]
+    }
+  },
+  "Item": {
+    "types": [],
+    "templates": []
+  }
+}

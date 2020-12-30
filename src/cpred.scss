@@ -1,0 +1,12 @@
+/* ------------------------------------ */
+/*				   Sass					*/
+/* This is your Sass entry file			*/
+/* ------------------------------------ */
+
+.cpred.window-app {
+  @import "./styles/custom/vtt-reset.scss";
+
+  .window-content {
+    @import "./styles/mdb.free.scss";
+  }
+}

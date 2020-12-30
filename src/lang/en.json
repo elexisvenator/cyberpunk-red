@@ -1,0 +1,9 @@
+{
+    "cpred": {
+        "sheet": {
+            "character": "Character",
+            "npc": "NPC",
+            "ice": "Ice"
+        }
+    }
+}

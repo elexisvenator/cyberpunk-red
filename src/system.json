@@ -1,0 +1,40 @@
+{
+  "name": "cpred",
+  "title": "Cyberpunk RED (WIP)",
+  "description": "",
+  "version": "0.1.0",
+  "author": "elexisvenator",
+  "authors": [
+    {
+      "name": "",
+      "email": "",
+      "url": ""
+    }
+  ],
+  "scripts": [],
+  "esmodules": [
+    "cpred.js"
+  ],
+  "styles": [
+    "cpred.css"
+  ],
+  "packs": [],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "gridDistance": 1,
+  "gridUnits": "",
+  "minimumCoreVersion": "0.7.9",
+  "compatibleCoreVersion": "0.5.0",
+  "url": "",
+  "manifest": "",
+  "download": "",
+  "license": "",
+  "readme": "",
+  "bugs": "",
+  "changelog": ""
+}
