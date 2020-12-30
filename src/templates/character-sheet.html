@@ -1,7 +1,23 @@
 <form class="{{cssClass}}" autocomplete="off">
   <h1>
-    {{localize "cpred.sheet.character"}}
-    :
-    {{actor.name}}
+    {{localize "cpred.sheet.character"}}: {{actor.name}}
   </h1>
+  <div class="d-flex flex-row">
+      <div class="p-2"><div class="form-outline"><input type="text" name="data.attributes.int.value" id="data.attributes.int.value" class="form-control" value="{{data.attributes.int.value}}" /><label for="data.attributes.int.value" class="form-label">INT</label></div></div>
+      <div class="p-2"><div class="form-outline"><input type="text" name="data.attributes.ref.value" id="data.attributes.ref.value" class="form-control" value="{{data.attributes.ref.value}}" /><label for="data.attributes.ref.value" class="form-label">REF</label></div></div>
+      <div class="p-2"><div class="form-outline"><input type="text" name="data.attributes.dex.value" id="data.attributes.dex.value" class="form-control" value="{{data.attributes.dex.value}}" /><label for="data.attributes.dex.value" class="form-label">DEX</label></div></div>
+      <div class="p-2"><div class="form-outline"><input type="text" name="data.attributes.tech.value" id="data.attributes.tech.value" class="form-control" value="{{data.attributes.tech.value}}" /><label for="data.attributes.tech.value" class="form-label">TECH</label></div></div>
+      <div class="p-2"><div class="form-outline"><input type="text" name="data.attributes.cool.value" id="data.attributes.cool.value" class="form-control" value="{{data.attributes.cool.value}}" /><label for="data.attributes.cool.value" class="form-label">COOL</label></div></div>
+  </div>
+  <div class="d-flex flex-row">
+      <div class="p-2"><div class="form-outline"><input type="text" name="data.attributes.will.value"  id="data.attributes.will.value" class="form-control"  value="{{data.attributes.will.value}}" /><label for="data.attributes.will.value" class="form-label">WILL</label></div></div>
+      <div class="p-2"><div class="form-outline"><input type="text" name="data.attributes.luck.value"  id="data.attributes.luck.value" class="form-control"  value="{{data.attributes.luck.value}}" /><label for="data.attributes.luck.value" class="form-label">LUCK</label></div></div>
+      <div class="p-2"><div class="form-outline"><input type="text" name="data.attributes.move.value"  id="data.attributes.move.value" class="form-control"  value="{{data.attributes.move.value}}" /><label for="data.attributes.move.value" class="form-label">MOVE</label></div></div>
+      <div class="p-2"><div class="form-outline"><input type="text" name="data.attributes.body.value"  id="data.attributes.body.value" class="form-control"  value="{{data.attributes.body.value}}" /><label for="data.attributes.body.value" class="form-label">BODY</label></div></div>
+      <div class="p-2"><div class="form-outline"><input type="text" name="data.attributes.emp.value" id="data.attributes.emp.value" class="form-control" value="{{data.attributes.emp.value}}" /><label for="data.attributes.emp.value" class="form-label">EMP</label></div></div>
+  </div>
+  <div class="d-flex flex-row">
+    
+  </div>
+</div>
 </form>

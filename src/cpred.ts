@@ -14,6 +14,7 @@
 import ActorSheetCpRedCharacter from "./module/actor/sheets/character";
 import ActorSheetCpRedIce from "./module/actor/sheets/ice";
 import ActorSheetCpRedNpc from "./module/actor/sheets/npc";
+import { Input } from "./module/mdb/styles";
 import { registerSettings } from "./module/settings";
 import { preloadTemplates } from "./module/templates";
 export * from "./module/mdb/styles";
@@ -62,6 +63,12 @@ Hooks.once("setup", function () {
 /* ------------------------------------ */
 Hooks.once("ready", function () {
   // Do anything once the system is ready
+});
+
+Hooks.on("renderActorSheetCpRed", function () {
+  document.querySelectorAll(".form-outline").forEach((formOutline) => {
+    new Input(formOutline).update();
+  });
 });
 
 // Add any additional hooks if necessary

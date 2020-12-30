@@ -1,6 +1,17 @@
 .window-content {
   background-image: none;
-  background-color: white;
+
+  // from reset for body
+  margin: 0; // 1
+  font-family: $font-family-base;
+  @include font-size($font-size-base);
+  font-weight: $font-weight-base;
+  line-height: $line-height-base;
+  color: $body-color;
+  text-align: $body-text-align;
+  background-color: $body-bg; // 2
+  -webkit-text-size-adjust: 100%; // 3
+  -webkit-tap-highlight-color: rgba($black, 0); // 4
 }
 
 h1,
@@ -10,4 +21,33 @@ h4 {
   margin: initial;
   padding: initial;
   border-bottom: initial;
+}
+
+input {
+  &[type="text"],
+  &[type="number"],
+  &[type="password"],
+  &[type="date"],
+  &[type="time"] {
+    width: initial;
+    min-width: initial;
+    height: initial;
+    background: initial;
+    padding: initial;
+    margin: initial;
+    color: initial;
+    font-family: initial;
+    font-size: initial;
+    text-align: initial;
+    line-height: initial;
+    border: initial;
+    border-radius: initial;
+    -webkit-user-select: initial;
+    -moz-user-select: initial;
+    -ms-user-select: initial;
+    user-select: initial;
+    &:focus {
+      box-shadow: initial;
+    }
+  }
 }
