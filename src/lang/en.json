@@ -3,7 +3,25 @@
         "sheet": {
             "character": "Character",
             "npc": "NPC",
-            "ice": "Ice"
+            "ice": "Ice",
+            "name": "Name",
+            "stats": {
+                "perception": "PER",
+                "speed": "SPD",
+                "attack": "ATK",
+                "defence": "DEF"
+            },
+            "iceactions": {
+                "blockslide": "Block slide",
+                "ambush": "Ambush",
+                "attack": "Attack",
+                "defend": "Defend"
+            },
+            "selecticeclass": "Select ICE class",
+            "iceclasses": {
+                "antipersonnel": "Anti-Personnel",
+                "antiprogram": "Anti-Program"
+            }
         }
     }
 }

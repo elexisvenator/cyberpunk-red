@@ -1,8 +1,12 @@
 import ActorCpRed from "../entity";
 
+// this is the model that gets sent to the handlebars template
+// If you want to use some computed values, declare them here and populate them in getData()
+declare interface ActorSheetDataCpRed<DataType extends ActorDataCpRed = ActorDataCpRed> extends ActorSheetData<DataType> {}
+
 export default class ActorSheetCpRed<
-  DataType = ActorDataCpRed,
-  ActorType extends Actor<DataType> = ActorCpRed<DataType>
+  DataType extends ActorDataCpRed = ActorDataCpRed,
+  ActorType extends ActorCpRed<DataType> = ActorCpRed<DataType>
 > extends ActorSheet<DataType, ActorType> {
   constructor(...args: any) {
     super(...args);
@@ -14,6 +18,16 @@ export default class ActorSheetCpRed<
       classes: options.classes.concat(["cpred"]),
     });
     return options;
+  }
+
+  getData(): ActorSheetDataCpRed<DataType> {
+    const parentData = super.getData() as ActorSheetData<DataType>;
+
+    const sheetData: ActorSheetDataCpRed<DataType> = {
+      ...parentData,
+    };
+
+    return sheetData;
   }
 
   protected activateListeners(html: any) {

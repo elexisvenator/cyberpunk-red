@@ -2,9 +2,65 @@ import { getFullTemplatePath } from "../../templates";
 import ActorCpRed from "../entity";
 import ActorSheetCpRed from "./base";
 
-export default class ActorSheetCpRedIce extends ActorSheetCpRed<ActorDataCpRedIce, ActorCpRed<ActorDataCpRedIce>> {
+// this is the model that gets sent to the handlebars template
+// If you want to use some computed values, declare them here and populate them in getData()
+declare interface ActorSheetDataCpRedIce<DataType extends ActorDataCpRedIce = ActorDataCpRedIce> extends ActorSheetData<DataType> {
+  statblock: {
+    name: string;
+    value: number;
+    datapath: string;
+    actionName: string;
+  }[];
+  iceClasses: string[];
+}
+
+export default class ActorSheetCpRedIce<
+  DataType extends ActorDataCpRedIce = ActorDataCpRedIce,
+  ActorType extends ActorCpRed<DataType> = ActorCpRed<DataType>
+> extends ActorSheetCpRed<DataType, ActorType> {
   get template() {
     console.log(this.actor);
     return getFullTemplatePath("ice-sheet.html");
+  }
+
+  getData(): ActorSheetDataCpRedIce<DataType> {
+    const parentData = super.getData();
+
+    // ! THERE IS SOMETING STUPID GOING ON HERE
+    // ! parentData.data should be ActorData<DataType>
+    // ! parentData.data.data should be DataType
+    // ! instead, parentData.data is DataType
+    const data = (parentData.data as unknown) as DataType;
+
+    return {
+      ...parentData,
+      statblock: [
+        {
+          name: "cpred.sheet.stats.perception",
+          value: data.attributes.per.value,
+          datapath: "data.attributes.per.value",
+          actionName: "cpred.sheet.iceactions.blockslide",
+        },
+        {
+          name: "cpred.sheet.stats.speed",
+          value: data.attributes.spd.value,
+          datapath: "data.attributes.spd.value",
+          actionName: "cpred.sheet.iceactions.ambush",
+        },
+        {
+          name: "cpred.sheet.stats.attack",
+          value: data.attributes.atk.value,
+          datapath: "data.attributes.atk.value",
+          actionName: "cpred.sheet.iceactions.attack",
+        },
+        {
+          name: "cpred.sheet.stats.defence",
+          value: data.attributes.def.value,
+          datapath: "data.attributes.def.value",
+          actionName: "cpred.sheet.iceactions.defend",
+        },
+      ],
+      iceClasses: ["antipersonnel", "antiprogram"],
+    };
   }
 }

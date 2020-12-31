@@ -65,3 +65,7 @@ Hooks.once("ready", function () {
 });
 
 // Add any additional hooks if necessary
+
+Handlebars.registerHelper("concat", (arg1: string, arg2: string) => {
+  return arg1 + arg2;
+});

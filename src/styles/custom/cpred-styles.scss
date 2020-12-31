@@ -1,8 +1,45 @@
-img {
-  &.avatar {
-    background-color: #aaaaaaaa;
-    &.small {
-      max-width: 8rem;
+.avatar,
+.avatar-small {
+  background-color: #aaaaaa33;
+  display: flex;
+  border-radius: $border-radius;
+
+  img {
+    align-self: center;
+    min-width: 2rem;
+    min-height: 2rem;
+    vertical-align: middle;
+    height: auto;
+  }
+}
+
+.editable {
+  .avatar,
+  .avatar-small {
+    img[data-edit] {
+      cursor: pointer;
     }
+  }
+}
+
+.avatar-small img {
+  max-width: 8rem;
+  max-height: 8rem;
+}
+
+.statblock {
+  .form-control,
+  .btn {
+    max-width: 6rem;
+    width: 100%;
+  }
+}
+
+.form-select option {
+  color: $cyberpunk-red;
+  background-color: $cyberpunk-maroon-dim;
+  &:hover,
+  &:active {
+    background-color: $cyberpunk-maroon;
   }
 }

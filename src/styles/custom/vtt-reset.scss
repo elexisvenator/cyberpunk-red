@@ -1,5 +1,5 @@
 .window-content {
-  background-image: none;
+  //background-image: none;
 
   // from reset for body
   margin: 0; // 1
@@ -13,6 +13,9 @@
   -webkit-text-size-adjust: 100%; // 3
   -webkit-tap-highlight-color: rgba($black, 0); // 4
   padding: 0;
+
+  // gradient background
+  @include gradient-y($cyberpunk-bg-bright, $cyberpunk-bg-dim, -10%, 80%);
 }
 
 h1,
@@ -75,4 +78,36 @@ img {
   border: initial;
   border-radius: initial;
   max-width: initial;
+}
+
+button {
+  &:hover,
+  &:focus {
+    box-shadow: initial;
+    outline: initial;
+  }
+}
+
+/// scrollbars
+
+.window-content {
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    box-shadow: 0 0 1px #111 inset;
+    border-radius: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    outline: none;
+    border-radius: 1px;
+    border: none;
+    background: $cyberpunk-red;
+    box-shadow: 0 0 3px #111 inset;
+  }
+  &:root {
+    scrollbar-width: thin;
+    scrollbar-color: $cyberpunk-red $cyberpunk-maroon;
+  }
 }

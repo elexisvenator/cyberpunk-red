@@ -20,4 +20,69 @@
   font-style: normal;
 }
 
-$font-family-sans-serif: cpred-sans-serif, #{$font-family-sans-serif};
+$font-family-sans-serif: cpred-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+  "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+$cyberpunk-cyan: #11e5f3;
+$cyberpunk-blue: #2b8afd;
+$cyberpunk-green: #50d568;
+$cyberpunk-red: #f66357;
+$cyberpunk-maroon: #401616;
+$cyberpunk-yellow: #eab335;
+
+$cyberpunk-cyan-bright: #38fafe;
+$cyberpunk-green-bright: #37faaf;
+
+$cyberpunk-red-dim: #772929;
+$cyberpunk-maroon-dim: #141119;
+
+$cyberpunk-bg-bright: #471d21;
+$cyberpunk-bg-dim: #060c14;
+
+// colour overrides
+$white: #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black: #000 !default;
+
+$primary: $cyberpunk-cyan;
+$secondary: $cyberpunk-maroon;
+$success: $cyberpunk-green;
+$info: $cyberpunk-blue;
+$warning: $cyberpunk-yellow;
+$danger: $cyberpunk-red;
+// $light: $gray-100 !default;
+// $dark: $gray-900 !default;
+
+$body-bg: $cyberpunk-bg-dim;
+$body-color: $cyberpunk-red;
+
+// command overrides
+$enable-shadows: true;
+$enable-gradients: true;
+
+// borders
+$border-width: 0.125rem;
+//$input-btn-border-width: 0.125rem;
+
+// inputs
+
+$input-bg: rgba($cyberpunk-maroon-dim, 0.8);
+$input-disabled-bg: rgba($gray-800, 0.8);
+$input-border-color: $cyberpunk-maroon;
+$input-disabled-border-color: $gray-600;
+$form-select-indicator-color: $cyberpunk-red;
+$component-active-bg: $cyberpunk-red;
+$input-focus-border-color: $component-active-bg;
+
+$input-btn-focus-width: 0.125rem !default;
+$input-btn-focus-color-opacity: 0.25 !default;
+$input-btn-focus-color: rgba($cyberpunk-red-dim, $input-btn-focus-color-opacity) !default;
+$input-btn-focus-box-shadow: 0 0 0.25rem $input-btn-focus-width $input-btn-focus-color !default;
