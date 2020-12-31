@@ -1,0 +1,35 @@
+<div class="d-flex align-items-center actor-resource">
+  <div class="p-1">
+    <span class="lead">&nbsp;{{localize name}}</span>
+  </div>
+
+  <div class="form-floating p-1">
+    <input
+      type="number"
+      class="form-control"
+      id="{{resourcePath}}.value"
+      name="{{resourcePath}}.value"
+      placeholder="{{localize 'cpred.sheet.current'}}"
+      value="{{resource.value}}"
+    />
+    <label for="{{resourcePath}}.value">{{localize "cpred.sheet.current"}}</label>
+  </div>
+
+  <div class="p-1">
+    <span class="d-inline-block lead">
+      <i class="fas fa-minus rotate-300deg"></i>
+    </span>
+  </div>
+
+  <div class="form-floating p-1">
+    <input
+      type="number"
+      class="form-control"
+      id="{{resourcePath}}.max"
+      name="{{resourcePath}}.max"
+      placeholder="{{localize 'cpred.sheet.max'}}"
+      value="{{resource.max}}"
+    />
+    <label for="{{resourcePath}}.max">{{localize "cpred.sheet.max"}}</label>
+  </div>
+</div>

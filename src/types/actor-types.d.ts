@@ -1,5 +1,4 @@
 interface ActorResource extends NumberProp {
-  min: number;
   max: number;
 }
 

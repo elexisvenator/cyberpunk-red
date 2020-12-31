@@ -6,12 +6,19 @@
       </div>
       <div class="d-flex flex-grow-1 flex-column">
         <div class="form-floating p-1">
-          <input type="text" class="form-control" id="actor.name" name="name" placeholder="Name" value="{{actor.name}}" />
+          <input
+            type="text"
+            class="form-control"
+            id="actor.name"
+            name="name"
+            placeholder="{{localize 'cpred.sheet.name'}}"
+            value="{{actor.name}}"
+          />
           <label for="actor.name">{{localize "cpred.sheet.name"}}</label>
         </div>
         <div class="p-1 d-flex flex-grow-1">
-          <select class="form-select">
-            {{#select data.attributes.class}}
+          <select class="form-select" name="data.attributes.class.value">
+            {{#select data.attributes.class.value}}
             <option>{{localize "cpred.sheet.selecticeclass"}}...</option>
             {{#each iceClasses}}
             <option value="{{this}}">{{localize (concat "cpred.sheet.iceclasses." this)}}</option>
@@ -39,6 +46,28 @@
         </div>
       </div>
       {{/each}}
+    </div>
+  </div>
+  <div class="d-flex justify-content-between">
+    {{> "systems/cpred/templates/partials/actor-resource.html" resource=data.attributes.hp resourcePath="data.attributes.hp"
+    name="cpred.sheet.rez"}}
+    <div class="d-flex">
+      <div class="form-floating p-1">
+        <input
+          type="text"
+          class="form-control"
+          id="data.attributes.damage.value"
+          name="data.attributes.damage.value"
+          placeholder="{{localize 'cpred.sheet.damage'}}"
+          value="{{data.attributes.damage.value}}"
+        />
+        <label for="data.attributes.damage.value">{{localize "cpred.sheet.damage"}}</label>
+      </div>
+      <div class="p-1 d-flex">
+        <button type="button" class="btn btn-outline-primary text-nowrap">
+          <i class="fas fa-dice-d6"></i> {{localize "cpred.sheet.damage"}}
+        </button>
+      </div>
     </div>
   </div>
 </form>

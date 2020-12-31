@@ -43,3 +43,18 @@
     background-color: $cyberpunk-maroon;
   }
 }
+
+.rotate-300deg {
+  transform: rotate(300deg);
+}
+
+.actor-resource {
+  .form-control {
+    max-width: 6rem;
+    width: 100%;
+  }
+}
+
+.form-control {
+  min-width: 5rem;
+}

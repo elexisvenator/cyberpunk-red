@@ -5,6 +5,10 @@
             "npc": "NPC",
             "ice": "Ice",
             "name": "Name",
+            "current": "Current",
+            "max": "Max",
+            "rez": "REZ",
+            "damage": "Damage",
             "stats": {
                 "perception": "PER",
                 "speed": "SPD",
