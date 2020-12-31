@@ -58,3 +58,35 @@
 .form-control {
   min-width: 5rem;
 }
+
+.editor-box {
+  .header {
+    font-size: 1.25rem;
+    font-weight: 300;
+    padding: 0.25rem;
+    border: $border-width solid $cyberpunk-maroon;
+    background-color: $cyberpunk-maroon-dim;
+  }
+  .editor {
+    padding: 0.25rem;
+    border: $border-width solid $cyberpunk-maroon;
+    background-color: $cyberpunk-maroon-dim;
+    flex: 1;
+    min-height: 8rem;
+    .editor-content {
+      min-height: 8rem - ($border-width * 4);
+    }
+    .editor-edit {
+      background-color: transparent;
+      color: $cyberpunk-yellow;
+      text-shadow: 0 0 0.5rem transparent;
+      &:hover {
+        text-shadow: 0 0 0.5rem $cyberpunk-yellow;
+      }
+    }
+
+    .tox.tox-tinymce {
+      background-color: $gray-100;
+    }
+  }
+}

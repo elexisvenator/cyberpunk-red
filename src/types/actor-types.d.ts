@@ -6,6 +6,9 @@ interface CommonTemplate {
   attributes: {
     hp: ActorResource;
   };
+  details: {
+    description: StringProp;
+  };
 }
 
 interface StatsTemplate {
@@ -30,6 +33,9 @@ interface IceTemplate {
     def: NumberProp;
     damage: StringProp;
     class: StringProp;
+  };
+  details: {
+    effect: StringProp;
   };
 }
 

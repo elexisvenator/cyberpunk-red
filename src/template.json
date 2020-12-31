@@ -12,6 +12,11 @@
             "value": 10,
             "max": 10
           }
+        },
+        "details": {
+          "description": {
+            "value": ""
+          }
         }
       },
       "character": {
@@ -76,6 +81,11 @@
             "value": ""
           },
           "class": {
+            "value": ""
+          }
+        },
+        "details": {
+          "effect": {
             "value": ""
           }
         }

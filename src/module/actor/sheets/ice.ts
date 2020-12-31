@@ -18,9 +18,25 @@ export default class ActorSheetCpRedIce<
   DataType extends ActorDataCpRedIce = ActorDataCpRedIce,
   ActorType extends ActorCpRed<DataType> = ActorCpRed<DataType>
 > extends ActorSheetCpRed<DataType, ActorType> {
+  static get defaultOptions() {
+    const options = super.defaultOptions;
+    mergeObject(options, {
+      width: 950,
+      height: 600,
+      resizable: true,
+    });
+    return options;
+  }
+
   get template() {
     console.log(this.actor);
     return getFullTemplatePath("ice-sheet.html");
+  }
+
+  get title() {
+    return this.token && !this.token.data.actorLink
+      ? `[Token] ${game.i18n.localize("cpred.sheet.ice")}: ${this.actor.name}`
+      : `${game.i18n.localize("cpred.sheet.ice")}: ${this.actor.name}`;
   }
 
   getData(): ActorSheetDataCpRedIce<DataType> {
