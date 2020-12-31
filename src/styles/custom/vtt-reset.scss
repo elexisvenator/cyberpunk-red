@@ -15,7 +15,7 @@
   padding: 0;
 
   // gradient background
-  @include gradient-y($cyberpunk-bg-bright, $cyberpunk-bg-dim, -10%, 80%);
+  @include gradient-y($cyberpunk-bg-bright, $cyberpunk-bg-dim, -50%, 100%);
 }
 
 h1,
@@ -109,5 +109,31 @@ button {
   &:root {
     scrollbar-width: thin;
     scrollbar-color: $cyberpunk-red $cyberpunk-maroon;
+  }
+}
+
+& {
+  border: 0.125rem solid $cyberpunk-maroon;
+  box-shadow: 0 0 20px $cyberpunk-maroon-dim;
+  > header {
+    border-bottom: 0.125rem solid $cyberpunk-maroon;
+    background-color: $cyberpunk-maroon-dim;
+    font-family: $font-family-base;
+    color: $cyberpunk-red;
+
+    .window-title {
+      color: $cyberpunk-cyan-bright;
+      font-size: 1.2rem;
+      text-shadow: 0 0 0.5rem $cyberpunk-cyan-bright;
+    }
+    a:hover {
+      text-shadow: 0 0 0.5rem $cyberpunk-red;
+    }
+  }
+
+  .window-resizable-handle {
+    background-color: $cyberpunk-maroon;
+    color: $cyberpunk-red;
+    border: none;
   }
 }
