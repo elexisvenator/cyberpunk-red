@@ -57,10 +57,7 @@ Hooks.once("setup", function () {
   // Do anything after initialization but before
   // ready
   
-  // Register the CpRedDie in the system and force VTT to use it over the
-  // Die class when the "denomination", i.e. number of faces, is 10.
-  CONFIG.Dice.types.push(CpRedDie)
-  CONFIG.Dice.terms["10"] = CpRedDie
+  addCyberpunkDiceRule();
 });
 
 /* ------------------------------------ */
@@ -75,3 +72,41 @@ Hooks.once("ready", function () {
 Handlebars.registerHelper("concat", (arg1: string, arg2: string) => {
   return arg1 + arg2;
 });
+
+/**
+ * Adds the Cyperpunk RED critical success and failure dice rule as a dice
+ * modifier to the standard Die class.
+ */
+function addCyberpunkDiceRule()
+{
+  // Definition of a dice roll result as returned by DiceTerm.roll.
+  interface DiceTermResult {
+    result: number,
+    active: boolean,
+    count?: number
+  };
+
+  (Die.prototype as any).cyberpunk = function(modifier: string) {
+    const rgx = /(cp)?/;
+    const match = modifier.match(rgx);
+    if ( !match ) return this;
+
+    let critSuccess : boolean = false;
+    let critFailure : boolean = false;
+    this.results.forEach((r: DiceTermResult) => {
+      critSuccess = (r.result === this.faces) || critSuccess;
+      critFailure = (r.result === 1) || critFailure;
+    });
+
+    if(critSuccess) {
+      this.roll();
+    }
+    if(critFailure) {
+      this.roll();
+      let lastElement : DiceTermResult =
+        <DiceTermResult>(this.results[this.results.length - 1]);
+      lastElement.count = -1 * lastElement.result;
+    }
+  };
+  (Die as any).MODIFIERS.cp = "cyberpunk";
+}
