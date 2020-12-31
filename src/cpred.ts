@@ -14,6 +14,7 @@
 import ActorSheetCpRedCharacter from "./module/actor/sheets/character";
 import ActorSheetCpRedIce from "./module/actor/sheets/ice";
 import ActorSheetCpRedNpc from "./module/actor/sheets/npc";
+import CpRedDie from "./module/die";
 import { registerSettings } from "./module/settings";
 import { preloadTemplates } from "./module/templates";
 export * from "./module/bootstrap/index.esm";
@@ -55,6 +56,11 @@ Hooks.once("init", async function () {
 Hooks.once("setup", function () {
   // Do anything after initialization but before
   // ready
+  
+  // Register the CpRedDie in the system and force VTT to use it over the
+  // Die class when the "denomination", i.e. number of faces, is 10.
+  CONFIG.Dice.types.push(CpRedDie)
+  CONFIG.Dice.terms["10"] = CpRedDie
 });
 
 /* ------------------------------------ */
