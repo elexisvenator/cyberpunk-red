@@ -14,6 +14,7 @@
 import ActorSheetCpRedCharacter from "./module/actor/sheets/character";
 import ActorSheetCpRedIce from "./module/actor/sheets/ice";
 import ActorSheetCpRedNpc from "./module/actor/sheets/npc";
+import ItemSheetCpRedWeapon from "./module/actor/sheets/weapon";
 import { registerSettings } from "./module/settings";
 import { preloadTemplates } from "./module/templates";
 export * from "./module/bootstrap/index.esm";
@@ -47,6 +48,11 @@ Hooks.once("init", async function () {
     types: ["ice"],
     makeDefault: true,
   });
+  Items.unregisterSheet("core", ItemSheet);
+  Items.registerSheet("cpred", ItemSheetCpRedWeapon, {
+    types: ["weapon"],
+    makeDefault: true
+  });
 });
 
 /* ------------------------------------ */
@@ -70,6 +76,16 @@ Hooks.once("ready", function () {
 
 Handlebars.registerHelper("concat", (arg1: string, arg2: string) => {
   return arg1 + arg2;
+});
+
+Handlebars.registerHelper('isNthItem', function(options) {
+  var index = options.data.index + 1;
+  var nth = options.hash.nth;
+
+  if (index % nth === 0)
+    return options.fn(this);
+  else
+    return options.inverse(this);
 });
 
 /**
