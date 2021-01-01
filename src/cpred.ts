@@ -14,7 +14,7 @@
 import ActorSheetCpRedCharacter from "./module/actor/sheets/character";
 import ActorSheetCpRedIce from "./module/actor/sheets/ice";
 import ActorSheetCpRedNpc from "./module/actor/sheets/npc";
-import ItemSheetCpRedWeapon from "./module/actor/sheets/weapon";
+import ItemSheetCpRedWeapon from "./module/item/sheets/weapon";
 import { registerSettings } from "./module/settings";
 import { preloadTemplates } from "./module/templates";
 export * from "./module/bootstrap/index.esm";
@@ -51,7 +51,7 @@ Hooks.once("init", async function () {
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("cpred", ItemSheetCpRedWeapon, {
     types: ["weapon"],
-    makeDefault: true
+    makeDefault: true,
   });
 });
 
@@ -61,7 +61,7 @@ Hooks.once("init", async function () {
 Hooks.once("setup", function () {
   // Do anything after initialization but before
   // ready
-  
+
   addCyberpunkDiceRule();
 });
 
@@ -78,49 +78,45 @@ Handlebars.registerHelper("concat", (arg1: string, arg2: string) => {
   return arg1 + arg2;
 });
 
-Handlebars.registerHelper('isNthItem', function(options) {
+Handlebars.registerHelper("isNthItem", function (options) {
   var index = options.data.index + 1;
   var nth = options.hash.nth;
 
-  if (index % nth === 0)
-    return options.fn(this);
-  else
-    return options.inverse(this);
+  if (index % nth === 0) return options.fn(this);
+  else return options.inverse(this);
 });
 
 /**
  * Adds the Cyperpunk RED critical success and failure dice rule as a dice
  * modifier to the standard Die class.
  */
-function addCyberpunkDiceRule()
-{
+function addCyberpunkDiceRule() {
   // Definition of a dice roll result as returned by DiceTerm.roll.
   interface DiceTermResult {
-    result: number,
-    active: boolean,
-    count?: number,
-    exploded?: boolean
-  };
+    result: number;
+    active: boolean;
+    count?: number;
+    exploded?: boolean;
+  }
 
-  (Die.prototype as any).cyberpunk = function(modifier: string) {
+  (Die.prototype as any).cyberpunk = function (modifier: string) {
     const rgx = /(cp)?/;
     const match = modifier.match(rgx);
-    if ( !match ) return this;
+    if (!match) return this;
 
-    let critSuccess : boolean = false;
-    let critFailure : boolean = false;
+    let critSuccess: boolean = false;
+    let critFailure: boolean = false;
     this.results.forEach((r: DiceTermResult) => {
-      critSuccess = (r.result === this.faces) || critSuccess;
-      critFailure = (r.result === 1) || critFailure;
+      critSuccess = r.result === this.faces || critSuccess;
+      critFailure = r.result === 1 || critFailure;
     });
 
-    if(critSuccess) {
+    if (critSuccess) {
       this.roll();
     }
-    if(critFailure) {
+    if (critFailure) {
       this.roll();
-      let lastElement : DiceTermResult =
-        <DiceTermResult>(this.results[this.results.length - 1]);
+      let lastElement: DiceTermResult = <DiceTermResult>this.results[this.results.length - 1];
       lastElement.count = -1 * lastElement.result;
     }
   };

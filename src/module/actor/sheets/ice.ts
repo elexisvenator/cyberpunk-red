@@ -1,5 +1,5 @@
 import { getFullTemplatePath } from "../../templates";
-import { ActorCpRed } from "../entity";
+import { ActorCpRed } from "../actor";
 import ActorSheetCpRed from "./base";
 
 // this is the model that gets sent to the handlebars template

@@ -1,6 +1,6 @@
 import { getFullTemplatePath } from "../../templates";
-import { ItemCpRed } from "../entity";
-import ItemSheetCpRed from "./item";
+import { ItemCpRed } from "../../item/item";
+import ItemSheetCpRed from "./base";
 
 // This is the model that gets sent to the handlebars template. If you want
 // to use some computed values, declare them here and populate them in getData().
@@ -22,7 +22,6 @@ export default class ItemSheetCpRedWeapon<
   DataType extends ItemDataCpRedWeapon = ItemDataCpRedWeapon,
   ItemType extends ItemCpRed<DataType> = ItemCpRed<DataType>
 > extends ItemSheetCpRed<DataType, ItemType> {
-
   get template() {
     console.log(this.item);
     return getFullTemplatePath("weapon-sheet.html");
@@ -46,13 +45,13 @@ export default class ItemSheetCpRedWeapon<
       {
         name: "cpred.sheet.weapon_actions.singleshot",
         attackroll: "1d10cp",
-        damageroll: "5d6"
+        damageroll: "5d6",
       },
       {
         name: "cpred.sheet.weapon_actions.autofire",
         attackroll: "1d10cp",
-        damageroll: "2d6"
-      }
+        damageroll: "2d6",
+      },
     ];
 
     return {
@@ -61,43 +60,43 @@ export default class ItemSheetCpRedWeapon<
         {
           name: "cpred.sheet.weapon_stats.rof",
           value: data.attributes.rof.value,
-          datapath: "data.attributes.rof.value"
+          datapath: "data.attributes.rof.value",
         },
         {
           name: "cpred.sheet.weapon_stats.skill",
           value: data.attributes.skill.value,
-          datapath: "data.attributes.skill.value"
+          datapath: "data.attributes.skill.value",
         },
         {
           name: "cpred.sheet.weapon_stats.hands",
           value: data.attributes.hands.value,
-          datapath: "data.attributes.hands.value"
+          datapath: "data.attributes.hands.value",
         },
         {
           name: "cpred.sheet.weapon_stats.concealable",
           value: data.attributes.concealable.value,
-          datapath: "data.attributes.concealable.value"
+          datapath: "data.attributes.concealable.value",
         },
         {
           name: "cpred.sheet.weapon_stats.autofire",
           value: data.attributes.autofire.value,
-          datapath: "data.attributes.autofire.value"
+          datapath: "data.attributes.autofire.value",
         },
         {
           name: "cpred.sheet.weapon_stats.suppressive_fire",
           value: data.attributes.suppressive_fire.value,
-          datapath: "data.attributes.suppressive_fire.value"
+          datapath: "data.attributes.suppressive_fire.value",
         },
         {
           name: "cpred.sheet.weapon_stats.shotgun_shell",
           value: data.attributes.shotgun_shell.value,
-          datapath: "data.attributes.shotgun_shell.value"
+          datapath: "data.attributes.shotgun_shell.value",
         },
         {
           name: "cpred.sheet.weapon_stats.explosive",
           value: data.attributes.explosive.value,
-          datapath: "data.attributes.explosive.value"
-        }
+          datapath: "data.attributes.explosive.value",
+        },
       ],
       attackblock: attacks,
       weapon_types: [
@@ -109,8 +108,8 @@ export default class ItemSheetCpRedWeapon<
         "bow_crossbow",
         "grenade_launcher",
         "rocket_launcher",
-        "melee_weapon"
-      ]
+        "melee_weapon",
+      ],
     };
   }
 }

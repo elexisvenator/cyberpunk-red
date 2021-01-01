@@ -1,4 +1,4 @@
-import { ActorCpRed } from "../entity";
+import { ActorCpRed } from "../actor";
 
 // this is the model that gets sent to the handlebars template
 // If you want to use some computed values, declare them here and populate them in getData()
