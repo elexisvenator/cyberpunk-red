@@ -120,5 +120,5 @@ function addCyberpunkDiceRule() {
       lastElement.count = -1 * lastElement.result;
     }
   };
-  (Die as any).MODIFIERS.cp = "cyberpunk";
+  Die.MODIFIERS.cp = "cyberpunk";
 }

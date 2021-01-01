@@ -33,12 +33,7 @@ export default class ItemSheetCpRedWeapon<
 
   getData(): ItemSheetDataCpRedWeapon<DataType> {
     const parentData = super.getData();
-
-    // ! THERE IS SOMETING STUPID GOING ON HERE
-    // ! parentData.data should be ActorData<DataType>
-    // ! parentData.data.data should be DataType
-    // ! instead, parentData.data is DataType
-    const data = (parentData.data as unknown) as DataType;
+    const data = parentData.data;
 
     // Figure out what kind of attacks this weapon can perform
     let attacks = [
