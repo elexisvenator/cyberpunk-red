@@ -1,10 +1,6 @@
-interface ActorResource extends NumberProp {
-  max: number;
-}
-
 interface CommonTemplate {
   attributes: {
-    hp: ActorResource;
+    hp: NumberResource;
   };
   details: {
     description: StringProp;
@@ -18,10 +14,10 @@ interface StatsTemplate {
     dex: NumberProp;
     tech: NumberProp;
     will: NumberProp;
-    luck: ActorResource;
+    luck: NumberResource;
     move: NumberProp;
     body: NumberProp;
-    emp: ActorResource;
+    emp: NumberResource;
   };
 }
 
