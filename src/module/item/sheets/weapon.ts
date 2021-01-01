@@ -23,7 +23,6 @@ export default class ItemSheetCpRedWeapon<
   ItemType extends ItemCpRed<DataType> = ItemCpRed<DataType>
 > extends ItemSheetCpRed<DataType, ItemType> {
   get template() {
-    console.log(this.item);
     return getFullTemplatePath("weapon-sheet.html");
   }
 

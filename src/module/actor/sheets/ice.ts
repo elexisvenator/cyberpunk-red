@@ -29,7 +29,6 @@ export default class ActorSheetCpRedIce<
   }
 
   get template() {
-    console.log(this.actor);
     return getFullTemplatePath("ice-sheet.html");
   }
 
