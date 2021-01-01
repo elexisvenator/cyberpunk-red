@@ -91,34 +91,27 @@ Handlebars.registerHelper("isNthItem", function (options) {
  * modifier to the standard Die class.
  */
 function addCyberpunkDiceRule() {
-  // Definition of a dice roll result as returned by DiceTerm.roll.
-  interface DiceTermResult {
-    result: number;
-    active: boolean;
-    count?: number;
-    exploded?: boolean;
-  }
-
-  (Die.prototype as any).cyberpunk = function (modifier: string) {
+  Die.MODIFIERS.cp = function (modifier: string): void {
     const rgx = /(cp)?/;
     const match = modifier.match(rgx);
     if (!match) return this;
 
+    const die = this as Die;
+
     let critSuccess: boolean = false;
     let critFailure: boolean = false;
-    this.results.forEach((r: DiceTermResult) => {
-      critSuccess = r.result === this.faces || critSuccess;
+    die.results.forEach((r: DiceTermResult) => {
+      critSuccess = r.result === die.faces || critSuccess;
       critFailure = r.result === 1 || critFailure;
     });
 
     if (critSuccess) {
-      this.roll();
+      die.roll();
     }
     if (critFailure) {
-      this.roll();
-      let lastElement: DiceTermResult = <DiceTermResult>this.results[this.results.length - 1];
+      die.roll();
+      let lastElement = die.results[die.results.length - 1];
       lastElement.count = -1 * lastElement.result;
     }
   };
-  Die.MODIFIERS.cp = "cyberpunk";
 }

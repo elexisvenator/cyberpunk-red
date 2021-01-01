@@ -18,7 +18,7 @@
     "@babel/cli": "7.12.10",
     "@babel/core": "7.12.10",
     "@babel/preset-env": "7.12.11",
-    "@elexisvenator/foundry-pc-types": "0.1.5",
+    "@elexisvenator/foundry-pc-types": "0.1.6",
     "@types/node": "14.14.17",
     "@types/webpack-env": "1.16.0",
     "archiver": "5.1.0",

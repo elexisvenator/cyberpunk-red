@@ -5,7 +5,7 @@ devDependencies:
   '@babel/cli': 7.12.10_@babel+core@7.12.10
   '@babel/core': 7.12.10
   '@babel/preset-env': 7.12.11_@babel+core@7.12.10
-  '@elexisvenator/foundry-pc-types': 0.1.5
+  '@elexisvenator/foundry-pc-types': 0.1.6
   '@types/node': 14.14.17
   '@types/webpack-env': 1.16.0
   archiver: 5.1.0
@@ -971,15 +971,15 @@ packages:
       node: '>=10.0.0'
     resolution:
       integrity: sha512-HyYEUDeIj5rRQU2Hk5HTB2uHsbRQpF70nvMhVzi+VJR0X+xNEhjPui4/kBf3VeH/wqD28PT4sVOm8qqLjBrSZg==
-  /@elexisvenator/foundry-pc-types/0.1.5:
+  /@elexisvenator/foundry-pc-types/0.1.6:
     dependencies:
       '@types/jquery': 3.5.5
       '@types/socket.io-client': 1.4.34
       '@types/tinymce': 4.6.0
     dev: true
     resolution:
-      integrity: sha512-hpU+ZhAg5fVRKbesyNe+1LNi9BIBPhtpmZav7/pppSa1KG7kDlIjnz80klalaG2DvndWm5Idjkqh0QPdZ98U9g==
-      tarball: download/@elexisvenator/foundry-pc-types/0.1.5/f4098060981e95c1e0e31796b3fcb27cc59b621d2d4984b78db6f2b288dc21d5
+      integrity: sha512-Wir+OuFrZuoc6q6yusIT0s7E0oqTnMFor6pjft0ZHWRg6oFgdmcbgZMxQD92kUNLJgXL6uVccbJzm9ZK8kFPYw==
+      tarball: download/@elexisvenator/foundry-pc-types/0.1.6/0a535344eee916cecaf7d99ede19a224fb22cffdfffe39d4a95ba6af700a20e1
   /@gulp-sourcemaps/identity-map/2.0.1:
     dependencies:
       acorn: 6.4.2
@@ -7718,7 +7718,7 @@ specifiers:
   '@babel/cli': 7.12.10
   '@babel/core': 7.12.10
   '@babel/preset-env': 7.12.11
-  '@elexisvenator/foundry-pc-types': 0.1.5
+  '@elexisvenator/foundry-pc-types': 0.1.6
   '@popperjs/core': 2.6.0
   '@types/node': 14.14.17
   '@types/webpack-env': 1.16.0
