@@ -1,14 +1,21 @@
 {
     "cpred": {
         "sheet": {
+            "bullets": "Bullets",
+            "magazine": "Magazine",
             "character": "Character",
             "npc": "NPC",
             "ice": "Ice",
+            "weapon": "Weapon",
             "name": "Name",
             "current": "Current",
             "max": "Max",
             "rez": "REZ",
             "damage": "Damage",
+            "price": "Price",
+            "cost": "Price",
+            "description": "Description",
+            "effect": "Effect",
             "stats": {
                 "perception": "PER",
                 "speed": "SPD",
@@ -25,6 +32,36 @@
             "iceclasses": {
                 "antipersonnel": "Anti-Personnel",
                 "antiprogram": "Anti-Program"
+            },
+            "weapon_actions": {
+                "singleshot": "Single Shot",
+                "autofire": "Autofire",
+                "damage": "Damage"
+            },
+            "select_weapon_type": "Select weapon type",
+            "weapon_types": {
+                "pistol": "Pistol",
+                "smg": "SMG",
+                "shotgun": "Shotgun",
+                "assault_rifle": "Assault Rifle",
+                "sniper_rifle": "Sniper Rifle",
+                "bow_crossbow": "Bow & Crossbow",
+                "grenade_launcher": "Grenade Launcher",
+                "rocket_launcher": "Rocket Launcher",
+                "melee_weapon": "Melee Weapon"
+            },
+            "weapon_stats": {
+                "rof": "Rate of Fire",
+                "damage": "Damage",
+                "type": "Type",
+                "skill": "Skill",
+                "hands": "Number of Hands",
+                "magazine": "Magazine",
+                "concealable": "Can be concealed",
+                "autofire": "Autofire capable",
+                "suppressive_fire": "Suppressive Fire capable",
+                "shotgun_shell": "Can use shotgun shells",
+                "explosive": "Fires explosives"
             }
         }
     }
