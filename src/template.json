@@ -112,7 +112,74 @@
     }
   },
   "Item": {
-    "types": [],
-    "templates": []
+    "types": ["weapon", "gear", "cyberwear"],
+    "templates": {
+      "common": {
+        "attributes": {
+          "cost": {
+            "value": 100
+          }
+        },
+        "details": {
+          "description": {
+            "value": ""
+          }
+        }
+      },
+      "weapon": {
+        "attributes": {
+          "damage": {
+            "value": "1d6"
+          },
+          "rof": {
+            "value": 1
+          },
+          "type": {
+            "value": ""
+          },
+          "skill": {
+            "value": ""
+          },
+          "hands": {
+            "value": 1
+          },
+          "magazine": {
+            "value": 0,
+            "max": 0
+          },
+          "concealable": {
+            "value": false
+          },
+          "autofire": {
+            "value": false
+          },
+          "suppressive_fire": {
+            "value": false
+          },
+          "shotgun_shell": {
+            "value": false
+          },
+          "explosive": {
+            "value": false
+          }
+        }
+      }
+    },
+    "weapon": {
+      "templates": [
+        "common",
+        "weapon"
+      ]
+    },
+    "gear": {
+      "templates": [
+        "common"
+      ]
+    },
+    "cyberwear": {
+      "templates": [
+        "common"
+      ]
+    }
   }
 }
