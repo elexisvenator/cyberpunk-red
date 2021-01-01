@@ -98,7 +98,8 @@ function addCyberpunkDiceRule()
   interface DiceTermResult {
     result: number,
     active: boolean,
-    count?: number
+    count?: number,
+    exploded?: boolean
   };
 
   (Die.prototype as any).cyberpunk = function(modifier: string) {
