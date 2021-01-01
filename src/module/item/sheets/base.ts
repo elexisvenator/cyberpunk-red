@@ -1,4 +1,4 @@
-import { ItemCpRed } from "../entity";
+import { ItemCpRed } from "../item";
 
 // this is the model that gets sent to the handlebars template
 // If you want to use some computed values, declare them here and populate them in getData()
