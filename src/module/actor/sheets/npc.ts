@@ -1,5 +1,5 @@
 import { getFullTemplatePath } from "../../templates";
-import ActorCpRed from "../entity";
+import { ActorCpRed } from "../entity";
 import ActorSheetCpRed from "./base";
 
 export default class ActorSheetCpRedNpc<
