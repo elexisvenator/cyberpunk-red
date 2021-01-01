@@ -14,7 +14,6 @@
 import ActorSheetCpRedCharacter from "./module/actor/sheets/character";
 import ActorSheetCpRedIce from "./module/actor/sheets/ice";
 import ActorSheetCpRedNpc from "./module/actor/sheets/npc";
-import CpRedDie from "./module/die";
 import { registerSettings } from "./module/settings";
 import { preloadTemplates } from "./module/templates";
 export * from "./module/bootstrap/index.esm";
