@@ -15,7 +15,10 @@ interface WeaponTemplate {
     skill: StringProp;
     hands: NumberProp;
     magazine: NumberResource;
+  };
+  properties: {
     concealable: BooleanProp;
+    single_shot: BooleanProp;
     autofire: BooleanProp;
     suppressive_fire: BooleanProp;
     shotgun_shell: BooleanProp;

@@ -1,118 +1,187 @@
 <form class="{{cssClass}} d-flex flex-column" autocomplete="off">
-  <div class="d-flex flex-wrap justify-content-evenly">
-    <div class="flex-grow-1 d-flex">
-      <div class="m-1 align-self-stretch avatar-small">
-        <img src="{{item.img}}" data-edit="img" />
-      </div>
-      <div class="d-flex flex-grow-1 flex-column">
-        <div class="form-floating p-1">
-          <input
-            type="text"
-            class="form-control"
-            id="item.name"
-            name="name"
-            placeholder="{{localize 'cpred.sheet.name'}}"
-            value="{{item.name}}"
-          />
-          <label for="item.name">{{localize "cpred.sheet.name"}}</label>
+
+  {{!-- Weapon Sheet Navigation --}}
+  <nav class="sheet-navigation tabs" data-group="primary">
+      <a class="item active" data-tab="description">{{ localize "cpred.tab.description" }}</a>
+      <a class="item" data-tab="combat">{{ localize "cpred.tab.combat" }}</a>
+  </nav>
+
+  <hr>
+
+  {{!-- Weapon Sheet Body --}}
+  <section class="sheet-body">
+
+    {{! Detail tab }}
+    <div class="tab description active" data-group="primary" data-tab="description">
+      <div class="d-flex flex-wrap justify-content-evenly">
+        <div class="flex-grow-1 d-flex">
+          <div class="m-1 align-self-stretch avatar-small">
+            <img src="{{item.img}}" data-edit="img" />
+          </div>
+          <div class="d-flex flex-grow-1 flex-column">
+            <div class="form-floating p-1">
+              <input
+                type="text"
+                class="form-control"
+                id="item.name"
+                name="name"
+                placeholder="{{localize 'cpred.sheet.name'}}"
+                value="{{item.name}}"
+              />
+              <label for="item.name">{{localize "cpred.sheet.name"}}</label>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
 
-  {{! Combat relevant information and actions }}
-  <div class="d-flex">
-    {{> "systems/cpred/templates/partials/actor-resource.html" resource=data.attributes.magazine resourcePath="data.attributes.magazine"
-    name="cpred.sheet.magazine"}}
-  </div>
-  
-  {{#each attackblock}}
-  <div class="d-flex justify-content-between ">
-    <div class="d-flex flex-fill">
-      {{localize this.name}}
-    </div>
-    <div class="d-flex">
-      <button type="button" class="btn btn-outline-primary text-nowrap">
-        <i class="fas fa-dice-d6"></i> Attack: {{localize this.attackroll}}
-      </button>
-    </div>
-    <div class="d-flex">
-      <button type="button" class="btn btn-outline-primary text-nowrap">
-        <i class="fas fa-dice-d6"></i> Damage: {{localize this.damageroll}}
-      </button>
-    </div>
-  </div>
-  {{/each}}
+      <div class="d-flex flex-column">
+        <div class="editor-box p-1">
+          <div class="header">Description</div>
+          {{editor content=data.details.description.value target="data.details.description.value" button=true owner=owner editable=editable}}
+        </div>
+      </div>
 
-  {{! High level information }}
-  <div class="justify-content-between d-flex">
-    {{! Weapon type }}
-    <div class="p-1 d-flex flex-grow-1">
-      <select class="form-select" name="data.attributes.type.value">
-        {{#select data.attributes.type.value}}
-        <option>{{localize "cpred.sheet.select_weapon_type"}}</option>
-        {{#each weapon_types}}
-        <option value="{{this}}">{{localize (concat "cpred.sheet.weapon_types." this)}}</option>
-        {{/each}}
-        {{/select}}
-      </select>
     </div>
 
-    {{! Damage }}
-    <div class="form-floating p-1">
-      <input
-        type="text"
-        class="form-control"
-        id="data.attributes.damage.value"
-        name="data.attributes.damage.value"
-        placeholder="{{localize 'cpred.sheet.damage'}}"
-        value="{{data.attributes.damage.value}}"
-      />
-      <label for="data.attributes.damage.value">{{localize "cpred.sheet.damage"}}</label>
-    </div>
+    {{! Combat tab}}
+    <div class="tab combat" data-group="primary" data-tab="combat">
 
-    {{! Price }}
-    <div class="form-floating p-1">
-      <input
-        type="text"
-        class="form-control"
-        id="data.attributes.cost.value"
-        name="data.attributes.cost.value"
-        placeholder="{{localize 'cpred.sheet.cost'}}"
-        value="{{data.attributes.cost.value}}"
-      />
-      <label for="data.attributes.cost.value">{{localize "cpred.sheet.cost"}}</label>
-    </div>
-  </div>
+      {{! Combat relevant information and actions }}
+      
+      {{! Attack options }}
+      <div class="d-flex p-1"><h3>Actions</h3></div>
+      {{#each attackblock}}
+      <div class="d-flex justify-content-between ">
+        <div class="d-flex flex-fill">
+          {{localize this.name}}
+        </div>
+        <div class="d-flex">
+          <button type="button" class="btn btn-outline-primary text-nowrap">
+            <i class="fas fa-dice-d6"></i> Attack: {{localize this.attackroll}}
+          </button>
+        </div>
+        <div class="d-flex">
+          <button type="button" class="btn btn-outline-primary text-nowrap">
+            <i class="fas fa-dice-d6"></i> Damage: {{localize this.damageroll}}
+          </button>
+        </div>
+      </div>
+      {{/each}}
 
-  {{! Attributes }}
-  <div class="d-flex statblock">
-  {{#each statblock}}
-    <div class="flex-fill d-flex flex-column">
-      <div class="form-floating p-1">
-        <input
-          type="number"
-          class="form-control"
-          id="{{this.datapath}}"
-          name="{{this.datapath}}"
-          placeholder="{{localize this.name}}"
-          value="{{this.value}}"
-        />
+      {{! Magazine content }}
+      <div class="d-flex">
+        {{> 
+          "systems/cpred/templates/partials/actor-resource.html"
+          resource=data.attributes.magazine
+          resourcePath="data.attributes.magazine"
+          name="cpred.sheet.magazine"
+        }}
+        <button type="button" class="btn btn-outline-primary text-nowrap">
+          Reload
+        </button>
+      </div>
+
+      <hr>
+
+      {{! Attributes }}
+      <div class="d-flex p-1"><h3>Attributes</h3></div>
+      <div class="d-flex statblock p-1">
+        <div class="flex-fill d-flex flex-column">
+          <div class="form-floating p-1">
+            <input 
+              type="string"
+              class="form-control"
+              id="data.attributes.damage.value"
+              name="data.attributes.damage.value"
+              placeholder="{{localize 'cpred.sheet.weapon_stats.damage'}}"
+              value="{{data.attributes.damage.value}}"
+            />
+            <label for="data.attributes.damage.value">{{localize "cpred.sheet.weapon_stats.damage"}}</label>
+          </div>
+        </div>
+
+        <div class="flex-fill d-flex flex-column">
+          <div class="form-floating p-1">
+            <input 
+              type="string"
+              class="form-control"
+              id="data.attributes.rof.value"
+              name="data.attributes.rof.value"
+              placeholder="{{localize 'cpred.sheet.weapon_stats.rof'}}"
+              value="{{data.attributes.rof.value}}"
+            />
+            <label for="data.attributes.rof.value">{{localize "cpred.sheet.weapon_stats.rof"}}</label>
+          </div>
+        </div>
+
+        <div class="flex-fill d-flex flex-column">
+          <div class="form-floating p-1">
+            <input 
+              type="string"
+              class="form-control"
+              id="data.attributes.hands.value"
+              name="data.attributes.hands.value"
+              placeholder="{{localize 'cpred.sheet.weapon_stats.hands'}}"
+              value="{{data.attributes.hands.value}}"
+            />
+            <label for="data.attributes.hands.value">{{localize "cpred.sheet.weapon_stats.hands"}}</label>
+          </div>
+        </div>
+
+        <div class="flex-fill d-flex flex-column">
+          <div class="form-floating p-1">
+            <input 
+              type="string"
+              class="form-control"
+              id="data.attributes.cost.value"
+              name="data.attributes.cost.value"
+              placeholder="{{localize 'cpred.sheet.cost'}}"
+              value="{{data.attributes.cost.value}}"
+            />
+            <label for="data.attributes.cost.value">{{localize "cpred.sheet.cost"}}</label>
+          </div>
+        </div>  
+      </div>
+
+      <div class="justify-content-between d-flex p-1">
+        {{! Weapon type }}
+        <div class="d-flex flex-grow-1">
+          <label for="data.attributes.type.value">{{localize "cpred.sheet.weapon_type"}}</label>
+          <select class="form-select" name="data.attributes.type.value">
+            {{#select data.attributes.type.value}}
+            <option>{{localize "cpred.sheet.select_weapon_type"}}</option>
+            {{#each weapon_types}}
+            <option value="{{this}}">{{localize (concat "cpred.sheet.weapon_types." this)}}</option>
+            {{/each}}
+            {{/select}}
+          </select>
+        </div>
+
+        {{! Skill type }}
+        <div class="d-flex flex-grow-1">
+          <label for="data.attributes.skill.value">{{localize "cpred.sheet.combat_skill"}}</label>
+          <select class="form-select" name="data.attributes.skill.value">
+            {{#select data.attributes.skill.value}}
+            <option>{{localize "cpred.sheet.select_weapon_skill"}}</option>
+            {{#each combat_skills}}
+            <option value="{{this}}">{{localize (concat "cpred.skills." this)}}</option>
+            {{/each}}
+            {{/select}}
+          </select>
+        </div>
+      </div>
+
+      <hr>
+
+      {{! Properties }}
+      <div class="d-flex p-1"><h3>Properties</h3></div>
+      {{#each propertiesblock}}
+      <div class="d-flex flex-grow-1 p-1">
+        <input type="checkbox" id="{{this.datapath}}" name="{{this.datapath}}">
         <label for="{{this.datapath}}">{{localize this.name}}</label>
       </div>
-    </div>
-  {{#isNthItem nth=3}}
-  </div>
-  <div class="d-flex statblock">
-  {{/isNthItem}}
-  {{/each}}
-  </div>
+      {{/each}}
 
-  {{! Description }}
-  <div class="d-flex flex-column">
-    <div class="editor-box p-1">
-      <div class="header">Description</div>
-      {{editor content=data.details.description.value target="data.details.description.value" button=true owner=owner editable=editable}}
     </div>
-  </div>
+  </section>
 </form>

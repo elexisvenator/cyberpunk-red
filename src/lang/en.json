@@ -16,6 +16,8 @@
             "cost": "Price",
             "description": "Description",
             "effect": "Effect",
+            "weapon_type": "Weapon Type",
+            "combat_skill": "Combat Skill",
             "stats": {
                 "perception": "PER",
                 "speed": "SPD",
@@ -34,11 +36,15 @@
                 "antiprogram": "Anti-Program"
             },
             "weapon_actions": {
-                "singleshot": "Single Shot",
+                "single_shot": "Single Shot",
                 "autofire": "Autofire",
+                "suppressive_fire": "Suppressive Fire",
+                "shotgun_shell": "Shotgun Shell",
+                "explosive": "Explosive",
                 "damage": "Damage"
             },
             "select_weapon_type": "Select weapon type",
+            "select_weapon_skill": "Select weapon skill",
             "weapon_types": {
                 "pistol": "Pistol",
                 "smg": "SMG",
@@ -58,11 +64,26 @@
                 "hands": "Number of Hands",
                 "magazine": "Magazine",
                 "concealable": "Can be concealed",
+                "single_shot": "Single shot",
                 "autofire": "Autofire capable",
                 "suppressive_fire": "Suppressive Fire capable",
                 "shotgun_shell": "Can use shotgun shells",
                 "explosive": "Fires explosives"
             }
+        },
+        "tab": {
+            "description": "Description",
+            "combat": "Combat"
+        },
+        "skills": {
+            "brawling": "Brawling",
+            "martial_arts": "Martial Arts",
+            "melee_weapon": "Melee Weapon",
+            "archery": "Archery",
+            "autofire": "Autofire",
+            "handgun": "Handgun",
+            "heavy_weapons": "Heavy Weapons",
+            "shoulder_arms": "Shoulder Weapons"
         }
     }
 }

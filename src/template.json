@@ -135,20 +135,25 @@
             "value": 1
           },
           "type": {
-            "value": ""
+            "value": "pistol"
           },
           "skill": {
-            "value": ""
+            "value": "handgun"
           },
           "hands": {
             "value": 1
           },
           "magazine": {
             "value": 0,
-            "max": 0
-          },
+            "max": 10
+          }
+        },
+        "properties": {
           "concealable": {
             "value": false
+          },
+          "single_shot": {
+            "value": true
           },
           "autofire": {
             "value": false
