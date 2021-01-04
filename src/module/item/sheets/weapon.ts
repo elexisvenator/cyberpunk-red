@@ -4,7 +4,7 @@ import ItemSheetCpRed from "./base";
 
 // This is the model that gets sent to the handlebars template. If you want
 // to use some computed values, declare them here and populate them in getData().
-declare interface ItemSheetDataCpRedWeapon<DataType extends ItemDataCpRedWeapon = ItemDataCpRedWeapon> extends ItemSheetData<DataType> {
+declare interface ItemSheetDataCpRedWeapon extends ItemSheetData<ItemDataCpRedWeapon> {
   attributesblock: {
     name: string;
     value: number | string;
@@ -24,10 +24,7 @@ declare interface ItemSheetDataCpRedWeapon<DataType extends ItemDataCpRedWeapon 
   combat_skills: string[];
 }
 
-export default class ItemSheetCpRedWeapon<
-  DataType extends ItemDataCpRedWeapon = ItemDataCpRedWeapon,
-  ItemType extends ItemCpRed<DataType> = ItemCpRed<DataType>
-> extends ItemSheetCpRed<DataType, ItemType> {
+export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWeapon, ItemCpRed<ItemDataCpRedWeapon>> {
   get template() {
     return getFullTemplatePath("weapon-sheet.html");
   }
@@ -36,18 +33,18 @@ export default class ItemSheetCpRedWeapon<
     return `${game.i18n.localize("cpred.sheet.weapon")}: ${this.item.name}`;
   }
 
-  static get defaultOptions() {
-	  return mergeObject(super.defaultOptions, {
-      width: 560,
-      height: 400,
-      classes: ["cpred", "sheet", "item"],
-      resizable: true,
-      scrollY: [".tab.combat"],
-      tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "detail"}]
-    });
-  }
+static get defaultOptions() {
+  return mergeObject(super.defaultOptions, {
+    width: 560,
+    height: 400,
+    classes: ["cpred", "sheet", "item"],
+    resizable: true,
+    scrollY: [".tab.combat"],
+    tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "detail"}]
+  });
+}
 
-  getData(): ItemSheetDataCpRedWeapon<DataType> {
+getData(): ItemSheetDataCpRedWeapon {
     const parentData = super.getData();
     const data = parentData.data;
 

@@ -4,10 +4,10 @@ import { ActorCpRed } from "../actor";
 // If you want to use some computed values, declare them here and populate them in getData()
 declare interface ActorSheetDataCpRed<DataType extends ActorDataCpRed = ActorDataCpRed> extends ActorSheetData<DataType> {}
 
-export default class ActorSheetCpRed<
-  DataType extends ActorDataCpRed = ActorDataCpRed,
-  ActorType extends ActorCpRed<DataType> = ActorCpRed<DataType>
-> extends ActorSheet<DataType, ActorType> {
+export default class ActorSheetCpRed<DataType extends ActorDataCpRed, ActorType extends ActorCpRed<DataType>> extends ActorSheet<
+  DataType,
+  ActorType
+> {
   constructor(...args: any) {
     super(...args);
   }

@@ -4,7 +4,7 @@ import ActorSheetCpRed from "./base";
 
 // this is the model that gets sent to the handlebars template
 // If you want to use some computed values, declare them here and populate them in getData()
-declare interface ActorSheetDataCpRedIce<DataType extends ActorDataCpRedIce = ActorDataCpRedIce> extends ActorSheetData<DataType> {
+declare interface ActorSheetDataCpRedIce extends ActorSheetData<ActorDataCpRedIce> {
   statblock: {
     name: string;
     value: number;
@@ -14,10 +14,7 @@ declare interface ActorSheetDataCpRedIce<DataType extends ActorDataCpRedIce = Ac
   iceClasses: string[];
 }
 
-export default class ActorSheetCpRedIce<
-  DataType extends ActorDataCpRedIce = ActorDataCpRedIce,
-  ActorType extends ActorCpRed<DataType> = ActorCpRed<DataType>
-> extends ActorSheetCpRed<DataType, ActorType> {
+export default class ActorSheetCpRedIce extends ActorSheetCpRed<ActorDataCpRedIce, ActorCpRed<ActorDataCpRedIce>> {
   static get defaultOptions() {
     const options = super.defaultOptions;
     mergeObject(options, {
@@ -38,7 +35,7 @@ export default class ActorSheetCpRedIce<
       : `${game.i18n.localize("cpred.sheet.ice")}: ${this.actor.name}`;
   }
 
-  getData(): ActorSheetDataCpRedIce<DataType> {
+  getData(): ActorSheetDataCpRedIce {
     const parentData = super.getData();
     const data = parentData.data;
 
