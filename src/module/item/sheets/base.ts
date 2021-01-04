@@ -2,7 +2,7 @@ import { ItemCpRed } from "../item";
 
 // this is the model that gets sent to the handlebars template
 // If you want to use some computed values, declare them here and populate them in getData()
-declare interface ItemSheetDataCpRed<DataType extends ItemDataCpRed = ItemDataCpRed> extends ItemSheetData<DataType> {}
+declare interface ItemSheetDataCpRed<DataType extends ItemDataCpRed> extends ItemSheetData<DataType> {}
 
 export default class ItemSheetCpRed<
   DataType extends ItemDataCpRed = ItemDataCpRed,
