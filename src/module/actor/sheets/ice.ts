@@ -1,6 +1,6 @@
+import { LanguageItem } from "../../language";
 import { getFullTemplatePath } from "../../templates";
 import { Path } from "../../types/dot-notation";
-import { LanguageItem } from "../../types/language-types";
 import { ActorCpRed } from "../actor";
 import ActorSheetCpRed, { ActorSheetDataCpRed } from "./base";
 
