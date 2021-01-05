@@ -18,6 +18,7 @@
             "effect": "Effect",
             "weapon_type": "Weapon Type",
             "combat_skill": "Combat Skill",
+            "reload": "Reload",
             "stats": {
                 "perception": "PER",
                 "speed": "SPD",

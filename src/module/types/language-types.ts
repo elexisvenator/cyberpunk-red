@@ -30,6 +30,7 @@ export interface Sheet {
   effect: string;
   weapon_type: string;
   combat_skill: string;
+  reload: string;
   stats: Stats;
   iceactions: Iceactions;
   selecticeclass: string;
