@@ -8,6 +8,8 @@ export interface Root {
 
 export interface Cpred {
   sheet: Sheet;
+  tab: Tab;
+  skills: Skills;
 }
 
 export interface Sheet {
@@ -26,12 +28,15 @@ export interface Sheet {
   cost: string;
   description: string;
   effect: string;
+  weapon_type: string;
+  combat_skill: string;
   stats: Stats;
   iceactions: Iceactions;
   selecticeclass: string;
   iceclasses: Iceclasses;
   weapon_actions: WeaponActions;
   select_weapon_type: string;
+  select_weapon_skill: string;
   weapon_types: WeaponTypes;
   weapon_stats: WeaponStats;
 }
@@ -56,8 +61,11 @@ export interface Iceclasses {
 }
 
 export interface WeaponActions {
-  singleshot: string;
+  single_shot: string;
   autofire: string;
+  suppressive_fire: string;
+  shotgun_shell: string;
+  explosive: string;
   damage: string;
 }
 
@@ -81,8 +89,25 @@ export interface WeaponStats {
   hands: string;
   magazine: string;
   concealable: string;
+  single_shot: string;
   autofire: string;
   suppressive_fire: string;
   shotgun_shell: string;
   explosive: string;
+}
+
+export interface Tab {
+  description: string;
+  combat: string;
+}
+
+export interface Skills {
+  brawling: string;
+  martial_arts: string;
+  melee_weapon: string;
+  archery: string;
+  autofire: string;
+  handgun: string;
+  heavy_weapons: string;
+  shoulder_arms: string;
 }
