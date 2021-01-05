@@ -17,6 +17,7 @@ import ActorSheetCpRedNpc from "./module/actor/sheets/npc";
 import ItemSheetCpRedWeapon from "./module/item/sheets/weapon";
 import { registerSettings } from "./module/settings";
 import { preloadTemplates } from "./module/templates";
+import { getValueByPath, Path } from "./module/types/dot-notation";
 export * from "./module/bootstrap/index.esm";
 
 /* ------------------------------------ */
@@ -76,6 +77,10 @@ Hooks.once("ready", function () {
 
 Handlebars.registerHelper("concat", (arg1: string, arg2: string) => {
   return arg1 + arg2;
+});
+
+Handlebars.registerHelper("getByPath", function <T extends {}>(context: T, path: Path<T>) {
+  return getValueByPath(context, path);
 });
 
 Handlebars.registerHelper("isNthItem", function (options) {

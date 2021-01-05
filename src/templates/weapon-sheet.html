@@ -1,16 +1,14 @@
 <form class="{{cssClass}} d-flex flex-column" autocomplete="off">
-
   {{!-- Weapon Sheet Navigation --}}
   <nav class="sheet-navigation tabs" data-group="primary">
-      <a class="item active" data-tab="description">{{ localize "cpred.tab.description" }}</a>
-      <a class="item" data-tab="combat">{{ localize "cpred.tab.combat" }}</a>
+    <a class="item active" data-tab="description">{{ localize "cpred.tab.description" }}</a>
+    <a class="item" data-tab="combat">{{ localize "cpred.tab.combat" }}</a>
   </nav>
 
-  <hr>
+  <hr />
 
   {{!-- Weapon Sheet Body --}}
   <section class="sheet-body">
-
     {{! Detail tab }}
     <div class="tab description active" data-group="primary" data-tab="description">
       <div class="d-flex flex-wrap justify-content-evenly">
@@ -37,24 +35,19 @@
       <div class="d-flex flex-column">
         <div class="editor-box p-1">
           <div class="header">Description</div>
-          {{editor content=data.details.description.value target="data.details.description.value" button=true owner=owner editable=editable}}
+          {{editor content=data.details.description.value target="data.details.description.value" button=true owner=owner
+          editable=editable}}
         </div>
       </div>
-
     </div>
 
     {{! Combat tab}}
     <div class="tab combat" data-group="primary" data-tab="combat">
-
-      {{! Combat relevant information and actions }}
-      
-      {{! Attack options }}
+      {{! Combat relevant information and actions }} {{! Attack options }}
       <div class="d-flex p-1"><h3>Actions</h3></div>
       {{#each attackblock}}
-      <div class="d-flex justify-content-between ">
-        <div class="d-flex flex-fill">
-          {{localize this.name}}
-        </div>
+      <div class="d-flex justify-content-between">
+        <div class="d-flex flex-fill">{{localize this.name}}</div>
         <div class="d-flex">
           <button type="button" class="btn btn-outline-primary text-nowrap">
             <i class="fas fa-dice-d6"></i> Attack: {{localize this.attackroll}}
@@ -66,29 +59,21 @@
           </button>
         </div>
       </div>
-      {{/each}}
-
-      {{! Magazine content }}
+      {{/each}} {{! Magazine content }}
       <div class="d-flex">
-        {{> 
-          "systems/cpred/templates/partials/actor-resource.html"
-          resource=data.attributes.magazine
-          resourcePath="data.attributes.magazine"
-          name="cpred.sheet.magazine"
-        }}
-        <button type="button" class="btn btn-outline-primary text-nowrap">
-          Reload
-        </button>
+        {{> "systems/cpred/templates/partials/actor-resource.html" resource=data.attributes.magazine resourcePath="data.attributes.magazine"
+        name="cpred.sheet.magazine" }}
+        <button type="button" class="btn btn-outline-primary text-nowrap">Reload</button>
       </div>
 
-      <hr>
+      <hr />
 
       {{! Attributes }}
       <div class="d-flex p-1"><h3>Attributes</h3></div>
       <div class="d-flex statblock p-1">
         <div class="flex-fill d-flex flex-column">
           <div class="form-floating p-1">
-            <input 
+            <input
               type="string"
               class="form-control"
               id="data.attributes.damage.value"
@@ -102,7 +87,7 @@
 
         <div class="flex-fill d-flex flex-column">
           <div class="form-floating p-1">
-            <input 
+            <input
               type="string"
               class="form-control"
               id="data.attributes.rof.value"
@@ -116,7 +101,7 @@
 
         <div class="flex-fill d-flex flex-column">
           <div class="form-floating p-1">
-            <input 
+            <input
               type="string"
               class="form-control"
               id="data.attributes.hands.value"
@@ -130,7 +115,7 @@
 
         <div class="flex-fill d-flex flex-column">
           <div class="form-floating p-1">
-            <input 
+            <input
               type="string"
               class="form-control"
               id="data.attributes.cost.value"
@@ -140,7 +125,7 @@
             />
             <label for="data.attributes.cost.value">{{localize "cpred.sheet.cost"}}</label>
           </div>
-        </div>  
+        </div>
       </div>
 
       <div class="justify-content-between d-flex p-1">
@@ -152,8 +137,7 @@
             <option>{{localize "cpred.sheet.select_weapon_type"}}</option>
             {{#each weapon_types}}
             <option value="{{this}}">{{localize (concat "cpred.sheet.weapon_types." this)}}</option>
-            {{/each}}
-            {{/select}}
+            {{/each}} {{/select}}
           </select>
         </div>
 
@@ -165,23 +149,21 @@
             <option>{{localize "cpred.sheet.select_weapon_skill"}}</option>
             {{#each combat_skills}}
             <option value="{{this}}">{{localize (concat "cpred.skills." this)}}</option>
-            {{/each}}
-            {{/select}}
+            {{/each}} {{/select}}
           </select>
         </div>
       </div>
 
-      <hr>
+      <hr />
 
       {{! Properties }}
       <div class="d-flex p-1"><h3>Properties</h3></div>
       {{#each propertiesblock}}
       <div class="d-flex flex-grow-1 p-1">
-        <input type="checkbox" id="{{this.datapath}}" name="{{this.datapath}}">
+        <input type="checkbox" id="{{this.datapath}}" name="{{this.datapath}}" />
         <label for="{{this.datapath}}">{{localize this.name}}</label>
       </div>
       {{/each}}
-
     </div>
   </section>
 </form>

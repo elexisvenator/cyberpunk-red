@@ -1,15 +1,16 @@
 import { getFullTemplatePath } from "../../templates";
+import { Path } from "../../types/dot-notation";
+import { LanguageItem } from "../../types/language-types";
 import { ActorCpRed } from "../actor";
-import ActorSheetCpRed from "./base";
+import ActorSheetCpRed, { ActorSheetDataCpRed } from "./base";
 
 // this is the model that gets sent to the handlebars template
 // If you want to use some computed values, declare them here and populate them in getData()
-declare interface ActorSheetDataCpRedIce extends ActorSheetData<ActorDataCpRedIce> {
+interface ActorSheetDataCpRedIce extends ActorSheetDataCpRed<ActorDataCpRedIce> {
   statblock: {
-    name: string;
-    value: number;
-    datapath: string;
-    actionName: string;
+    name: Path<LanguageItem>;
+    actionName: Path<LanguageItem>;
+    path: Path<ActorDataCpRedIce>;
   }[];
   iceClasses: string[];
 }
@@ -37,34 +38,29 @@ export default class ActorSheetCpRedIce extends ActorSheetCpRed<ActorDataCpRedIc
 
   getData(): ActorSheetDataCpRedIce {
     const parentData = super.getData();
-    const data = parentData.data;
 
     return {
       ...parentData,
       statblock: [
         {
           name: "cpred.sheet.stats.perception",
-          value: data.attributes.per.value,
-          datapath: "data.attributes.per.value",
           actionName: "cpred.sheet.iceactions.blockslide",
+          path: "attributes.per.value",
         },
         {
           name: "cpred.sheet.stats.speed",
-          value: data.attributes.spd.value,
-          datapath: "data.attributes.spd.value",
           actionName: "cpred.sheet.iceactions.ambush",
+          path: "attributes.spd.value",
         },
         {
           name: "cpred.sheet.stats.attack",
-          value: data.attributes.atk.value,
-          datapath: "data.attributes.atk.value",
           actionName: "cpred.sheet.iceactions.attack",
+          path: "attributes.atk.value",
         },
         {
           name: "cpred.sheet.stats.defence",
-          value: data.attributes.def.value,
-          datapath: "data.attributes.def.value",
           actionName: "cpred.sheet.iceactions.defend",
+          path: "attributes.def.value",
         },
       ],
       iceClasses: ["antipersonnel", "antiprogram"],

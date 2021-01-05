@@ -2,7 +2,7 @@ import { ActorCpRed } from "../actor";
 
 // this is the model that gets sent to the handlebars template
 // If you want to use some computed values, declare them here and populate them in getData()
-declare interface ActorSheetDataCpRed<DataType extends ActorDataCpRed = ActorDataCpRed> extends ActorSheetData<DataType> {}
+export interface ActorSheetDataCpRed<DataType extends ActorDataCpRed = ActorDataCpRed> extends ActorSheetData<DataType> {}
 
 export default class ActorSheetCpRed<DataType extends ActorDataCpRed, ActorType extends ActorCpRed<DataType>> extends ActorSheet<
   DataType,
