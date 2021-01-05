@@ -30,7 +30,14 @@ export default class ActorSheetCpRed<DataType extends ActorDataCpRed, ActorType 
     return sheetData;
   }
 
-  protected activateListeners(html: any) {
+  activateListeners(html: JQuery) {
     super.activateListeners(html);
+    if (!this.options.editable) return;
+
+    html.find("[data-action]").on("click", this._onSheetAction.bind(this));
+  }
+
+  protected _onSheetAction(event: JQuery.TriggeredEvent<HTMLElement, any, HTMLElement, HTMLElement>) {
+    throw new Error(`Unknown action for event ${JSON.stringify(event)}`);
   }
 }
