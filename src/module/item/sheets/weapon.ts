@@ -3,11 +3,19 @@ import { ItemCpRed } from "../../item/item";
 import ItemSheetCpRed from "./base";
 import { LanguageItem, localize } from "../../language";
 import { Path } from "../../types/dot-notation";
+import { FormulaRollable } from "../../rollable";
+
+type WeaponAction = "single_shot_attack" | "single_shot_damage" |
+  "autofire_attack" | "autofire_damage"| "suppressive_fire_attack" |
+  "suppressive_fire_damage" | "shotgun_shell_attack" |
+  "shotgun_shell_damage" | "explosive_attack" | "explosive_damage" |
+  "reload";
 
 interface AttackBlock {
   name: Path<LanguageItem>;
   attackroll: string;
   damageroll: string;
+  action: string;
 }
 
 // This is the model that gets sent to the handlebars template. If you want
@@ -28,6 +36,19 @@ interface ItemSheetDataCpRedWeapon extends ItemSheetData<ItemDataCpRedWeapon> {
 }
 
 export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWeapon, ItemCpRed<ItemDataCpRedWeapon>> {
+  static get defaultOptions() {
+    const options = super.defaultOptions;
+    mergeObject(options, {
+      width: 950,
+      height: 600,
+      resizable: true,
+      classes: ["cpred", "sheet", "item"],
+      scrollY: [".tab.combat"],
+      tabs: [{ navSelector: ".tabs", contentSelector: ".sheet-body", initial: "detail" }],
+    });
+    return options;
+  }
+
   get template() {
     return getFullTemplatePath("weapon-sheet.html");
   }
@@ -36,28 +57,18 @@ export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWe
     return `${localize("cpred.sheet.weapon")}: ${this.item.name}`;
   }
 
-  static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
-      width: 560,
-      height: 400,
-      classes: ["cpred", "sheet", "item"],
-      resizable: true,
-      scrollY: [".tab.combat"],
-      tabs: [{ navSelector: ".tabs", contentSelector: ".sheet-body", initial: "detail" }],
-    });
-  }
-
   getData(): ItemSheetDataCpRedWeapon {
     const parentData = super.getData();
     const data = parentData.data;
 
     // Figure out what kind of attacks this weapon can perform
     let attacks: AttackBlock[] = [];
-    if (!data.properties.single_shot.value) {
+    if (data.properties.single_shot.value) {
       attacks.push({
         name: "cpred.sheet.weapon_actions.single_shot",
         attackroll: "1d10cp",
         damageroll: data.attributes.damage.value,
+        action: "single_shot",
       });
     }
     if (data.properties.autofire.value) {
@@ -65,6 +76,7 @@ export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWe
         name: "cpred.sheet.weapon_actions.autofire",
         attackroll: "1d10cp",
         damageroll: "2d6",
+        action: "autofire",
       });
     }
     if (data.properties.suppressive_fire.value) {
@@ -72,6 +84,7 @@ export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWe
         name: "cpred.sheet.weapon_actions.suppressive_fire",
         attackroll: "1d10cp",
         damageroll: "",
+        action: "suppressive_fire",
       });
     }
     if (data.properties.shotgun_shell.value) {
@@ -79,6 +92,7 @@ export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWe
         name: "cpred.sheet.weapon_actions.shotgun_shell",
         attackroll: "1d10cp",
         damageroll: "3d6",
+        action: "shotgun_shell",
       });
     }
     if (data.properties.explosive.value) {
@@ -86,6 +100,7 @@ export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWe
         name: "cpred.sheet.weapon_actions.explosive",
         attackroll: "1d10cp",
         damageroll: "6d6",
+        action: "explosive",
       });
     }
 
@@ -140,7 +155,16 @@ export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWe
         },
       ],
       attackblock: attacks,
-      combat_skills: ["brawling", "martial_arts", "melee_weapon", "archery", "autofire", "handgun", "heavy_weapons", "shoulder_arms"],
+      combat_skills: [
+        "brawling",
+        "martial_arts",
+        "melee_weapon",
+        "archery",
+        "autofire",
+        "handgun",
+        "heavy_weapons",
+        "shoulder_arms"
+      ],
       weapon_types: [
         "pistol",
         "smg",
@@ -153,5 +177,24 @@ export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWe
         "melee_weapon",
       ],
     };
+  }
+
+  protected _onSheetAction(event: JQuery.TriggeredEvent<HTMLElement, any, HTMLElement, HTMLElement>): void {
+    event.preventDefault();
+
+    const lookup = {
+      "autofire_damage": (obj) => new FormulaRollable("2d6", obj.actor).roll(),
+      "shotgun_shell_attack": (obj) => new FormulaRollable("1d10cp", obj.actor).roll(),
+      "shotgun_shell_damage": (obj) => new FormulaRollable("3d6", obj.actor).roll(),
+      "explosive_damage": (obj) => new FormulaRollable("6d6", obj.actor).roll()
+    }
+
+    const action = event.currentTarget.dataset.action;
+    if(action in lookup) {
+      lookup[action](this);
+    }
+    else {
+      super._onSheetAction(event);
+    }
   }
 }
