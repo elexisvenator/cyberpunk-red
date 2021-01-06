@@ -39,8 +39,8 @@ export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWe
   static get defaultOptions() {
     const options = super.defaultOptions;
     mergeObject(options, {
-      width: 950,
-      height: 600,
+      width: 500,
+      height: 800,
       resizable: true,
       classes: ["cpred", "sheet", "item"],
       scrollY: [".tab.combat"],
