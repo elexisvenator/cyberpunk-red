@@ -19,7 +19,7 @@ interface ActorSheetDataCpRedIce extends ActorSheetDataCpRed<ActorDataCpRedIce> 
 }
 
 export default class ActorSheetCpRedIce extends ActorSheetCpRed<ActorDataCpRedIce, ActorCpRed<ActorDataCpRedIce>> {
-  static get defaultOptions() {
+  static get defaultOptions(): FormApplicationOptions {
     const options = super.defaultOptions;
     mergeObject(options, {
       width: 950,
@@ -29,11 +29,11 @@ export default class ActorSheetCpRedIce extends ActorSheetCpRed<ActorDataCpRedIc
     return options;
   }
 
-  get template() {
+  get template(): string {
     return getFullTemplatePath("ice-sheet.html");
   }
 
-  get title() {
+  get title(): string {
     return this.token && !this.token.data.actorLink
       ? `[Token] ${localize("cpred.sheet.ice")}: ${this.actor.name}`
       : `${localize("cpred.sheet.ice")}: ${this.actor.name}`;
@@ -74,7 +74,7 @@ export default class ActorSheetCpRedIce extends ActorSheetCpRed<ActorDataCpRedIc
     };
   }
 
-  protected _onSheetAction(event: JQuery.TriggeredEvent<HTMLElement, any, HTMLElement, HTMLElement>): void {
+  protected _onSheetAction(event: JQuery.TriggeredEvent<HTMLElement, unknown, HTMLElement, HTMLElement>): void {
     event.preventDefault();
     const button = event.currentTarget;
     switch (button.dataset.action as IceAction) {

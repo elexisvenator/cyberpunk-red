@@ -79,13 +79,13 @@ Handlebars.registerHelper("concat", (arg1: string, arg2: string) => {
   return arg1 + arg2;
 });
 
-Handlebars.registerHelper("getByPath", function <T extends {}>(context: T, path: Path<T>) {
+Handlebars.registerHelper("getByPath", function <T extends Record<string, unknown>>(context: T, path: Path<T>) {
   return getValueByPath(context, path);
 });
 
 Handlebars.registerHelper("isNthItem", function (options) {
-  var index = options.data.index + 1;
-  var nth = options.hash.nth;
+  const index = options.data.index + 1;
+  const nth = options.hash.nth;
 
   if (index % nth === 0) return options.fn(this);
   else return options.inverse(this);
@@ -103,8 +103,8 @@ function addCyberpunkDiceRule() {
 
     const die = this as Die;
 
-    let critSuccess: boolean = false;
-    let critFailure: boolean = false;
+    let critSuccess = false;
+    let critFailure = false;
     die.results.forEach((r: DiceTermResult) => {
       critSuccess = r.result === die.faces || critSuccess;
       critFailure = r.result === 1 || critFailure;
@@ -115,7 +115,7 @@ function addCyberpunkDiceRule() {
     }
     if (critFailure) {
       die.roll();
-      let lastElement = die.results[die.results.length - 1];
+      const lastElement = die.results[die.results.length - 1];
       lastElement.count = -1 * lastElement.result;
     }
   };

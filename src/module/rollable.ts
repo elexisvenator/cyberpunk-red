@@ -1,6 +1,6 @@
 /**
  * Abstract class for all roll implementations.
- * 
+ *
  * An instance is constructed with the information necessary to perform a
  * roll and the base class provides a method which handles rolling and
  * rendering the outcome for all derived implementations.
@@ -12,7 +12,7 @@ export abstract class Rollable {
 
   /**
    * Creates a new rollable instance.
-   * 
+   *
    * @param formula Formula to use during rolling
    * @param actor Actor whose statistics are to be used for rolling
    * @param item Item whose statistics are to be used for rolling
@@ -27,8 +27,8 @@ export abstract class Rollable {
    * Implements the specific rolling logic using the data provided to the constructor.
    */
   abstract roll(): void;
-  
-  protected _executeRoll(roll: Roll) {
+
+  protected _executeRoll(roll: Roll): void {
     const actor = this.actor;
     roll
       .roll()
@@ -36,7 +36,7 @@ export abstract class Rollable {
       .then((content) => {
         ChatMessage.create({
           user: game.user._id,
-          speaker: ChatMessage.getSpeaker({actor}),
+          speaker: ChatMessage.getSpeaker({ actor }),
           content,
           sound: CONFIG.sounds.dice,
         });
@@ -46,7 +46,7 @@ export abstract class Rollable {
 
 /**
  * Formula only based rollable implementation.
- * 
+ *
  * Performs a roll according to the provided formula only.
  */
 export class FormulaRollable extends Rollable {

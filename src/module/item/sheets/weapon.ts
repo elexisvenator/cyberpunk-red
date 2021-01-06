@@ -5,11 +5,18 @@ import { LanguageItem, localize } from "../../language";
 import { Path } from "../../types/dot-notation";
 import { FormulaRollable } from "../../rollable";
 
-type WeaponAction = "single_shot_attack" | "single_shot_damage" |
-  "autofire_attack" | "autofire_damage"| "suppressive_fire_attack" |
-  "suppressive_fire_damage" | "shotgun_shell_attack" |
-  "shotgun_shell_damage" | "explosive_attack" | "explosive_damage" |
-  "reload";
+type WeaponAction =
+  | "single_shot_attack"
+  | "single_shot_damage"
+  | "autofire_attack"
+  | "autofire_damage"
+  | "suppressive_fire_attack"
+  | "suppressive_fire_damage"
+  | "shotgun_shell_attack"
+  | "shotgun_shell_damage"
+  | "explosive_attack"
+  | "explosive_damage"
+  | "reload";
 
 interface AttackBlock {
   name: Path<LanguageItem>;
@@ -36,7 +43,7 @@ interface ItemSheetDataCpRedWeapon extends ItemSheetData<ItemDataCpRedWeapon> {
 }
 
 export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWeapon, ItemCpRed<ItemDataCpRedWeapon>> {
-  static get defaultOptions() {
+  static get defaultOptions(): FormApplicationOptions {
     const options = super.defaultOptions;
     mergeObject(options, {
       width: 500,
@@ -49,11 +56,11 @@ export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWe
     return options;
   }
 
-  get template() {
+  get template(): string {
     return getFullTemplatePath("weapon-sheet.html");
   }
 
-  get title() {
+  get title(): string {
     return `${localize("cpred.sheet.weapon")}: ${this.item.name}`;
   }
 
@@ -62,7 +69,7 @@ export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWe
     const data = parentData.data;
 
     // Figure out what kind of attacks this weapon can perform
-    let attacks: AttackBlock[] = [];
+    const attacks: AttackBlock[] = [];
     if (data.properties.single_shot.value) {
       attacks.push({
         name: "cpred.sheet.weapon_actions.single_shot",
@@ -155,16 +162,7 @@ export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWe
         },
       ],
       attackblock: attacks,
-      combat_skills: [
-        "brawling",
-        "martial_arts",
-        "melee_weapon",
-        "archery",
-        "autofire",
-        "handgun",
-        "heavy_weapons",
-        "shoulder_arms"
-      ],
+      combat_skills: ["brawling", "martial_arts", "melee_weapon", "archery", "autofire", "handgun", "heavy_weapons", "shoulder_arms"],
       weapon_types: [
         "pistol",
         "smg",
@@ -179,21 +177,29 @@ export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWe
     };
   }
 
-  protected _onSheetAction(event: JQuery.TriggeredEvent<HTMLElement, any, HTMLElement, HTMLElement>): void {
+  protected _onSheetAction(event: JQuery.TriggeredEvent<HTMLElement, unknown, HTMLElement, HTMLElement>): void {
     event.preventDefault();
 
-    const lookup = {
-      "autofire_damage": (obj) => new FormulaRollable("2d6", obj.actor).roll(),
-      "shotgun_shell_attack": (obj) => new FormulaRollable("1d10cp", obj.actor).roll(),
-      "shotgun_shell_damage": (obj) => new FormulaRollable("3d6", obj.actor).roll(),
-      "explosive_damage": (obj) => new FormulaRollable("6d6", obj.actor).roll()
-    }
+    const lookup: {
+      [action in WeaponAction]: (item: ItemSheetCpRedWeapon) => void;
+    } = {
+      autofire_damage: (item) => new FormulaRollable("2d6", item.actor).roll(),
+      shotgun_shell_attack: (item) => new FormulaRollable("1d10cp", item.actor).roll(),
+      shotgun_shell_damage: (item) => new FormulaRollable("3d6", item.actor).roll(),
+      explosive_damage: (item) => new FormulaRollable("6d6", item.actor).roll(),
+      single_shot_attack: () => {},
+      single_shot_damage: () => {},
+      autofire_attack: () => {},
+      suppressive_fire_attack: () => {},
+      suppressive_fire_damage: () => {},
+      explosive_attack: () => {},
+      reload: () => {},
+    };
 
     const action = event.currentTarget.dataset.action;
-    if(action in lookup) {
+    if (action in lookup) {
       lookup[action](this);
-    }
-    else {
+    } else {
       super._onSheetAction(event);
     }
   }
