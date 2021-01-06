@@ -174,7 +174,13 @@
       {{#each propertiesblock as |property|}}
       <div class="d-flex flex-grow-1 p-1">
         <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="{{property.path}}" name="{{concat "data." property.path}}" {{checked property.value}}/>
+          <input
+            type="checkbox"
+            class="form-check-input"
+            id="{{property.path}}"
+            name="{{concat 'data.' property.path}}"
+            {{checked (getByPath @root.data property.path)}}
+          />
           <label for="{{property.path}}" class="form-check-label">{{localize property.name}}</label>
         </div>
       </div>
