@@ -6,18 +6,18 @@ devDependencies:
   '@babel/cli': 7.12.10_@babel+core@7.12.10
   '@babel/core': 7.12.10
   '@babel/preset-env': 7.12.11_@babel+core@7.12.10
-  '@elexisvenator/foundry-pc-types': 0.1.6
-  '@types/node': 14.14.17
+  '@elexisvenator/foundry-pc-types': 0.1.8
+  '@types/node': 14.14.20
   '@types/webpack-env': 1.16.0
   '@typescript-eslint/eslint-plugin': 4.12.0_343306961d6b60bcf6bd09d193a54461
   '@typescript-eslint/parser': 4.12.0_eslint@7.17.0+typescript@4.1.3
-  archiver: 5.1.0
-  autoprefixer: 10.1.0_postcss@8.2.2
+  archiver: 5.2.0
+  autoprefixer: 10.2.0_postcss@8.2.2
   babel-loader: 8.2.2_3ea652ad0eeb1c91bd4bd943f4964921
   chalk: 4.1.0
   eslint: 7.17.0
   fs-extra: 9.0.1
-  fsevents: 2.2.1
+  fsevents: 2.3.1
   gulp: 4.0.2
   gulp-git: 2.10.1
   gulp-less: 4.0.1
@@ -29,8 +29,8 @@ devDependencies:
   npm-check-updates: 10.2.5
   postcss: 8.2.2
   rimraf: 3.0.2
-  sass: 1.32.0
-  ts-loader: 8.0.13_typescript@4.1.3+webpack@5.11.1
+  sass: 1.32.2
+  ts-loader: 8.0.14_typescript@4.1.3+webpack@5.11.1
   typescript: 4.1.3
   webpack: 5.11.1_webpack-cli@4.3.1
   webpack-cli: 4.3.1_webpack@5.11.1
@@ -975,15 +975,15 @@ packages:
       node: '>=10.0.0'
     resolution:
       integrity: sha512-HyYEUDeIj5rRQU2Hk5HTB2uHsbRQpF70nvMhVzi+VJR0X+xNEhjPui4/kBf3VeH/wqD28PT4sVOm8qqLjBrSZg==
-  /@elexisvenator/foundry-pc-types/0.1.6:
+  /@elexisvenator/foundry-pc-types/0.1.8:
     dependencies:
       '@types/jquery': 3.5.5
       '@types/socket.io-client': 1.4.34
       '@types/tinymce': 4.6.0
     dev: true
     resolution:
-      integrity: sha512-Wir+OuFrZuoc6q6yusIT0s7E0oqTnMFor6pjft0ZHWRg6oFgdmcbgZMxQD92kUNLJgXL6uVccbJzm9ZK8kFPYw==
-      tarball: download/@elexisvenator/foundry-pc-types/0.1.6/0a535344eee916cecaf7d99ede19a224fb22cffdfffe39d4a95ba6af700a20e1
+      integrity: sha512-6fZYOFA7eXHOCVcb0p9Xp2RvKtxq1QZnWVAINozEAWcj9iD4jDqJlSnfZQpe/2xz6CGb9RW7TVhnz7yktOBI2w==
+      tarball: download/@elexisvenator/foundry-pc-types/0.1.8/567df156afd9d7b621bbb82331b24574368ea63fe4066389b0a9f1a26cf4c4b9
   /@eslint/eslintrc/0.2.2:
     dependencies:
       ajv: 6.12.6
@@ -1178,6 +1178,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-G0lD1/7qD60TJ/mZmhog76k7NcpLWkPVGgzkRy3CTlnFu4LUQh5v2Wa661z6vnXmD8EQrnALUyf0VRtrACYztw==
+  /@types/node/14.14.20:
+    dev: true
+    resolution:
+      integrity: sha512-Y93R97Ouif9JEOWPIUyU+eyIdyRqQR0I8Ez1dzku4hDx34NWh4HbtIc3WNzwB1Y9ULvNGeu5B8h8bVL5cAk4/A==
   /@types/sizzle/2.3.2:
     dev: true
     resolution:
@@ -1723,7 +1727,7 @@ packages:
       node: '>= 6'
     resolution:
       integrity: sha512-bEL/yUb/fNNiNTuUz979Z0Yg5L+LzLxGJz8x79lYmR54fmTIb6ob/hNQgkQnIUDWIFjZVQwl9Xs356I6BAMHfw==
-  /archiver/5.1.0:
+  /archiver/5.2.0:
     dependencies:
       archiver-utils: 2.1.0
       async: 3.2.0
@@ -1736,7 +1740,7 @@ packages:
     engines:
       node: '>= 10'
     resolution:
-      integrity: sha512-iKuQUP1nuKzBC2PFlGet5twENzCfyODmvkxwDV0cEFXavwcLrIW5ssTuHi9dyTPvpWr6Faweo2eQaQiLIwyXTA==
+      integrity: sha512-QEAKlgQuAtUxKeZB9w5/ggKXh21bZS+dzzuQ0RPBC20qtDCbTyzqmisoeJP46MP39fg4B4IcyvR+yeyEBdblsQ==
   /archy/1.0.0:
     dev: true
     resolution:
@@ -1942,10 +1946,10 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
-  /autoprefixer/10.1.0_postcss@8.2.2:
+  /autoprefixer/10.2.0_postcss@8.2.2:
     dependencies:
-      browserslist: 4.16.0
-      caniuse-lite: 1.0.30001171
+      browserslist: 4.16.1
+      caniuse-lite: 1.0.30001173
       colorette: 1.2.1
       fraction.js: 4.0.13
       normalize-range: 0.1.2
@@ -1958,7 +1962,7 @@ packages:
     peerDependencies:
       postcss: ^8.1.0
     resolution:
-      integrity: sha512-0/lBNwN+ZUnb5su18NZo5MBIjDaq6boQKZcxwy86Gip/CmXA2zZqUoFQLCNAGI5P25ZWSP2RWdhDJ8osfKEjoQ==
+      integrity: sha512-5SdPoK2Q3rxVh4xC8GKdy772KbEESdl2SyJADCw5FMUrd5eNtpOTLo7oCFMEKvK86zQdvsIVTYk93E8dAfRy6g==
   /aws-sign2/0.7.0:
     dev: true
     resolution:
@@ -2132,6 +2136,19 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-/j6k8R0p3nxOC6kx5JGAxsnhc9ixaWJfYc+TNTzxg6+ARaESAvQGV7h0uNOB4t+pLQJZWzcrMxXOxjgsCj3dqQ==
+  /browserslist/4.16.1:
+    dependencies:
+      caniuse-lite: 1.0.30001173
+      colorette: 1.2.1
+      electron-to-chromium: 1.3.634
+      escalade: 3.1.1
+      node-releases: 1.1.69
+    dev: true
+    engines:
+      node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7
+    hasBin: true
+    resolution:
+      integrity: sha512-UXhDrwqsNcpTYJBTZsbGATDxZbiVDsx6UjpmRUmtnP10pr8wAYr5LgFoEFw9ixriQH2mv/NX2SfGzE/o8GndLA==
   /buffer-crc32/0.2.13:
     dev: true
     resolution:
@@ -2283,6 +2300,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-5Alrh8TTYPG9IH4UkRqEBZoEToWRLvPbSQokvzSz0lii8/FOWKG4keO1HoYfPWs8IF/NH/dyNPg1cmJGvV3Zlg==
+  /caniuse-lite/1.0.30001173:
+    dev: true
+    resolution:
+      integrity: sha512-R3aqmjrICdGCTAnSXtNyvWYMK3YtV5jwudbq0T7nN9k4kmE4CBuwPqyJ+KBzepSTh0huivV2gLbSMEzTTmfeYw==
   /caseless/0.12.0:
     dev: true
     resolution:
@@ -2956,6 +2977,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-bsVCsONiVX1abkWdH7KtpuDAhsQ3N3bjPYhROSAXE78roJKet0Y5wznA14JE9pzbwSZmSMAW6KiKYf1RvbTJkA==
+  /electron-to-chromium/1.3.634:
+    dev: true
+    resolution:
+      integrity: sha512-QPrWNYeE/A0xRvl/QP3E0nkaEvYUvH3gM04ZWYtIa6QlSpEetRlRI1xvQ7hiMIySHHEV+mwDSX8Kj4YZY6ZQAw==
   /emoji-regex/7.0.3:
     dev: true
     resolution:
@@ -3637,14 +3662,14 @@ packages:
       - darwin
     resolution:
       integrity: sha512-Auw9a4AxqWpa9GUfj370BMPzzyncfBABW8Mab7BGWBYDj4Isgq+cDKtx0i6u9jcX9pQDnswsaaOTgTmA5pEjuQ==
-  /fsevents/2.2.1:
+  /fsevents/2.3.1:
     dev: true
     engines:
       node: ^8.16.0 || ^10.6.0 || >=11.0.0
     os:
       - darwin
     resolution:
-      integrity: sha512-bTLYHSeC0UH/EFXS9KqWnXuOl/wHK5Z/d+ghd5AsFMYN7wIGkUCOJyzy88+wJKkZPGON8u4Z9f6U4FdgURE9qA==
+      integrity: sha512-YR47Eg4hChJGAB1O3yEAOkGO+rlzutoICGqGo9EZ4lKWokzZRSyIW1QmTzqjtw8MJdj9srP869CuWw/hyzSiBw==
   /fstream/1.0.12:
     dependencies:
       graceful-fs: 4.2.4
@@ -4994,6 +5019,16 @@ packages:
       node: '>=4.0.0'
     resolution:
       integrity: sha512-qH0WSMBtn/oHuwjy/NucEgbx5dbxxnxup9s4PVXJUDHZBQY+s0NWA9rJf53RBnQZxfch7euUui7hpoAPvALZdA==
+  /loader-utils/2.0.0:
+    dependencies:
+      big.js: 5.2.2
+      emojis-list: 3.0.0
+      json5: 2.1.3
+    dev: true
+    engines:
+      node: '>=8.9.0'
+    resolution:
+      integrity: sha512-rP4F0h2RaWSvPEkD7BLDFQnvSf+nK+wr3ESUjNTyAGobqrijmW92zc+SO6d4p4B1wh7+B/Jg1mkQe5NYUEHtHQ==
   /locate-path/3.0.0:
     dependencies:
       p-locate: 3.0.0
@@ -5529,6 +5564,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-V5QF9noGFl3EymEwUYzO+3NTDpGfQB4ve6Qfnzf3UNydMhjQRVPR1DZTuvWiLzaFJYw2fmDwAfnRNEVb64hSIg==
+  /node-releases/1.1.69:
+    dev: true
+    resolution:
+      integrity: sha512-DGIjo79VDEyAnRlfSqYTsy+yoHd2IOjJiKUozD2MV2D85Vso6Bug56mb9tT/fY5Urt0iqk01H7x+llAruDR2zA==
   /node-sass/4.14.1:
     dependencies:
       async-foreach: 0.1.3
@@ -6796,7 +6835,7 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-VFWDAHOe6mRuT4mZRd4eKE+d8Uedrk6Xnh7Sh9b4NGufQLQjOrvf/MQoOdx+0s92L89FeyUUNfU597j/3uNpag==
-  /sass/1.32.0:
+  /sass/1.32.2:
     dependencies:
       chokidar: 3.4.3
     dev: true
@@ -6804,7 +6843,7 @@ packages:
       node: '>=8.9.0'
     hasBin: true
     resolution:
-      integrity: sha512-fhyqEbMIycQA4blrz/C0pYhv2o4x2y6FYYAH0CshBw3DXh5D5wyERgxw0ptdau1orc/GhNrhF7DFN2etyOCEng==
+      integrity: sha512-u1pUuzqwz3SAgvHSWp1k0mRhX82b2DdlVnP6UIetQPZtYbuJUDaPQhZE12jyjB7vYeOScfz9WPsZJB6Rpk7heA==
   /schema-utils/2.7.1:
     dependencies:
       '@types/json-schema': 7.0.6
@@ -7544,13 +7583,13 @@ packages:
     dev: true
     resolution:
       integrity: sha512-m6s2OdQe5wgpFMC+pAJ+q9djG82O2jcHPOI6RNg1yy9rCYR+WD6Nbpl32fDpfC56nirdRy+opFa/Vk7HYhqaew==
-  /ts-loader/8.0.13_typescript@4.1.3+webpack@5.11.1:
+  /ts-loader/8.0.14_typescript@4.1.3+webpack@5.11.1:
     dependencies:
-      chalk: 2.4.2
+      chalk: 4.1.0
       enhanced-resolve: 4.3.0
-      loader-utils: 1.4.0
+      loader-utils: 2.0.0
       micromatch: 4.0.2
-      semver: 6.3.0
+      semver: 7.3.4
       typescript: 4.1.3
       webpack: 5.11.1_webpack-cli@4.3.1
     dev: true
@@ -7560,7 +7599,7 @@ packages:
       typescript: '*'
       webpack: '*'
     resolution:
-      integrity: sha512-1o1nO6aqouA23d2nlcMSEyPMAWRhnYUU0EQUJSc60E0TUyBNX792RHFYUN1ZM29vhMUNayrsbj2UVdZwKhXCDA==
+      integrity: sha512-Jt/hHlUnApOZjnSjTmZ+AbD5BGlQFx3f1D0nYuNKwz0JJnuDGHJas6az+FlWKwwRTu+26GXpv249A8UAnYUpqA==
   /tslib/1.14.1:
     dev: true
     resolution:
@@ -8250,20 +8289,20 @@ specifiers:
   '@babel/cli': 7.12.10
   '@babel/core': 7.12.10
   '@babel/preset-env': 7.12.11
-  '@elexisvenator/foundry-pc-types': 0.1.6
+  '@elexisvenator/foundry-pc-types': 0.1.8
   '@popperjs/core': 2.6.0
-  '@types/node': 14.14.17
+  '@types/node': 14.14.20
   '@types/webpack-env': 1.16.0
   '@typescript-eslint/eslint-plugin': 4.12.0
   '@typescript-eslint/parser': 4.12.0
-  archiver: 5.1.0
-  autoprefixer: 10.1.0
+  archiver: 5.2.0
+  autoprefixer: 10.2.0
   babel-loader: 8.2.2
   chalk: 4.1.0
   detect-autofill: 1.1.3
   eslint: 7.17.0
   fs-extra: 9.0.1
-  fsevents: 2.2.1
+  fsevents: 2.3.1
   gulp: 4.0.2
   gulp-git: 2.10.1
   gulp-less: 4.0.1
@@ -8276,8 +8315,8 @@ specifiers:
   path-value: 0.7.1
   postcss: 8.2.2
   rimraf: 3.0.2
-  sass: 1.32.0
-  ts-loader: 8.0.13
+  sass: 1.32.2
+  ts-loader: 8.0.14
   typescript: 4.1.3
   webpack: 5.11.1
   webpack-cli: 4.3.1

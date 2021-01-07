@@ -8,8 +8,8 @@ export default class ActorSheetCpRed<DataType extends ActorDataCpRed, ActorType 
   DataType,
   ActorType
 > {
-  constructor(...args: unknown[]) {
-    super(...args);
+  constructor(object: ActorType, options?: FormApplicationOptions) {
+    super(object, options);
   }
 
   static get defaultOptions(): FormApplicationOptions {

@@ -8,8 +8,8 @@ export default class ItemSheetCpRed<
   DataType extends ItemDataCpRed = ItemDataCpRed,
   ItemType extends ItemCpRed<DataType> = ItemCpRed<DataType>
 > extends ItemSheet<DataType, ItemType> {
-  constructor(...args: unknown[]) {
-    super(...args);
+  constructor(object: ItemType, options?: FormApplicationOptions) {
+    super(object, options);
   }
 
   static get defaultOptions(): FormApplicationOptions {
