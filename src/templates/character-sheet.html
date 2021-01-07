@@ -16,5 +16,9 @@
       <div class="form-floating"><input type="text" name="data.attributes.body.value"  id="data.attributes.body.value" class="form-control"  value="{{data.attributes.body.value}}" placeholder="x" /><label for="data.attributes.body.value" class="form-label">BODY</label></div>
       <div class="form-floating"><input type="text" name="data.attributes.emp.value" id="data.attributes.emp.value" class="form-control" value="{{data.attributes.emp.value}}" placeholder="x" /><label for="data.attributes.emp.value" class="form-label">EMP</label></div>
   </div>
-</div>
+
+  <h2>Gear</h2>
+  {{#each gearblock as |gear|}}
+    {{> "systems/cpred/templates/partials/weapon-listing.html" item=gear}}
+  {{/each}}
 </form>
