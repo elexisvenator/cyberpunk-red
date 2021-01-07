@@ -4,6 +4,7 @@ import ItemSheetCpRed from "./base";
 import { LanguageItem, localize } from "../../language";
 import { Path } from "../../types/dot-notation";
 import { FormulaRollable } from "../../rollable";
+import { ActionHandlers } from "../../entity";
 
 type WeaponAction =
   | "single_shot_attack"
@@ -43,6 +44,28 @@ interface ItemSheetDataCpRedWeapon extends ItemSheetData<ItemDataCpRedWeapon> {
 }
 
 export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWeapon, ItemCpRed<ItemDataCpRedWeapon>> {
+
+  private static actionHandlers: ActionHandlers<ItemSheetCpRedWeapon, WeaponAction> = {
+    autofire_attack: () => {},
+    autofire_damage: (sheet) => new FormulaRollable("2d6", sheet.item.actor).roll(),
+    shotgun_shell_attack: (sheet) => new FormulaRollable("1d10cp", sheet.item.actor).roll(),
+    shotgun_shell_damage: (sheet) => new FormulaRollable("3d6", sheet.item.actor).roll(),
+    explosive_attack: () => {},
+    explosive_damage: (sheet) => new FormulaRollable("6d6", sheet.item.actor).roll(),
+    single_shot_attack: () => {},
+    single_shot_damage: () => {},
+    suppressive_fire_attack: () => {},
+    suppressive_fire_damage: () => {},
+    reload: () => {},
+  };
+
+  constructor(object: ItemCpRed<ItemDataCpRedWeapon>, options: FormApplicationOptions) {
+    super(object, {
+      ...options,
+      actionHandlers: ItemSheetCpRedWeapon.actionHandlers,
+    });
+  }
+
   static get defaultOptions(): FormApplicationOptions {
     const options = super.defaultOptions;
     mergeObject(options, {
@@ -175,32 +198,5 @@ export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWe
         "melee_weapon",
       ],
     };
-  }
-
-  protected _onSheetAction(event: JQuery.TriggeredEvent<HTMLElement, unknown, HTMLElement, HTMLElement>): void {
-    event.preventDefault();
-
-    const lookup: {
-      [action in WeaponAction]: (item: ItemSheetCpRedWeapon) => void;
-    } = {
-      autofire_damage: (item) => new FormulaRollable("2d6", item.actor).roll(),
-      shotgun_shell_attack: (item) => new FormulaRollable("1d10cp", item.actor).roll(),
-      shotgun_shell_damage: (item) => new FormulaRollable("3d6", item.actor).roll(),
-      explosive_damage: (item) => new FormulaRollable("6d6", item.actor).roll(),
-      single_shot_attack: () => {},
-      single_shot_damage: () => {},
-      autofire_attack: () => {},
-      suppressive_fire_attack: () => {},
-      suppressive_fire_damage: () => {},
-      explosive_attack: () => {},
-      reload: () => {},
-    };
-
-    const action = event.currentTarget.dataset.action;
-    if (action in lookup) {
-      lookup[action](this);
-    } else {
-      super._onSheetAction(event);
-    }
   }
 }
