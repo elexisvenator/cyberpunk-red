@@ -1,4 +1,6 @@
+import { ActionHandlers } from "../../entity";
 import { LanguageItem, localize } from "../../language";
+import { FormulaRollable } from "../../rollable";
 import { getFullTemplatePath } from "../../templates";
 import { Path } from "../../types/dot-notation";
 import { ActorCpRed } from "../actor";
@@ -19,11 +21,26 @@ interface ActorSheetDataCpRedIce extends ActorSheetDataCpRed<ActorDataCpRedIce> 
 }
 
 export default class ActorSheetCpRedIce extends ActorSheetCpRed<ActorDataCpRedIce, ActorCpRed<ActorDataCpRedIce>> {
+  private static actionHandlers: ActionHandlers<ActorSheetCpRedIce, IceAction> = {
+    ambush: (sheet) => new FormulaRollable(`1d10cp + ${sheet.actor.data.data.attributes.spd.value}`, sheet.actor).roll(),
+    attack: (sheet) => new FormulaRollable(`1d10cp + ${sheet.actor.data.data.attributes.atk.value}`, sheet.actor).roll(),
+    "block-slide": (sheet) => new FormulaRollable(`1d10cp + ${sheet.actor.data.data.attributes.per.value}`, sheet.actor).roll(),
+    damage: (sheet) => new FormulaRollable(sheet.actor.data.data.attributes.damage.value, sheet.actor).roll(),
+    defend: (sheet) => new FormulaRollable(`1d10cp + ${sheet.actor.data.data.attributes.def.value}`, sheet.actor).roll(),
+  };
+
+  constructor(object: ActorCpRed<ActorDataCpRedIce>, options: FormApplicationOptions) {
+    super(object, {
+      ...options,
+      actionHandlers: ActorSheetCpRedIce.actionHandlers,
+    });
+  }
+
   static get defaultOptions(): FormApplicationOptions {
     const options = super.defaultOptions;
     mergeObject(options, {
       width: 950,
-      height: 600,
+      height: 610,
       resizable: true,
     });
     return options;
@@ -72,50 +89,5 @@ export default class ActorSheetCpRedIce extends ActorSheetCpRed<ActorDataCpRedIc
       ],
       iceClasses: ["antipersonnel", "antiprogram"],
     };
-  }
-
-  protected _onSheetAction(event: JQuery.TriggeredEvent<HTMLElement, unknown, HTMLElement, HTMLElement>): void {
-    event.preventDefault();
-    const button = event.currentTarget;
-    switch (button.dataset.action as IceAction) {
-      case "ambush":
-        this._rollAmbush();
-        break;
-      case "attack":
-        break;
-      case "block-slide":
-        break;
-      case "damage":
-        break;
-      case "defend":
-        break;
-      default:
-        super._onSheetAction(event);
-    }
-  }
-
-  private _rollAmbush(): void {
-    const actor = this.actor;
-    const data = actor.data.data;
-    // TODO: Make 1d10cp a constant somewhere
-    const formula = `1d10cp + ${data.attributes.spd.value}`;
-
-    // TODO: Abstract this somewhere
-    // TODO: Handle detail and description
-    // TODO: Custom html
-    const roll = new Roll(formula);
-    roll
-      .roll()
-      .render()
-      .then((content) => {
-        ChatMessage.create({
-          user: game.user._id,
-          speaker: ChatMessage.getSpeaker({
-            actor,
-          }),
-          content,
-          sound: CONFIG.sounds.dice,
-        });
-      });
   }
 }

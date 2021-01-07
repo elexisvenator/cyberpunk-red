@@ -1,3 +1,4 @@
+import { ActionHandlers, CpRedSheetOptions } from "../../entity";
 import { ActorCpRed } from "../actor";
 
 // this is the model that gets sent to the handlebars template
@@ -8,8 +9,16 @@ export default class ActorSheetCpRed<DataType extends ActorDataCpRed, ActorType 
   DataType,
   ActorType
 > {
-  constructor(object: ActorType, options?: FormApplicationOptions) {
+  protected actionHandlers: ActionHandlers<ActorSheetCpRed<DataType, ActorType>, string>;
+
+  constructor(object: ActorType, options?: CpRedSheetOptions<ActorSheetCpRed<DataType, ActorType>>) {
     super(object, options);
+
+    this.actionHandlers = {
+      // any shared handlers can be added here.
+      // add them above so they can be overridden.
+      ...options?.actionHandlers,
+    };
   }
 
   static get defaultOptions(): FormApplicationOptions {
@@ -38,6 +47,18 @@ export default class ActorSheetCpRed<DataType extends ActorDataCpRed, ActorType 
   }
 
   protected _onSheetAction(event: JQuery.TriggeredEvent<HTMLElement, unknown, HTMLElement, HTMLElement>): void {
-    throw new Error(`Unknown action for event ${JSON.stringify(event)}`);
+    event.preventDefault();
+
+    const action = event.currentTarget.dataset.action;
+    if (action in this.actionHandlers) {
+      const handler = this.actionHandlers[action];
+      if (handler == null) {
+        throw new Error(`Declared action '${action}' called but no implementation defined.`);
+      }
+
+      handler(this, action);
+    } else {
+      throw new Error(`Unknown action '${action}' for event ${JSON.stringify(event)}`);
+    }
   }
 }
