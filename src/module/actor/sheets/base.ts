@@ -50,14 +50,14 @@ export default class ActorSheetCpRed<DataType extends ActorDataCpRed, ActorType 
     event.preventDefault();
 
     const action = event.currentTarget.dataset.action;
-    const actionValue = event.currentTarget.dataset.actionValue;
+    const value = event.currentTarget.dataset.value;
     if (action in this.actionHandlers) {
       const handler = this.actionHandlers[action];
       if (handler == null) {
         throw new Error(`Declared action '${action}' called but no implementation defined.`);
       }
 
-      handler(this, action, actionValue);
+      handler(this, action, value);
     } else {
       throw new Error(`Unknown action '${action}' for event ${JSON.stringify(event)}`);
     }
