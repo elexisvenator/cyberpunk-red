@@ -89,19 +89,567 @@
             "value": ""
           }
         }
+      },
+      "skills": {
+        "skills": {
+          "conceal_object": {
+            "group": "awareness",
+            "stat": "int",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "concentration": {
+            "group": "awareness",
+            "stat": "will",
+            "mandatory": true,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 2
+          },
+          "lip_reading": {
+            "group": "awareness",
+            "stat": "int",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "perception": {
+            "group": "awareness",
+            "stat": "int",
+            "mandatory": true,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 2
+          },
+          "tracking": {
+            "group": "awareness",
+            "stat": "int",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "athletics": {
+            "group": "body",
+            "stat": "dex",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "contortionist": {
+            "group": "body",
+            "stat": "dex",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "dance": {
+            "group": "body",
+            "stat": "dex",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "endurance": {
+            "group": "body",
+            "stat": "will",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "resist_torture": {
+            "group": "body",
+            "stat": "will",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "stealth": {
+            "group": "body",
+            "stat": "dex",
+            "mandatory": true,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 2
+          },
+          "drive_air": {
+            "group": "control",
+            "stat": "ref",
+            "mandatory": false,
+            "costMultiplier": 2,
+            "subSkills": null,
+            "levels": 0
+          },
+          "drive_land": {
+            "group": "control",
+            "stat": "ref",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "drive_sea": {
+            "group": "control",
+            "stat": "ref",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "riding": {
+            "group": "control",
+            "stat": "ref",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "accounting": {
+            "group": "education",
+            "stat": "int",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "animal_handling": {
+            "group": "education",
+            "stat": "int",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "bureaucracy": {
+            "group": "education",
+            "stat": "int",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "business": {
+            "group": "education",
+            "stat": "int",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "composition": {
+            "group": "education",
+            "stat": "int",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "criminology": {
+            "group": "education",
+            "stat": "int",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "cryptography": {
+            "group": "education",
+            "stat": "int",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "deduction": {
+            "group": "education",
+            "stat": "int",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "education": {
+            "group": "education",
+            "stat": "int",
+            "mandatory": true,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 2
+          },
+          "gamble": {
+            "group": "education",
+            "stat": "int",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "language": {
+            "group": "education",
+            "stat": "int",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": [
+              {
+                "mandatory": true,
+                "name": "streetslang",
+                "hasLanguageItem": true,
+                "levels": 2
+              }
+            ],
+            "levels": null
+          },
+          "library_search": {
+            "group": "education",
+            "stat": "int",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "local_expert": {
+            "group": "education",
+            "stat": "int",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": [
+              {
+                "mandatory": true,
+                "name": "yourhome",
+                "hasLanguageItem": true,
+                "levels": 2
+              }
+            ],
+            "levels": null
+          },
+          "science": {
+            "group": "education",
+            "stat": "int",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": [],
+            "levels": 0
+          },
+          "tactics": {
+            "group": "education",
+            "stat": "int",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "wilderness": {
+            "group": "education",
+            "stat": "int",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "brawling": {
+            "group": "fighting",
+            "stat": "dex",
+            "mandatory": true,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 2
+          },
+          "evasion": {
+            "group": "fighting",
+            "stat": "dex",
+            "mandatory": true,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 2
+          },
+          "martial_arts": {
+            "group": "fighting",
+            "stat": "dex",
+            "mandatory": false,
+            "costMultiplier": 2,
+            "subSkills": null,
+            "levels": 0
+          },
+          "melee_weapon": {
+            "group": "fighting",
+            "stat": "dex",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "acting": {
+            "group": "performance",
+            "stat": "cool",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "play_instrument": {
+            "group": "performance",
+            "stat": "tech",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": [],
+            "levels": 0
+          },
+          "archery": {
+            "group": "ranged",
+            "stat": "ref",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "autofire": {
+            "group": "ranged",
+            "stat": "ref",
+            "mandatory": false,
+            "costMultiplier": 2,
+            "subSkills": null,
+            "levels": 0
+          },
+          "handgun": {
+            "group": "ranged",
+            "stat": "ref",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "heavy_weapons": {
+            "group": "ranged",
+            "stat": "ref",
+            "mandatory": false,
+            "costMultiplier": 2,
+            "subSkills": null,
+            "levels": 0
+          },
+          "shoulder_arms": {
+            "group": "ranged",
+            "stat": "ref",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "bribery": {
+            "group": "social",
+            "stat": "cool",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "conversation": {
+            "group": "social",
+            "stat": "emp",
+            "mandatory": true,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 2
+          },
+          "human_perception": {
+            "group": "social",
+            "stat": "emp",
+            "mandatory": true,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 2
+          },
+          "interrogation": {
+            "group": "social",
+            "stat": "cool",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "personal_grooming": {
+            "group": "social",
+            "stat": "cool",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "persuasion": {
+            "group": "social",
+            "stat": "cool",
+            "mandatory": true,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 2
+          },
+          "streetwise": {
+            "group": "social",
+            "stat": "cool",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "trading": {
+            "group": "social",
+            "stat": "cool",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "wardrobe": {
+            "group": "social",
+            "stat": "cool",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "air_vehicle_tech": {
+            "group": "technique",
+            "stat": "tech",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "basic_tech": {
+            "group": "technique",
+            "stat": "tech",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "cyber_tech": {
+            "group": "technique",
+            "stat": "tech",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "demolitions": {
+            "group": "technique",
+            "stat": "tech",
+            "mandatory": false,
+            "costMultiplier": 2,
+            "subSkills": null,
+            "levels": 0
+          },
+          "electronics_security_tech": {
+            "group": "technique",
+            "stat": "tech",
+            "mandatory": false,
+            "costMultiplier": 2,
+            "subSkills": null,
+            "levels": 0
+          },
+          "firstaid": {
+            "group": "technique",
+            "stat": "tech",
+            "mandatory": true,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 2
+          },
+          "forgery": {
+            "group": "technique",
+            "stat": "tech",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "land_vehicle_tech": {
+            "group": "technique",
+            "stat": "tech",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "paint_draw_sculpt": {
+            "group": "technique",
+            "stat": "tech",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "paramedic": {
+            "group": "technique",
+            "stat": "tech",
+            "mandatory": false,
+            "costMultiplier": 2,
+            "subSkills": null,
+            "levels": 0
+          },
+          "photography_film": {
+            "group": "technique",
+            "stat": "tech",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "pick_lock": {
+            "group": "technique",
+            "stat": "tech",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "pick_pocket": {
+            "group": "technique",
+            "stat": "tech",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "sea_vehicle_tech": {
+            "group": "technique",
+            "stat": "tech",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          },
+          "weaponstech": {
+            "group": "technique",
+            "stat": "tech",
+            "mandatory": false,
+            "costMultiplier": 1,
+            "subSkills": null,
+            "levels": 0
+          }
+        }
       }
     },
     "character": {
       "templates": [
         "common",
         "character",
-        "stats"
+        "stats",
+        "skills"
       ]
     },
     "npc": {
       "templates": [
         "common",
-        "stats"
+        "stats",
+        "skills"
       ]
     },
     "ice": {
@@ -112,7 +660,11 @@
     }
   },
   "Item": {
-    "types": ["weapon", "gear", "cyberwear"],
+    "types": [
+      "weapon",
+      "gear",
+      "cyberwear"
+    ],
     "templates": {
       "common": {
         "attributes": {

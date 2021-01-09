@@ -9,7 +9,9 @@ export interface Root {
 export interface Cpred {
   sheet: Sheet;
   tab: Tab;
+  skillGroups: SkillGroups;
   skills: Skills;
+  subSkills: SubSkills;
 }
 
 export interface Sheet {
@@ -102,13 +104,88 @@ export interface Tab {
   combat: string;
 }
 
+export interface SkillGroups {
+  awareness: string;
+  body: string;
+  control: string;
+  education: string;
+  fighting: string;
+  performance: string;
+  ranged: string;
+  social: string;
+  technique: string;
+}
+
 export interface Skills {
-  brawling: string;
-  martial_arts: string;
-  melee_weapon: string;
+  accounting: string;
+  acting: string;
+  air_vehicle_tech: string;
+  animal_handling: string;
   archery: string;
+  athletics: string;
   autofire: string;
+  basic_tech: string;
+  brawling: string;
+  bribery: string;
+  bureaucracy: string;
+  business: string;
+  composition: string;
+  conceal_object: string;
+  concentration: string;
+  contortionist: string;
+  conversation: string;
+  criminology: string;
+  cryptography: string;
+  cyber_tech: string;
+  dance: string;
+  deduction: string;
+  demolitions: string;
+  drive_air: string;
+  drive_land: string;
+  drive_sea: string;
+  education: string;
+  electronics_security_tech: string;
+  endurance: string;
+  evasion: string;
+  first_aid: string;
+  forgery: string;
+  gamble: string;
   handgun: string;
   heavy_weapons: string;
+  human_perception: string;
+  interrogation: string;
+  land_vehicle_tech: string;
+  language: string;
+  library_search: string;
+  lip_reading: string;
+  local_expert: string;
+  martial_arts: string;
+  melee_weapon: string;
+  paint_draw_sculpt: string;
+  paramedic: string;
+  perception: string;
+  personal_grooming: string;
+  persuasion: string;
+  photography_film: string;
+  pick_lock: string;
+  pick_pocket: string;
+  play_instrument: string;
+  resist_torture: string;
+  riding: string;
+  science: string;
+  sea_vehicle_tech: string;
   shoulder_arms: string;
+  stealth: string;
+  streetwise: string;
+  tactics: string;
+  tracking: string;
+  trading: string;
+  wardrobe: string;
+  weaponstech: string;
+  wilderness: string;
+}
+
+export interface SubSkills {
+  streetslang: string;
+  your_home: string;
 }

@@ -21,6 +21,28 @@ interface StatsTemplate {
   };
 }
 
+interface SubSkill {
+  mandatory: boolean;
+  name: string;
+  hasLanguageItem: boolean;
+  level: number;
+}
+
+interface Skill {
+  group: string;
+  stat: string;
+  mandatory: boolean;
+  costMultiplier: number;
+  subSkills?: SubSkill[];
+  level: number;
+}
+
+interface SkillsTemplate {
+  skills: {
+    [name: string]: Skill;
+  };
+}
+
 interface IceTemplate {
   attributes: {
     per: NumberProp;
@@ -36,6 +58,6 @@ interface IceTemplate {
 }
 
 declare type ActorDataCpRed = CommonTemplate;
-declare type ActorDataCpRedCharacter = ActorDataCpRed & StatsTemplate;
-declare type ActorDataCpRedNpc = ActorDataCpRed & StatsTemplate;
+declare type ActorDataCpRedCharacter = ActorDataCpRed & StatsTemplate & SkillsTemplate;
+declare type ActorDataCpRedNpc = ActorDataCpRed & StatsTemplate & SkillsTemplate;
 declare type ActorDataCpRedIce = ActorDataCpRed & IceTemplate;

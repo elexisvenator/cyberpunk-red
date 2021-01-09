@@ -1,0 +1,12 @@
+<div class="skill-groups">
+  {{#each skillGroups as |group|}}
+  <div class="skill-group">
+    <strong>{{group.formattedName}}</strong>
+    {{#each group.skills as |skill|}}
+    <div>
+      <span>{{skill.formattedName}} {{skill.skill.stat}} {{skill.skill.level}}</span>
+    </div>
+    {{/each}}
+  </div>
+  {{/each}}
+</div>
