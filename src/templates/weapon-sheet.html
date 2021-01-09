@@ -149,7 +149,7 @@
             {{#select data.attributes.type.value}}
             <option>{{localize "cpred.sheet.select_weapon_type"}}</option>
             {{#each weapon_types}}
-            <option value="{{this}}">{{localize (concat "cpred.sheet.weapon_types." this)}}</option>
+            <option value="{{this}}">{{localize (join "." "cpred.sheet.weapon_types" this)}}</option>
             {{/each}} {{/select}}
           </select>
         </div>
@@ -161,7 +161,7 @@
             {{#select data.attributes.skill.value}}
             <option>{{localize "cpred.sheet.select_weapon_skill"}}</option>
             {{#each combat_skills}}
-            <option value="{{this}}">{{localize (concat "cpred.skills." this)}}</option>
+            <option value="{{this}}">{{localize (join "." "cpred.skills" this)}}</option>
             {{/each}} {{/select}}
           </select>
         </div>
@@ -178,7 +178,7 @@
             type="checkbox"
             class="form-check-input"
             id="{{property.path}}"
-            name="{{concat 'data.' property.path}}"
+            name="{{join "." "data" property.path}}"
             {{checked (getByPath @root.data property.path)}}
           />
           <label for="{{property.path}}" class="form-check-label">{{localize property.name}}</label>

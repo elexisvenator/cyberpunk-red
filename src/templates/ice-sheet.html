@@ -21,7 +21,7 @@
             {{#select data.attributes.class.value}}
             <option>{{localize "cpred.sheet.selecticeclass"}}...</option>
             {{#each iceClasses}}
-            <option value="{{this}}">{{localize (concat "cpred.sheet.iceclasses." this)}}</option>
+            <option value="{{this}}">{{localize (join "." "cpred.sheet.iceclasses" this)}}</option>
             {{/each}} {{/select}}
           </select>
         </div>
@@ -31,7 +31,7 @@
       {{#each statblock as |stat|}}
       <div class="flex-fill d-flex flex-column">
         <div class="form-floating p-1">
-          <input type="number" class="form-control" id="{{stat.path}}" name="{{concat "data." stat.path}}" placeholder="{{localize
+          <input type="number" class="form-control" id="{{stat.path}}" name="{{join "." "data" stat.path}}" placeholder="{{localize
           stat.name}}" value="{{getByPath @root.data stat.path}}" />
           <label for="{{stat.path}}">{{localize stat.name}}</label>
         </div>

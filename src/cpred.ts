@@ -75,8 +75,8 @@ Hooks.once("ready", function () {
 
 // Add any additional hooks if necessary
 
-Handlebars.registerHelper("concat", (arg1: string, arg2: string) => {
-  return arg1 + arg2;
+Handlebars.registerHelper("join", (separator: string, ...strs) => {
+  return strs.filter((str) => !(typeof str === "object" || str === null || str === undefined)).join(separator);
 });
 
 Handlebars.registerHelper("getByPath", function <T extends Record<string, unknown>>(context: T, path: Path<T>) {
