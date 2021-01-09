@@ -163,6 +163,14 @@ export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWe
           path: "attributes.hands.value",
         },
         {
+          name: "cpred.sheet.weapon_stats.reload_turns",
+          path: "attributes.reload_turns.value",
+        },
+        {
+          name: "cpred.sheet.weapon_stats.autofire_max",
+          path: "attributes.autofire_max.value",
+        },
+        {
           name: "cpred.sheet.cost",
           path: "attributes.cost.value",
         },
@@ -171,6 +179,10 @@ export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWe
         {
           name: "cpred.sheet.weapon_stats.concealable",
           path: "properties.concealable.value",
+        },
+        {
+          name: "cpred.sheet.weapon_stats.aimed_shot",
+          path: "properties.aimed_shot.value",
         },
         {
           name: "cpred.sheet.weapon_stats.single_shot",

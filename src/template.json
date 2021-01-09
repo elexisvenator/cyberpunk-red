@@ -695,6 +695,12 @@
           "hands": {
             "value": 1
           },
+          "reload_turns": {
+            "value:": 1
+          },
+          "autofire_max": {
+            "value": 0
+          },
           "magazine": {
             "value": 0,
             "max": 10
@@ -718,6 +724,9 @@
           },
           "explosive": {
             "value": false
+          },
+          "aimed_shot": {
+            "value": true
           }
         }
       }

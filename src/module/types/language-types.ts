@@ -90,13 +90,16 @@ export interface WeaponStats {
   type: string;
   skill: string;
   hands: string;
+  reload_turns: string;
   magazine: string;
   concealable: string;
   single_shot: string;
   autofire: string;
+  autofire_max: string;
   suppressive_fire: string;
   shotgun_shell: string;
   explosive: string;
+  aimed_shot: string;
 }
 
 export interface Tab {

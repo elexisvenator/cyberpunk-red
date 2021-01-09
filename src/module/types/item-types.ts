@@ -14,6 +14,8 @@ interface WeaponTemplate {
     type: StringProp;
     skill: StringProp;
     hands: NumberProp;
+    reload_turns: NumberProp;
+    autofire_max: NumberProp;
     magazine: NumberResource;
   };
   properties: {
@@ -23,6 +25,7 @@ interface WeaponTemplate {
     suppressive_fire: BooleanProp;
     shotgun_shell: BooleanProp;
     explosive: BooleanProp;
+    aimed_shot: BooleanProp;
   };
 }
 

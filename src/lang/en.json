@@ -63,13 +63,16 @@
                 "type": "Type",
                 "skill": "Skill",
                 "hands": "Number of Hands",
+                "reload_turns": "Turns to reload",
                 "magazine": "Magazine",
                 "concealable": "Can be concealed",
                 "single_shot": "Single shot",
                 "autofire": "Autofire capable",
+                "autofire_max": "Autofire amount",
                 "suppressive_fire": "Suppressive Fire capable",
                 "shotgun_shell": "Can use shotgun shells",
-                "explosive": "Fires explosives"
+                "explosive": "Fires explosives",
+                "aimed_shot": "Aimed shot capable"
             }
         },
         "tab": {
