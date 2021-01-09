@@ -1,8 +1,11 @@
 <div class="d-flex p-1 align-items-baseline justify-content-between">
-  <div class="d-flex flex-grow p-1">
+  <div class="me-auto p-1">
     <label>{{item.name}}</label>
   </div>
-  <div class="d-flex p-1">
+  <div class="p-1">
+    <a title="Remove item" data-action="show-item" data-value="{{item.id}}"><i class="fas fa-edit"></i></a>
+  </div>
+  <div class="p-1">
     <a title="Remove item" data-action="remove-item" data-value="{{item.id}}"><i class="fas fa-trash"></i></a>
   </div>
 </div>

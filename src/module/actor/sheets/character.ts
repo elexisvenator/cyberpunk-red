@@ -6,7 +6,9 @@ import { ActionHandlers } from "../../entity";
 import { LanguageItem, localize } from "../../language";
 import { Path } from "../../types/dot-notation";
 
-type CharacterAction = "remove-item";
+type CharacterAction =
+  | "remove-item"
+  | "show-item";
 
 interface SkillGroup {
   name: string;
@@ -25,6 +27,7 @@ interface ActorSheetDataCpRedCharacter extends ActorSheetDataCpRed<ActorDataCpRe
 export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataCpRedCharacter, ActorCpRed<ActorDataCpRedCharacter>> {
   private static actionHandlers: ActionHandlers<ActorSheetCpRedCharacter, CharacterAction> = {
     "remove-item": (sheet, _action, value) => { sheet.actor.deleteOwnedItem(value); },
+    "show-item": (sheet, _action, value) => { sheet.actor.getOwnedItem(value).sheet.render(true); }
   };
 
   constructor(object: ActorCpRed<ActorDataCpRedCharacter>, options: FormApplicationOptions) {
