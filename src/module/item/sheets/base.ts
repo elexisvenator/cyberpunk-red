@@ -1,3 +1,4 @@
+import { ActionHandlers, CpRedSheetOptions } from "../../entity";
 import { ItemCpRed } from "../item";
 
 // this is the model that gets sent to the handlebars template
@@ -7,9 +8,18 @@ type ItemSheetDataCpRed<DataType extends ItemDataCpRed> = ItemSheetData<DataType
 export default class ItemSheetCpRed<
   DataType extends ItemDataCpRed = ItemDataCpRed,
   ItemType extends ItemCpRed<DataType> = ItemCpRed<DataType>
-> extends ItemSheet<DataType, ItemType> {
-  constructor(object: ItemType, options?: FormApplicationOptions) {
+> extends ItemSheet<DataType, ItemType>
+{
+  protected actionHandlers: ActionHandlers<ItemSheetCpRed<DataType, ItemType>, string>;
+
+  constructor(object: ItemType, options?: CpRedSheetOptions<ItemSheetCpRed<DataType, ItemType>>) {
     super(object, options);
+
+    this.actionHandlers = {
+      // any shared handlers can be added here.
+      // add them above so they can be overridden.
+      ...options?.actionHandlers,
+    };
   }
 
   static get defaultOptions(): FormApplicationOptions {
@@ -38,6 +48,19 @@ export default class ItemSheetCpRed<
   }
 
   protected _onSheetAction(event: JQuery.TriggeredEvent<HTMLElement, unknown, HTMLElement, HTMLElement>): void {
-    throw new Error(`Unknown action for event ${JSON.stringify(event)}`);
+    event.preventDefault();
+
+    const action = event.currentTarget.dataset.action;
+    const value = event.currentTarget.dataset.value;
+    if (action in this.actionHandlers) {
+      const handler = this.actionHandlers[action];
+      if (handler == null) {
+        throw new Error(`Declared action '${action}' called but no implementation defined.`);
+      }
+
+      handler(this, action, value);
+    } else {
+      throw new Error(`Unknown action '${action}' for event ${JSON.stringify(event)}`);
+    }
   }
 }
