@@ -82,62 +82,17 @@
       <div class="d-flex p-1"><h3>Attributes</h3></div>
       <div class="d-flex flex-wrap justify-content-start">
         <div class="d-flex statblock">
-
-          <div class="d-flex flex-fill flex-column">
-            <div class="form-floating p-1">
-              <input
-                type="string"
-                class="form-control"
-                id="data.attributes.damage.value"
-                name="data.attributes.damage.value"
-                placeholder="{{localize 'cpred.sheet.weapon_stats.damage'}}"
-                value="{{data.attributes.damage.value}}"
-              />
-              <label for="data.attributes.damage.value">{{localize "cpred.sheet.weapon_stats.damage"}}</label>
-            </div>
-          </div>
-
-          <div class="d-flex flex-fill flex-column">
-            <div class="form-floating p-1">
-              <input
-                type="string"
-                class="form-control"
-                id="data.attributes.rof.value"
-                name="data.attributes.rof.value"
-                placeholder="{{localize 'cpred.sheet.weapon_stats.rof'}}"
-                value="{{data.attributes.rof.value}}"
-              />
-              <label for="data.attributes.rof.value">{{localize "cpred.sheet.weapon_stats.rof"}}</label>
-            </div>
-          </div>
-
-          <div class="d-flex flex-fill flex-column">
-            <div class="form-floating p-1">
-              <input
-                type="string"
-                class="form-control"
-                id="data.attributes.hands.value"
-                name="data.attributes.hands.value"
-                placeholder="{{localize 'cpred.sheet.weapon_stats.hands'}}"
-                value="{{data.attributes.hands.value}}"
-              />
-              <label for="data.attributes.hands.value">{{localize "cpred.sheet.weapon_stats.hands"}}</label>
-            </div>
-          </div>
-
-          <div class="d-flex flex-fill flex-column">
-            <div class="form-floating p-1">
-              <input
-                type="string"
-                class="form-control"
-                id="data.attributes.cost.value"
-                name="data.attributes.cost.value"
-                placeholder="{{localize 'cpred.sheet.cost'}}"
-                value="{{data.attributes.cost.value}}"
-              />
-              <label for="data.attributes.cost.value">{{localize "cpred.sheet.cost"}}</label>
-            </div>
-          </div>
+          {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.damage" path="attributes.damage.value"}}
+          {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.rof" path="attributes.rof.value"}}
+          {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.hands" path="attributes.hands.value"}}
+          {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.cost" path="attributes.cost.value"}}
+        </div>
+      </div>
+      
+      <div class="d-flex flex-wrap justify-content-start">
+        <div class="d-flex statblock">
+          {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.reload_turns" path="attributes.reload_turns.value"}}
+          {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.autofire_max" path="attributes.autofire_max.value"}}
         </div>
       </div>
 

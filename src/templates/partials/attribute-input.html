@@ -1,0 +1,13 @@
+<div class="d-flex flex-fill flex-column">
+  <div class="form-floating p-1">
+    <input
+      type="string"
+      class="form-control"
+      id="data.{{path}}"
+      name="data.{{path}}"
+      placeholder="{{localize name}}"
+      value="{{getByPath @root.data path}}"
+    />
+    <label for="{{path}}">{{localize name}}</label>
+  </div>
+</div>

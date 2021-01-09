@@ -2,6 +2,7 @@ export const preloadTemplates = async function (): Promise<void> {
   const templatePaths: string[] = [
     // Add paths to "systems/cpred/templates"
     "partials/actor-resource.html",
+    "partials/attribute-input.html",
     "partials/character-skills.html",
     "partials/weapon-listing.html",
   ];
