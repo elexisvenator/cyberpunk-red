@@ -17,6 +17,7 @@ interface SkillGroup {
     name: string;
     formattedName: string;
     skill: Skill;
+    path: any; // FIXME: What's the correct type for this?
   }[];
 }
 interface ActorSheetDataCpRedCharacter extends ActorSheetDataCpRed<ActorDataCpRedCharacter> {
@@ -52,12 +53,13 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
       return ("" + a.name).localeCompare(b.name);
     });
 
-    // skills
+    // Skills
     const skillArray = Object.keys(parentData.data.skills).map((skillName) => {
       return {
         name: skillName,
         formattedName: localize(`cpred.skills.${skillName}` as Path<LanguageItem>),
         skill: parentData.data.skills[skillName],
+        path: "skills." + skillName + ".levels",
       };
     });
     //        .sort((a, b) => a.formattedName.localeCompare(b.formattedName));
