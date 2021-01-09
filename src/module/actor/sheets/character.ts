@@ -24,7 +24,7 @@ interface ActorSheetDataCpRedCharacter extends ActorSheetDataCpRed<ActorDataCpRe
 
 export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataCpRedCharacter, ActorCpRed<ActorDataCpRedCharacter>> {
   private static actionHandlers: ActionHandlers<ActorSheetCpRedCharacter, CharacterAction> = {
-    "remove-item": () => {},
+    "remove-item": (sheet, _action, value) => { sheet.actor.deleteOwnedItem(value); },
   };
 
   constructor(object: ActorCpRed<ActorDataCpRedCharacter>, options: FormApplicationOptions) {
