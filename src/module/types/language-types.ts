@@ -149,7 +149,7 @@ export interface Skills {
   conversation: string;
   criminology: string;
   cryptography: string;
-  cyber_tech: string;
+  cybertech: string;
   dance: string;
   deduction: string;
   demolitions: string;

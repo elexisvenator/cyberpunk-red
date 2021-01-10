@@ -532,7 +532,7 @@
             "subSkills": null,
             "levels": 0
           },
-          "cyber_tech": {
+          "cybertech": {
             "group": "technique",
             "stat": "tech",
             "mandatory": false,
@@ -556,7 +556,7 @@
             "subSkills": null,
             "levels": 0
           },
-          "firstaid": {
+          "first_aid": {
             "group": "technique",
             "stat": "tech",
             "mandatory": true,
