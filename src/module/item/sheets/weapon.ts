@@ -97,114 +97,64 @@ export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWe
     return `${localize("cpred.sheet.weapon")}: ${this.item.name}`;
   }
 
+  generateAttack(name: string): AttackBlock {
+    return {
+      name: `cpred.sheet.weapon_actions.${name}` as Path<LanguageItem>,
+      action: name
+    }
+  }
+
+  generateBlockEntry(category: string, name: string): BlockEntry {
+    return {
+      name: `cpred.sheet.weapon_stats.${name}` as Path<LanguageItem>,
+      path: `${category}.${name}.value` as Path<ItemDataCpRedWeapon>
+    }
+  }
+
   getData(): ItemSheetDataCpRedWeapon {
     const parentData = super.getData();
     const data = parentData.data;
 
     // Figure out what kind of attacks this weapon can perform
     const attacks: AttackBlock[] = [];
+    if(data.properties.aimed_shot.value) {
+      attacks.push(this.generateAttack("aimed_shot"));
+    }
     if (data.properties.single_shot.value) {
-      attacks.push({
-        name: "cpred.sheet.weapon_actions.single_shot",
-        attackroll: "1d10cp",
-        damageroll: data.attributes.damage.value,
-        action: "single_shot",
-      });
+      attacks.push(this.generateAttack("single_shot"));
     }
     if (data.properties.autofire.value) {
-      attacks.push({
-        name: "cpred.sheet.weapon_actions.autofire",
-        attackroll: "1d10cp",
-        damageroll: "2d6",
-        action: "autofire",
-      });
+      attacks.push(this.generateAttack("autofire"));
     }
     if (data.properties.suppressive_fire.value) {
-      attacks.push({
-        name: "cpred.sheet.weapon_actions.suppressive_fire",
-        attackroll: "1d10cp",
-        damageroll: "",
-        action: "suppressive_fire",
-      });
+      attacks.push(this.generateAttack("suppressive_fire"));
     }
     if (data.properties.shotgun_shell.value) {
-      attacks.push({
-        name: "cpred.sheet.weapon_actions.shotgun_shell",
-        attackroll: "1d10cp",
-        damageroll: "3d6",
-        action: "shotgun_shell",
-      });
+      attacks.push(this.generateAttack("shotgun_shell"));
     }
     if (data.properties.explosive.value) {
-      attacks.push({
-        name: "cpred.sheet.weapon_actions.explosive",
-        attackroll: "1d10cp",
-        damageroll: "6d6",
-        action: "explosive",
-      });
+      attacks.push(this.generateAttack("explosive"));
     }
 
     return {
       ...parentData,
       attributesblock: [
-        {
-          name: "cpred.sheet.weapon_stats.damage",
-          path: "attributes.damage.value",
-        },
-        {
-          name: "cpred.sheet.weapon_stats.rof",
-          path: "attributes.rof.value",
-        },
-        {
-          name: "cpred.sheet.weapon_stats.skill",
-          path: "attributes.skill.value",
-        },
-        {
-          name: "cpred.sheet.weapon_stats.hands",
-          path: "attributes.hands.value",
-        },
-        {
-          name: "cpred.sheet.weapon_stats.reload_turns",
-          path: "attributes.reload_turns.value",
-        },
-        {
-          name: "cpred.sheet.weapon_stats.autofire_max",
-          path: "attributes.autofire_max.value",
-        },
-        {
-          name: "cpred.sheet.cost",
-          path: "attributes.cost.value",
-        },
+        this.generateBlockEntry("attributes", "damage"),
+        this.generateBlockEntry("attributes", "rof"),
+        this.generateBlockEntry("attributes", "skill"),
+        this.generateBlockEntry("attributes", "hands"),
+        this.generateBlockEntry("attributes", "reload_turns"),
+        this.generateBlockEntry("attributes", "autofire_max"),
+        this.generateBlockEntry("attributes", "cost"),
       ],
       propertiesblock: [
-        {
-          name: "cpred.sheet.weapon_stats.concealable",
-          path: "properties.concealable.value",
-        },
-        {
-          name: "cpred.sheet.weapon_stats.aimed_shot",
-          path: "properties.aimed_shot.value",
-        },
-        {
-          name: "cpred.sheet.weapon_stats.single_shot",
-          path: "properties.single_shot.value",
-        },
-        {
-          name: "cpred.sheet.weapon_stats.autofire",
-          path: "properties.autofire.value",
-        },
-        {
-          name: "cpred.sheet.weapon_stats.suppressive_fire",
-          path: "properties.suppressive_fire.value",
-        },
-        {
-          name: "cpred.sheet.weapon_stats.shotgun_shell",
-          path: "properties.shotgun_shell.value",
-        },
-        {
-          name: "cpred.sheet.weapon_stats.explosive",
-          path: "properties.explosive.value",
-        },
+        this.generateBlockEntry("properties", "concealable"),
+        this.generateBlockEntry("properties", "aimed_shot"),
+        this.generateBlockEntry("properties", "single_shot"),
+        this.generateBlockEntry("properties", "autofire"),
+        this.generateBlockEntry("properties", "suppressive_fire"),
+        this.generateBlockEntry("properties", "shotgun_shell"),
+        this.generateBlockEntry("properties", "explosive"),
       ],
       attackblock: attacks,
       combat_skills: ["brawling", "martial_arts", "melee_weapon", "archery", "autofire", "handgun", "heavy_weapons", "shoulder_arms"],
