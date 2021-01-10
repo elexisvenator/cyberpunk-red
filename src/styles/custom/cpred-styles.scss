@@ -109,3 +109,17 @@ a {
     }
   }
 }
+
+// skills
+
+.skill-table {
+  .stat-column {
+    min-width: 4rem;
+    width: 1%;
+  }
+
+  .form-control {
+    min-width: 4rem - 0.5rem;
+    padding: 0.25rem 0.5rem;
+  }
+}

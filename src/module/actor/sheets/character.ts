@@ -6,9 +6,7 @@ import { ActionHandlers } from "../../entity";
 import { LanguageItem, localize } from "../../language";
 import { Path } from "../../types/dot-notation";
 
-type CharacterAction =
-  | "remove-item"
-  | "show-item";
+type CharacterAction = "remove-item" | "show-item";
 
 interface SkillGroup {
   name: string;
@@ -17,7 +15,10 @@ interface SkillGroup {
     name: string;
     formattedName: string;
     skill: Skill;
-    path: any; // FIXME: What's the correct type for this?
+    stat: {
+      formattedName: string;
+      value: number;
+    };
   }[];
 }
 interface ActorSheetDataCpRedCharacter extends ActorSheetDataCpRed<ActorDataCpRedCharacter> {
@@ -27,8 +28,12 @@ interface ActorSheetDataCpRedCharacter extends ActorSheetDataCpRed<ActorDataCpRe
 
 export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataCpRedCharacter, ActorCpRed<ActorDataCpRedCharacter>> {
   private static actionHandlers: ActionHandlers<ActorSheetCpRedCharacter, CharacterAction> = {
-    "remove-item": (sheet, _action, value) => { sheet.actor.deleteOwnedItem(value); },
-    "show-item": (sheet, _action, value) => { sheet.actor.getOwnedItem(value).sheet.render(true); }
+    "remove-item": (sheet, _action, value) => {
+      sheet.actor.deleteOwnedItem(value);
+    },
+    "show-item": (sheet, _action, value) => {
+      sheet.actor.getOwnedItem(value).sheet.render(true);
+    },
   };
 
   constructor(object: ActorCpRed<ActorDataCpRedCharacter>, options: FormApplicationOptions) {
@@ -44,7 +49,7 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
 
   getData(): ActorSheetDataCpRedCharacter {
     const parentData = super.getData();
-
+    const data = parentData.data;
     const actor: ActorCpRed = this.actor;
 
     // Retrieve and sort all items the character owns
@@ -53,16 +58,22 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
       return ("" + a.name).localeCompare(b.name);
     });
 
+    const stats = Object.fromEntries(
+      Object.entries(data.stats).map(([key, stat]) => [
+        key,
+        { formattedName: localize(`cpred.sheet.stats.${key}` as Path<LanguageItem>), value: stat.value },
+      ])
+    );
+
     // Skills
-    const skillArray = Object.keys(parentData.data.skills).map((skillName) => {
+    const skillArray = Object.keys(data.skills).map((skillName) => {
       return {
         name: skillName,
         formattedName: localize(`cpred.skills.${skillName}` as Path<LanguageItem>),
-        skill: parentData.data.skills[skillName],
-        path: "skills." + skillName + ".levels",
+        skill: data.skills[skillName],
+        stat: stats[data.skills[skillName].stat],
       };
     });
-    //        .sort((a, b) => a.formattedName.localeCompare(b.formattedName));
 
     const groupNames = skillArray.reduce((acc, cur) => acc.add(cur.skill.group), new Set<string>());
     const skillGroups = Array.from(groupNames)

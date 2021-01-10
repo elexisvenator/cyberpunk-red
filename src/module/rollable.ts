@@ -51,8 +51,8 @@ export abstract class Rollable {
  */
 export class FormulaRollable extends Rollable {
   roll(): void {
-    let rolldata = {};
-    if(this.actor) {
+    const rolldata = {};
+    if (this.actor) {
       rolldata["attributes"] = this.actor.data.data.attributes;
       rolldata["skills"] = this.actor.data.data.skills;
     }

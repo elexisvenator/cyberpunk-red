@@ -28,7 +28,7 @@
         }
       },
       "stats": {
-        "attributes": {
+        "stats": {
           "int": {
             "value": 0
           },
@@ -64,7 +64,7 @@
         }
       },
       "ice": {
-        "attributes": {
+        "stats": {
           "per": {
             "value": 0
           },
@@ -76,7 +76,9 @@
           },
           "def": {
             "value": 0
-          },
+          }
+        },
+        "attributes": {
           "damage": {
             "value": ""
           },

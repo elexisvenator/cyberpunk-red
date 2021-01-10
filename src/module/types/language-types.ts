@@ -49,6 +49,16 @@ export interface Stats {
   speed: string;
   attack: string;
   defence: string;
+  int: string;
+  ref: string;
+  dex: string;
+  tech: string;
+  cool: string;
+  will: string;
+  luck: string;
+  move: string;
+  body: string;
+  emp: string;
 }
 
 export interface Iceactions {

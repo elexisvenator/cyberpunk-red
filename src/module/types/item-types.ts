@@ -26,6 +26,7 @@ interface WeaponTemplate {
     shotgun_shell: BooleanProp;
     explosive: BooleanProp;
     aimed_shot: BooleanProp;
+    reload_turns: NumberProp;
   };
 }
 

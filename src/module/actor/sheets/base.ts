@@ -1,4 +1,5 @@
 import { ActionHandlers, CpRedSheetOptions } from "../../entity";
+import { Tooltip } from "../../bootstrap/index.esm";
 import { ActorCpRed } from "../actor";
 
 // this is the model that gets sent to the handlebars template
@@ -44,6 +45,7 @@ export default class ActorSheetCpRed<DataType extends ActorDataCpRed, ActorType 
     if (!this.options.editable) return;
 
     html.find("[data-action]").on("click", this._onSheetAction.bind(this));
+    html.find('[data-bs-toggle="tooltip"]').each((i, element) => new Tooltip(element, { container: html }));
   }
 
   protected _onSheetAction(event: JQuery.TriggeredEvent<HTMLElement, unknown, HTMLElement, HTMLElement>): void {

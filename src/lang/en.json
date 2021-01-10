@@ -23,7 +23,17 @@
                 "perception": "PER",
                 "speed": "SPD",
                 "attack": "ATK",
-                "defence": "DEF"
+                "defence": "DEF",
+                "int": "INT",
+                "ref": "REF",
+                "dex": "DEX",
+                "tech": "TECH",
+                "cool": "COOL",
+                "will": "WILL",
+                "luck": "LUCK",
+                "move": "MOVE",
+                "body": "BODY",
+                "emp": "EMP"
             },
             "iceactions": {
                 "blockslide": "Block slide",

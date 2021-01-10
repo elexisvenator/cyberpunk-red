@@ -8,7 +8,7 @@ interface CommonTemplate {
 }
 
 interface StatsTemplate {
-  attributes: {
+  stats: {
     int: NumberProp;
     ref: NumberProp;
     dex: NumberProp;
@@ -44,11 +44,13 @@ interface SkillsTemplate {
 }
 
 interface IceTemplate {
-  attributes: {
+  stats: {
     per: NumberProp;
     spd: NumberProp;
     atk: NumberProp;
     def: NumberProp;
+  };
+  attributes: {
     damage: StringProp;
     class: StringProp;
   };

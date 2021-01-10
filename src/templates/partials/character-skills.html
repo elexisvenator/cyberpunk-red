@@ -1,24 +1,62 @@
-<div class="skill-groups p-1">
+<div class="p-1">
   {{#each skillGroups as |group|}}
-  <div class="skill-group p-1">
-    <h4>{{group.formattedName}}</h4>
-    <table class="table table-dark table-hover table-borderless align-middle table-sm">
-    {{#each group.skills as |skill|}}
-    <tr>
-      <td>{{skill.formattedName}}</td>
-      <td>{{skill.skill.stat}}</td>
-      <td>
-        <input
-          type="text"
-          class="form-control"
-          id="data.{{skill.path}}"
-          name="data.{{skill.path}}"
-          value="{{skill.skill.levels}}"
-        />
-      </td>
-    </tr>
-    {{/each}}
+  <table class="table table-sm table-borderless skill-table">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">{{group.formattedName}} Skills</th>
+        <th scope="col" class="stat-column text-center">LEVEL</th>
+        <th scope="col" class="stat-column text-center">STAT</th>
+        <th scope="col" class="stat-column text-center">MOD</th>
+      </tr>
+    </thead>
+    <tbody class="align-middle">
+      {{#each group.skills as |skill|}}
+      <tr>
+        <td>
+          <label class="d-block">
+            <a href="#" data-action="roll-skill" data-action-value="{{skill.name}}">
+              <i class="fas fa-dice-d20"></i>
+              <span>{{skill.formattedName}}</span>
+            </a>
+            <span class="float-end">
+              {{#if skill.skill.mandatory}}
+              <sup><i class="fas fa-asterisk" data-bs-toggle="tooltip" title="Required"></i></sup>
+              {{/if}} {{#if (gt skill.skill.costMultiplier 1)}}
+              <span>(x{{skill.skill.costMultiplier}})</span>
+              {{/if}}
+              <strong>({{skill.stat.formattedName}})</strong>
+            </span>
+          </label>
+        </td>
+        <td>
+          <input type="number" class="form-control form-control-sm text-end" id="data.skills.{{skill.name}}.levels"
+          name="data.skills.{{skill.name}}.levels" {{#if skill.skill.mandatory}}min="2"{{/if}} value="{{skill.skill.levels}}" />
+        </td>
+        <td>
+          <label for="data.skills.{{skill.name}}.stat" class="visually-hidden">{{skill.stat.formattedName}}</label>
+          <input
+            readonly
+            type="number"
+            class="form-control-sm form-control-plaintext text-end"
+            id="data.skills.{{skill.name}}.stat"
+            name="data.skills.{{skill.name}}.stat"
+            value="{{skill.stat.value}}"
+          />
+        </td>
+        <td>
+          <label for="data.skills.{{skill.name}}.stat" class="visually-hidden">Modifiers</label>
+          <input
+            readonly
+            type="text"
+            class="form-control-sm form-control-plaintext text-end"
+            id="data.skills.{{skill.name}}.mods"
+            name="data.skills.{{skill.name}}.mods"
+            value=""
+          />
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
   </table>
-  </div>
   {{/each}}
 </div>

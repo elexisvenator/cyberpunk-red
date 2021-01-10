@@ -91,6 +91,15 @@ Handlebars.registerHelper("isNthItem", function (options) {
   else return options.inverse(this);
 });
 
+Handlebars.registerHelper({
+  eq: (v1, v2) => v1 === v2,
+  ne: (v1, v2) => v1 !== v2,
+  lt: (v1, v2) => v1 < v2,
+  gt: (v1, v2) => v1 > v2,
+  lte: (v1, v2) => v1 <= v2,
+  gte: (v1, v2) => v1 >= v2,
+});
+
 /**
  * Adds the Cyperpunk RED critical success and failure dice rule as a dice
  * modifier to the standard Die class.

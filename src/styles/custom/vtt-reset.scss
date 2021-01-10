@@ -137,3 +137,29 @@ button {
     border: none;
   }
 }
+
+// tables
+table {
+  width: initial;
+  border-collapse: initial;
+  background: initial;
+  border-top: initial initial initial;
+  border-bottom: initial initial initial;
+  margin: initial initial;
+}
+table thead {
+  background: initial;
+  color: initial;
+  text-shadow: initial;
+  border-bottom: initial;
+}
+table tr:nth-child(even) {
+  background-color: initial;
+}
+table td:first-child {
+  padding-left: initial;
+}
+table td,
+table th {
+  padding: initial initial;
+}

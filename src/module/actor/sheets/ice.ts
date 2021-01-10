@@ -22,11 +22,11 @@ interface ActorSheetDataCpRedIce extends ActorSheetDataCpRed<ActorDataCpRedIce> 
 
 export default class ActorSheetCpRedIce extends ActorSheetCpRed<ActorDataCpRedIce, ActorCpRed<ActorDataCpRedIce>> {
   private static actionHandlers: ActionHandlers<ActorSheetCpRedIce, IceAction> = {
-    ambush: (sheet) => new FormulaRollable(`1d10cp + ${sheet.actor.data.data.attributes.spd.value}`, sheet.actor).roll(),
-    attack: (sheet) => new FormulaRollable(`1d10cp + ${sheet.actor.data.data.attributes.atk.value}`, sheet.actor).roll(),
-    "block-slide": (sheet) => new FormulaRollable(`1d10cp + ${sheet.actor.data.data.attributes.per.value}`, sheet.actor).roll(),
+    ambush: (sheet) => new FormulaRollable(`1d10cp + ${sheet.actor.data.data.stats.spd.value}`, sheet.actor).roll(),
+    attack: (sheet) => new FormulaRollable(`1d10cp + ${sheet.actor.data.data.stats.atk.value}`, sheet.actor).roll(),
+    "block-slide": (sheet) => new FormulaRollable(`1d10cp + ${sheet.actor.data.data.stats.per.value}`, sheet.actor).roll(),
     damage: (sheet) => new FormulaRollable(sheet.actor.data.data.attributes.damage.value, sheet.actor).roll(),
-    defend: (sheet) => new FormulaRollable(`1d10cp + ${sheet.actor.data.data.attributes.def.value}`, sheet.actor).roll(),
+    defend: (sheet) => new FormulaRollable(`1d10cp + ${sheet.actor.data.data.stats.def.value}`, sheet.actor).roll(),
   };
 
   constructor(object: ActorCpRed<ActorDataCpRedIce>, options: FormApplicationOptions) {
@@ -65,25 +65,25 @@ export default class ActorSheetCpRedIce extends ActorSheetCpRed<ActorDataCpRedIc
         {
           name: "cpred.sheet.stats.perception",
           actionName: "cpred.sheet.iceactions.blockslide",
-          path: "attributes.per.value",
+          path: "stats.per.value",
           action: "block-slide",
         },
         {
           name: "cpred.sheet.stats.speed",
           actionName: "cpred.sheet.iceactions.ambush",
-          path: "attributes.spd.value",
+          path: "stats.spd.value",
           action: "ambush",
         },
         {
           name: "cpred.sheet.stats.attack",
           actionName: "cpred.sheet.iceactions.attack",
-          path: "attributes.atk.value",
+          path: "stats.atk.value",
           action: "attack",
         },
         {
           name: "cpred.sheet.stats.defence",
           actionName: "cpred.sheet.iceactions.defend",
-          path: "attributes.def.value",
+          path: "stats.def.value",
           action: "defend",
         },
       ],
