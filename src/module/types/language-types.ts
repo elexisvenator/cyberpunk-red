@@ -74,6 +74,7 @@ export interface Iceclasses {
 }
 
 export interface WeaponActions {
+  aimed_shot: string;
   single_shot: string;
   autofire: string;
   suppressive_fire: string;

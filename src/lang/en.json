@@ -47,6 +47,7 @@
                 "antiprogram": "Anti-Program"
             },
             "weapon_actions": {
+                "aimed_shot": "Aimed Shot",
                 "single_shot": "Single Shot",
                 "autofire": "Autofire",
                 "suppressive_fire": "Suppressive Fire",
