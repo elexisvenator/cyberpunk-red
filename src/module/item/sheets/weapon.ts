@@ -46,26 +46,36 @@ interface ItemSheetDataCpRedWeapon extends ItemSheetData<ItemDataCpRedWeapon> {
 export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWeapon, ItemCpRed<ItemDataCpRedWeapon>> {
 
   private static actionHandlers: ActionHandlers<ItemSheetCpRedWeapon, WeaponAction> = {
-    autofire_attack: (sheet) => new FormulaRollable(
-      "1d10cp + @attributes.ref.value + @skills.autofire.levels",
-      sheet.item.actor
-    ).roll(),
+    autofire_attack: (sheet) => {
+      new FormulaRollable(
+        "1d10cp + @stats.ref.value + @skills.autofire.levels",
+        sheet.item.actor
+      ).roll();
+      sheet.deductBullets(10);
+    },
     autofire_damage: (sheet) => new FormulaRollable("2d6", sheet.item.actor).roll(),
     shotgun_shell_attack: (sheet) => new FormulaRollable("1d10cp", sheet.item.actor).roll(),
     shotgun_shell_damage: (sheet) => new FormulaRollable("3d6", sheet.item.actor).roll(),
     explosive_attack: () => {},
     explosive_damage: (sheet) => new FormulaRollable("6d6", sheet.item.actor).roll(),
-    single_shot_attack: (sheet) => new FormulaRollable(
-      "1d10cp + @attributes.ref.value + @skills." + sheet.item.data.data.attributes.skill.value + ".levels",
-      sheet.item.actor
-    ).roll(),
+    single_shot_attack: (sheet) => {
+      new FormulaRollable(
+        "1d10cp + @stats.ref.value + @skills." + sheet.item.data.data.attributes.skill.value + ".levels",
+        sheet.item.actor
+      ).roll();
+      sheet.deductBullets(1);
+    },
     single_shot_damage: ( sheet) => new FormulaRollable(
       sheet.item.data.data.attributes.damage.value,
       sheet.item.actor
     ).roll(),
     suppressive_fire_attack: () => {},
     suppressive_fire_damage: () => {},
-    reload: () => {},
+    reload: (sheet) => {
+      sheet.item.update(
+        {"data": {"attributes": {"magazine": {"value": sheet.item.data.data.attributes.magazine.max}}}}, null
+      );
+    },
   };
 
   constructor(object: ItemCpRed<ItemDataCpRedWeapon>, options: FormApplicationOptions) {
@@ -219,5 +229,14 @@ export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWe
         "melee_weapon",
       ],
     };
+  }
+
+  deductBullets(amount: number) {
+    const parentData = super.getData();
+    const data = parentData.data;
+
+    this.item.update(
+      {"data": {"attributes": {"magazine": {"value": data.attributes.magazine.value - amount}}}}, null
+    );
   }
 }
