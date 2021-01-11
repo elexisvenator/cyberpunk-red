@@ -28,12 +28,8 @@ interface ActorSheetDataCpRedCharacter extends ActorSheetDataCpRed<ActorDataCpRe
 
 export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataCpRedCharacter, ActorCpRed<ActorDataCpRedCharacter>> {
   private static actionHandlers: ActionHandlers<ActorSheetCpRedCharacter, CharacterAction> = {
-    "remove-item": (sheet, _action, value) => {
-      sheet.actor.deleteOwnedItem(value);
-    },
-    "show-item": (sheet, _action, value) => {
-      sheet.actor.getOwnedItem(value).sheet.render(true);
-    },
+    "remove-item": (sheet, _action, value) => sheet.actor.deleteOwnedItem(value),
+    "show-item": (sheet, _action, value) => sheet.actor.getOwnedItem(value).sheet.render(true),
   };
 
   constructor(object: ActorCpRed<ActorDataCpRedCharacter>, options: FormApplicationOptions) {
@@ -41,6 +37,19 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
       ...options,
       actionHandlers: ActorSheetCpRedCharacter.actionHandlers,
     });
+  }
+
+  static get defaultOptions(): FormApplicationOptions {
+    const options = super.defaultOptions;
+    mergeObject(options, {
+      width: 500,
+      height: 800,
+      resizable: true,
+      classes: ["cpred", "sheet", "character"],
+      scrollY: [".tab.description"],
+      tabs: [{ navSelector: ".nav-tabs.primary-tabs", contentSelector: ".sheet-body", initial: "description" }],
+    });
+    return options;
   }
 
   get template(): string {
