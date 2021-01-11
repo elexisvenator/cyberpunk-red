@@ -100,6 +100,11 @@ Handlebars.registerHelper({
   gte: (v1, v2) => v1 >= v2,
 });
 
+Handlebars.registerHelper("weaponActions", function(item) {
+  const entity = new ItemSheetCpRedWeapon(item, null);
+  return entity.getData().attackblock;
+});
+
 /**
  * Adds the Cyperpunk RED critical success and failure dice rule as a dice
  * modifier to the standard Die class.

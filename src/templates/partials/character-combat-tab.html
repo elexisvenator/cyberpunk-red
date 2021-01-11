@@ -1,0 +1,8 @@
+{{#each gearblock as |gear|}}
+  {{#if (eq gear.type "weapon")}}
+  <div class="p-1"><h3>{{gear.name}}</h3></div>
+  {{#each (weaponActions gear) as |attack|}}
+    {{> "systems/cpred/templates/partials/weapon-attack.html" attack=attack item_id=gear.id}}
+  {{/each}}
+  {{/if}}
+{{/each}}
