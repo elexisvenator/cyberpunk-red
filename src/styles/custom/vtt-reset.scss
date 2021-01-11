@@ -112,19 +112,21 @@ button {
   }
 }
 
-& {
+&.window-app {
   border: 0.125rem solid $cyberpunk-maroon;
   box-shadow: 0 0 20px $cyberpunk-maroon-dim;
-  > header {
+  > header.window-header {
     border-bottom: 0.125rem solid $cyberpunk-maroon;
     background-color: $cyberpunk-maroon-dim;
     font-family: $font-family-base;
     color: $cyberpunk-red;
 
-    .window-title {
+    h4.window-title {
       color: $cyberpunk-cyan-bright;
       font-size: 1.2rem;
       text-shadow: 0 0 0.5rem $cyberpunk-cyan-bright;
+      margin-bottom: 0;
+      line-height: 1.5;
     }
     a:hover {
       text-shadow: 0 0 0.5rem $cyberpunk-red;
