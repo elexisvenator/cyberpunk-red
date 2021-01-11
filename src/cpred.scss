@@ -15,9 +15,10 @@
 
 .cpred.window-app {
   @import "./styles/custom/vtt-reset";
+}
 
-  .window-content {
-    @import "./styles/bootstrap/bootstrap";
-    @import "./styles/custom/cpred-styles";
-  }
+.app.cpred.window-app {
+  @import "./styles/custom/_app-mixins";
+  @import "./styles/bootstrap/bootstrap";
+  @import "./styles/custom/cpred-styles";
 }

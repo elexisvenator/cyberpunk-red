@@ -118,7 +118,8 @@ a {
     width: 1%;
   }
 
-  .form-control {
+  .form-control,
+  .form-control-plaintext {
     min-width: 4rem - 0.5rem;
     padding: 0.25rem 0.5rem;
   }
@@ -145,4 +146,36 @@ a {
       padding-right: $nav-link-padding-x;
     }
   }
+}
+
+// masonry-style layout
+.masonry-container {
+  column-gap: 2rem;
+}
+
+&,
+&.app-size-xs,
+&.app-size-sm {
+  .masonry-container {
+    column-count: 1;
+  }
+}
+
+&.app-size-md,
+&.app-size-lg {
+  .masonry-container {
+    column-count: 2;
+  }
+}
+
+&.app-size-xl,
+&.app-size-xxl {
+  .masonry-container {
+    column-count: 3;
+  }
+}
+
+.masonry-item {
+  display: inline-block;
+  width: 100%;
 }

@@ -25,7 +25,7 @@ export default class ActorSheetCpRed<DataType extends ActorDataCpRed, ActorType 
   static get defaultOptions(): FormApplicationOptions {
     const options = super.defaultOptions;
     mergeObject(options, {
-      classes: options.classes.concat(["cpred"]),
+      classes: options.classes.concat(["cpred", ActorSheetCpRed._getAppSizeClass(options.width as number)]),
     });
     return options;
   }
@@ -63,5 +63,41 @@ export default class ActorSheetCpRed<DataType extends ActorDataCpRed, ActorType 
     } else {
       throw new Error(`Unknown action '${action}' for event ${JSON.stringify(event)}`);
     }
+  }
+
+  private static _getAppSizeClass(width: number): string {
+    const breakPoints = {
+      xs: 0,
+      sm: 576,
+      md: 768,
+      lg: 992,
+      xl: 1200,
+      xxl: 1400,
+    };
+
+    const breakPoint: keyof typeof breakPoints =
+      width < breakPoints.sm
+        ? "xs"
+        : width < breakPoints.md
+        ? "sm"
+        : width < breakPoints.lg
+        ? "md"
+        : width < breakPoints.xl
+        ? "lg"
+        : width < breakPoints.xxl
+        ? "xl"
+        : "xxl";
+
+    return `app-size-${breakPoint}`;
+  }
+
+  /** @override */
+  protected _onResize(): void {
+    const width = this.position.width as number;
+    const sizeClass = ActorSheetCpRed._getAppSizeClass(width);
+
+    (this.element as JQuery<HTMLElement>)
+      .removeClass("app-size-xs app-size-sm app-size-md app-size-lg app-size-xl app-size-xxl")
+      .addClass(sizeClass);
   }
 }

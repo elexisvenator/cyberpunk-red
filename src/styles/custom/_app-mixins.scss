@@ -1,0 +1,11 @@
+// THIS IS AN OVERRIDE OF BOOTSTRAP DEFAULT BEHAVIOUR
+@mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+  @if $min {
+    &.app-size-#{$name} {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
