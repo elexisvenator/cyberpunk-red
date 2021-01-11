@@ -7,6 +7,8 @@ import { FormulaRollable } from "../../rollable";
 import { ActionHandlers } from "../../entity";
 
 type WeaponAction =
+  | "aimed_shot_attack"
+  | "aimed_shot_damage"
   | "single_shot_attack"
   | "single_shot_damage"
   | "autofire_attack"
@@ -21,23 +23,20 @@ type WeaponAction =
 
 interface AttackBlock {
   name: Path<LanguageItem>;
-  attackroll: string;
-  damageroll: string;
   action: string;
 }
+
+interface BlockEntry {
+  name: Path<LanguageItem>;
+  path: Path<ItemDataCpRedWeapon>;
+};
 
 // This is the model that gets sent to the handlebars template. If you want
 // to use some computed values, declare them here and populate them in getData().
 
 interface ItemSheetDataCpRedWeapon extends ItemSheetData<ItemDataCpRedWeapon> {
-  attributesblock: {
-    name: Path<LanguageItem>;
-    path: Path<ItemDataCpRedWeapon>;
-  }[];
-  propertiesblock: {
-    name: Path<LanguageItem>;
-    path: Path<ItemDataCpRedWeapon>;
-  }[];
+  attributesblock: BlockEntry[];
+  propertiesblock: BlockEntry[];
   attackblock: AttackBlock[];
   weapon_types: string[];
   combat_skills: string[];
@@ -50,19 +49,27 @@ export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWe
       sheet.deductBullets(10);
     },
     autofire_damage: (sheet) => new FormulaRollable("2d6", sheet.item.actor).roll(),
-    shotgun_shell_attack: (sheet) => new FormulaRollable("1d10cp", sheet.item.actor).roll(),
+    shotgun_shell_attack: (sheet) => {
+      new FormulaRollable("1d10cp + @stats.ref.value + @skills." + sheet.item.data.data.attributes.skill.value + ".levels", sheet.item.actor).roll();
+      sheet.deductBullets(1);
+    },
     shotgun_shell_damage: (sheet) => new FormulaRollable("3d6", sheet.item.actor).roll(),
     explosive_attack: () => {},
     explosive_damage: (sheet) => new FormulaRollable("6d6", sheet.item.actor).roll(),
+    aimed_shot_attack: (sheet) => {
+      new FormulaRollable("1d10cp + @stats.ref.value + @skills." + sheet.item.data.data.attributes.skill.value + ".levels - 8", sheet.item.actor).roll();
+      sheet.deductBullets(1);
+    },
+    aimed_shot_damage: ( sheet) => new FormulaRollable(sheet.item.data.data.attributes.damage.value, sheet.item.actor).roll(),
     single_shot_attack: (sheet) => {
-      new FormulaRollable(
-        "1d10cp + @stats.ref.value + @skills." + sheet.item.data.data.attributes.skill.value + ".levels",
-        sheet.item.actor
-      ).roll();
+      new FormulaRollable("1d10cp + @stats.ref.value + @skills." + sheet.item.data.data.attributes.skill.value + ".levels", sheet.item.actor).roll();
       sheet.deductBullets(1);
     },
     single_shot_damage: (sheet) => new FormulaRollable(sheet.item.data.data.attributes.damage.value, sheet.item.actor).roll(),
-    suppressive_fire_attack: () => {},
+    suppressive_fire_attack: (sheet) => {
+      new FormulaRollable("1d10cp + @stats.ref.value + @skills.autofire.levels", sheet.item.actor).roll();
+      sheet.deductBullets(10);
+    },
     suppressive_fire_damage: () => {},
     reload: (sheet) => {
       sheet.item.update({ data: { attributes: { magazine: { value: sheet.item.data.data.attributes.magazine.max } } } }, null);
