@@ -44,13 +44,9 @@ interface ItemSheetDataCpRedWeapon extends ItemSheetData<ItemDataCpRedWeapon> {
 }
 
 export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWeapon, ItemCpRed<ItemDataCpRedWeapon>> {
-
   private static actionHandlers: ActionHandlers<ItemSheetCpRedWeapon, WeaponAction> = {
     autofire_attack: (sheet) => {
-      new FormulaRollable(
-        "1d10cp + @stats.ref.value + @skills.autofire.levels",
-        sheet.item.actor
-      ).roll();
+      new FormulaRollable("1d10cp + @stats.ref.value + @skills.autofire.levels", sheet.item.actor).roll();
       sheet.deductBullets(10);
     },
     autofire_damage: (sheet) => new FormulaRollable("2d6", sheet.item.actor).roll(),
@@ -65,16 +61,11 @@ export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWe
       ).roll();
       sheet.deductBullets(1);
     },
-    single_shot_damage: ( sheet) => new FormulaRollable(
-      sheet.item.data.data.attributes.damage.value,
-      sheet.item.actor
-    ).roll(),
+    single_shot_damage: (sheet) => new FormulaRollable(sheet.item.data.data.attributes.damage.value, sheet.item.actor).roll(),
     suppressive_fire_attack: () => {},
     suppressive_fire_damage: () => {},
     reload: (sheet) => {
-      sheet.item.update(
-        {"data": {"attributes": {"magazine": {"value": sheet.item.data.data.attributes.magazine.max}}}}, null
-      );
+      sheet.item.update({ data: { attributes: { magazine: { value: sheet.item.data.data.attributes.magazine.max } } } }, null);
     },
   };
 
@@ -93,7 +84,7 @@ export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWe
       resizable: true,
       classes: ["cpred", "sheet", "item"],
       scrollY: [".tab.combat"],
-      tabs: [{ navSelector: ".tabs", contentSelector: ".sheet-body", initial: "detail" }],
+      tabs: [{ navSelector: ".nav-tabs.primary-tabs", contentSelector: ".sheet-body", initial: "detail" }],
     });
     return options;
   }
@@ -235,8 +226,6 @@ export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWe
     const parentData = super.getData();
     const data = parentData.data;
 
-    this.item.update(
-      {"data": {"attributes": {"magazine": {"value": data.attributes.magazine.value - amount}}}}, null
-    );
+    this.item.update({ data: { attributes: { magazine: { value: data.attributes.magazine.value - amount } } } }, null);
   }
 }

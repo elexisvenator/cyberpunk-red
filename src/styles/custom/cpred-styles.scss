@@ -123,3 +123,26 @@ a {
     padding: 0.25rem 0.5rem;
   }
 }
+
+// navs
+
+.nav-tabs {
+  border-bottom: none;
+  .nav-link {
+    border-bottom-color: $cyberpunk-red;
+    background-color: rgba($black, 0.3);
+
+    &:not(:hover) {
+      border-left-width: 0;
+      border-right-width: 0;
+      padding-left: $nav-link-padding-x + $nav-tabs-border-width;
+      padding-right: $nav-link-padding-x + $nav-tabs-border-width;
+    }
+    &.active {
+      border-left-width: $nav-tabs-border-width;
+      border-right-width: $nav-tabs-border-width;
+      padding-left: $nav-link-padding-x;
+      padding-right: $nav-link-padding-x;
+    }
+  }
+}
