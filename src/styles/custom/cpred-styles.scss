@@ -113,6 +113,8 @@ a {
 // skills
 
 .skill-table {
+  margin-bottom: 0;
+
   .stat-column {
     min-width: 4rem;
     width: 1%;
@@ -150,7 +152,7 @@ a {
 
 // masonry-style layout
 .masonry-container {
-  column-gap: 2rem;
+  column-gap: 0.5rem;
 }
 
 &,
