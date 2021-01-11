@@ -1,5 +1,4 @@
 <form class="{{cssClass}} d-flex flex-column" autocomplete="off">
-  {{!-- Weapon Sheet Navigation --}}
   <ul class="nav nav-fill nav-tabs primary-tabs" data-group="primary-tabs">
     <li class="nav-item">
       <a class="nav-link" data-tab="tab-description">Description</a>
@@ -9,14 +8,15 @@
     </li>
   </ul>
 
-  {{!-- Weapon Sheet Body --}}
+  <div class="mt-2"></div>
+
   <section class="sheet-body">
-    {{! Description tab }}
     <div class="tab" data-tab="tab-description" data-group="primary-tabs">
       {{> "systems/cpred/templates/partials/weapon-description-tab.html" }}
     </div>
 
-    {{! Combat tab}}
-    <div class="tab" data-tab="tab-combat" data-group="primary-tabs">{{> "systems/cpred/templates/partials/weapon-combat-tab.html" }}</div>
+    <div class="tab" data-tab="tab-combat" data-group="primary-tabs">
+      {{> "systems/cpred/templates/partials/weapon-combat-tab.html" }}
+    </div>
   </section>
 </form>
