@@ -7,19 +7,5 @@
 </div>
 
 {{#each attackblock as |attack|}}
-<div class="d-flex flex-wrap justify-content-start align-items-baseline">
-  <div class="d-flex p-1 me-auto">{{localize attack.name}}</div>
-  <div class="d-flex">
-    <div class="p-1">
-      <button type="button" class="btn btn-outline-primary text-nowrap" data-action="{{attack.action}}_attack">
-        <i class="fas fa-dice-d6"></i> Attack
-      </button>
-    </div>
-    <div class="p-1">
-      <button type="button" class="btn btn-outline-primary text-nowrap" data-action="{{attack.action}}_damage">
-        <i class="fas fa-dice-d6"></i> Damage
-      </button>
-    </div>
-  </div>
-</div>
+  {{> "systems/cpred/templates/partials/weapon-attack.html" attack=attack item_id=this.id}}
 {{/each}}
