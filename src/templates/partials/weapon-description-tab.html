@@ -30,15 +30,16 @@
 
 <div class="d-flex p-1"><h3>Attributes</h3></div>
 <div class="d-flex flex-wrap justify-content-start statblock">
-  {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.damage"
-  path="attributes.damage.value"}} {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.rof"
-  path="attributes.rof.value"}} {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.hands"
-  path="attributes.hands.value"}} {{#if (ne data.attributes.type.value "melee_weapon")}} {{>
-  "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.reload_turns"
-  path="attributes.reload_turns.value"}} {{/if}} {{#if data.properties.autofire.value}} {{>
-  "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.autofire_max"
-  path="attributes.autofire_max.value"}} {{/if}} {{> "systems/cpred/templates/partials/attribute-input.html" root=item
-  name="cpred.sheet.cost" path="attributes.cost.value"}}
+  {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.damage" path="attributes.damage.value" type="string"}}
+  {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.rof" path="attributes.rof.value" type="number"}}
+  {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.hands" path="attributes.hands.value" type="number"}}
+  {{#if (ne data.attributes.type.value "melee_weapon")}}
+    {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.reload_turns" path="attributes.reload_turns.value" type="number"}}
+  {{/if}}
+  {{#if data.properties.autofire.value}}
+    {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.autofire_max" path="attributes.autofire_max.value" type="number"}}
+  {{/if}}
+  {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.cost" path="attributes.cost.value" type="number"}}
 </div>
 
 <div class="d-flex flex-wrap justify-content-start">
