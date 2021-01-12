@@ -100,9 +100,14 @@ Handlebars.registerHelper({
   gte: (v1, v2) => v1 >= v2,
 });
 
-Handlebars.registerHelper("weaponActions", function(item) {
+Handlebars.registerHelper("weaponActions", function (item) {
   const entity = new ItemSheetCpRedWeapon(item, null);
   return entity.getData().attackblock;
+});
+
+// useful debug util
+Handlebars.registerHelper("json", function (context) {
+  return JSON.stringify(context);
 });
 
 /**
