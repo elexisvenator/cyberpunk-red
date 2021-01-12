@@ -71,9 +71,7 @@ export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWe
       sheet.deductBullets(10);
     },
     suppressive_fire_damage: () => {},
-    reload: (sheet) => {
-      sheet.item.update({ data: { attributes: { magazine: { value: sheet.item.data.data.attributes.magazine.max } } } }, null);
-    },
+    reload: (sheet) => sheet.item.update({"data.attributes.magazine.value": sheet.item.data.data.attributes.magazine.max}, null),
   };
 
   constructor(object: ItemCpRed<ItemDataCpRedWeapon>, options: FormApplicationOptions) {
@@ -192,6 +190,6 @@ export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWe
     const parentData = super.getData();
     const data = parentData.data;
 
-    this.item.update({ data: { attributes: { magazine: { value: data.attributes.magazine.value - amount } } } }, null);
+    this.item.update({"data.attributes.magazine.value": data.attributes.magazine.value - amount}, null);
   }
 }

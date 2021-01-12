@@ -32,6 +32,7 @@
 <div class="d-flex flex-wrap justify-content-start statblock">
   {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.damage" path="attributes.damage.value" type="string"}}
   {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.rof" path="attributes.rof.value" type="number"}}
+  {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.magazine" path="attributes.magazine.max" type="number"}}
   {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.hands" path="attributes.hands.value" type="number"}}
   {{#if (ne data.attributes.type.value "melee_weapon")}}
     {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.reload_turns" path="attributes.reload_turns.value" type="number"}}

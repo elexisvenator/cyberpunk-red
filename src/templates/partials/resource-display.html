@@ -1,0 +1,31 @@
+<div class="d-flex align-items-center actor-resource">
+  <div class="p-1">
+    {{localize name}}
+  </div>
+
+  <div class="p-1">
+    <input
+      type="number"
+      class="form-control"
+      id="rd_{{resourcePath}}.value"
+      {{#if (ne linkValue false)}}name="{{resourcePath}}.value"{{/if}}
+      placeholder="{{localize 'cpred.sheet.current'}}"
+      value="{{resource.value}}"
+      {{#if (eq disableValue true)}}disabled{{/if}}
+    />
+  </div>
+
+  <div class="p-1"><i class="fas fa-minus rotate-300deg"></i></div>
+
+  <div class="p-1">
+    <input
+      type="number"
+      class="form-control"
+      id="rd_{{resourcePath}}.max"
+      {{#if (ne linkMax false)}}name="{{resourcePath}}.max"{{/if}}
+      placeholder="{{localize 'cpred.sheet.max'}}"
+      value="{{resource.max}}"
+      {{#if (eq disableMax true)}}disabled{{/if}}
+    />
+  </div>
+</div>

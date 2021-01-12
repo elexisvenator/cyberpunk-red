@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-between">
-  {{> "systems/cpred/templates/partials/actor-resource.html" resource=data.attributes.magazine resourcePath="data.attributes.magazine" name="cpred.sheet.magazine" }}
+  {{> "systems/cpred/templates/partials/resource-display.html" resource=data.attributes.magazine resourcePath="data.attributes.magazine" name="cpred.sheet.magazine" linkMax=false disableMax=true}}
 
-  <div class="d-flex p-1">
+  <div class="p-1">
     <button type="button" class="btn btn-outline-primary" data-action="reload">{{localize "cpred.sheet.reload"}}</button>
   </div>
 </div>
