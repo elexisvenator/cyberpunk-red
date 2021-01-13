@@ -20,6 +20,8 @@
             "weapon_type": "Weapon Type",
             "combat_skill": "Combat Skill",
             "reload": "Reload",
+            "health": "Health",
+            "luck": "Luck",
             "stats": {
                 "perception": "PER",
                 "speed": "SPD",

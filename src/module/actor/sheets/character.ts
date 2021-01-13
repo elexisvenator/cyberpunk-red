@@ -34,8 +34,8 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
     "show-item": (sheet, _action, value) => sheet.actor.getOwnedItem(value).sheet.render(true),
     // Weapon attacks
     "single_shot_attack": (sheet, action, value) => {
-      const item_sheet:ItemSheetCpRedWeapon = sheet.actor.getOwnedItem(value).sheet
-      item_sheet.actionHandlers[action](item_sheet, action, value);
+      //const item_sheet:ItemSheetCpRedWeapon = sheet.actor.getOwnedItem(value).sheet
+      //item_sheet.actionHandlers[action](item_sheet, action, value);
     },
   };
 
@@ -67,6 +67,9 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
     const parentData = super.getData();
     const data = parentData.data;
     const actor: ActorCpRed = this.actor;
+
+    // Update derived attributes when retrieving data instead of when modifying underlyign data
+    data.attributes.hp.max = 10 + 5 * Math.ceil((data.stats.body.value + data.stats.will.value) / 2.0);
 
     // Retrieve and sort all items the character owns
     const items: ItemCpRed[] = Array.from(actor.items.values());
