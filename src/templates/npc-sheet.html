@@ -1,3 +1,55 @@
 <form class="{{cssClass}}" autocomplete="off">
-  <h1>{{ localize "cpred.sheet.npc" }}: {{actor.name}}</h1>
+  <ul class="nav nav-fill nav-tabs primary-tabs" data-group="primary-tabs">
+    <li class="nav-item">
+      <a class="nav-link" data-tab="tab-description">Description</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-tab="tab-skills">Skills</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-tab="tab-combat">Combat</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-tab="tab-gear">Gear</a>
+    </li>
+  </ul>
+
+  <div class="mt-2"></div>
+
+  <section class="sheet-body">
+    <div class="tab" data-tab="tab-description" data-group="primary-tabs">
+      <div class="flex-grow-1 d-flex">
+        <div class="m-1 align-self-stretch avatar-small">
+          <img src="{{actor.img}}" data-edit="img" />
+        </div>
+        <div class="d-flex flex-grow-1 flex-column">
+          <div class="form-floating p-1">
+            <input
+              type="text"
+              class="form-control"
+              id="actor.name"
+              name="name"
+              placeholder="{{localize 'cpred.sheet.name'}}"
+              value="{{actor.name}}"
+            />
+            <label for="actor.name">{{localize "cpred.sheet.name"}}</label>
+          </div>
+        </div>
+      </div>
+
+      {{> "systems/cpred/templates/partials/character-description-tab.html"}}
+    </div>
+
+    <div class="tab" data-tab="tab-skills" data-group="primary-tabs">
+      {{> "systems/cpred/templates/partials/npc-skills-tab.html"}}
+    </div>
+
+    <div class="tab" data-tab="tab-combat" data-group="primary-tabs">
+      {{> "systems/cpred/templates/partials/npc-combat-tab.html"}}
+    </div>
+
+    <div class="tab" data-tab="tab-gear" data-group="primary-tabs">
+      {{> "systems/cpred/templates/partials/character-gear-tab.html"}}
+    </div>
+  </section>
 </form>
