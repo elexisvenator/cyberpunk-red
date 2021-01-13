@@ -30,5 +30,17 @@ interface WeaponTemplate {
   };
 }
 
+interface CyberwareTemplate {
+  attributes: {
+    type: StringProp;
+    foundation: StringProp;
+    install: StringProp;
+    slots: NumberProp;
+    humanity_loss: NumberProp;
+    humanity_loss_roll: StringProp;
+  }
+}
+
 declare type ItemDataCpRed = CommonItemTemplate;
 declare type ItemDataCpRedWeapon = ItemDataCpRed & WeaponTemplate;
+declare type ItemDataCpRedCyberware = ItemDataCpRed & CyberwareTemplate;

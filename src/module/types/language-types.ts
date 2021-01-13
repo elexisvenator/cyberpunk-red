@@ -18,6 +18,7 @@ export interface Sheet {
   bullets: string;
   magazine: string;
   character: string;
+  cyberware: string;
   npc: string;
   ice: string;
   weapon: string;
@@ -111,6 +112,15 @@ export interface WeaponStats {
   shotgun_shell: string;
   explosive: string;
   aimed_shot: string;
+}
+
+export interface CyberwareStats {
+  type: string;
+  foundation: string;
+  install: string;
+  slots: number;
+  humanity_loss: number;
+  humanity_loss_roll: string;
 }
 
 export interface Tab {

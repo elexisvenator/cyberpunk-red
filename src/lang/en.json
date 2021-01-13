@@ -4,6 +4,7 @@
             "bullets": "Bullets",
             "magazine": "Magazine",
             "character": "Character",
+            "cyberware": "Cyberware",
             "npc": "NPC",
             "ice": "Ice",
             "weapon": "Weapon",
@@ -84,6 +85,14 @@
                 "shotgun_shell": "Can use shotgun shells",
                 "explosive": "Fires explosives",
                 "aimed_shot": "Aimed shot capable"
+            },
+            "cyberware_stats": {
+                "foundation": "Foundational Cyberware",
+                "type": "Type",
+                "install": "Install",
+                "slots": "Slots",
+                "humanity_loss": "Humanity Loss",
+                "humanity_loss_roll": "Humanity Loss Roll"
             }
         },
         "tab": {

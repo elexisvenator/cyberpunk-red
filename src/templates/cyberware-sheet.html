@@ -1,0 +1,63 @@
+<form class="{{cssClass}} d-flex flex-column" autocomplete="off">
+  <section class="sheet-body">
+
+    <div class="d-flex flex-wrap justify-content-evenly">
+      <div class="flex-grow-1 d-flex">
+        <div class="m-1 align-self-stretch avatar-small">
+          <img src="{{item.img}}" data-edit="img" />
+        </div>
+        <div class="d-flex flex-grow-1 flex-column">
+          <div class="form-floating p-1">
+            <input
+              type="text"
+              class="form-control"
+              id="item.name"
+              name="name"
+              placeholder="{{localize 'cpred.sheet.name'}}"
+              value="{{item.name}}"
+            />
+            <label for="item.name">{{localize "cpred.sheet.name"}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="d-flex flex-column">
+      <div class="editor-box p-1">
+        <div class="header">Description</div>
+        {{editor content=data.details.description.value target="data.details.description.value" button=true owner=owner editable=editable}}
+      </div>
+    </div>
+    
+    <hr />
+    
+    <div class="d-flex p-1"><h3>Attributes</h3></div>
+    <div class="d-flex flex-wrap justify-content-start statblock">
+      {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.cyberware_stats.humanity_loss" path="attributes.humanity_loss.value" type="number"}}
+      {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.cyberware_stats.slots" path="attributes.slots.value" type="number"}}
+      {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.cost" path="attributes.cost.value" type="number"}}
+      {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.cyberware_stats.humanity_loss_roll" path="attributes.humanity_loss_roll.value" type="string"}}
+    </div>
+    <div class="d-flex flex-wrap justify-content-between">
+      <div class="flex-grow-1 flex-column p-1">
+        <label for="data.attributes.type.value">{{localize "cpred.sheet.cyberware_stats.type"}}</label>
+        <select class="form-select" name="data.attributes.type.value">
+          {{selectOptions type_types selected=data.attributes.type.value localize=false}}
+        </select>
+      </div>
+      <div class="flex-grow-1 flex-column p-1">
+        <label for="data.attributes.foundation.value">{{localize "cpred.sheet.cyberware_stats.foundation"}}</label>
+        <select class="form-select" name="data.attributes.foundation.value">
+          {{selectOptions foundation_types selected=data.attributes.foundation.value localize=false}}
+        </select>
+      </div>
+      <div class="flex-grow-1 flex-column p-1">
+        <label for="data.attributes.install.value">{{localize "cpred.sheet.cyberware_stats.install"}}</label>
+        <select class="form-select" name="data.attributes.foundainstalltion.value">
+          {{selectOptions install_types selected=data.attributes.install.value localize=false}}
+        </select>
+      </div>
+    </div>
+
+  </section>
+</form>

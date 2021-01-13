@@ -731,6 +731,28 @@
             "value": true
           }
         }
+      },
+      "cyberware": {
+        "attributes": {
+          "type": {
+            "value": ""
+          },
+          "foundation": {
+            "value": ""
+          },
+          "install": {
+            "value": "mall"
+          },
+          "slots": {
+            "value": 1
+          },
+          "humanity_loss": {
+            "value": "0"
+          },
+          "humanity_loss_roll": {
+            "value": "1d6"
+          }
+        }
       }
     },
     "weapon": {
@@ -746,7 +768,8 @@
     },
     "cyberwear": {
       "templates": [
-        "common"
+        "common",
+        "cyberware"
       ]
     }
   }
