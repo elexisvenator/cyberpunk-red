@@ -1,26 +1,10 @@
 import { getFullTemplatePath } from "../../templates";
 import { ItemCpRed } from "../../item/item";
 import ItemSheetCpRed from "./base";
-import { LanguageItem, localize } from "../../language";
-import { Path } from "../../types/dot-notation";
-import { FormulaRollable } from "../../rollable";
+import { localize } from "../../language";
 import { ActionHandlers } from "../../entity";
 
 type WeaponAction = "remove_tag";
-  // | "aimed_shot_attack"
-  // | "aimed_shot_damage"
-  // | "single_shot_attack"
-  // | "single_shot_damage"
-  // | "autofire_attack"
-  // | "autofire_damage"
-  // | "suppressive_fire_attack"
-  // | "suppressive_fire_damage"
-  // | "shotgun_shell_attack"
-  // | "shotgun_shell_damage"
-  // | "explosive_attack"
-  // | "explosive_damage"
-  // | "reload";
-
 
 
 // This is the model that gets sent to the handlebars template. If you want
@@ -34,38 +18,7 @@ interface ItemSheetDataCpRedWeapon extends ItemSheetData<ItemDataCpRedWeapon> {
 
 export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWeapon, ItemCpRed<ItemDataCpRedWeapon>> {
   private static actionHandlers: ActionHandlers<ItemSheetCpRedWeapon, WeaponAction> = {
-    // autofire_attack: (sheet) => {
-    //   new FormulaRollable("1d10cp + @stats.ref.value + @skills.autofire.levels", sheet.item.actor).roll();
-    //   sheet.deductBullets(10);
-    // },
-    // autofire_damage: (sheet) => new FormulaRollable("2d6", sheet.item.actor).roll(),
-    // shotgun_shell_attack: (sheet) => {
-    //   new FormulaRollable("1d10cp + @stats.ref.value + @skills." + sheet.item.data.data.attributes.skill.value + ".levels", sheet.item.actor).roll();
-    //   sheet.deductBullets(1);
-    // },
-    // shotgun_shell_damage: (sheet) => new FormulaRollable("3d6", sheet.item.actor).roll(),
-    // explosive_attack: () => {},
-    // explosive_damage: (sheet) => new FormulaRollable("6d6", sheet.item.actor).roll(),
-    // aimed_shot_attack: (sheet) => {
-    //   new FormulaRollable("1d10cp + @stats.ref.value + @skills." + sheet.item.data.data.attributes.skill.value + ".levels - 8", sheet.item.actor).roll();
-    //   sheet.deductBullets(1);
-    // },
-    // aimed_shot_damage: ( sheet) => new FormulaRollable(sheet.item.data.data.attributes.damage.value, sheet.item.actor).roll(),
-    // single_shot_attack: (sheet) => {
-    //   new FormulaRollable("1d10cp + @stats.ref.value + @skills." + sheet.item.data.data.attributes.skill.value + ".levels", sheet.item.actor).roll();
-    //   sheet.deductBullets(1);
-    // },
-    // single_shot_damage: (sheet) => new FormulaRollable(sheet.item.data.data.attributes.damage.value, sheet.item.actor).roll(),
-    // suppressive_fire_attack: (sheet) => {
-    //   new FormulaRollable("1d10cp + @stats.ref.value + @skills.autofire.levels", sheet.item.actor).roll();
-    //   sheet.deductBullets(10);
-    // },
-    // suppressive_fire_damage: () => {},
-    // reload: (sheet) => sheet.item.update({"data.attributes.magazine.value": sheet.item.data.data.attributes.magazine.max}, null),
-    remove_tag: (sheet, _action, data) => {
-      const tags = sheet.item.data.data.tags.filter(tag => tag !== data);
-      sheet.item.update({"data.tags": tags}, null);
-    }
+    remove_tag: (sheet, _action, data) => sheet.item.update({"data.tags": sheet.item.data.data.tags.filter(tag => tag !== data)}, null),
   };
 
   private static weapon_skill_list: {[key: string]: string} = {
@@ -153,8 +106,7 @@ export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWe
   protected activateListeners(html: JQuery): void {
     super.activateListeners(html);
 
-    const parentData = super.getData();
-    const data = parentData.data;
+    const data = super.getData().data;
 
     html.find("#tag-selector").on("change", (ev) => {
       ev.preventDefault();
@@ -166,12 +118,5 @@ export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWe
       }
       this.item.update({"data.tags": new_tags}, null);
     });
-  }
-
-  deductBullets(amount: number) {
-    const parentData = super.getData();
-    const data = parentData.data;
-
-    this.item.update({"data.attributes.magazine.value": data.attributes.magazine.value - amount}, null);
   }
 }
