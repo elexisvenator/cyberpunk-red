@@ -29,6 +29,7 @@ export interface Sheet {
   rez: string
   damage: string
   attack: string
+  defend: string
   price: string
   cost: string
   description: string
@@ -42,6 +43,7 @@ export interface Sheet {
   luck: string
   armor_body: string
   armor_head: string
+  common: Common
   stats: Stats
   roles: Roles
   role_abilities: RoleAbilities
@@ -56,6 +58,12 @@ export interface Sheet {
   weapon_tags: WeaponTags
   cyberware_stats: CyberwareStats
   program_types: ProgramTypes
+}
+
+export interface Common {
+  attack: string
+  defend: string
+  damage: string
 }
 
 export interface Stats {

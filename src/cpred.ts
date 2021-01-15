@@ -129,87 +129,87 @@ Handlebars.registerHelper("weaponActions", function (item) {
   const lookup = {
     single_shot: [
       {
-        name: "attack",
+        name: "cpred.sheet.common.attack",
         roll: `1d10cp + @stats.ref.value + @skills.${weapon_data.attributes.skill.value}.levels`
       },
       {
-        name: "damage",
+        name: "cpred.sheet.common.damage",
         roll: weapon_data.attributes.damage.value
       }
     ],
     aimed_shot: [
       {
-        name: "attack",
+        name: "cpred.sheet.common.attack",
         roll: `1d10cp + @stats.ref.value + @skills.${weapon_data.attributes.skill.value}.levels - 8`
       },
       {
-        name: "damage",
+        name: "cpred.sheet.common.damage",
         roll: weapon_data.attributes.damage.value
       }
     ],
     autofire: [
       {
-        name: "attack",
+        name: "cpred.sheet.common.attack",
         roll: `1d10cp + @stats.ref.value + @skills.autofire.levels`
       },
       {
-        name: "damage",
+        name: "cpred.sheet.common.damage",
         roll: "2d6"
       }
     ],
     suppressive_fire: [
       {
-        name: "attack",
+        name: "cpred.sheet.common.attack",
         roll: `1d10cp + @stats.ref.value + @skills.autofire.levels`
       }
     ],
     shotgun_shell: [
       {
-        name: "attack",
+        name: "cpred.sheet.common.attack",
         roll: `1d10cp + @stats.ref.value + @skills.${weapon_data.attributes.skill.value}.levels`
       },
       {
-        name: "damage",
+        name: "cpred.sheet.common.damage",
         roll: "3d6"
       }
     ],
     throwable: [
       {
-        name: "attack",
+        name: "cpred.sheet.common.attack",
         roll: `1d10cp + @stats.dex.value + @skills.athletics.levels`
       },
       {
-        name: "damage",
+        name: "cpred.sheet.common.damage",
         roll: weapon_data.attributes.damage.value
       }
     ],
     bayonet: [
       {
-        name: "attack",
+        name: "cpred.sheet.common.attack",
         roll: `1d10cp + @stats.dex.value + @skills.melee_weapon.levels`
       },
       {
-        name: "damage",
+        name: "cpred.sheet.common.damage",
         roll: "1d6"
       }
     ],
     underbarrel_grenade_launcher: [
       {
-        name: "attack",
+        name: "cpred.sheet.common.attack",
         roll: `1d10cp + @stats.ref.value + @skills.heavy_weapons.levels`
       },
       {
-        name: "damage",
+        name: "cpred.sheet.common.damage",
         roll: "6d6"
       }
     ],
     underbarrel_shotgun: [
       {
-        name: "attack",
+        name: "cpred.sheet.common.attack",
         roll: `1d10cp + @stats.ref.value + @skills.shoulder_weapon.levels`
       },
       {
-        name: "damage",
+        name: "cpred.sheet.common.damage",
         roll: "5d6"
       }
     ]

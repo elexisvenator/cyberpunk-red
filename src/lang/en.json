@@ -15,6 +15,7 @@
             "rez": "REZ",
             "damage": "Damage",
             "attack": "Attack",
+            "defend": "Defend",
             "price": "Price",
             "cost": "Price",
             "description": "Description",
@@ -28,6 +29,11 @@
             "luck": "Luck",
             "armor_body": "Armor Body",
             "armor_head": "Armor Head",
+            "common": {
+                "attack": "Attack",
+                "defend": "Defend",
+                "damage": "Damage"
+            },
             "stats": {
                 "perception": "PER",
                 "speed": "SPD",
