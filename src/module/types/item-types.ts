@@ -13,21 +13,14 @@ interface WeaponTemplate {
     rof: NumberProp;
     type: StringProp;
     skill: StringProp;
-    hands: NumberProp;
+    hands_required: NumberProp;
     reload_turns: NumberProp;
     autofire_max: NumberProp;
     magazine: NumberResource;
+    is_ranged: BooleanProp;
+    is_concealable: BooleanProp;
   };
-  properties: {
-    concealable: BooleanProp;
-    single_shot: BooleanProp;
-    autofire: BooleanProp;
-    suppressive_fire: BooleanProp;
-    shotgun_shell: BooleanProp;
-    explosive: BooleanProp;
-    aimed_shot: BooleanProp;
-    reload_turns: NumberProp;
-  };
+  tags: string[];
 }
 
 interface CyberwareTemplate {

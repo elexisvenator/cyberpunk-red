@@ -72,21 +72,33 @@
                 "melee_weapon": "Melee Weapon"
             },
             "weapon_stats": {
-                "rof": "Rate of Fire",
                 "damage": "Damage",
+                "rof": "Rate of Fire",
                 "type": "Type",
                 "skill": "Skill",
-                "hands": "Number of Hands",
+                "hands_required": "Required Hands",
                 "reload_turns": "Turns to reload",
+                "autofire_max": "Max autofire effect",
                 "magazine": "Magazine",
-                "concealable": "Can be concealed",
-                "single_shot": "Single shot",
-                "autofire": "Autofire capable",
-                "autofire_max": "Autofire amount",
-                "suppressive_fire": "Suppressive Fire capable",
-                "shotgun_shell": "Can use shotgun shells",
-                "explosive": "Fires explosives",
-                "aimed_shot": "Aimed shot capable"
+                "is_ranged": "Is Ranged",
+                "is_concealable": "Is Concealable"
+            },
+            "weapon_tags": {
+                "single_shot": "Single Shot",
+                "aimed_shot": "Aimed Shot",
+                "autofire": "Autofire",
+                "suppressive_fire": "Suppressive Fire",
+                "shotgun_shell": "Shotgun Shell",
+                "explosive": "Explosive",
+                "throwable": "Throwable",
+                "bayonet": "Bayonet",
+                "drum_magazine": "Drum Magazine",
+                "extended_magazine": "Extended Magazine",
+                "underbarrel_grenade_launcher": "Underbarrel Grenade Launcher",
+                "infrared_nightvision_scope": "Infrared Nightvision Scope",
+                "underbarrel_shotgun": "Underbarrel Shotgun",
+                "smargun_link": "Smartgun Link",
+                "sniping_scope": "Sniping Scope"
             },
             "cyberware_stats": {
                 "foundation": "Foundational Cyberware",

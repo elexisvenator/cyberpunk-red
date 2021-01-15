@@ -97,21 +97,34 @@ export interface WeaponTypes {
 }
 
 export interface WeaponStats {
-  rof: string;
   damage: string;
+  rof: string;
   type: string;
   skill: string;
-  hands: string;
+  hands_required: string;
   reload_turns: string;
-  magazine: string;
-  concealable: string;
-  single_shot: string;
-  autofire: string;
   autofire_max: string;
-  suppressive_fire: string;
-  shotgun_shell: string;
-  explosive: string;
-  aimed_shot: string;
+  magazine: string;
+  is_ranged: string;
+  is_concealable: string;
+}
+
+export interface WeaponTags {
+  "single_shot": string;
+  "aimed_shot": string;
+  "autofire": string;
+  "suppressive_fire": string;
+  "shotgun_shell": string;
+  "explosive": string;
+  "throwable": string;
+  "bayonet": string;
+  "drum_magazine": string;
+  "extended_magazine": string;
+  "underbarrel_grenade_launcher": string;
+  "infrared_nightvision_scope": string;
+  "underbarrel_shotgun": string;
+  "smargun_link": string;
+  "sniping_scope": string;
 }
 
 export interface CyberwareStats {

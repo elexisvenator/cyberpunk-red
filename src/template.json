@@ -694,7 +694,7 @@
           "skill": {
             "value": "handgun"
           },
-          "hands": {
+          "hands_required": {
             "value": 1
           },
           "reload_turns": {
@@ -706,31 +706,15 @@
           "magazine": {
             "value": 0,
             "max": 10
+          },
+          "is_ranged": {
+            "value": true
+          },
+          "is_concealable": {
+            "value": false
           }
         },
-        "properties": {
-          "concealable": {
-            "value": false
-          },
-          "single_shot": {
-            "value": true
-          },
-          "autofire": {
-            "value": false
-          },
-          "suppressive_fire": {
-            "value": false
-          },
-          "shotgun_shell": {
-            "value": false
-          },
-          "explosive": {
-            "value": false
-          },
-          "aimed_shot": {
-            "value": true
-          }
-        }
+        "tags": []
       },
       "cyberware": {
         "attributes": {

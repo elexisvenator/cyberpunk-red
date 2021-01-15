@@ -33,49 +33,30 @@
   {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.damage" path="attributes.damage.value" type="string"}}
   {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.rof" path="attributes.rof.value" type="number"}}
   {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.magazine" path="attributes.magazine.max" type="number"}}
-  {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.hands" path="attributes.hands.value" type="number"}}
-  {{#if (ne data.attributes.type.value "melee_weapon")}}
+  {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.hands_required" path="attributes.hands_required.value" type="number"}}
+  {{#if (eq data.attributes.is_ranged.value true)}}
     {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.reload_turns" path="attributes.reload_turns.value" type="number"}}
   {{/if}}
-  {{#if data.properties.autofire.value}}
-    {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.autofire_max" path="attributes.autofire_max.value" type="number"}}
-  {{/if}}
+  {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.autofire_max" path="attributes.autofire_max.value" type="number"}}
   {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.cost" path="attributes.cost.value" type="number"}}
+  {{> "systems/cpred/templates/partials/attribute-checkbox.html" root=item name="cpred.sheet.weapon_stats.is_concealable" path="attributes.is_concealable.value"}}
+  {{> "systems/cpred/templates/partials/attribute-checkbox.html" root=item name="cpred.sheet.weapon_stats.is_ranged" path="attributes.is_ranged.value"}}
+  {{> "systems/cpred/templates/partials/attribute-select.html" root=item name="cpred.sheet.weapon_stats.type" path="attributes.type.value" choices=weapon_types}}
+  {{> "systems/cpred/templates/partials/attribute-select.html" root=item name="cpred.sheet.weapon_stats.skill" path="attributes.skill.value" choices=weapon_skills}}
 </div>
 
-<div class="d-flex flex-wrap justify-content-start">
-  <div class="d-flex flex-grow-1 flex-column p-1">
-    <label for="data.attributes.type.value">{{localize "cpred.sheet.weapon_type"}}</label>
-    <select class="form-select" name="data.attributes.type.value">
-      {{#select data.attributes.type.value}}
-      <option>{{localize "cpred.sheet.select_weapon_type"}}</option>
-      {{#each weapon_types}}
-      <option value="{{this}}">{{localize (join "." "cpred.sheet.weapon_types" this)}}</option>
-      {{/each}} {{/select}}
-    </select>
+<div class="d-flex flex-wrap justify-content-between">
+  {{#each data.tags as |tag|}}
+  <div class="p-1 border border-1">
+    {{localize (join "." "cpred.sheet.weapon_tags" tag)}}
+    <a title="Remove tag" data-action="remove_tag" data-value="{{tag}}"><i class="fas fa-minus-square"></i></a>
   </div>
+  {{/each}}
 
-  <div class="d-flex flex-grow-1 flex-column p-1">
-    <label for="data.attributes.skill.value">{{localize "cpred.sheet.combat_skill"}}</label>
-    <select class="form-select" name="data.attributes.skill.value">
-      {{#select data.attributes.skill.value}}
-      <option>{{localize "cpred.sheet.select_weapon_skill"}}</option>
-      {{#each combat_skills}}
-      <option value="{{this}}">{{localize (join "." "cpred.skills" this)}}</option>
-      {{/each}} {{/select}}
+  <div class="p-1">
+    <label for="data.{{path}}">{{localize name}}</label>
+    <select class="form-select" id="tag-selector">
+      {{selectOptions weapon_tags selected=data.tag_selection localize=false}}
     </select>
   </div>
 </div>
-
-<hr />
-
-<div class="d-flex p-1"><h3>Properties</h3></div>
-{{#each propertiesblock as |property|}}
-<div class="d-flex flex-grow-1 p-1">
-  <div class="form-check">
-    <input type="checkbox" class="form-check-input" id="{{property.path}}" name="{{join "." "data" property.path}}" {{checked (getByPath
-    @root.data property.path)}} />
-    <label for="{{property.path}}" class="form-check-label">{{localize property.name}}</label>
-  </div>
-</div>
-{{/each}}
