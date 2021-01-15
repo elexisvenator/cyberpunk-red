@@ -55,6 +55,7 @@ export class FormulaRollable extends Rollable {
     if (this.actor) {
       rolldata["skills"] = this.actor.data.data.skills;
       rolldata["stats"] = this.actor.data.data.stats;
+      rolldata["roles"] = this.actor.data.data.roles;
     }
     this._executeRoll(new Roll(this.formula, rolldata));
   }
