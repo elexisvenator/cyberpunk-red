@@ -61,7 +61,7 @@ interface IceTemplate {
   };
 }
 
-interface RoleTemplate {
+interface RolesTemplate {
   rockerboy: {
     charismatic_impact: NumberProp;
   };
@@ -102,6 +102,6 @@ interface RoleTemplate {
 };
 
 declare type ActorDataCpRed = CommonTemplate;
-declare type ActorDataCpRedCharacter = ActorDataCpRed & StatsTemplate & SkillsTemplate & RoleTemplate;
-declare type ActorDataCpRedNpc = ActorDataCpRed & StatsTemplate & SkillsTemplate & RoleTemplate;
+declare type ActorDataCpRedCharacter = ActorDataCpRed & StatsTemplate & SkillsTemplate & RolesTemplate;
+declare type ActorDataCpRedNpc = ActorDataCpRed & StatsTemplate & SkillsTemplate & RolesTemplate;
 declare type ActorDataCpRedIce = ActorDataCpRed & IceTemplate;

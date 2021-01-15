@@ -35,76 +35,78 @@
           }
         }
       },
-      "role": {
-        "rockerboy": {
-          "charismatic_impact": {
-            "value": 0
-          }
-        },
-        "solo": {
-          "combat_awareness": {
-            "value": 0
-          }
-        },
-        "netrunner": {
-          "interface": {
-            "value": 0
-          }
-        },
-        "tech": {
-          "maker": {
-            "value": 0
+      "roles": {
+        "roles": {
+          "rockerboy": {
+            "charismatic_impact": {
+              "value": 0
+            }
           },
-          "field_expertise": {
-            "value": 0
+          "solo": {
+            "combat_awareness": {
+              "value": 0
+            }
           },
-          "upgrade_expertise": {
-            "value": 0
+          "netrunner": {
+            "interface": {
+              "value": 0
+            }
           },
-          "fabrication_expertise": {
-            "value": 0
+          "tech": {
+            "maker": {
+              "value": 0
+            },
+            "field_expertise": {
+              "value": 0
+            },
+            "upgrade_expertise": {
+              "value": 0
+            },
+            "fabrication_expertise": {
+              "value": 0
+            },
+            "invention_expertise": {
+              "value": 0
+            }
           },
-          "invention_expertise": {
-            "value": 0
-          }
-        },
-        "medtech": {
-          "medicine": {
-            "value": 0
+          "medtech": {
+            "medicine": {
+              "value": 0
+            },
+            "surgery": {
+              "value": 0
+            },
+            "pharmaceuticals": {
+              "value": 0
+            },
+            "cryosystem_operation": {
+              "value": 0
+            }
           },
-          "surgery": {
-            "value": 0
+          "media": {
+            "credibility": {
+              "value": 0
+            }
           },
-          "pharmaceuticals": {
-            "value": 0
+          "exec": {
+            "teamwork": {
+              "value": 0
+            }
           },
-          "cryosystem_operation": {
-            "value": 0
-          }
-        },
-        "media": {
-          "credibility": {
-            "value": 0
-          }
-        },
-        "exec": {
-          "teamwork": {
-            "value": 0
-          }
-        },
-        "lawman": {
-          "backup": {
-            "value": 0
-          }
-        },
-        "fixer": {
-          "operator": {
-            "value": 0
-          }
-        },
-        "nomad": {
-          "moto": {
-            "value": 0
+          "lawman": {
+            "backup": {
+              "value": 0
+            }
+          },
+          "fixer": {
+            "operator": {
+              "value": 0
+            }
+          },
+          "nomad": {
+            "moto": {
+              "value": 0
+            }
           }
         }
       },
@@ -728,14 +730,16 @@
         "common",
         "character",
         "stats",
-        "skills"
+        "skills",
+        "roles"
       ]
     },
     "npc": {
       "templates": [
         "common",
         "stats",
-        "skills"
+        "skills",
+        "roles"
       ]
     },
     "ice": {
