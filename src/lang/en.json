@@ -18,6 +18,7 @@
             "price": "Price",
             "cost": "Price",
             "description": "Description",
+            "slots": "Slots",
             "effect": "Effect",
             "weapon_type": "Weapon Type",
             "combat_skill": "Combat Skill",

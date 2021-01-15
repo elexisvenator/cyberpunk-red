@@ -40,9 +40,9 @@
           type="string"
         }}
       </div>
-      {{#each statBlock as |stat|}}
+      {{#each dataBlock as |entry|}}
       <div class="flex-fill d-flex flex-column">
-        {{> "systems/cpred/templates/partials/attribute-input.html" root=item name=stat.name path=stat.path type=stat.type}}
+        {{> "systems/cpred/templates/partials/attribute-input.html" root=item name=entry.name path=entry.path type=entry.type}}
       </div>
       {{/each}}
     </div>

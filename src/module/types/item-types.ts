@@ -43,6 +43,7 @@ interface ProgramTemplate {
   attributes: {
     damage: StringProp;
     class: StringProp;
+    slots: NumberProp;
   }
   details: {
     effect: StringProp;

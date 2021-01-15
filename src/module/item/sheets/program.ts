@@ -11,7 +11,7 @@ type ProgramAction = "none";
 // to use some computed values, declare them here and populate them in getData().
 
 interface ItemSheetDataCpRedProgram extends ItemSheetData<ItemDataCpRedProgram> {
-  statBlock: {
+  dataBlock: {
     name: Path<LanguageItem>;
     path: Path<ItemDataCpRedProgram>;
     type: string;
@@ -44,7 +44,7 @@ export default class ItemSheetCpRedProgram extends ItemSheetCpRed<ItemDataCpRedP
 
     return {
       ...parentData,
-      statBlock: [
+      dataBlock: [
         {
           name: "cpred.sheet.stats.atk",
           path: "stats.atk.value",
@@ -53,6 +53,11 @@ export default class ItemSheetCpRedProgram extends ItemSheetCpRed<ItemDataCpRedP
         {
           name: "cpred.sheet.stats.def",
           path: "stats.def.value",
+          type: "number"
+        },
+        {
+          name: "cpred.sheet.slots",
+          path: "attributes.slots.value",
           type: "number"
         }
       ],

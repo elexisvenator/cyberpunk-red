@@ -32,6 +32,7 @@ export interface Sheet {
   price: string
   cost: string
   description: string
+  slots: string
   effect: string
   weapon_type: string
   combat_skill: string
