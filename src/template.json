@@ -95,6 +95,9 @@
           }
         },
         "details": {
+          "description": {
+            "value": ""
+          },
           "effect": {
             "value": ""
           }
@@ -664,7 +667,6 @@
     },
     "ice": {
       "templates": [
-        "common",
         "ice"
       ]
     }
