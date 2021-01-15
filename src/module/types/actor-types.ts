@@ -1,6 +1,8 @@
 interface CommonTemplate {
   attributes: {
     hp: NumberResource;
+    armor_body: NumberResource;
+    armor_head: NumberResource;
   };
   details: {
     description: StringProp;

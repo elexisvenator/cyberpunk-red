@@ -22,6 +22,8 @@
             "reload": "Reload",
             "health": "Health",
             "luck": "Luck",
+            "armor_body": "Armor Body",
+            "armor_head": "Armor Head",
             "stats": {
                 "perception": "PER",
                 "speed": "SPD",
