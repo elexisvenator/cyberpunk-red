@@ -37,6 +37,13 @@
         </div>
       </div>
 
+      <div class="d-flex flex-column">
+        <div class="editor-box p-1">
+          <div class="header">Description</div>
+          {{editor content=data.details.description.value target="data.details.description.value" button=true owner=owner editable=editable}}
+        </div>
+      </div>
+
       {{> "systems/cpred/templates/partials/character-description-tab.html"}}
     </div>
 
