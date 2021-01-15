@@ -1,0 +1,6 @@
+<div class="flex-grow-1 flex-column p-1">
+  <label for="data.{{path}}">{{localize name}}</label>
+  <select class="form-select" name="data.{{path}}">
+    {{selectOptions choices selected=(getByPath @root.data path) localize=false}}
+  </select>
+</div>

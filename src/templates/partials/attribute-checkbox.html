@@ -1,0 +1,7 @@
+<div class="d-flex flex-grow-1 p-1">
+  <div class="form-check">
+    <input type="checkbox" class="form-check-input" id="data.{{path}}" name="data.{{path}}" {{checked (getByPath
+    @root.data path)}} />
+    <label for="data.{{path}}" class="form-check-label">{{localize name}}</label>
+  </div>
+</div>
