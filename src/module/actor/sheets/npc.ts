@@ -5,8 +5,9 @@ import { ItemCpRed } from "../../item/item";
 import { ActionHandlers } from "../../entity";
 import { LanguageItem, localize } from "../../language";
 import { Path } from "../../types/dot-notation";
+import { FormulaRollable } from "../../rollable";
 
-type NpcAction = "remove-item" | "show-item";
+type NpcAction = "removeItem" | "showItem" | "rollAction";
 
 interface SkillGroup {
   name: string;
@@ -30,8 +31,9 @@ interface ActorSheetDataCpRedNpc extends ActorSheetDataCpRed<ActorDataCpRedNpc> 
 export default class ActorSheetCpRedNpc extends ActorSheetCpRed<ActorDataCpRedNpc, ActorCpRed<ActorDataCpRedNpc>> {
   private static actionHandlers: ActionHandlers<ActorSheetCpRedNpc, NpcAction> = {
     // Gear interaction
-    "remove-item": (sheet, _action, value) => sheet.actor.deleteOwnedItem(value),
-    "show-item": (sheet, _action, value) => sheet.actor.getOwnedItem(value).sheet.render(true),
+    removeItem: (sheet, _action, value) => sheet.actor.deleteOwnedItem(value),
+    showItem: (sheet, _action, value) => sheet.actor.getOwnedItem(value).sheet.render(true),
+    rollAction: (sheet, _action, data) => new FormulaRollable(data, sheet.actor).roll(),
   }
 
   constructor(object: ActorCpRed<ActorDataCpRedCharacter>, options: FormApplicationOptions) {
