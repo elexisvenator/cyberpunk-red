@@ -675,7 +675,8 @@
     "types": [
       "weapon",
       "gear",
-      "cyberwear"
+      "cyberwear",
+      "program"
     ],
     "templates": {
       "common": {
@@ -747,6 +748,32 @@
             "value": "1d6"
           }
         }
+      },
+      "program": {
+        "stats": {
+          "atk": {
+            "value": 0
+          },
+          "def": {
+            "value": 0
+          },
+          "rez": {
+            "value": 0
+          }
+        },
+        "attributes": {
+          "damage": {
+            "value": ""
+          },
+          "class": {
+            "value": ""
+          }
+        },
+        "details": {
+          "effect": {
+            "value": ""
+          }
+        }
       }
     },
     "weapon": {
@@ -764,6 +791,12 @@
       "templates": [
         "common",
         "cyberware"
+      ]
+    },
+    "program": {
+      "templates": [
+        "common",
+        "program"
       ]
     }
   }

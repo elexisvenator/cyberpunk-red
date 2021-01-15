@@ -21,6 +21,7 @@ export interface Sheet {
   cyberware: string
   npc: string
   ice: string
+  program: string
   weapon: string
   name: string
   current: string
@@ -34,6 +35,7 @@ export interface Sheet {
   effect: string
   weapon_type: string
   combat_skill: string
+  program_type: string
   reload: string
   health: string
   luck: string
@@ -50,6 +52,7 @@ export interface Sheet {
   weapon_stats: WeaponStats
   weapon_tags: WeaponTags
   cyberware_stats: CyberwareStats
+  program_types: ProgramTypes
 }
 
 export interface Stats {
@@ -57,6 +60,9 @@ export interface Stats {
   speed: string
   attack: string
   defence: string
+  atk: string
+  def: string
+  rez: string
   int: string
   ref: string
   dex: string
@@ -141,6 +147,12 @@ export interface CyberwareStats {
   slots: string
   humanity_loss: string
   humanity_loss_roll: string
+}
+
+export interface ProgramTypes {
+  booster: string
+  defender: string
+  attacker: string
 }
 
 export interface Tab {

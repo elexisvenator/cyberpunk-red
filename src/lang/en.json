@@ -7,6 +7,7 @@
             "cyberware": "Cyberware",
             "npc": "NPC",
             "ice": "Ice",
+            "program": "Program",
             "weapon": "Weapon",
             "name": "Name",
             "current": "Current",
@@ -20,6 +21,7 @@
             "effect": "Effect",
             "weapon_type": "Weapon Type",
             "combat_skill": "Combat Skill",
+            "program_type": "Program Type",
             "reload": "Reload",
             "health": "Health",
             "luck": "Luck",
@@ -30,6 +32,9 @@
                 "speed": "SPD",
                 "attack": "ATK",
                 "defence": "DEF",
+                "atk": "ATK",
+                "def": "DEF",
+                "rez": "REZ",
                 "int": "INT",
                 "ref": "REF",
                 "dex": "DEX",
@@ -110,6 +115,11 @@
                 "slots": "Slots",
                 "humanity_loss": "Humanity Loss",
                 "humanity_loss_roll": "Humanity Loss Roll"
+            },
+            "program_types": {
+                "booster": "Booster",
+                "defender": "Defender",
+                "attacker": "Attacker"
             }
         },
         "tab": {

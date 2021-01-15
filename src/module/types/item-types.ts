@@ -34,6 +34,22 @@ interface CyberwareTemplate {
   }
 }
 
+interface ProgramTemplate {
+  stats: {
+    atk: NumberProp;
+    def: NumberProp;
+    rez: NumberResource;
+  },
+  attributes: {
+    damage: StringProp;
+    class: StringProp;
+  }
+  details: {
+    effect: StringProp;
+  }
+}
+
 declare type ItemDataCpRed = CommonItemTemplate;
 declare type ItemDataCpRedWeapon = ItemDataCpRed & WeaponTemplate;
 declare type ItemDataCpRedCyberware = ItemDataCpRed & CyberwareTemplate;
+declare type ItemDataCpRedProgram = ItemDataCpRed & ProgramTemplate;
