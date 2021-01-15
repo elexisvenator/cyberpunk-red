@@ -47,6 +47,37 @@
                 "body": "BODY",
                 "emp": "EMP"
             },
+            "roles": {
+                "rockerboy": "Rockerboy",
+                "solo": "Solo",
+                "netrunner": "Netrunner",
+                "tech": "Tech",
+                "medtech": "Medtech",
+                "media": "Media",
+                "exec": "Exec",
+                "lawman": "Lawman",
+                "fixer": "Fixer",
+                "nomad": "Nomad"
+            },
+            "role_abilities": {
+                "charismatic_impact": "Charismatic Impact",
+                "combat_awareness": "Combat Awareness",
+                "interface": "Interface",
+                "maker": "Maker",
+                "field_expertise": "Field Expertise",
+                "upgrade_expertise": "Upgrad Expertise",
+                "fabrication_expertise": "Fabiraction Expertise",
+                "invention_expertise": "Invention Expertise",
+                "medicine": "Medicine",
+                "surgery": "Surgery",
+                "pharmaceuticals": "Pharmaceuticals",
+                "cryosystem_operation": "Cryosystem Operation",
+                "credibility": "Credibility",
+                "teamwork": "Teamwork",
+                "backup": "Backup",
+                "operator": "Operator",
+                "moto": "Moto"
+            },
             "iceactions": {
                 "blockslide": "Block slide",
                 "ambush": "Ambush",

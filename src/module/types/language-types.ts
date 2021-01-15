@@ -43,6 +43,8 @@ export interface Sheet {
   armor_body: string
   armor_head: string
   stats: Stats
+  roles: Roles
+  role_abilities: RoleAbilities
   iceactions: Iceactions
   selecticeclass: string
   iceclasses: Iceclasses
@@ -74,6 +76,39 @@ export interface Stats {
   move: string
   body: string
   emp: string
+}
+
+export interface Roles {
+  rockerboy: string
+  solo: string
+  netrunner: string
+  tech: string
+  medtech: string
+  media: string
+  exec: string
+  lawman: string
+  fixer: string
+  nomad: string
+}
+
+export interface RoleAbilities {
+  charismatic_impact: string
+  combat_awareness: string
+  interface: string
+  maker: string
+  field_expertise: string
+  upgrade_expertise: string
+  fabrication_expertise: string
+  invention_expertise: string
+  medicine: string
+  surgery: string
+  pharmaceuticals: string
+  cryosystem_operation: string
+  credibility: string
+  teamwork: string
+  backup: string
+  operator: string
+  moto: string
 }
 
 export interface Iceactions {
