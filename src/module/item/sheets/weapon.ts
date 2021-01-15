@@ -153,26 +153,19 @@ export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWe
   protected activateListeners(html: JQuery): void {
     super.activateListeners(html);
 
-    // Disable combat tab for unowned or owned by a different actor weapons
-    // if (!this.actor || !this.actor.owner) {
-    //   html.find("[data-tab]").addClass("disabled");
-    // }
-
     const parentData = super.getData();
     const data = parentData.data;
 
     html.find("#tag-selector").on("change", (ev) => {
       ev.preventDefault();
 
-      const tag = ev.currentTarget.selectedOptions[0].value;
+      const tag = (ev.currentTarget as HTMLSelectElement).selectedOptions[0].value;
       let new_tags:string[] = data.tags;
       if (tag !== "" && !data.tags.includes(tag)) {
         new_tags.push(tag);
       }
-      //this.update();
       this.item.update({"data.tags": new_tags}, null);
     });
-
   }
 
   deductBullets(amount: number) {
