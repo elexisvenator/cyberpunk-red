@@ -25,12 +25,19 @@ import { getValueByPath, Path } from "./module/types/dot-notation";
 
 interface ActionGroup {
   name: string;
-  formattedName: string
+  formattedName: string;
   actions: {
     name: string;
     roll: string;
   }[];
-}
+};
+
+interface ProgramGroup {
+  actions: {
+    name: string;
+    roll: string;
+  }[];
+};
 
 /* ------------------------------------ */
 /* Initialize system					*/
@@ -227,6 +234,27 @@ Handlebars.registerHelper("weaponActions", function (item) {
   .filter((entry) => entry !== null);
 
   return action_groups;
+});
+
+Handlebars.registerHelper("programActions", function(item) {
+  const programData = new ItemSheetCpRedProgram(item, null).item.data.data;
+
+  let data: ProgramGroup = {
+    actions: []
+  };
+
+  if (programData.attributes.class.value === "attacker") {
+    data.actions.push({
+      name: "cpred.sheet.common.attack",
+      roll: `1d10cp + @roles.netrunner.interface.value + ${programData.stats.atk.value}`
+    });
+  }
+  data.actions.push({
+    name: "cpred.sheet.common.defend",
+    roll: `1d10cp + ${programData.stats.def.value}`
+  });
+
+  return data;
 });
 
 // useful debug util

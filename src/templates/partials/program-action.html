@@ -1,7 +1,5 @@
-{{#each action_groups as |group|}}
 <div class="d-flex flex-wrap align-items-baseline">
-    <div class="p-1 me-auto">{{group.formattedName}}</div>
-    {{#each group.actions as |action|}}
+    {{#each action_groups.actions as |action|}}
       <div class="p-1">
         <button type="button" class="btn btn-outline-primary text-nowrap" data-action="rollAction" data-value="{{roll}}">
           <i class="fas fa-dice-d6"></i> {{localize name}}
@@ -9,4 +7,3 @@
       </div>
     {{/each}}
 </div>
-{{/each}}
