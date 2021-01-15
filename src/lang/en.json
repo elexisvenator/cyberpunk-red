@@ -84,6 +84,20 @@
                 "operator": "Operator",
                 "moto": "Moto"
             },
+            "role_actions": {
+                "jack_in_out": "Jack In/Out",
+                "activate_deactivate_program": "(De)Activate Program",
+                "scanner": "Scanner",
+                "backdoor": "Backdoor",
+                "cloak": "Cloak",
+                "control": "Control",
+                "eye_dee": "Eye-Dee",
+                "pathfinder": "Pathfinder",
+                "slide": "Slide",
+                "virus": "Virus",
+                "zap_attack": "Zap (Attack)",
+                "zap_damage": "Zap (Damage)"
+            },
             "iceactions": {
                 "blockslide": "Block slide",
                 "ambush": "Ambush",

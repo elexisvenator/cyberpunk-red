@@ -11,6 +11,13 @@
 
 <hr/>
 
+<div class="d-flex p-1"><h3>Role Actions</h3></div>
+{{#if (gt data.roles.netrunner.interface.value 0)}}
+  {{> "systems/cpred/templates/partials/role-netrunner.html"}}
+{{/if}}
+
+<hr/>
+
 <div class="d-flex p-1"><h3>Weapons</h3></div>
 {{#each gearblock as |gear|}}
   {{#if (eq gear.type "weapon")}}

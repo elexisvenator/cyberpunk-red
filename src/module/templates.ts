@@ -13,6 +13,8 @@ export const preloadTemplates = async function (): Promise<void> {
     "partials/npc-skills-tab.html",
     "partials/program-action.html",
     "partials/resource-display.html",
+    "partials/role-netrunner.html",
+    "partials/roll-action.html",
     "partials/weapon-action.html",
     "partials/weapon-description-tab.html",
     "partials/weapon-combat-tab.html",

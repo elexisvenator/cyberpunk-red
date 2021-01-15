@@ -47,6 +47,7 @@ export interface Sheet {
   stats: Stats
   roles: Roles
   role_abilities: RoleAbilities
+  role_actions: RoleActions
   iceactions: Iceactions
   selecticeclass: string
   iceclasses: Iceclasses
@@ -117,6 +118,21 @@ export interface RoleAbilities {
   backup: string
   operator: string
   moto: string
+}
+
+export interface RoleActions {
+  jack_in_out: string
+  activate_deactivate_program: string
+  scanner: string
+  backdoor: string
+  cloak: string
+  control: string
+  eye_dee: string
+  pathfinder: string
+  slide: string
+  virus: string
+  zap_attack: string
+  zap_damage: string
 }
 
 export interface Iceactions {
