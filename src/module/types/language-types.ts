@@ -27,6 +27,7 @@ export interface Sheet {
   max: string
   rez: string
   damage: string
+  attack: string
   price: string
   cost: string
   description: string

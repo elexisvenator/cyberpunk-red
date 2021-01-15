@@ -1,13 +1,13 @@
 import { getFullTemplatePath } from "../../templates";
 import { ActorCpRed } from "../actor";
 import ActorSheetCpRed, { ActorSheetDataCpRed } from "./base";
-import ItemSheetCpRedWeapon from "../../item/sheets/weapon"
 import { ItemCpRed } from "../../item/item";
 import { ActionHandlers } from "../../entity";
 import { LanguageItem, localize } from "../../language";
 import { Path } from "../../types/dot-notation";
+import { FormulaRollable } from "../../rollable";
 
-type CharacterAction = "remove-item" | "show-item" | "single_shot_attack";
+type CharacterAction = "removeItem" | "showItem" | "rollAction";
 
 interface SkillGroup {
   name: string;
@@ -30,13 +30,9 @@ interface ActorSheetDataCpRedCharacter extends ActorSheetDataCpRed<ActorDataCpRe
 export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataCpRedCharacter, ActorCpRed<ActorDataCpRedCharacter>> {
   private static actionHandlers: ActionHandlers<ActorSheetCpRedCharacter, CharacterAction> = {
     // Gear interaction
-    "remove-item": (sheet, _action, value) => sheet.actor.deleteOwnedItem(value),
-    "show-item": (sheet, _action, value) => sheet.actor.getOwnedItem(value).sheet.render(true),
-    // Weapon attacks
-    "single_shot_attack": (sheet, action, value) => {
-      //const item_sheet:ItemSheetCpRedWeapon = sheet.actor.getOwnedItem(value).sheet
-      //item_sheet.actionHandlers[action](item_sheet, action, value);
-    },
+    removeItem: (sheet, _action, value) => sheet.actor.deleteOwnedItem(value),
+    showItem: (sheet, _action, value) => sheet.actor.getOwnedItem(value).sheet.render(true),
+    rollAction: (sheet, _action, data) => new FormulaRollable(data, sheet.actor).roll(),
   };
 
   constructor(object: ActorCpRed<ActorDataCpRedCharacter>, options: FormApplicationOptions) {

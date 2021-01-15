@@ -12,10 +12,10 @@ export const preloadTemplates = async function (): Promise<void> {
     "partials/npc-combat-tab.html",
     "partials/npc-skills-tab.html",
     "partials/resource-display.html",
-    "partials/weapon-listing.html",
+    "partials/weapon-action.html",
     "partials/weapon-description-tab.html",
     "partials/weapon-combat-tab.html",
-    "partials/weapon-attack.html",
+    "partials/weapon-listing.html",
   ];
 
   return loadTemplates(templatePaths.map(getFullTemplatePath));

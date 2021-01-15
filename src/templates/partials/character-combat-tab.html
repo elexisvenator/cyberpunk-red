@@ -11,11 +11,10 @@
 
 <hr/>
 
+<div class="d-flex p-1"><h3>Weapons</h3></div>
 {{#each gearblock as |gear|}}
   {{#if (eq gear.type "weapon")}}
-  <div class="p-1"><h3>{{gear.name}}</h3></div>
-  {{#each (weaponActions gear) as |attack|}}
-    {{> "systems/cpred/templates/partials/weapon-attack.html" attack=attack item_id=gear.id}}
-  {{/each}}
+  <div class="p-1"><h5>{{gear.name}}</h5></div>
+  {{> "systems/cpred/templates/partials/weapon-action.html" action_groups=(weaponActions gear) item_id=gear.id}}
   {{/if}}
 {{/each}}
