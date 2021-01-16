@@ -125,6 +125,8 @@ Handlebars.registerHelper({
   gt: (v1, v2) => v1 > v2,
   lte: (v1, v2) => v1 <= v2,
   gte: (v1, v2) => v1 >= v2,
+  add: (v1, v2) => v1 + v2,
+  sub: (v1, v2) => v1 - v2,
 });
 
 /**
