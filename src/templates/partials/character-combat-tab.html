@@ -2,16 +2,18 @@
   {{> "systems/cpred/templates/partials/actor-resource.html" resource=data.attributes.hp resourcePath="data.attributes.hp"
   name="cpred.sheet.health" disableMax=true}}
   {{> "systems/cpred/templates/partials/actor-resource.html" resource=data.attributes.armor_body resourcePath="data.attributes.armor_body"
-  name="cpred.sheet.armor_body" linkMax=false disableMax=true}}
+  name="cpred.sheet.labels.armor_body" linkMax=false disableMax=true}}
   {{> "systems/cpred/templates/partials/actor-resource.html" resource=data.attributes.armor_head resourcePath="data.attributes.armor_head"
-  name="cpred.sheet.armor_head" linkMax=false disableMax=true}}
-  {{> "systems/cpred/templates/partials/actor-resource.html" resource=data.stats.luck resourcePath="data.stats.luck"
-  name="cpred.sheet.luck" linkMax=false disableMax=true}}
+  name="cpred.sheet.labels.armor_head" linkMax=false disableMax=true}}
+  {{#if (eq actor.type "character")}}
+    {{> "systems/cpred/templates/partials/actor-resource.html" resource=data.stats.luck resourcePath="data.stats.luck"
+    name="cpred.sheet.luck" linkMax=false disableMax=true}}
+  {{/if}}
 </div>
 
 <hr/>
 
-<div class="d-flex p-1"><h3>Role Actions</h3></div>
+<div class="d-flex p-1"><h3>{{localize "cpred.sheet.titles.role_actions"}}</h3></div>
 {{#if (gt data.roles.rockerboy.charismatic_impact.value 0)}}
   {{> "systems/cpred/templates/partials/role-rockerboy.html"}}
 {{/if}}
@@ -30,16 +32,16 @@
 
 <hr/>
 
-<div class="d-flex p-1"><h3>Weapons</h3></div>
-{{#each gearblock as |gear|}}
+<div class="d-flex p-1"><h3>{{localize "cpred.sheet.titles.weapons"}}</h3></div>
+{{#each gearBlock as |gear|}}
   {{#if (eq gear.type "weapon")}}
   <div class="p-1"><h5>{{gear.name}}</h5></div>
   {{> "systems/cpred/templates/partials/weapon-action.html" action_groups=(weaponActions gear) item_id=gear.id}}
   {{/if}}
 {{/each}}
 
-<div class="d-flex p-1"><h3>Programs</h3></div>
-{{#each gearblock as |gear|}}
+<div class="d-flex p-1"><h3>{{localize "cpred.sheet.titles.programs"}}</h3></div>
+{{#each gearBlock as |gear|}}
   {{#if (eq gear.type "program")}}
   <div class="d-flex align-items-center">
     <div class="me-auto p-1">{{gear.name}}</div>
@@ -47,3 +49,18 @@
   </div>
   {{/if}}
 {{/each}}
+
+<div class="d-flex p-1"><h3>{{localize "cpred.sheet.titles.skills"}}</h3></div>
+<div class="d-flex flex-wrap">
+{{#each trainedSkills as |skill|}}
+  <div class="d-flex flex-grow-1 p-1">
+    <button type="button" class="btn btn-outline-primary text-nowrap" data-action="rollAction" data-value="1d10cp + @stats.{{skill.stat.name}}.value + @skills.{{skill.name}}.levels">
+      <i class="fas fa-dice-d6"></i> {{skill.formattedName}}
+      ({{add
+        (getByPath @root.data (join "." "stats" skill.stat.name "value"))
+        (getByPath @root.data (join "." "skills" skill.name "levels"))
+      }})
+    </button>
+  </div>
+{{/each}}
+</div>

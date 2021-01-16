@@ -23,12 +23,20 @@
             "effect": "Effect",
             "weapon_type": "Weapon Type",
             "combat_skill": "Combat Skill",
-            "program_type": "Program Type",
             "reload": "Reload",
             "health": "Health",
             "luck": "Luck",
-            "armor_body": "Armor Body",
-            "armor_head": "Armor Head",
+            "labels": {
+                "armor_body": "Armor Body",
+                "armor_head": "Armor Head",
+                "program_type": "Program Type"
+            },
+            "titles": {
+                "role_actions": "Role Actions",
+                "weapons": "Weapons",
+                "programs": "Programs",
+                "skills": "Skills"
+            },
             "common": {
                 "attack": "Attack",
                 "defend": "Defend",

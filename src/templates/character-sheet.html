@@ -18,32 +18,6 @@
 
   <section class="sheet-body">
     <div class="tab" data-tab="tab-description" data-group="primary-tabs">
-      <div class="flex-grow-1 d-flex">
-        <div class="m-1 align-self-stretch avatar-small">
-          <img src="{{actor.img}}" data-edit="img" />
-        </div>
-        <div class="d-flex flex-grow-1 flex-column">
-          <div class="form-floating p-1">
-            <input
-              type="text"
-              class="form-control"
-              id="actor.name"
-              name="name"
-              placeholder="{{localize 'cpred.sheet.name'}}"
-              value="{{actor.name}}"
-            />
-            <label for="actor.name">{{localize "cpred.sheet.name"}}</label>
-          </div>
-        </div>
-      </div>
-
-      <div class="d-flex flex-column">
-        <div class="editor-box p-1">
-          <div class="header">Description</div>
-          {{editor content=data.details.description.value target="data.details.description.value" button=true owner=owner editable=editable}}
-        </div>
-      </div>
-
       {{> "systems/cpred/templates/partials/character-description-tab.html"}}
     </div>
 
@@ -59,5 +33,4 @@
       {{> "systems/cpred/templates/partials/character-gear-tab.html"}}
     </div>
   </section>
-
 </form>

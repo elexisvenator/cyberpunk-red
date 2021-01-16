@@ -9,24 +9,28 @@ import { FormulaRollable } from "../../rollable";
 
 type CharacterAction = "removeItem" | "showItem" | "rollAction" | "addSubSkill" | "removeSubSkill";
 
+interface SkillBlock {
+  name: string;
+  formattedName: string;
+  skill: Skill;
+  hasBlankSubSkill: boolean;
+  stat: {
+    name: string;
+    formattedName: string;
+    value: number;
+  };
+}
+
 interface SkillGroup {
   name: string;
   formattedName: string;
-  skills: {
-    name: string;
-    formattedName: string;
-    skill: Skill;
-    hasBlankSubSkill: boolean;
-    stat: {
-      name: string;
-      formattedName: string;
-      value: number;
-    };
-  }[];
+  skills: SkillBlock[];
 }
+
 interface ActorSheetDataCpRedCharacter extends ActorSheetDataCpRed<ActorDataCpRedCharacter> {
-  gearblock: ItemCpRed[];
+  gearBlock: ItemCpRed[];
   skillGroups: SkillGroup[];
+  trainedSkills: SkillBlock[];
 }
 
 export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataCpRedCharacter, ActorCpRed<ActorDataCpRedCharacter>> {
@@ -115,8 +119,9 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
 
     return {
       ...parentData,
-      gearblock: items,
+      gearBlock: items,
       skillGroups: skillGroups,
+      trainedSkills: skillArray.filter((skill) => skill.skill.level > 0).sort((a, b) => a.formattedName.localeCompare(b.formattedName)),
     };
   }
 

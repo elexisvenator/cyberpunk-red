@@ -37,12 +37,11 @@ export interface Sheet {
   effect: string
   weapon_type: string
   combat_skill: string
-  program_type: string
   reload: string
   health: string
   luck: string
-  armor_body: string
-  armor_head: string
+  labels: Labels
+  titles: Titles
   common: Common
   stats: Stats
   roles: Roles
@@ -59,6 +58,19 @@ export interface Sheet {
   weapon_tags: WeaponTags
   cyberware_stats: CyberwareStats
   program_types: ProgramTypes
+}
+
+export interface Labels {
+  armor_body: string
+  armor_head: string
+  program_type: string
+}
+
+export interface Titles {
+  role_actions: string
+  weapons: string
+  programs: string
+  skills: string
 }
 
 export interface Common {

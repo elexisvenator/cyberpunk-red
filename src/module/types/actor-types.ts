@@ -98,8 +98,8 @@ interface RolesTemplate {
   };
   nomad: {
     moto: NumberProp;
-  }
-};
+  };
+}
 
 declare type ActorDataCpRed = CommonTemplate;
 declare type ActorDataCpRedCharacter = ActorDataCpRed & StatsTemplate & SkillsTemplate & RolesTemplate;

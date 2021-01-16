@@ -22,7 +22,6 @@ import { registerSettings } from "./module/settings";
 import { preloadTemplates } from "./module/templates";
 import { getValueByPath, Path } from "./module/types/dot-notation";
 
-
 interface ActionGroup {
   name: string;
   formattedName: string;
@@ -30,14 +29,14 @@ interface ActionGroup {
     name: string;
     roll: string;
   }[];
-};
+}
 
 interface ProgramGroup {
   actions: {
     name: string;
     roll: string;
   }[];
-};
+}
 
 /* ------------------------------------ */
 /* Initialize system					*/
@@ -128,6 +127,8 @@ Handlebars.registerHelper({
   isnull: (v) => v == null,
   not: (v) => !v,
   renderIf: (condition, value) => (condition ? value : ""),
+  add: (v1, v2) => v1 + v2,
+  sub: (v1, v2) => v1 - v2,
 });
 
 /**
@@ -140,121 +141,122 @@ Handlebars.registerHelper("weaponActions", function (item) {
     single_shot: [
       {
         name: "cpred.sheet.common.attack",
-        roll: `1d10cp + @stats.ref.value + @skills.${weapon_data.attributes.skill.value}.levels`
+        roll: `1d10cp + @stats.ref.value + @skills.${weapon_data.attributes.skill.value}.level`,
       },
       {
         name: "cpred.sheet.common.damage",
-        roll: weapon_data.attributes.damage.value
-      }
+        roll: weapon_data.attributes.damage.value,
+      },
     ],
     aimed_shot: [
       {
         name: "cpred.sheet.common.attack",
-        roll: `1d10cp + @stats.ref.value + @skills.${weapon_data.attributes.skill.value}.levels - 8`
+        roll: `1d10cp + @stats.ref.value + @skills.${weapon_data.attributes.skill.value}.level - 8`,
       },
       {
         name: "cpred.sheet.common.damage",
-        roll: weapon_data.attributes.damage.value
-      }
+        roll: weapon_data.attributes.damage.value,
+      },
     ],
     autofire: [
       {
         name: "cpred.sheet.common.attack",
-        roll: `1d10cp + @stats.ref.value + @skills.autofire.levels`
+        roll: `1d10cp + @stats.ref.value + @skills.autofire.level`,
       },
       {
         name: "cpred.sheet.common.damage",
-        roll: "2d6"
-      }
+        roll: "2d6",
+      },
     ],
     suppressive_fire: [
       {
         name: "cpred.sheet.common.attack",
-        roll: `1d10cp + @stats.ref.value + @skills.autofire.levels`
-      }
+        roll: `1d10cp + @stats.ref.value + @skills.autofire.level`,
+      },
     ],
     shotgun_shell: [
       {
         name: "cpred.sheet.common.attack",
-        roll: `1d10cp + @stats.ref.value + @skills.${weapon_data.attributes.skill.value}.levels`
+        roll: `1d10cp + @stats.ref.value + @skills.${weapon_data.attributes.skill.value}.level`,
       },
       {
         name: "cpred.sheet.common.damage",
-        roll: "3d6"
-      }
+        roll: "3d6",
+      },
     ],
     throwable: [
       {
         name: "cpred.sheet.common.attack",
-        roll: `1d10cp + @stats.dex.value + @skills.athletics.levels`
+        roll: `1d10cp + @stats.dex.value + @skills.athletics.level`,
       },
       {
         name: "cpred.sheet.common.damage",
-        roll: weapon_data.attributes.damage.value
-      }
+        roll: weapon_data.attributes.damage.value,
+      },
     ],
     bayonet: [
       {
         name: "cpred.sheet.common.attack",
-        roll: `1d10cp + @stats.dex.value + @skills.melee_weapon.levels`
+        roll: `1d10cp + @stats.dex.value + @skills.melee_weapon.level`,
       },
       {
         name: "cpred.sheet.common.damage",
-        roll: "1d6"
-      }
+        roll: "1d6",
+      },
     ],
     underbarrel_grenade_launcher: [
       {
         name: "cpred.sheet.common.attack",
-        roll: `1d10cp + @stats.ref.value + @skills.heavy_weapons.levels`
+        roll: `1d10cp + @stats.ref.value + @skills.heavy_weapons.level`,
       },
       {
         name: "cpred.sheet.common.damage",
-        roll: "6d6"
-      }
+        roll: "6d6",
+      },
     ],
     underbarrel_shotgun: [
       {
         name: "cpred.sheet.common.attack",
-        roll: `1d10cp + @stats.ref.value + @skills.shoulder_weapon.levels`
+        roll: `1d10cp + @stats.ref.value + @skills.shoulder_weapon.level`,
       },
       {
         name: "cpred.sheet.common.damage",
-        roll: "5d6"
-      }
-    ]
+        roll: "5d6",
+      },
+    ],
   };
 
   // Use the tag system to decide which actions exist
-  const action_groups = weapon_data.tags.map((tag) => {
-    const entry: ActionGroup = {
-      name: tag,
-      formattedName: localize(`cpred.sheet.weapon_tags.${tag}` as Path<LanguageItem>),
-      actions: lookup[tag]
-    };
-    return tag in lookup ? entry : null;
-  })
-  .filter((entry) => entry !== null);
+  const action_groups = weapon_data.tags
+    .map((tag) => {
+      const entry: ActionGroup = {
+        name: tag,
+        formattedName: localize(`cpred.sheet.weapon_tags.${tag}` as Path<LanguageItem>),
+        actions: lookup[tag],
+      };
+      return tag in lookup ? entry : null;
+    })
+    .filter((entry) => entry !== null);
 
   return action_groups;
 });
 
-Handlebars.registerHelper("programActions", function(item) {
+Handlebars.registerHelper("programActions", function (item) {
   const programData = new ItemSheetCpRedProgram(item, null).item.data.data;
 
-  let data: ProgramGroup = {
-    actions: []
+  const data: ProgramGroup = {
+    actions: [],
   };
 
   if (programData.attributes.class.value === "attacker") {
     data.actions.push({
       name: "cpred.sheet.common.attack",
-      roll: `1d10cp + @roles.netrunner.interface.value + ${programData.stats.atk.value}`
+      roll: `1d10cp + @roles.netrunner.interface.value + ${programData.stats.atk.value}`,
     });
   }
   data.actions.push({
     name: "cpred.sheet.common.defend",
-    roll: `1d10cp + ${programData.stats.def.value}`
+    roll: `1d10cp + ${programData.stats.def.value}`,
   });
 
   return data;
