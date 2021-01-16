@@ -17,6 +17,7 @@ interface SkillGroup {
     formattedName: string;
     skill: Skill;
     stat: {
+      name: string;
       formattedName: string;
       value: number;
     };
@@ -77,7 +78,10 @@ export default class ActorSheetCpRedNpc extends ActorSheetCpRed<ActorDataCpRedNp
     const stats = Object.fromEntries(
       Object.entries(data.stats).map(([key, stat]) => [
         key,
-        { formattedName: localize(`cpred.sheet.stats.${key}` as Path<LanguageItem>), value: stat.value },
+        {
+          name: key,
+          formattedName: localize(`cpred.sheet.stats.${key}` as Path<LanguageItem>),
+          value: stat.value },
       ])
     );
 
