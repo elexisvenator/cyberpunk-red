@@ -36,7 +36,7 @@ interface Skill {
   mandatory: boolean;
   costMultiplier: number;
   subSkills?: SubSkill[];
-  level: number;
+  levels: number;
 }
 
 interface SkillsTemplate {
