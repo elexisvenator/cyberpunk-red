@@ -8,9 +8,8 @@ type ItemSheetDataCpRed<DataType extends ItemDataCpRed> = ItemSheetData<DataType
 export default class ItemSheetCpRed<
   DataType extends ItemDataCpRed = ItemDataCpRed,
   ItemType extends ItemCpRed<DataType> = ItemCpRed<DataType>
-> extends ItemSheet<DataType, ItemType>
-{
-  protected actionHandlers: ActionHandlers<ItemSheetCpRed<DataType, ItemType>, string>;
+> extends ItemSheet<DataType, ItemType> {
+  public actionHandlers: ActionHandlers<ItemSheetCpRed<DataType, ItemType>, string>;
 
   constructor(object: ItemType, options?: CpRedSheetOptions<ItemSheetCpRed<DataType, ItemType>>) {
     super(object, options);

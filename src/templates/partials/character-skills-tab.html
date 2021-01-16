@@ -1,60 +1,32 @@
 <div class="p-1 masonry-container">
   {{#each skillGroups as |group|}}
-  <table class="table table-sm table-borderless skill-table masonry-item">
-    <thead class="table-dark">
-      <tr>
-        <th scope="col">{{group.formattedName}} Skills</th>
-        <th scope="col" class="stat-column text-center">LEVEL</th>
-        <th scope="col" class="stat-column text-center">STAT</th>
-        <th scope="col" class="stat-column text-center">MOD</th>
-      </tr>
-    </thead>
-    <tbody class="align-middle">
-      {{#each group.skills as |skill|}}
-      <tr>
-        <td>
-          <label class="d-block">
-            <a href="#" data-action="roll-skill" data-action-value="{{skill.name}}">
-              <i class="fas fa-dice-d20"></i>
-              <span>{{skill.formattedName}}</span>
-            </a>
-            <span class="float-end">
-              {{#if skill.skill.mandatory}}
-              <sup><i class="fas fa-asterisk" data-bs-toggle="tooltip" title="Required"></i></sup>
-              {{/if}} {{#if (gt skill.skill.costMultiplier 1)}}
-              <span>(x{{skill.skill.costMultiplier}})</span>
-              {{/if}}
-              <strong>({{skill.stat.formattedName}})</strong>
-            </span>
-          </label>
-        </td>
-        <td>
-          <input type="number" class="form-control form-control-sm text-end" id="data.skills.{{skill.name}}.levels"
-          name="data.skills.{{skill.name}}.levels" {{#if skill.skill.mandatory}}min="2"{{/if}} value="{{skill.skill.levels}}" />
-        </td>
-        <td>
-          <label for="data.skills.{{skill.name}}.stat" class="visually-hidden">{{skill.stat.formattedName}}</label>
-          <input
-            readonly
-            type="number"
-            class="form-control-sm form-control-plaintext text-end"
-            id="data.skills.{{skill.name}}.stat"
-            value="{{skill.stat.value}}"
-          />
-        </td>
-        <td>
-          <label for="data.skills.{{skill.name}}.stat" class="visually-hidden">Modifiers</label>
-          <input
-            readonly
-            type="number"
-            class="form-control-sm form-control-plaintext text-end"
-            id="data.skills.{{skill.name}}.mods"
-            value=""
-          />
-        </td>
-      </tr>
-      {{/each}}
-    </tbody>
-  </table>
+    <table class="table table-sm table-borderless skill-table masonry-item">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col" colspan="2">
+            {{group.formattedName}}
+            Skills
+          </th>
+          <th scope="col" class="stat-column text-center">
+            LEVEL
+          </th>
+          <th scope="col" class="stat-column text-center">
+            STAT
+          </th>
+          <th scope="col" class="stat-column text-center">
+            MOD
+          </th>
+        </tr>
+      </thead>
+      <tbody class="align-middle">
+        {{#each group.skills as |skill|}}
+          {{#if (isnull skill.skill.subSkills)}}
+            {{> "systems/cpred/templates/partials/skill/skill-row.html" skill=skill }}
+          {{else}}
+            {{> "systems/cpred/templates/partials/skill/skill-with-subskill-row.html" skill=skill }}
+          {{/if}}
+        {{/each}}
+      </tbody>
+    </table>
   {{/each}}
 </div>

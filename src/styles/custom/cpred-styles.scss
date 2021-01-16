@@ -125,6 +125,22 @@ a {
     min-width: 4rem - 0.5rem;
     padding: 0.25rem 0.5rem;
   }
+
+  .subskill-row {
+    background-color: $cyberpunk-maroon;
+
+    .subskill-disabled-action {
+      padding: (0.25rem + 0.125rem) (0.5rem + 0.125rem);
+      font-size: 0.875rem;
+    }
+  }
+}
+
+td,
+th {
+  &.min-width {
+    width: 0.1%;
+  }
 }
 
 // navs

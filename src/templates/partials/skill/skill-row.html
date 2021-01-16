@@ -1,0 +1,51 @@
+<tr>
+    <td class="min-width">
+        <a class="link-text" data-action="roll-skill" data-value="{{skill.name}}">
+            <i class="fas fa-dice-d20"></i>
+        </a>
+    </td>
+    <td>
+        <label class="d-block">
+            <span>
+                {{skill.formattedName}}
+            </span>
+            <span class="float-end">
+                {{#if skill.skill.mandatory}}
+                    <sup>
+                        <i class="fas fa-asterisk" data-bs-toggle="tooltip" title="Required"></i>
+                    </sup>
+                {{/if}}
+                {{#if (gt skill.skill.costMultiplier 1)}}
+                    <span>
+                        (x{{skill.skill.costMultiplier}})
+                    </span>
+                {{/if}}
+                <strong>
+                    ({{skill.stat.formattedName}})
+                </strong>
+            </span>
+        </label>
+    </td>
+    <td>
+        <input type="number"
+               class="form-control form-control-sm text-end"
+               id="data.skills.{{skill.name}}.levels"
+               name="data.skills.{{skill.name}}.levels"
+               value="{{skill.skill.levels}}"
+               {{renderIf skill.skill.mandatory 'min="2"' }} />
+    </td>
+    <td>
+        <label for="data.skills.{{skill.name}}.stat" class="visually-hidden">
+            {{skill.stat.formattedName}}
+        </label>
+        <input readonly type="number" class="form-control-sm form-control-plaintext text-end" id="data.skills.{{skill.name}}.stat"
+               value="{{skill.stat.value}}" />
+    </td>
+    <td>
+        <label for="data.skills.{{skill.name}}.stat" class="visually-hidden">
+            Modifiers
+        </label>
+        <input readonly type="number" class="form-control-sm form-control-plaintext text-end" id="data.skills.{{skill.name}}.mods"
+               value="" />
+    </td>
+</tr>

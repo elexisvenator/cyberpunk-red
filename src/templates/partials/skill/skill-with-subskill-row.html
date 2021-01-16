@@ -1,0 +1,115 @@
+<tr>
+    <td class="min-width"></td>
+    <td>
+        <label class="d-block">
+            <span>
+                {{skill.formattedName}}
+            </span>
+            <span class="float-end">
+                {{#if skill.skill.mandatory}}
+                    <sup>
+                        <i class="fas fa-asterisk" data-bs-toggle="tooltip" title="Required"></i>
+                    </sup>
+                {{/if}}
+                {{#if (gt skill.skill.costMultiplier 1)}}
+                    <span>
+                        (x{{skill.skill.costMultiplier}})
+                    </span>
+                {{/if}}
+                <strong>
+                    ({{skill.stat.formattedName}})
+                </strong>
+            </span>
+        </label>
+    </td>
+    <td>
+        {{!-- levels --}}
+    </td>
+    <td>
+        {{!-- stat value --}}
+    </td>
+    <td>
+        {{!-- mod --}}
+    </td>
+</tr>
+{{#each skill.skill.subSkills as |subSkill i|}}
+    {{#if subSkill}}
+        <tr class="subskill-row">
+            <td class="min-width"></td>
+            <td>
+                {{#if subSkill.hasLanguageItem}}
+                    {{#if subSkill.name}}
+                        <a class="btn btn-sm btn-link" data-action="roll-skill" data-value="{{../skill.name}}.{{subSkill.name}}">
+                            <i class="fas fa-dice-d20"></i>
+                        </a>
+                        <span>{{localize (join "." "cpred.subSkills" subSkill.name)}}</span>
+                    {{else}}
+                        <i class="fas fa-dice-d20 text-muted subskill-disabled-action"></i>
+                        <span>{{localize (join "." "cpred.subSkills" subSkill.name)}}</span>
+                    {{/if}}
+                {{else}}
+                    <div class="input-group input-group-sm">
+                        {{#if subSkill.name}}
+                            <button class="btn btn-link" type="button" data-action="roll-skill"
+                                    data-value="{{../skill.name}}.{{subSkill.name}}">
+                                <i class="fas fa-dice-d20"></i>
+                            </button>
+                        {{else}}
+                            <button class="btn btn-disabled" type="button" disabled>
+                                <i class="fas fa-dice-d20"></i>
+                            </button>
+                        {{/if}}
+                        <input type="text"
+                               class="form-control"
+                               placeholder="Skill name..."
+                               name="data.skills.{{../skill.name}}.subSkills.{{i}}.name"
+                               value="{{subSkill.name}}">
+                        <button class="btn btn-outline-danger" type="button" data-action="remove-subskill"
+                                data-value="{{../skill.name}}.{{i}}">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                {{/if}}
+            </td>
+            <td>
+                <input type="number"
+                       class="form-control form-control-sm text-end"
+                       id="data.skills.{{../skill.name}}.subSkills.{{i}}.levels"
+                       name="data.skills.{{../skill.name}}.subSkills.{{i}}.levels"
+                       value="{{subSkill.levels}}"
+                       {{{renderIf subSkill.mandatory 'min="2"' }}} />
+            </td>
+            <td>
+                <label for="data.skills.{{../skill.name}}.{{i}}.stat" class="visually-hidden">
+                    {{../skill.stat.formattedName}}
+                </label>
+                <input readonly type="number" class="form-control-sm form-control-plaintext text-end"
+                       id="data.skills.{{../skill.name}}.{{i}}.stat"
+                       value="{{../skill.stat.value}}" />
+            </td>
+            <td>
+                <label for="data.skills.{{../skill.name}}.{{i}}.mods" class="visually-hidden">
+                    Modifiers
+                </label>
+                <input readonly type="number" class="form-control-sm form-control-plaintext text-end"
+                       id="data.skills.{{../skill.name}}.{{i}}.mods"
+                       value="" />
+            </td>
+        </tr>
+    {{/if}}
+{{/each}}
+{{#if (not skill.hasBlankSubSkill)}}
+    <tr class="subskill-row">
+        <td></td>
+        <td>
+            <a class="btn btn-outline-success btn-sm" data-action="add-subskill"
+               data-value="{{skill.name}}">
+                <i class="fas fa-plus"></i>
+                Add
+            </a>
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+{{/if}}

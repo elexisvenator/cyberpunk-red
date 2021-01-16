@@ -48,7 +48,7 @@ export default class ActorSheetCpRed<DataType extends ActorDataCpRed, ActorType 
     html.find('[data-bs-toggle="tooltip"]').each((i, element) => new Tooltip(element, { container: html }));
   }
 
-  protected _onSheetAction(event: JQuery.TriggeredEvent<HTMLElement, unknown, HTMLElement, HTMLElement>): void {
+  protected async _onSheetAction(event: JQuery.TriggeredEvent<HTMLElement, unknown, HTMLElement, HTMLElement>): Promise<void> {
     event.preventDefault();
 
     const action = event.currentTarget.dataset.action;
@@ -59,7 +59,7 @@ export default class ActorSheetCpRed<DataType extends ActorDataCpRed, ActorType 
         throw new Error(`Declared action '${action}' called but no implementation defined.`);
       }
 
-      handler(this, action, value);
+      await handler(this, action, value);
     } else {
       throw new Error(`Unknown action '${action}' for event ${JSON.stringify(event)}`);
     }

@@ -1,13 +1,13 @@
 import { getFullTemplatePath } from "../../templates";
 import { ActorCpRed } from "../actor";
 import ActorSheetCpRed, { ActorSheetDataCpRed } from "./base";
-import ItemSheetCpRedWeapon from "../../item/sheets/weapon"
+import ItemSheetCpRedWeapon from "../../item/sheets/weapon";
 import { ItemCpRed } from "../../item/item";
 import { ActionHandlers } from "../../entity";
 import { LanguageItem, localize } from "../../language";
 import { Path } from "../../types/dot-notation";
 
-type CharacterAction = "remove-item" | "show-item" | "single_shot_attack";
+type CharacterAction = "remove-item" | "show-item" | "single_shot_attack" | "add-subskill" | "remove-subskill";
 
 interface SkillGroup {
   name: string;
@@ -16,6 +16,7 @@ interface SkillGroup {
     name: string;
     formattedName: string;
     skill: Skill;
+    hasBlankSubSkill: boolean;
     stat: {
       formattedName: string;
       value: number;
@@ -31,12 +32,14 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
   private static actionHandlers: ActionHandlers<ActorSheetCpRedCharacter, CharacterAction> = {
     // Gear interaction
     "remove-item": (sheet, _action, value) => sheet.actor.deleteOwnedItem(value),
-    "show-item": (sheet, _action, value) => sheet.actor.getOwnedItem(value).sheet.render(true),
+    "show-item": async (sheet, _action, value) => sheet.actor.getOwnedItem(value).sheet.render(true),
     // Weapon attacks
-    "single_shot_attack": (sheet, action, value) => {
-      const item_sheet:ItemSheetCpRedWeapon = sheet.actor.getOwnedItem(value).sheet
+    single_shot_attack: async (sheet, action, value) => {
+      const item_sheet = sheet.actor.getOwnedItem(value).sheet as ItemSheetCpRedWeapon;
       item_sheet.actionHandlers[action](item_sheet, action, value);
     },
+    "add-subskill": (sheet, _action, value) => sheet.addSubSkill(value),
+    "remove-subskill": (sheet, _action, value) => sheet.removeSubSkill(value),
   };
 
   constructor(object: ActorCpRed<ActorDataCpRedCharacter>, options: FormApplicationOptions) {
@@ -88,6 +91,7 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
         formattedName: localize(`cpred.skills.${skillName}` as Path<LanguageItem>),
         skill: data.skills[skillName],
         stat: stats[data.skills[skillName].stat],
+        hasBlankSubSkill: Object.values(data.skills[skillName].subSkills ?? {}).some((e) => e != null && e.name.length == 0),
       };
     });
 
@@ -110,5 +114,77 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
       gearblock: items,
       skillGroups: skillGroups,
     };
+  }
+
+  public async addSubSkill(skill: string): Promise<void> {
+    const formData = this.getData();
+    if (!(skill in formData.actor.data.skills)) {
+      throw new Error(`Cannot add subSkill to unknown skill ${skill}`);
+    }
+
+    const skillObj = formData.actor.data.skills[skill];
+    if (skillObj.subSkills == null) {
+      throw new Error(`Cannot add subSkill to skill ${skill} - subSkill not supported for this skill`);
+    }
+
+    if (Object.values(skillObj.subSkills).some((e) => e != null && e.name.length == 0)) {
+      throw new Error(`Cannot add subSkill to skill ${skill} - there is already an empty subskill`);
+    }
+
+    const subSkillArray = Object.keys(skillObj.subSkills)
+      .map((k) => +k)
+      .sort()
+      .map((k) => skillObj.subSkills[k]);
+
+    // remove a null element if it exists
+    if (subSkillArray.length > 0 && subSkillArray[subSkillArray.length - 1] == null) {
+      subSkillArray.pop();
+    }
+
+    subSkillArray.push({
+      hasLanguageItem: false,
+      level: 0,
+      mandatory: false,
+      name: "",
+    });
+
+    const updatedData = {};
+    updatedData[`data.skills.${skill}.subSkills`] = subSkillArray.reduce((agg, cur, index) => {
+      agg[index + ""] = cur;
+      return agg;
+    }, {});
+
+    await this.actor.update(updatedData);
+  }
+
+  public async removeSubSkill(subSkillRef: string): Promise<void> {
+    const skillRef = subSkillRef.split(".", 1)[0];
+    const subSkillIndex = +subSkillRef.slice(skillRef.length + 1);
+    const formData = this.getData();
+
+    if (!(skillRef in formData.actor.data.skills)) {
+      throw new Error(`Cannot remove subSkill from unknown skill ${skillRef}`);
+    }
+
+    const skillObj = formData.actor.data.skills[skillRef];
+    if (skillObj.subSkills == null) {
+      throw new Error(`Cannot remove subSkill from skill ${skillRef} - subSkill not supported for this skill`);
+    }
+
+    const subSkillArray = Object.keys(skillObj.subSkills)
+      .map((k) => +k)
+      .sort()
+      .map((k) => skillObj.subSkills[k]);
+
+    subSkillArray.splice(subSkillIndex, 1);
+    subSkillArray.push(null);
+
+    const updatedData = {};
+    updatedData[`data.skills.${skillRef}.subSkills`] = subSkillArray.reduce((agg, cur, index) => {
+      agg[index + ""] = cur;
+      return agg;
+    }, {});
+
+    await this.actor.update(updatedData);
   }
 }

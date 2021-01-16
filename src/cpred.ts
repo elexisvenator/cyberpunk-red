@@ -98,6 +98,9 @@ Handlebars.registerHelper({
   gt: (v1, v2) => v1 > v2,
   lte: (v1, v2) => v1 <= v2,
   gte: (v1, v2) => v1 >= v2,
+  isnull: (v) => v == null,
+  not: (v) => !v,
+  renderIf: (condition, value) => (condition ? value : ""),
 });
 
 Handlebars.registerHelper("weaponActions", function (item) {

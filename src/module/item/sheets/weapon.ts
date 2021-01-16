@@ -29,7 +29,7 @@ interface AttackBlock {
 interface BlockEntry {
   name: Path<LanguageItem>;
   path: Path<ItemDataCpRedWeapon>;
-};
+}
 
 // This is the model that gets sent to the handlebars template. If you want
 // to use some computed values, declare them here and populate them in getData().
@@ -46,32 +46,41 @@ export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWe
   private static actionHandlers: ActionHandlers<ItemSheetCpRedWeapon, WeaponAction> = {
     autofire_attack: (sheet) => {
       new FormulaRollable("1d10cp + @stats.ref.value + @skills.autofire.levels", sheet.item.actor).roll();
-      sheet.deductBullets(10);
+      return sheet.deductBullets(10);
     },
-    autofire_damage: (sheet) => new FormulaRollable("2d6", sheet.item.actor).roll(),
+    autofire_damage: async (sheet) => new FormulaRollable("2d6", sheet.item.actor).roll(),
     shotgun_shell_attack: (sheet) => {
-      new FormulaRollable("1d10cp + @stats.ref.value + @skills." + sheet.item.data.data.attributes.skill.value + ".levels", sheet.item.actor).roll();
-      sheet.deductBullets(1);
+      new FormulaRollable(
+        "1d10cp + @stats.ref.value + @skills." + sheet.item.data.data.attributes.skill.value + ".levels",
+        sheet.item.actor
+      ).roll();
+      return sheet.deductBullets(1);
     },
-    shotgun_shell_damage: (sheet) => new FormulaRollable("3d6", sheet.item.actor).roll(),
-    explosive_attack: () => {},
-    explosive_damage: (sheet) => new FormulaRollable("6d6", sheet.item.actor).roll(),
+    shotgun_shell_damage: async (sheet) => new FormulaRollable("3d6", sheet.item.actor).roll(),
+    explosive_attack: async () => {},
+    explosive_damage: async (sheet) => new FormulaRollable("6d6", sheet.item.actor).roll(),
     aimed_shot_attack: (sheet) => {
-      new FormulaRollable("1d10cp + @stats.ref.value + @skills." + sheet.item.data.data.attributes.skill.value + ".levels - 8", sheet.item.actor).roll();
-      sheet.deductBullets(1);
+      new FormulaRollable(
+        "1d10cp + @stats.ref.value + @skills." + sheet.item.data.data.attributes.skill.value + ".levels - 8",
+        sheet.item.actor
+      ).roll();
+      return sheet.deductBullets(1);
     },
-    aimed_shot_damage: ( sheet) => new FormulaRollable(sheet.item.data.data.attributes.damage.value, sheet.item.actor).roll(),
+    aimed_shot_damage: async (sheet) => new FormulaRollable(sheet.item.data.data.attributes.damage.value, sheet.item.actor).roll(),
     single_shot_attack: (sheet) => {
-      new FormulaRollable("1d10cp + @stats.ref.value + @skills." + sheet.item.data.data.attributes.skill.value + ".levels", sheet.item.actor).roll();
-      sheet.deductBullets(1);
+      new FormulaRollable(
+        "1d10cp + @stats.ref.value + @skills." + sheet.item.data.data.attributes.skill.value + ".levels",
+        sheet.item.actor
+      ).roll();
+      return sheet.deductBullets(1);
     },
-    single_shot_damage: (sheet) => new FormulaRollable(sheet.item.data.data.attributes.damage.value, sheet.item.actor).roll(),
+    single_shot_damage: async (sheet) => new FormulaRollable(sheet.item.data.data.attributes.damage.value, sheet.item.actor).roll(),
     suppressive_fire_attack: (sheet) => {
       new FormulaRollable("1d10cp + @stats.ref.value + @skills.autofire.levels", sheet.item.actor).roll();
-      sheet.deductBullets(10);
+      return sheet.deductBullets(10);
     },
-    suppressive_fire_damage: () => {},
-    reload: (sheet) => sheet.item.update({"data.attributes.magazine.value": sheet.item.data.data.attributes.magazine.max}, null),
+    suppressive_fire_damage: async () => {},
+    reload: (sheet) => sheet.item.update({ "data.attributes.magazine.value": sheet.item.data.data.attributes.magazine.max }, null),
   };
 
   constructor(object: ItemCpRed<ItemDataCpRedWeapon>, options: FormApplicationOptions) {
@@ -105,15 +114,15 @@ export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWe
   generateAttack(name: string): AttackBlock {
     return {
       name: `cpred.sheet.weapon_actions.${name}` as Path<LanguageItem>,
-      action: name
-    }
+      action: name,
+    };
   }
 
   generateBlockEntry(category: string, name: string): BlockEntry {
     return {
       name: `cpred.sheet.weapon_stats.${name}` as Path<LanguageItem>,
-      path: `${category}.${name}.value` as Path<ItemDataCpRedWeapon>
-    }
+      path: `${category}.${name}.value` as Path<ItemDataCpRedWeapon>,
+    };
   }
 
   getData(): ItemSheetDataCpRedWeapon {
@@ -122,7 +131,7 @@ export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWe
 
     // Figure out what kind of attacks this weapon can perform
     const attacks: AttackBlock[] = [];
-    if(data.properties.aimed_shot.value) {
+    if (data.properties.aimed_shot.value) {
       attacks.push(this.generateAttack("aimed_shot"));
     }
     if (data.properties.single_shot.value) {
@@ -186,10 +195,10 @@ export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWe
     }
   }
 
-  deductBullets(amount: number) {
+  async deductBullets(amount: number): Promise<void> {
     const parentData = super.getData();
     const data = parentData.data;
 
-    this.item.update({"data.attributes.magazine.value": data.attributes.magazine.value - amount}, null);
+    await this.item.update({ "data.attributes.magazine.value": data.attributes.magazine.value - amount }, null);
   }
 }

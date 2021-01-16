@@ -33,7 +33,7 @@ interface Skill {
   stat: string;
   mandatory: boolean;
   costMultiplier: number;
-  subSkills?: SubSkill[];
+  subSkills?: { [i: number]: SubSkill | null };
   level: number;
 }
 
