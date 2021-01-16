@@ -1,0 +1,12 @@
+<div class="d-flex flex-wrap justify-content-between align-items-center p-1">
+  <div class="d-flex p-1 me-auto">{{localize "cpred.sheet.roles.rockerboy"}}</div>
+  <div class="d-flex p-1">
+    {{> "systems/cpred/templates/partials/roll-action.html" formula="1d10cp + @roles.rockerboy.charismatic_impact.value - 8" label="cpred.sheet.role_actions.impact_single_fan"}}
+  </div>
+  <div class="d-flex p-1">
+    {{> "systems/cpred/templates/partials/roll-action.html" formula="1d10cp + @roles.rockerboy.charismatic_impact.value - 10" label="cpred.sheet.role_actions.impact_small_group"}}
+  </div>
+  <div class="d-flex p-1">
+    {{> "systems/cpred/templates/partials/roll-action.html" formula="1d10cp + @roles.rockerboy.charismatic_impact.value - 12" label="cpred.sheet.role_actions.impact_huge_group"}}
+  </div>
+</div>

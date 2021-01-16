@@ -96,7 +96,13 @@
                 "slide": "Slide",
                 "virus": "Virus",
                 "zap_attack": "Zap (Attack)",
-                "zap_damage": "Zap (Damage)"
+                "zap_damage": "Zap (Damage)",
+                "impact_single_fan": "Impact on a Single Fan",
+                "impact_small_group": "Impact on a Small Group of Fans",
+                "impact_huge_group": "Impact on a Huge Group of Fans",
+                "call_backup": "Call for Backup",
+                "backup_turns": "Turns before Backup arrives",
+                "haggle": "Haggle"
             },
             "iceactions": {
                 "blockslide": "Block slide",

@@ -133,6 +133,12 @@ export interface RoleActions {
   virus: string
   zap_attack: string
   zap_damage: string
+  impact_single_fan: string
+  impact_small_group: string
+  impact_huge_group: string
+  call_backup: string
+  backup_turns: string
+  haggle: string
 }
 
 export interface Iceactions {
