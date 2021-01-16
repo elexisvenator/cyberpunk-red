@@ -50,7 +50,16 @@ interface ProgramTemplate {
   }
 }
 
+interface ArmorTemplate {
+  attributes: {
+    sp: NumberResource;
+    type: StringProp;
+    location: StringProp;
+  }
+}
+
 declare type ItemDataCpRed = CommonItemTemplate;
 declare type ItemDataCpRedWeapon = ItemDataCpRed & WeaponTemplate;
 declare type ItemDataCpRedCyberware = ItemDataCpRed & CyberwareTemplate;
 declare type ItemDataCpRedProgram = ItemDataCpRed & ProgramTemplate;
+declare type ItemDataCpRedArmor = ItemDataCpRed & ArmorTemplate;

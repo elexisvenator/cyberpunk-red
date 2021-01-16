@@ -751,6 +751,7 @@
   "Item": {
     "types": [
       "weapon",
+      "armor",
       "gear",
       "cyberwear",
       "program"
@@ -803,6 +804,20 @@
           }
         },
         "tags": []
+      },
+      "armor": {
+        "attributes": {
+          "sp": {
+            "value": 11,
+            "max": 11
+          },
+          "type": {
+            "value": "Light Armorjack"
+          },
+          "location": {
+            "value": "body"
+          }
+        }
       },
       "cyberware": {
         "attributes": {
@@ -877,6 +892,12 @@
       "templates": [
         "common",
         "program"
+      ]
+    },
+    "armor": {
+      "templates": [
+        "common",
+        "armor"
       ]
     }
   }
