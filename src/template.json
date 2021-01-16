@@ -11,6 +11,14 @@
           "hp": {
             "value": 10,
             "max": 10
+          },
+          "armor_body": {
+            "value": 0,
+            "max": 0
+          },
+          "armor_head": {
+            "value": 0,
+            "max": 0
           }
         },
         "details": {
@@ -24,6 +32,81 @@
           "humanity": {
             "value": 10,
             "max": 10
+          }
+        }
+      },
+      "roles": {
+        "roles": {
+          "rockerboy": {
+            "charismatic_impact": {
+              "value": 0
+            }
+          },
+          "solo": {
+            "combat_awareness": {
+              "value": 0
+            }
+          },
+          "netrunner": {
+            "interface": {
+              "value": 0
+            }
+          },
+          "tech": {
+            "maker": {
+              "value": 0
+            },
+            "field_expertise": {
+              "value": 0
+            },
+            "upgrade_expertise": {
+              "value": 0
+            },
+            "fabrication_expertise": {
+              "value": 0
+            },
+            "invention_expertise": {
+              "value": 0
+            }
+          },
+          "medtech": {
+            "medicine": {
+              "value": 0
+            },
+            "surgery": {
+              "value": 0
+            },
+            "pharmaceuticals": {
+              "value": 0
+            },
+            "cryosystem_operation": {
+              "value": 0
+            }
+          },
+          "media": {
+            "credibility": {
+              "value": 0
+            }
+          },
+          "exec": {
+            "teamwork": {
+              "value": 0
+            }
+          },
+          "lawman": {
+            "backup": {
+              "value": 0
+            }
+          },
+          "fixer": {
+            "operator": {
+              "value": 0
+            }
+          },
+          "nomad": {
+            "moto": {
+              "value": 0
+            }
           }
         }
       },
@@ -87,6 +170,9 @@
           }
         },
         "details": {
+          "description": {
+            "value": ""
+          },
           "effect": {
             "value": ""
           }
@@ -644,19 +730,20 @@
         "common",
         "character",
         "stats",
-        "skills"
+        "skills",
+        "roles"
       ]
     },
     "npc": {
       "templates": [
         "common",
         "stats",
-        "skills"
+        "skills",
+        "roles"
       ]
     },
     "ice": {
       "templates": [
-        "common",
         "ice"
       ]
     }
@@ -665,7 +752,8 @@
     "types": [
       "weapon",
       "gear",
-      "cyberwear"
+      "cyberwear",
+      "program"
     ],
     "templates": {
       "common": {
@@ -694,7 +782,7 @@
           "skill": {
             "value": "handgun"
           },
-          "hands": {
+          "hands_required": {
             "value": 1
           },
           "reload_turns": {
@@ -706,29 +794,64 @@
           "magazine": {
             "value": 0,
             "max": 10
+          },
+          "is_ranged": {
+            "value": true
+          },
+          "is_concealable": {
+            "value": false
           }
         },
-        "properties": {
-          "concealable": {
-            "value": false
+        "tags": []
+      },
+      "cyberware": {
+        "attributes": {
+          "type": {
+            "value": ""
           },
-          "single_shot": {
-            "value": true
+          "foundation": {
+            "value": ""
           },
-          "autofire": {
-            "value": false
+          "install": {
+            "value": "mall"
           },
-          "suppressive_fire": {
-            "value": false
+          "slots": {
+            "value": 1
           },
-          "shotgun_shell": {
-            "value": false
+          "humanity_loss": {
+            "value": "0"
           },
-          "explosive": {
-            "value": false
+          "humanity_loss_roll": {
+            "value": "1d6"
+          }
+        }
+      },
+      "program": {
+        "stats": {
+          "atk": {
+            "value": 0
           },
-          "aimed_shot": {
-            "value": true
+          "def": {
+            "value": 0
+          },
+          "rez": {
+            "value": 0
+          }
+        },
+        "attributes": {
+          "damage": {
+            "value": ""
+          },
+          "class": {
+            "value": ""
+          },
+          "slots": {
+            "value": 1
+          }
+        },
+        "details": {
+          "effect": {
+            "value": ""
           }
         }
       }
@@ -746,7 +869,14 @@
     },
     "cyberwear": {
       "templates": [
-        "common"
+        "common",
+        "cyberware"
+      ]
+    },
+    "program": {
+      "templates": [
+        "common",
+        "program"
       ]
     }
   }

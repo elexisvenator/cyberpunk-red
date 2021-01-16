@@ -1,0 +1,9 @@
+<div class="d-flex flex-wrap align-items-baseline">
+    {{#each action_groups.actions as |action|}}
+      <div class="p-1">
+        <button type="button" class="btn btn-outline-primary text-nowrap" data-action="rollAction" data-value="{{roll}}">
+          <i class="fas fa-dice-d6"></i> {{localize name}}
+        </button>
+      </div>
+    {{/each}}
+</div>

@@ -7,12 +7,12 @@
     <input
       type="number"
       class="form-control"
-      id="{{resourcePath}}.value"
+      id="ar_{{resourcePath}}.value"
       name="{{resourcePath}}.value"
       placeholder="{{localize 'cpred.sheet.current'}}"
       value="{{resource.value}}"
     />
-    <label for="{{resourcePath}}.value">{{localize "cpred.sheet.current"}}</label>
+    <label for="ar_{{resourcePath}}.value">{{localize "cpred.sheet.current"}}</label>
   </div>
 
   <div class="p-1">
@@ -25,11 +25,12 @@
     <input
       type="number"
       class="form-control"
-      id="{{resourcePath}}.max"
-      name="{{resourcePath}}.max"
+      id="ar_{{resourcePath}}.max"
+      {{#if (ne linkMax false)}}name="{{resourcePath}}.max"{{/if}}
       placeholder="{{localize 'cpred.sheet.max'}}"
       value="{{resource.max}}"
+      {{#if (eq disableMax true)}}disabled{{/if}}
     />
-    <label for="{{resourcePath}}.max">{{localize "cpred.sheet.max"}}</label>
+    <label for="ar_{{resourcePath}}.max">{{localize "cpred.sheet.max"}}</label>
   </div>
 </div>

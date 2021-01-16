@@ -1,6 +1,8 @@
 interface CommonTemplate {
   attributes: {
     hp: NumberResource;
+    armor_body: NumberResource;
+    armor_head: NumberResource;
   };
   details: {
     description: StringProp;
@@ -59,7 +61,47 @@ interface IceTemplate {
   };
 }
 
+interface RolesTemplate {
+  rockerboy: {
+    charismatic_impact: NumberProp;
+  };
+  solo: {
+    combat_awareness: NumberProp;
+  };
+  netrunner: {
+    interface: NumberProp;
+  };
+  tech: {
+    maker: NumberProp;
+    field_expertise: NumberProp;
+    upgrade_expertise: NumberProp;
+    fabrication_expertise: NumberProp;
+    invention_expertise: NumberProp;
+  };
+  medtech: {
+    medicine: NumberProp;
+    surgery: NumberProp;
+    pharmaceuticals: NumberProp;
+    cryosystem_operation: NumberProp;
+  };
+  media: {
+    credibility: NumberProp;
+  };
+  exec: {
+    teamwork: NumberProp;
+  };
+  lawman: {
+    backup: NumberProp;
+  };
+  fixer: {
+    operator: NumberProp;
+  };
+  nomad: {
+    moto: NumberProp;
+  }
+};
+
 declare type ActorDataCpRed = CommonTemplate;
-declare type ActorDataCpRedCharacter = ActorDataCpRed & StatsTemplate & SkillsTemplate;
-declare type ActorDataCpRedNpc = ActorDataCpRed & StatsTemplate & SkillsTemplate;
+declare type ActorDataCpRedCharacter = ActorDataCpRed & StatsTemplate & SkillsTemplate & RolesTemplate;
+declare type ActorDataCpRedNpc = ActorDataCpRed & StatsTemplate & SkillsTemplate & RolesTemplate;
 declare type ActorDataCpRedIce = ActorDataCpRed & IceTemplate;

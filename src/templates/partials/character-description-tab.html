@@ -1,3 +1,5 @@
+<div class="d-flex p-1"><h3>Stats</h3></div>
+
 <div class="d-flex flex-row">
   <div class="form-floating">
     <input
@@ -64,12 +66,12 @@
   <div class="form-floating">
     <input
       type="number"
-      name="data.stats.luck.value"
-      id="data.stats.luck.value"
+      name="data.stats.luck.max"
+      id="data.stats.luck.max"
       class="form-control"
-      value="{{data.stats.luck.value}}"
+      value="{{data.stats.luck.max}}"
       placeholder="x"
-    /><label for="data.stats.luck.value" class="form-label">LUCK</label>
+    /><label for="data.stats.luck.max" class="form-label">LUCK</label>
   </div>
   <div class="form-floating">
     <input
@@ -100,5 +102,193 @@
       value="{{data.stats.emp.value}}"
       placeholder="x"
     /><label for="data.stats.emp.value" class="form-label">EMP</label>
+  </div>
+</div>
+
+<div class="d-flex p-1"><h3>Roles</h3></div>
+
+{{! Rockerboy}}
+<div class="d-flex p-1 align-items-center justify-content-between">
+  <div>{{localize "cpred.sheet.roles.rockerboy"}}</div>
+  <div>
+    {{> "systems/cpred/templates/partials/attribute-input.html"
+    root=actor
+    name="cpred.sheet.role_abilities.charismatic_impact"
+    path="roles.rockerboy.charismatic_impact.value"
+    type="number"
+  }}
+  </div>
+</div>
+
+{{! Solo }}
+<div class="d-flex p-1 align-items-center justify-content-between">
+  <div>{{localize "cpred.sheet.roles.solo"}}</div>
+  <div>
+    {{> "systems/cpred/templates/partials/attribute-input.html"
+    root=actor
+    name="cpred.sheet.role_abilities.combat_awareness"
+    path="roles.solo.combat_awareness.value"
+    type="number"
+  }}
+  </div>
+</div>
+
+{{! Netrunner }}
+<div class="d-flex p-1 align-items-center justify-content-between">
+  <div>{{localize "cpred.sheet.roles.netrunner"}}</div>
+  <div>
+    {{> "systems/cpred/templates/partials/attribute-input.html"
+    root=actor
+    name="cpred.sheet.role_abilities.interface"
+    path="roles.netrunner.interface.value"
+    type="number"
+  }}
+  </div>
+</div>
+
+{{! Tech }}
+<div class="d-flex p-1 flex-wrap align-items-center justify-content-between">
+  <div>{{localize "cpred.sheet.roles.tech"}}</div>
+  <div>
+    {{> "systems/cpred/templates/partials/attribute-input.html"
+    root=actor
+    name="cpred.sheet.role_abilities.field_expertise"
+    path="roles.tech.field_expertise.value"
+    type="number"
+  }}
+  </div>
+  <div>
+    {{> "systems/cpred/templates/partials/attribute-input.html"
+    root=actor
+    name="cpred.sheet.role_abilities.upgrade_expertise"
+    path="roles.tech.upgrade_expertise.value"
+    type="number"
+  }}
+  </div>
+  <div>
+    {{> "systems/cpred/templates/partials/attribute-input.html"
+    root=actor
+    name="cpred.sheet.role_abilities.fabrication_expertise"
+    path="roles.tech.fabrication_expertise.value"
+    type="number"
+  }}
+  </div>
+  <div>
+    {{> "systems/cpred/templates/partials/attribute-input.html"
+    root=actor
+    name="cpred.sheet.role_abilities.invention_expertise"
+    path="roles.tech.invention_expertise.value"
+    type="number"
+  }}
+  </div>
+  <div>
+    {{> "systems/cpred/templates/partials/attribute-input.html"
+    root=actor
+    name="cpred.sheet.role_abilities.maker"
+    path="roles.tech.maker.value"
+    type="number"
+  }}
+  </div>
+</div>
+
+{{! Medtech }}
+<div class="d-flex p-1 flex-wrap align-items-center justify-content-between">
+  <div>{{localize "cpred.sheet.roles.medtech"}}</div>
+  <div>
+    {{> "systems/cpred/templates/partials/attribute-input.html"
+    root=actor
+    name="cpred.sheet.role_abilities.medicine"
+    path="roles.medtech.medicine.value"
+    type="number"
+  }}
+  </div>
+  <div>
+    {{> "systems/cpred/templates/partials/attribute-input.html"
+    root=actor
+    name="cpred.sheet.role_abilities.surgery"
+    path="roles.medtech.surgery.value"
+    type="number"
+  }}
+  </div>
+  <div>
+    {{> "systems/cpred/templates/partials/attribute-input.html"
+    root=actor
+    name="cpred.sheet.role_abilities.pharmaceuticals"
+    path="roles.medtech.pharmaceuticals.value"
+    type="number"
+  }}
+  </div>
+  <div>
+    {{> "systems/cpred/templates/partials/attribute-input.html"
+    root=actor
+    name="cpred.sheet.role_abilities.cryosystem_operation"
+    path="roles.medtech.cryosystem_operation.value"
+    type="number"
+  }}
+  </div>
+</div>
+
+{{! Media}}
+<div class="d-flex p-1 align-items-center justify-content-between">
+  <div>{{localize "cpred.sheet.roles.media"}}</div>
+  <div>
+    {{> "systems/cpred/templates/partials/attribute-input.html"
+    root=actor
+    name="cpred.sheet.role_abilities.credibility"
+    path="roles.media.credibility.value"
+    type="number"
+  }}
+  </div>
+</div>
+
+{{! Exec }}
+<div class="d-flex p-1 align-items-center justify-content-between">
+  <div>{{localize "cpred.sheet.roles.exec"}}</div>
+  <div>
+    {{> "systems/cpred/templates/partials/attribute-input.html"
+    root=actor
+    name="cpred.sheet.role_abilities.teamwork"
+    path="roles.exec.teamwork.value"
+    type="number"
+  }}
+  </div>
+</div>
+
+{{! Lawman }}
+<div class="d-flex p-1 align-items-center justify-content-between">
+  <div>{{localize "cpred.sheet.roles.lawman"}}</div>
+  <div>
+    {{> "systems/cpred/templates/partials/attribute-input.html"
+    root=actor
+    name="cpred.sheet.role_abilities.backup"
+    path="roles.lawman.backup.value"
+    type="number"
+  }}
+  </div>
+</div>
+
+{{! Fixer }}
+<div class="d-flex p-1 align-items-center justify-content-between">
+  <div>{{localize "cpred.sheet.roles.fixer"}}</div>
+  <div>
+    {{> "systems/cpred/templates/partials/attribute-input.html"
+    root=actor
+    name="cpred.sheet.role_abilities.operator"
+    path="roles.fixer.operator.value"
+    type="number"
+  }}
+  </div>
+</div>
+
+{{! Nomad}}
+<div class="d-flex p-1 align-items-center justify-content-between">
+  <div>{{localize "cpred.sheet.roles.nomad"}}</div>
+  <div>
+    {{> "systems/cpred/templates/partials/attribute-input.html"
+    root=actor
+    name="cpred.sheet.role_abilities.moto"
+    path="roles.nomad.moto.value"
+    type="number"
+  }}
   </div>
 </div>

@@ -1,0 +1,4 @@
+<label for="data.{{path}}">{{localize name}}</label>
+<select class="form-select" name="data.{{path}}">
+  {{selectOptions choices selected=(getByPath @root.data path) localize=true}}
+</select>

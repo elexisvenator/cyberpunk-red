@@ -14,11 +14,30 @@
 import ActorSheetCpRedCharacter from "./module/actor/sheets/character";
 import ActorSheetCpRedIce from "./module/actor/sheets/ice";
 import ActorSheetCpRedNpc from "./module/actor/sheets/npc";
+import ItemSheetCpRedCyberware from "./module/item/sheets/cyberware";
+import ItemSheetCpRedProgram from "./module/item/sheets/program";
 import ItemSheetCpRedWeapon from "./module/item/sheets/weapon";
+import { LanguageItem, localize } from "./module/language";
 import { registerSettings } from "./module/settings";
 import { preloadTemplates } from "./module/templates";
 import { getValueByPath, Path } from "./module/types/dot-notation";
-export * from "./module/bootstrap/index.esm";
+
+
+interface ActionGroup {
+  name: string;
+  formattedName: string;
+  actions: {
+    name: string;
+    roll: string;
+  }[];
+};
+
+interface ProgramGroup {
+  actions: {
+    name: string;
+    roll: string;
+  }[];
+};
 
 /* ------------------------------------ */
 /* Initialize system					*/
@@ -52,6 +71,14 @@ Hooks.once("init", async function () {
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("cpred", ItemSheetCpRedWeapon, {
     types: ["weapon"],
+    makeDefault: true,
+  });
+  Items.registerSheet("cpred", ItemSheetCpRedCyberware, {
+    types: ["cyberwear"],
+    makeDefault: true,
+  });
+  Items.registerSheet("cpred", ItemSheetCpRedProgram, {
+    types: ["program"],
     makeDefault: true,
   });
 });
@@ -103,9 +130,134 @@ Handlebars.registerHelper({
   renderIf: (condition, value) => (condition ? value : ""),
 });
 
+/**
+ * Generate a set of actions corresponding to the capabilities of the provided weapon item.
+ */
 Handlebars.registerHelper("weaponActions", function (item) {
-  const entity = new ItemSheetCpRedWeapon(item, null);
-  return entity.getData().attackblock;
+  const weapon_data = new ItemSheetCpRedWeapon(item, null).item.data.data;
+
+  const lookup = {
+    single_shot: [
+      {
+        name: "cpred.sheet.common.attack",
+        roll: `1d10cp + @stats.ref.value + @skills.${weapon_data.attributes.skill.value}.levels`
+      },
+      {
+        name: "cpred.sheet.common.damage",
+        roll: weapon_data.attributes.damage.value
+      }
+    ],
+    aimed_shot: [
+      {
+        name: "cpred.sheet.common.attack",
+        roll: `1d10cp + @stats.ref.value + @skills.${weapon_data.attributes.skill.value}.levels - 8`
+      },
+      {
+        name: "cpred.sheet.common.damage",
+        roll: weapon_data.attributes.damage.value
+      }
+    ],
+    autofire: [
+      {
+        name: "cpred.sheet.common.attack",
+        roll: `1d10cp + @stats.ref.value + @skills.autofire.levels`
+      },
+      {
+        name: "cpred.sheet.common.damage",
+        roll: "2d6"
+      }
+    ],
+    suppressive_fire: [
+      {
+        name: "cpred.sheet.common.attack",
+        roll: `1d10cp + @stats.ref.value + @skills.autofire.levels`
+      }
+    ],
+    shotgun_shell: [
+      {
+        name: "cpred.sheet.common.attack",
+        roll: `1d10cp + @stats.ref.value + @skills.${weapon_data.attributes.skill.value}.levels`
+      },
+      {
+        name: "cpred.sheet.common.damage",
+        roll: "3d6"
+      }
+    ],
+    throwable: [
+      {
+        name: "cpred.sheet.common.attack",
+        roll: `1d10cp + @stats.dex.value + @skills.athletics.levels`
+      },
+      {
+        name: "cpred.sheet.common.damage",
+        roll: weapon_data.attributes.damage.value
+      }
+    ],
+    bayonet: [
+      {
+        name: "cpred.sheet.common.attack",
+        roll: `1d10cp + @stats.dex.value + @skills.melee_weapon.levels`
+      },
+      {
+        name: "cpred.sheet.common.damage",
+        roll: "1d6"
+      }
+    ],
+    underbarrel_grenade_launcher: [
+      {
+        name: "cpred.sheet.common.attack",
+        roll: `1d10cp + @stats.ref.value + @skills.heavy_weapons.levels`
+      },
+      {
+        name: "cpred.sheet.common.damage",
+        roll: "6d6"
+      }
+    ],
+    underbarrel_shotgun: [
+      {
+        name: "cpred.sheet.common.attack",
+        roll: `1d10cp + @stats.ref.value + @skills.shoulder_weapon.levels`
+      },
+      {
+        name: "cpred.sheet.common.damage",
+        roll: "5d6"
+      }
+    ]
+  };
+
+  // Use the tag system to decide which actions exist
+  const action_groups = weapon_data.tags.map((tag) => {
+    const entry: ActionGroup = {
+      name: tag,
+      formattedName: localize(`cpred.sheet.weapon_tags.${tag}` as Path<LanguageItem>),
+      actions: lookup[tag]
+    };
+    return tag in lookup ? entry : null;
+  })
+  .filter((entry) => entry !== null);
+
+  return action_groups;
+});
+
+Handlebars.registerHelper("programActions", function(item) {
+  const programData = new ItemSheetCpRedProgram(item, null).item.data.data;
+
+  let data: ProgramGroup = {
+    actions: []
+  };
+
+  if (programData.attributes.class.value === "attacker") {
+    data.actions.push({
+      name: "cpred.sheet.common.attack",
+      roll: `1d10cp + @roles.netrunner.interface.value + ${programData.stats.atk.value}`
+    });
+  }
+  data.actions.push({
+    name: "cpred.sheet.common.defend",
+    roll: `1d10cp + ${programData.stats.def.value}`
+  });
+
+  return data;
 });
 
 // useful debug util

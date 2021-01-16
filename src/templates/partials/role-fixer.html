@@ -1,0 +1,6 @@
+<div class="d-flex flex-wrap justify-content-between align-items-center p-1">
+  <div class="d-flex p-1 me-auto">{{localize "cpred.sheet.roles.fixer"}}</div>
+  <div class="d-flex p-1">
+    {{> "systems/cpred/templates/partials/roll-action.html" formula="1d10cp + @stats.cool.value + @skills.trading.levels + @roles.fixer.operator.value" label="cpred.sheet.role_actions.haggle"}}
+  </div>
+</div>

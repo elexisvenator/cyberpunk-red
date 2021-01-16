@@ -26,8 +26,9 @@
       "path": "lang/en.json"
     }
   ],
-  "gridDistance": 1,
-  "gridUnits": "",
+  "initiative": "@stats.ref.value + 1d10cp",
+  "gridDistance": 2,
+  "gridUnits": "m",
   "minimumCoreVersion": "0.7.9",
   "compatibleCoreVersion": "0.5.0",
   "url": "",

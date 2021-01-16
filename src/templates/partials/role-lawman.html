@@ -1,0 +1,9 @@
+<div class="d-flex flex-wrap justify-content-between align-items-center p-1">
+  <div class="d-flex p-1 me-auto">{{localize "cpred.sheet.roles.lawman"}}</div>
+  <div class="d-flex p-1">
+    {{> "systems/cpred/templates/partials/roll-action.html" formula="1d10cs<@roles.lawman.backup.value" label="cpred.sheet.role_actions.call_backup"}}
+  </div>
+  <div class="d-flex p-1">
+    {{> "systems/cpred/templates/partials/roll-action.html" formula="1d6" label="cpred.sheet.role_actions.backup_turns"}}
+  </div>
+</div>

@@ -1,13 +1,13 @@
 import { getFullTemplatePath } from "../../templates";
 import { ActorCpRed } from "../actor";
 import ActorSheetCpRed, { ActorSheetDataCpRed } from "./base";
-import ItemSheetCpRedWeapon from "../../item/sheets/weapon";
 import { ItemCpRed } from "../../item/item";
 import { ActionHandlers } from "../../entity";
 import { LanguageItem, localize } from "../../language";
 import { Path } from "../../types/dot-notation";
+import { FormulaRollable } from "../../rollable";
 
-type CharacterAction = "remove-item" | "show-item" | "single_shot_attack" | "add-subskill" | "remove-subskill";
+type CharacterAction = "removeItem" | "showItem" | "rollAction" | "addSubSkill" | "removeSubSkill";
 
 interface SkillGroup {
   name: string;
@@ -18,6 +18,7 @@ interface SkillGroup {
     skill: Skill;
     hasBlankSubSkill: boolean;
     stat: {
+      name: string;
       formattedName: string;
       value: number;
     };
@@ -31,13 +32,9 @@ interface ActorSheetDataCpRedCharacter extends ActorSheetDataCpRed<ActorDataCpRe
 export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataCpRedCharacter, ActorCpRed<ActorDataCpRedCharacter>> {
   private static actionHandlers: ActionHandlers<ActorSheetCpRedCharacter, CharacterAction> = {
     // Gear interaction
-    "remove-item": (sheet, _action, value) => sheet.actor.deleteOwnedItem(value),
-    "show-item": async (sheet, _action, value) => sheet.actor.getOwnedItem(value).sheet.render(true),
-    // Weapon attacks
-    single_shot_attack: async (sheet, action, value) => {
-      const item_sheet = sheet.actor.getOwnedItem(value).sheet as ItemSheetCpRedWeapon;
-      item_sheet.actionHandlers[action](item_sheet, action, value);
-    },
+    removeItem: (sheet, _action, value) => sheet.actor.deleteOwnedItem(value),
+    showItem: async (sheet, _action, value) => sheet.actor.getOwnedItem(value).sheet.render(true),
+    rollAction: async (sheet, _action, value) => new FormulaRollable(value, sheet.actor).roll(),
     "add-subskill": (sheet, _action, value) => sheet.addSubSkill(value),
     "remove-subskill": (sheet, _action, value) => sheet.removeSubSkill(value),
   };
@@ -71,6 +68,9 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
     const data = parentData.data;
     const actor: ActorCpRed = this.actor;
 
+    // Update derived attributes when retrieving data instead of when modifying underlyign data
+    data.attributes.hp.max = 10 + 5 * Math.ceil((data.stats.body.value + data.stats.will.value) / 2.0);
+
     // Retrieve and sort all items the character owns
     const items: ItemCpRed[] = Array.from(actor.items.values());
     items.sort((a, b) => {
@@ -80,7 +80,11 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
     const stats = Object.fromEntries(
       Object.entries(data.stats).map(([key, stat]) => [
         key,
-        { formattedName: localize(`cpred.sheet.stats.${key}` as Path<LanguageItem>), value: stat.value },
+        {
+          name: key,
+          formattedName: localize(`cpred.sheet.stats.${key}` as Path<LanguageItem>),
+          value: stat.value,
+        },
       ])
     );
 

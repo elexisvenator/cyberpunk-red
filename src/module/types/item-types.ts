@@ -13,22 +13,44 @@ interface WeaponTemplate {
     rof: NumberProp;
     type: StringProp;
     skill: StringProp;
-    hands: NumberProp;
+    hands_required: NumberProp;
     reload_turns: NumberProp;
     autofire_max: NumberProp;
     magazine: NumberResource;
+    is_ranged: BooleanProp;
+    is_concealable: BooleanProp;
   };
-  properties: {
-    concealable: BooleanProp;
-    single_shot: BooleanProp;
-    autofire: BooleanProp;
-    suppressive_fire: BooleanProp;
-    shotgun_shell: BooleanProp;
-    explosive: BooleanProp;
-    aimed_shot: BooleanProp;
-    reload_turns: NumberProp;
-  };
+  tags: string[];
+}
+
+interface CyberwareTemplate {
+  attributes: {
+    type: StringProp;
+    foundation: StringProp;
+    install: StringProp;
+    slots: NumberProp;
+    humanity_loss: NumberProp;
+    humanity_loss_roll: StringProp;
+  }
+}
+
+interface ProgramTemplate {
+  stats: {
+    atk: NumberProp;
+    def: NumberProp;
+    rez: NumberResource;
+  },
+  attributes: {
+    damage: StringProp;
+    class: StringProp;
+    slots: NumberProp;
+  }
+  details: {
+    effect: StringProp;
+  }
 }
 
 declare type ItemDataCpRed = CommonItemTemplate;
 declare type ItemDataCpRedWeapon = ItemDataCpRed & WeaponTemplate;
+declare type ItemDataCpRedCyberware = ItemDataCpRed & CyberwareTemplate;
+declare type ItemDataCpRedProgram = ItemDataCpRed & ProgramTemplate;
