@@ -14,7 +14,7 @@
       <tr>
         <td>
           <label class="d-block">
-            <a href="#" data-action="roll-skill" data-action-value="{{skill.name}}">
+            <a href="#" data-action="rollAction" data-value="1d10cp + @stats.{{skill.stat.name}}.value + @skills.{{skill.name}}.levels">
               <i class="fas fa-dice-d20"></i>
               <span>{{skill.formattedName}}</span>
             </a>

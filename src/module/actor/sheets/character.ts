@@ -17,6 +17,7 @@ interface SkillGroup {
     formattedName: string;
     skill: Skill;
     stat: {
+      name: string;
       formattedName: string;
       value: number;
     };
@@ -32,7 +33,7 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
     // Gear interaction
     removeItem: (sheet, _action, value) => sheet.actor.deleteOwnedItem(value),
     showItem: (sheet, _action, value) => sheet.actor.getOwnedItem(value).sheet.render(true),
-    rollAction: (sheet, _action, data) => new FormulaRollable(data, sheet.actor).roll(),
+    rollAction: (sheet, _action, value) => new FormulaRollable(value, sheet.actor).roll(),
   };
 
   constructor(object: ActorCpRed<ActorDataCpRedCharacter>, options: FormApplicationOptions) {
@@ -76,7 +77,11 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
     const stats = Object.fromEntries(
       Object.entries(data.stats).map(([key, stat]) => [
         key,
-        { formattedName: localize(`cpred.sheet.stats.${key}` as Path<LanguageItem>), value: stat.value },
+        {
+          name: key,
+          formattedName: localize(`cpred.sheet.stats.${key}` as Path<LanguageItem>),
+          value: stat.value
+        },
       ])
     );
 
