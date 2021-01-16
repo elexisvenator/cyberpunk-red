@@ -49,7 +49,7 @@
   {{#each data.tags as |tag|}}
   <div class="p-1 border border-1">
     {{localize (join "." "cpred.sheet.weapon_tags" tag)}}
-    <a title="Remove tag" data-action="remove_tag" data-value="{{tag}}"><i class="fas fa-minus-square"></i></a>
+    <a title="Remove tag" data-action="removeTag" data-value="{{tag}}"><i class="fas fa-minus-square"></i></a>
   </div>
   {{/each}}
 

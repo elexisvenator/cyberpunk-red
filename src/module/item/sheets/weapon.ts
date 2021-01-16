@@ -4,7 +4,7 @@ import ItemSheetCpRed from "./base";
 import { localize } from "../../language";
 import { ActionHandlers } from "../../entity";
 
-type WeaponAction = "remove_tag";
+type WeaponAction = "removeTag";
 
 // This is the model that gets sent to the handlebars template. If you want
 // to use some computed values, declare them here and populate them in getData().
@@ -17,7 +17,7 @@ interface ItemSheetDataCpRedWeapon extends ItemSheetData<ItemDataCpRedWeapon> {
 
 export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWeapon, ItemCpRed<ItemDataCpRedWeapon>> {
   private static actionHandlers: ActionHandlers<ItemSheetCpRedWeapon, WeaponAction> = {
-    remove_tag: (sheet, _action, data) => sheet.item.update({ "data.tags": sheet.item.data.data.tags.filter((tag) => tag !== data) }, null),
+    removeTag: async (sheet, _action, data) => sheet.item.update({ "data.tags": sheet.item.data.data.tags.filter((tag) => tag !== data) }, null),
   };
 
   private static weapon_skill_list: { [key: string]: string } = {

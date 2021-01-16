@@ -16,7 +16,7 @@ interface ItemSheetDataCpRedArmor extends ItemSheetData<ItemDataCpRedArmor> {
 
 export default class ItemSheetCpRedArmor extends ItemSheetCpRed<ItemDataCpRedArmor, ItemCpRed<ItemDataCpRedArmor>> {
   private static actionHandlers: ActionHandlers<ItemSheetCpRedArmor, ArmorAction> = {
-    none: () => {}
+    none: async () => {}
   };
   
   constructor(object: ItemCpRed<ItemDataCpRedArmor>, options: FormApplicationOptions) {
