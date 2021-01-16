@@ -29,13 +29,16 @@
             "labels": {
                 "armor_body": "Armor Body",
                 "armor_head": "Armor Head",
-                "program_type": "Program Type"
-            },
-            "titles": {
+                "program_type": "Program Type",
+                "armor_type": "Armor Type",
                 "role_actions": "Role Actions",
                 "weapons": "Weapons",
                 "programs": "Programs",
-                "skills": "Skills"
+                "skills": "Skills",
+                "armor": "Armor",
+                "stopping_power": "Stopping Power",
+                "cost": "Cost",
+                "description": "Description"
             },
             "common": {
                 "attack": "Attack",
@@ -186,6 +189,16 @@
                 "booster": "Booster",
                 "defender": "Defender",
                 "attacker": "Attacker"
+            },
+            "armor_types": {
+                "leathers": "Leathers",
+                "kevlar": "Kevlar",
+                "light_armorjack": "Light Armorjack",
+                "bodyweight_suit": "Bodyweight suit",
+                "medium_armorjack": "Medium Armorjack",
+                "heavy_armorjack": "Heavy Armorjack",
+                "flak": "Flak",
+                "metalgear": "Metalgear"
             }
         },
         "tab": {

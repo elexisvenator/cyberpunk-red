@@ -41,7 +41,6 @@ export interface Sheet {
   health: string
   luck: string
   labels: Labels
-  titles: Titles
   common: Common
   stats: Stats
   roles: Roles
@@ -58,19 +57,22 @@ export interface Sheet {
   weapon_tags: WeaponTags
   cyberware_stats: CyberwareStats
   program_types: ProgramTypes
+  armor_types: ArmorTypes
 }
 
 export interface Labels {
   armor_body: string
   armor_head: string
   program_type: string
-}
-
-export interface Titles {
+  armor_type: string
   role_actions: string
   weapons: string
   programs: string
   skills: string
+  armor: string
+  stopping_power: string
+  cost: string
+  description: string
 }
 
 export interface Common {
@@ -231,6 +233,17 @@ export interface ProgramTypes {
   booster: string
   defender: string
   attacker: string
+}
+
+export interface ArmorTypes {
+  leathers: string
+  kevlar: string
+  light_armorjack: string
+  bodyweight_suit: string
+  medium_armorjack: string
+  heavy_armorjack: string
+  flak: string
+  metalgear: string
 }
 
 export interface Tab {

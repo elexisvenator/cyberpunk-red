@@ -13,7 +13,7 @@
 
 <hr/>
 
-<div class="d-flex p-1"><h3>{{localize "cpred.sheet.titles.role_actions"}}</h3></div>
+<div class="d-flex p-1"><h3>{{localize "cpred.sheet.labels.role_actions"}}</h3></div>
 {{#if (gt data.roles.rockerboy.charismatic_impact.value 0)}}
   {{> "systems/cpred/templates/partials/role-rockerboy.html"}}
 {{/if}}
@@ -32,7 +32,7 @@
 
 <hr/>
 
-<div class="d-flex p-1"><h3>{{localize "cpred.sheet.titles.weapons"}}</h3></div>
+<div class="d-flex p-1"><h3>{{localize "cpred.sheet.labels.weapons"}}</h3></div>
 {{#each gearBlock as |gear|}}
   {{#if (eq gear.type "weapon")}}
   <div class="p-1"><h5>{{gear.name}}</h5></div>
@@ -40,7 +40,7 @@
   {{/if}}
 {{/each}}
 
-<div class="d-flex p-1"><h3>{{localize "cpred.sheet.titles.programs"}}</h3></div>
+<div class="d-flex p-1"><h3>{{localize "cpred.sheet.labels.programs"}}</h3></div>
 {{#each gearBlock as |gear|}}
   {{#if (eq gear.type "program")}}
   <div class="d-flex align-items-center">
@@ -50,7 +50,7 @@
   {{/if}}
 {{/each}}
 
-<div class="d-flex p-1"><h3>{{localize "cpred.sheet.titles.skills"}}</h3></div>
+<div class="d-flex p-1"><h3>{{localize "cpred.sheet.labels.skills"}}</h3></div>
 <div class="d-flex flex-wrap">
 {{#each trainedSkills as |skill|}}
   <div class="d-flex flex-grow-1 p-1">
