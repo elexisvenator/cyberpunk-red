@@ -54,11 +54,11 @@
 <div class="d-flex flex-wrap">
 {{#each trainedSkills as |skill|}}
   <div class="d-flex flex-grow-1 p-1">
-    <button type="button" class="btn btn-outline-primary text-nowrap" data-action="rollAction" data-value="1d10cp + @stats.{{skill.stat.name}}.value + @skills.{{skill.name}}.levels">
+    <button type="button" class="btn btn-outline-primary text-nowrap" data-action="rollAction" data-value="1d10cp + @stats.{{skill.stat.name}}.value + @skills.{{skill.name}}.level">
       <i class="fas fa-dice-d6"></i> {{skill.formattedName}}
       ({{add
         (getByPath @root.data (join "." "stats" skill.stat.name "value"))
-        (getByPath @root.data (join "." "skills" skill.name "levels"))
+        (getByPath @root.data (join "." "skills" skill.name "level"))
       }})
     </button>
   </div>

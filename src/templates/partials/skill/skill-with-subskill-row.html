@@ -39,7 +39,10 @@
             <td>
                 {{#if subSkill.hasLanguageItem}}
                     {{#if subSkill.name}}
-                        <a class="btn btn-sm btn-link" data-action="roll-skill" data-value="{{../skill.name}}.{{subSkill.name}}">
+                        <a class="btn btn-sm btn-link"
+                           data-action="rollAction"
+                           data-value="1d10cp + @stats.{{../skill.stat.name}}.value + @skills.{{../skill.name}}.subSkills.{{i}}.level"
+                        >
                             <i class="fas fa-dice-d20"></i>
                         </a>
                         <span>{{localize (join "." "cpred.subSkills" subSkill.name)}}</span>
@@ -50,8 +53,11 @@
                 {{else}}
                     <div class="input-group input-group-sm">
                         {{#if subSkill.name}}
-                            <button class="btn btn-link" type="button" data-action="roll-skill"
-                                    data-value="{{../skill.name}}.{{subSkill.name}}">
+                            <button class="btn btn-link"
+                                    type="button"
+                                    data-action="rollAction"
+                                    data-value="1d10cp + @stats.{{../skill.stat.name}}.value + @skills.{{../skill.name}}.subSkills.{{i}}.level"
+                            >
                                 <i class="fas fa-dice-d20"></i>
                             </button>
                         {{else}}
