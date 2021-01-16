@@ -16,14 +16,14 @@ interface ItemSheetDataCpRedProgram extends ItemSheetData<ItemDataCpRedProgram> 
     path: Path<ItemDataCpRedProgram>;
     type: string;
   }[];
-  programTypes: {[key: string]: string;};
+  programTypes: { [key: string]: string };
 }
 
 export default class ItemSheetCpRedProgram extends ItemSheetCpRed<ItemDataCpRedProgram, ItemCpRed<ItemDataCpRedProgram>> {
   private static actionHandlers: ActionHandlers<ItemSheetCpRedProgram, ProgramAction> = {
-    none: () => {}
+    none: async () => {},
   };
-  
+
   constructor(object: ItemCpRed<ItemDataCpRedProgram>, options: FormApplicationOptions) {
     super(object, {
       ...options,
@@ -48,24 +48,24 @@ export default class ItemSheetCpRedProgram extends ItemSheetCpRed<ItemDataCpRedP
         {
           name: "cpred.sheet.stats.atk",
           path: "stats.atk.value",
-          type: "number"
+          type: "number",
         },
         {
           name: "cpred.sheet.stats.def",
           path: "stats.def.value",
-          type: "number"
+          type: "number",
         },
         {
           name: "cpred.sheet.slots",
           path: "attributes.slots.value",
-          type: "number"
-        }
+          type: "number",
+        },
       ],
       programTypes: {
         attacker: "cpred.sheet.program_types.attacker",
         booster: "cpred.sheet.program_types.booster",
-        defender: "cpred.sheet.program_types.defender"
-      }
+        defender: "cpred.sheet.program_types.defender",
+      },
     };
   }
 }

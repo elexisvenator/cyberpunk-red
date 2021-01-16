@@ -127,7 +127,9 @@ a {
   }
 
   .subskill-row {
-    background-color: $cyberpunk-maroon;
+    td:not(:first-child) {
+      background-color: $cyberpunk-maroon;
+    }
 
     .subskill-disabled-action {
       padding: (0.25rem + 0.125rem) (0.5rem + 0.125rem);

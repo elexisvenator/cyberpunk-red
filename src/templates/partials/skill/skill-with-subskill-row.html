@@ -64,7 +64,7 @@
                                placeholder="Skill name..."
                                name="data.skills.{{../skill.name}}.subSkills.{{i}}.name"
                                value="{{subSkill.name}}">
-                        <button class="btn btn-outline-danger" type="button" data-action="remove-subskill"
+                        <button class="btn btn-outline-danger" type="button" data-action="removeSubSkill"
                                 data-value="{{../skill.name}}.{{i}}">
                             <i class="fas fa-times"></i>
                         </button>
@@ -74,9 +74,9 @@
             <td>
                 <input type="number"
                        class="form-control form-control-sm text-end"
-                       id="data.skills.{{../skill.name}}.subSkills.{{i}}.levels"
-                       name="data.skills.{{../skill.name}}.subSkills.{{i}}.levels"
-                       value="{{subSkill.levels}}"
+                       id="data.skills.{{../skill.name}}.subSkills.{{i}}.level"
+                       name="data.skills.{{../skill.name}}.subSkills.{{i}}.level"
+                       value="{{subSkill.level}}"
                        {{{renderIf subSkill.mandatory 'min="2"' }}} />
             </td>
             <td>
@@ -102,7 +102,7 @@
     <tr class="subskill-row">
         <td></td>
         <td>
-            <a class="btn btn-outline-success btn-sm" data-action="add-subskill"
+            <a class="btn btn-outline-success btn-sm" data-action="addSubSkill"
                data-value="{{skill.name}}">
                 <i class="fas fa-plus"></i>
                 Add

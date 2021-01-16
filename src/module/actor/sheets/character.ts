@@ -35,8 +35,8 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
     removeItem: (sheet, _action, value) => sheet.actor.deleteOwnedItem(value),
     showItem: async (sheet, _action, value) => sheet.actor.getOwnedItem(value).sheet.render(true),
     rollAction: async (sheet, _action, value) => new FormulaRollable(value, sheet.actor).roll(),
-    "add-subskill": (sheet, _action, value) => sheet.addSubSkill(value),
-    "remove-subskill": (sheet, _action, value) => sheet.removeSubSkill(value),
+    addSubSkill: (sheet, _action, value) => sheet.addSubSkill(value),
+    removeSubSkill: (sheet, _action, value) => sheet.removeSubSkill(value),
   };
 
   constructor(object: ActorCpRed<ActorDataCpRedCharacter>, options: FormApplicationOptions) {

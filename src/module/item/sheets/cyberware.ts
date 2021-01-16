@@ -12,16 +12,16 @@ type CyberwareAction = "none";
 // to use some computed values, declare them here and populate them in getData().
 
 interface ItemSheetDataCpRedCyberware extends ItemSheetData<ItemDataCpRedCyberware> {
-  type_types: {[key: string]: string;};
-  foundation_types: {[key: string]: string;};
-  install_types: {[key: string]: string;};
+  type_types: { [key: string]: string };
+  foundation_types: { [key: string]: string };
+  install_types: { [key: string]: string };
 }
 
 export default class ItemSheetCpRedCyberware extends ItemSheetCpRed<ItemDataCpRedCyberware, ItemCpRed<ItemDataCpRedCyberware>> {
   private static actionHandlers: ActionHandlers<ItemSheetCpRedCyberware, CyberwareAction> = {
-    none: () => {}
+    none: async () => {},
   };
-  
+
   constructor(object: ItemCpRed<ItemDataCpRedCyberware>, options: FormApplicationOptions) {
     super(object, {
       ...options,
@@ -58,14 +58,14 @@ export default class ItemSheetCpRedCyberware extends ItemSheetCpRed<ItemDataCpRe
         cyberaudio_suite: "Cyberaudio Suite",
         cybereye: "Cybereye",
         cyberleg: "Cyberleg",
-        neural_link: "Neural Link"
+        neural_link: "Neural Link",
       },
       install_types: {
         na: "N/A",
         mall: "Mall",
         clinic: "Clinic",
         hospital: "Hospital",
-      }
+      },
     };
   }
 }

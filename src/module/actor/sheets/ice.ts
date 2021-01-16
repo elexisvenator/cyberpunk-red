@@ -22,11 +22,11 @@ interface ActorSheetDataCpRedIce extends ActorSheetDataCpRed<ActorDataCpRedIce> 
 
 export default class ActorSheetCpRedIce extends ActorSheetCpRed<ActorDataCpRedIce, ActorCpRed<ActorDataCpRedIce>> {
   private static actionHandlers: ActionHandlers<ActorSheetCpRedIce, IceAction> = {
-    ambush: (sheet) => new FormulaRollable(`1d10cp + ${sheet.actor.data.data.stats.spd.value}`, sheet.actor).roll(),
-    attack: (sheet) => new FormulaRollable(`1d10cp + ${sheet.actor.data.data.stats.atk.value}`, sheet.actor).roll(),
-    "block-slide": (sheet) => new FormulaRollable(`1d10cp + ${sheet.actor.data.data.stats.per.value}`, sheet.actor).roll(),
-    damage: (sheet) => new FormulaRollable(sheet.actor.data.data.attributes.damage.value, sheet.actor).roll(),
-    defend: (sheet) => new FormulaRollable(`1d10cp + ${sheet.actor.data.data.stats.def.value}`, sheet.actor).roll(),
+    ambush: async (sheet) => new FormulaRollable(`1d10cp + ${sheet.actor.data.data.stats.spd.value}`, sheet.actor).roll(),
+    attack: async (sheet) => new FormulaRollable(`1d10cp + ${sheet.actor.data.data.stats.atk.value}`, sheet.actor).roll(),
+    "block-slide": async (sheet) => new FormulaRollable(`1d10cp + ${sheet.actor.data.data.stats.per.value}`, sheet.actor).roll(),
+    damage: async (sheet) => new FormulaRollable(sheet.actor.data.data.attributes.damage.value, sheet.actor).roll(),
+    defend: async (sheet) => new FormulaRollable(`1d10cp + ${sheet.actor.data.data.stats.def.value}`, sheet.actor).roll(),
   };
 
   constructor(object: ActorCpRed<ActorDataCpRedIce>, options: FormApplicationOptions) {

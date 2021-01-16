@@ -28,14 +28,13 @@ interface ActorSheetDataCpRedNpc extends ActorSheetDataCpRed<ActorDataCpRedNpc> 
   skillGroups: SkillGroup[];
 }
 
-
 export default class ActorSheetCpRedNpc extends ActorSheetCpRed<ActorDataCpRedNpc, ActorCpRed<ActorDataCpRedNpc>> {
   private static actionHandlers: ActionHandlers<ActorSheetCpRedNpc, NpcAction> = {
     // Gear interaction
     removeItem: (sheet, _action, value) => sheet.actor.deleteOwnedItem(value),
-    showItem: (sheet, _action, value) => sheet.actor.getOwnedItem(value).sheet.render(true),
-    rollAction: (sheet, _action, data) => new FormulaRollable(data, sheet.actor).roll(),
-  }
+    showItem: async (sheet, _action, value) => sheet.actor.getOwnedItem(value).sheet.render(true),
+    rollAction: async (sheet, _action, data) => new FormulaRollable(data, sheet.actor).roll(),
+  };
 
   constructor(object: ActorCpRed<ActorDataCpRedCharacter>, options: FormApplicationOptions) {
     super(object, {
@@ -81,7 +80,8 @@ export default class ActorSheetCpRedNpc extends ActorSheetCpRed<ActorDataCpRedNp
         {
           name: key,
           formattedName: localize(`cpred.sheet.stats.${key}` as Path<LanguageItem>),
-          value: stat.value },
+          value: stat.value,
+        },
       ])
     );
 
