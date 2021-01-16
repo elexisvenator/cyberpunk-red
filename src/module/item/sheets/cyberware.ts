@@ -1,9 +1,7 @@
 import { getFullTemplatePath } from "../../templates";
 import { ItemCpRed } from "../../item/item";
 import ItemSheetCpRed from "./base";
-import { LanguageItem, localize } from "../../language";
-import { Path } from "../../types/dot-notation";
-import { FormulaRollable } from "../../rollable";
+import { localize } from "../../language";
 import { ActionHandlers } from "../../entity";
 
 type CyberwareAction = "none";
