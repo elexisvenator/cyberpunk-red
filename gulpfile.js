@@ -7,7 +7,6 @@ const stringify = require('json-stringify-pretty-compact');
 const typescript = require('typescript');
 
 // const ts = require('gulp-typescript');
-const less = require('gulp-less');
 const sass = require('gulp-sass');
 const git = require('gulp-git');
 const webpack = require('webpack');
@@ -168,16 +167,6 @@ function runWebpack(cb) {
 }
 
 /**
- * Build Less
- */
-function buildLess() {
-	return gulp
-		.src('src/*.less')
-		.pipe(less())
-		.pipe(gulp.dest('dist'));
-}
-
-/**
  * Build SASS
  */
 function buildSASS() {
@@ -219,8 +208,7 @@ async function copyFiles() {
  * Watch for changes for each build step
  */
 function buildWatch() {
-	gulp.watch(['src/**/*.ts', 'src/**/*.vue'], { ignoreInitial: false }, buildDevBundle);
-	gulp.watch('src/**/*.less', { ignoreInitial: false }, buildLess);
+	gulp.watch(['src/**/*.ts', 'src/**/*.js'], { ignoreInitial: false }, buildDevBundle);
 	gulp.watch('src/**/*.scss', { ignoreInitial: false }, buildSASS);
 	gulp.watch(
 		['src/fonts', 'src/lang', 'src/templates', 'src/*.json'],
@@ -255,9 +243,8 @@ async function clean() {
 		);
 	}
 
-	// If the project uses Less or SASS
+	// If the project uses SASS
 	if (
-		fs.existsSync(path.join('src', `${name}.less`)) ||
 		fs.existsSync(path.join('src', `${name}.scss`))
 	) {
 		files.push('fonts', `${name}.css`);
@@ -515,7 +502,7 @@ function gitTag() {
 
 const execGit = gulp.series(gitAdd, gitCommit, gitTag);
 
-const execBuild = gulp.parallel(buildLess, buildSASS, copyFiles);
+const execBuild = gulp.parallel(buildSASS, copyFiles);
 
 exports.build = gulp.series(clean, execBuild);
 exports.watch = buildWatch;
