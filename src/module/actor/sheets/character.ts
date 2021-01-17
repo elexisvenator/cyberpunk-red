@@ -27,10 +27,16 @@ interface SkillGroup {
   skills: SkillBlock[];
 }
 
+interface ModifierBlock {
+  path: string;
+  offset: number;
+};
+
 interface ActorSheetDataCpRedCharacter extends ActorSheetDataCpRed<ActorDataCpRedCharacter> {
   gearBlock: ItemCpRed[];
   skillGroups: SkillGroup[];
   trainedSkills: SkillBlock[];
+  modifierBlock: ModifierBlock[];
 }
 
 export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataCpRedCharacter, ActorCpRed<ActorDataCpRedCharacter>> {
@@ -117,11 +123,32 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
       })
       .sort((a, b) => a.formattedName.localeCompare(b.formattedName));
 
+    // Aggregate all modifiers
+    // 1. get modifier entries from every single item
+    // 2. accumulate offsets based on path
+    const modifierList = parentData.items
+      .map((item) => item.data.modifiers)
+      .filter((item) => item !== undefined)
+      .map((item) => Object.values(item))
+      .flat();
+    const accumulatedModifiers: { [key: string]: ModifierBlock } = {};
+    for (const mod of modifierList as Array<ModifierBlock>) {
+      if (!(mod.path in accumulatedModifiers)) {
+        accumulatedModifiers[mod.path] = {
+          path: mod.path,
+          offset: 0,
+        }
+      }
+      accumulatedModifiers[mod.path].offset += mod.offset;
+    }
+    const modifierBlock = Object.values(accumulatedModifiers) as ModifierBlock[];
+
     return {
       ...parentData,
       gearBlock: items,
       skillGroups: skillGroups,
       trainedSkills: skillArray.filter((skill) => skill.skill.level > 0).sort((a, b) => a.formattedName.localeCompare(b.formattedName)),
+      modifierBlock: modifierBlock,
     };
   }
 
