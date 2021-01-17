@@ -73,6 +73,8 @@ export interface Labels {
   stopping_power: string
   cost: string
   description: string
+  effect: string
+  add_stat_modifier: string
 }
 
 export interface Common {
@@ -334,5 +336,5 @@ export interface Skills {
 
 export interface SubSkills {
   streetslang: string
-  your_home: string
+  yourHome: string
 }

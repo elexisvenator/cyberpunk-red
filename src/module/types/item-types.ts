@@ -1,3 +1,9 @@
+interface Modifier {
+  path: string;
+  offset: number;
+  source: string;
+}
+
 interface CommonItemTemplate {
   attributes: {
     cost: NumberProp;
@@ -5,6 +11,7 @@ interface CommonItemTemplate {
   details: {
     description: StringProp;
   };
+  modifiers: { [i: number]: Modifier };
 }
 
 interface WeaponTemplate {
@@ -58,8 +65,10 @@ interface ArmorTemplate {
   }
 }
 
+
 declare type ItemDataCpRed = CommonItemTemplate;
 declare type ItemDataCpRedWeapon = ItemDataCpRed & WeaponTemplate;
 declare type ItemDataCpRedCyberware = ItemDataCpRed & CyberwareTemplate;
 declare type ItemDataCpRedProgram = ItemDataCpRed & ProgramTemplate;
 declare type ItemDataCpRedArmor = ItemDataCpRed & ArmorTemplate;
+declare type ItemDataCpRedEffect = ItemDataCpRed;

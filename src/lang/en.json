@@ -38,7 +38,9 @@
                 "armor": "Armor",
                 "stopping_power": "Stopping Power",
                 "cost": "Cost",
-                "description": "Description"
+                "description": "Description",
+                "effect": "Effect",
+                "add_stat_modifier": "Add Stat Modifier"
             },
             "common": {
                 "attack": "Attack",

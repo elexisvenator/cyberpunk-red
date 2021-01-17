@@ -16,6 +16,7 @@ import ActorSheetCpRedIce from "./module/actor/sheets/ice";
 import ActorSheetCpRedNpc from "./module/actor/sheets/npc";
 import ItemSheetCpRedArmor from "./module/item/sheets/armor";
 import ItemSheetCpRedCyberware from "./module/item/sheets/cyberware";
+import ItemSheetCpRedEffect from "./module/item/sheets/effect";
 import ItemSheetCpRedProgram from "./module/item/sheets/program";
 import ItemSheetCpRedWeapon from "./module/item/sheets/weapon";
 import { LanguageItem, localize } from "./module/language";
@@ -83,6 +84,10 @@ Hooks.once("init", async function () {
   });
   Items.registerSheet("cpred", ItemSheetCpRedArmor, {
     types: ["armor"],
+    makeDefault: true,
+  });
+  Items.registerSheet("cpred", ItemSheetCpRedEffect, {
+    types: ["effect"],
     makeDefault: true,
   });
 });

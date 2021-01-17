@@ -1,0 +1,54 @@
+<form class="{{cssClass}} d-flex flex-column" autocomplete="off">
+  <div class="d-flex flex-wrap justify-content-evenly">
+    <div class="flex-grow-1 d-flex">
+      <div class="m-1 align-self-stretch avatar-small">
+        <img src="{{item.img}}" data-edit="img" />
+      </div>
+      <div class="d-flex flex-grow-1 flex-column">
+        <div class="form-floating p-1">
+          <input
+            type="text"
+            class="form-control"
+            id="actor.name"
+            name="name"
+            placeholder="{{localize 'cpred.sheet.name'}}"
+            value="{{item.name}}"
+          />
+          <label for="actor.name">{{localize "cpred.sheet.name"}}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex p-1">
+    <div class="p-1">
+      <label for="addStat">{{localize name}}</label>
+      <select class="form-select" id="addStat" data-change="addStat">
+      {{selectOptions statList localize=true}}
+      </select>
+    </div>
+    <div class="p-1">
+      <label for="addSkill">{{localize name}}</label>
+      <select class="form-select" id="addSkill" data-change="addSkill">
+      {{selectOptions skillList localize=true}}
+      </select>
+    </div>
+  </div>
+
+  {{#each data.modifiers as |mod i|}}
+  <div class="d-flex p-1">
+    <div class="d-flex">{{localize (join "." "cpred.sheet" path)}}</div>
+    <div class="d-flex">
+      <div class="form-floating p-1">
+        <input
+          type="number"
+          class="form-control"
+          name="data.modifiers.{{i}}.offset"
+          id="data.modifiers.{{i}}.offset"
+          value="{{mod.offset}}"
+        />
+      </div>
+    </div>
+  </div>
+  {{/each}}
+</form>

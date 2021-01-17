@@ -754,7 +754,8 @@
       "armor",
       "gear",
       "cyberwear",
-      "program"
+      "program",
+      "effect"
     ],
     "templates": {
       "common": {
@@ -767,7 +768,8 @@
           "description": {
             "value": ""
           }
-        }
+        },
+        "modifiers": {}
       },
       "weapon": {
         "attributes": {
@@ -898,6 +900,11 @@
       "templates": [
         "common",
         "armor"
+      ]
+    },
+    "effect": {
+      "templates": [
+        "common"
       ]
     }
   }
