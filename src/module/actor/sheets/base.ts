@@ -65,6 +65,25 @@ export default class ActorSheetCpRed<DataType extends ActorDataCpRed, ActorType 
     }
   }
 
+  protected _getArmor() {
+    const armorList = this.actor.items
+      .map((item) => item)
+      .filter((item) => item.type === "armor");
+    const bodyArmor = armorList.filter((item) => item.data.data.attributes.location.value === "body");
+    const headArmor = armorList.filter((item) => item.data.data.attributes.location.value === "head");
+
+    return {
+      armor_body: {
+        value: Math.max(...bodyArmor.map((item) => item.data.data.attributes.sp.value), 0),
+        max: Math.max(...bodyArmor.map((item) => item.data.data.attributes.sp.max), 0),
+      },
+      armor_head: {
+        value: Math.max(...headArmor.map((item) => item.data.data.attributes.sp.value), 0),
+        max: Math.max(...headArmor.map((item) => item.data.data.attributes.sp.max), 0),
+      }
+    };
+  }
+
   private static _getAppSizeClass(width: number): string {
     const breakPoints = {
       xs: 0,

@@ -58,6 +58,7 @@ export interface Sheet {
   cyberware_stats: CyberwareStats
   program_types: ProgramTypes
   armor_types: ArmorTypes
+  armor_locations: ArmorLocations
 }
 
 export interface Labels {
@@ -229,6 +230,7 @@ export interface CyberwareStats {
   slots: string
   humanity_loss: string
   humanity_loss_roll: string
+  humanity_loss_creation: string
 }
 
 export interface ProgramTypes {
@@ -246,6 +248,11 @@ export interface ArmorTypes {
   heavy_armorjack: string
   flak: string
   metalgear: string
+}
+
+export interface ArmorLocations {
+  body: string
+  head: string
 }
 
 export interface Tab {

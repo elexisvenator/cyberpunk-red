@@ -185,7 +185,8 @@
                 "install": "Install",
                 "slots": "Slots",
                 "humanity_loss": "Humanity Loss",
-                "humanity_loss_roll": "Humanity Loss Roll"
+                "humanity_loss_roll": "Humanity Loss (Roll)",
+                "humanity_loss_creation": "Humanity Loss (Creation)"
             },
             "program_types": {
                 "booster": "Booster",
@@ -201,6 +202,10 @@
                 "heavy_armorjack": "Heavy Armorjack",
                 "flak": "Flak",
                 "metalgear": "Metalgear"
+            },
+            "armor_locations": {
+                "body": "Body",
+                "head": "Head"
             }
         },
         "tab": {

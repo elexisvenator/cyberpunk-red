@@ -81,6 +81,10 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
     // Update derived attributes when retrieving data instead of when modifying underlyign data
     data.attributes.hp.max = 10 + 5 * Math.ceil((data.stats.body.value + data.stats.will.value) / 2.0);
 
+    const armorData = this._getArmor();
+    data.attributes.armor_body = armorData.armor_body;
+    data.attributes.armor_head = armorData.armor_head;
+
     // Retrieve and sort all items the character owns
     const items: ItemCpRed[] = Array.from(actor.items.values());
     items.sort((a, b) => {

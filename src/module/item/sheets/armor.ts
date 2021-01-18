@@ -11,7 +11,8 @@ type ArmorAction = "none";
 // to use some computed values, declare them here and populate them in getData().
 
 interface ItemSheetDataCpRedArmor extends ItemSheetData<ItemDataCpRedArmor> {
-  armorTypes: {[key: string]: string;};
+  armorTypes: { [key: string]: string; };
+  armorLocations: { [key: string]: string; };
 }
 
 export default class ItemSheetCpRedArmor extends ItemSheetCpRed<ItemDataCpRedArmor, ItemCpRed<ItemDataCpRedArmor>> {
@@ -48,6 +49,10 @@ export default class ItemSheetCpRedArmor extends ItemSheetCpRed<ItemDataCpRedArm
         heavy_armorjack: "cpred.sheet.armor_types.heavy_armorjack",
         flak: "cpred.sheet.armor_types.flak",
         metalgear: "cpred.sheet.armor_types.metalgear",
+      },
+      armorLocations: {
+        body: "cpred.sheet.armor_locations.body",
+        head: "cpred.sheet.armor_locations.head",
       }
     };
   }
