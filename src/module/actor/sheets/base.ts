@@ -68,7 +68,8 @@ export default class ActorSheetCpRed<DataType extends ActorDataCpRed, ActorType 
   protected _getArmor() {
     const armorList = this.actor.items
       .map((item) => item)
-      .filter((item) => item.type === "armor");
+      .filter((item) => item.type === "armor")
+      .filter((item) => item.data.data.attributes.is_equipped.value === true);
     const bodyArmor = armorList.filter((item) => item.data.data.attributes.location.value === "body");
     const headArmor = armorList.filter((item) => item.data.data.attributes.location.value === "head");
 
