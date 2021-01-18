@@ -762,6 +762,9 @@
         "attributes": {
           "cost": {
             "value": 100
+          },
+          "is_equipped": {
+            "value": true
           }
         },
         "details": {

@@ -7,6 +7,7 @@ interface Modifier {
 interface CommonItemTemplate {
   attributes: {
     cost: NumberProp;
+    is_equipped: BooleanProp;
   };
   details: {
     description: StringProp;

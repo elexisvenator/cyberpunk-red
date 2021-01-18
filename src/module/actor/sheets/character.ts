@@ -7,7 +7,7 @@ import { LanguageItem, localize } from "../../language";
 import { Path } from "../../types/dot-notation";
 import { FormulaRollable } from "../../rollable";
 
-type CharacterAction = "removeItem" | "showItem" | "rollAction" | "addSubSkill" | "removeSubSkill";
+type CharacterAction = "removeItem" | "showItem" | "rollAction" | "addSubSkill" | "removeSubSkill" | "equipToggle";
 
 interface SkillBlock {
   name: string;
@@ -47,6 +47,7 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
     rollAction: async (sheet, _action, value) => new FormulaRollable(value, sheet.actor).roll(),
     addSubSkill: (sheet, _action, value) => sheet.addSubSkill(value),
     removeSubSkill: (sheet, _action, value) => sheet.removeSubSkill(value),
+    equipToggle: (sheet, _action, value) => sheet.equipToggle(value),
   };
 
   constructor(object: ActorCpRed<ActorDataCpRedCharacter>, options: FormApplicationOptions) {
@@ -226,5 +227,18 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
     }, {});
 
     await this.actor.update(updatedData);
+  }
+
+  public async equipToggle(itemId: string): Promise<void> {
+    const item = this.actor.items.get(itemId);
+    if (item === undefined) {
+      // FIXME: is return in async ok?
+      return;
+    }
+
+    await item.update(
+      {"data.attributes.is_equipped.value": !item.data.data.attributes.is_equipped.value},
+      null
+    );
   }
 }
