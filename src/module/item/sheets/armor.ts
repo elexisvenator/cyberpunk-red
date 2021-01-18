@@ -1,8 +1,7 @@
 import { getFullTemplatePath } from "../../templates";
 import { ItemCpRed } from "../../item/item";
 import ItemSheetCpRed from "./base";
-import { LanguageItem, localize } from "../../language";
-import { Path } from "../../types/dot-notation";
+import { localize } from "../../language";
 import { ActionHandlers } from "../../entity";
 
 type ArmorAction = "none";
@@ -11,14 +10,14 @@ type ArmorAction = "none";
 // to use some computed values, declare them here and populate them in getData().
 
 interface ItemSheetDataCpRedArmor extends ItemSheetData<ItemDataCpRedArmor> {
-  armorTypes: {[key: string]: string;};
+  armorTypes: { [key: string]: string };
 }
 
 export default class ItemSheetCpRedArmor extends ItemSheetCpRed<ItemDataCpRedArmor, ItemCpRed<ItemDataCpRedArmor>> {
   private static actionHandlers: ActionHandlers<ItemSheetCpRedArmor, ArmorAction> = {
-    none: async () => {}
+    none: async () => {},
   };
-  
+
   constructor(object: ItemCpRed<ItemDataCpRedArmor>, options: FormApplicationOptions) {
     super(object, {
       ...options,
@@ -48,7 +47,7 @@ export default class ItemSheetCpRedArmor extends ItemSheetCpRed<ItemDataCpRedArm
         heavy_armorjack: "cpred.sheet.armor_types.heavy_armorjack",
         flak: "cpred.sheet.armor_types.flak",
         metalgear: "cpred.sheet.armor_types.metalgear",
-      }
+      },
     };
   }
 }

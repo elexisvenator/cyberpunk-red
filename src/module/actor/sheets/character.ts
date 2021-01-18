@@ -30,7 +30,7 @@ interface SkillGroup {
 interface ModifierBlock {
   path: string;
   offset: number;
-};
+}
 
 interface ActorSheetDataCpRedCharacter extends ActorSheetDataCpRed<ActorDataCpRedCharacter> {
   gearBlock: ItemCpRed[];
@@ -137,7 +137,7 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
         accumulatedModifiers[mod.path] = {
           path: mod.path,
           offset: 0,
-        }
+        };
       }
       accumulatedModifiers[mod.path].offset += mod.offset;
     }
