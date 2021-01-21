@@ -8,7 +8,7 @@
       type="number"
       class="form-control"
       id="ar_{{resourcePath}}.value"
-      name="{{resourcePath}}.value"
+      {{#if (ne linkValue false)}}name="{{resourcePath}}.value"{{/if}}
       placeholder="{{localize 'cpred.sheet.current'}}"
       value="{{resource.value}}"
     />

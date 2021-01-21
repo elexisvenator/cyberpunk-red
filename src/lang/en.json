@@ -40,7 +40,10 @@
                 "cost": "Cost",
                 "description": "Description",
                 "effect": "Effect",
-                "add_stat_modifier": "Add Stat Modifier"
+                "add_stat_modifier": "Add Stat Modifier",
+                "full_armor": "Full Armor",
+                "half_armor": "Half Armor",
+                "bypass_armor": "Bypass Armor"
             },
             "common": {
                 "attack": "Attack",

@@ -6,8 +6,9 @@ import { ActionHandlers } from "../../entity";
 import { LanguageItem, localize } from "../../language";
 import { Path } from "../../types/dot-notation";
 import { FormulaRollable } from "../../rollable";
+import { Cpred } from "../../types/language-types";
 
-type CharacterAction = "removeItem" | "showItem" | "rollAction" | "addSubSkill" | "removeSubSkill" | "equipToggle";
+type CharacterAction = "removeItem" | "showItem" | "rollAction" | "addSubSkill" | "removeSubSkill" | "equipToggle" | "applyDamage";
 
 interface SkillBlock {
   name: string;
@@ -37,6 +38,7 @@ interface ActorSheetDataCpRedCharacter extends ActorSheetDataCpRed<ActorDataCpRe
   skillGroups: SkillGroup[];
   trainedSkills: SkillBlock[];
   modifierBlock: ModifierBlock[];
+  damageSources: { [key: string]: string; };
 }
 
 export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataCpRedCharacter, ActorCpRed<ActorDataCpRedCharacter>> {
@@ -48,6 +50,13 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
     addSubSkill: (sheet, _action, value) => sheet.addSubSkill(value),
     removeSubSkill: (sheet, _action, value) => sheet.removeSubSkill(value),
     equipToggle: (sheet, _action, value) => sheet.equipToggle(value),
+    applyDamage: (sheet, _action, _value) => sheet.applyDamage(),
+  };
+
+  private static damageSources: { [key: string]: string } = {
+    fullArmor: "cpred.sheet.labels.full_armor",
+    halfArmor: "cpred.sheet.labels.half_armor",
+    bypassArmor: "cpred.sheet.labels.bypass_armor",
   };
 
   constructor(object: ActorCpRed<ActorDataCpRedCharacter>, options: FormApplicationOptions) {
@@ -129,8 +138,6 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
       .sort((a, b) => a.formattedName.localeCompare(b.formattedName));
 
     // Aggregate all modifiers
-    // 1. get modifier entries from every single item
-    // 2. accumulate offsets based on path
     const modifierList = parentData.items
       .map((item) => item.data.modifiers)
       .filter((item) => item !== undefined)
@@ -154,6 +161,7 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
       skillGroups: skillGroups,
       trainedSkills: skillArray.filter((skill) => skill.skill.level > 0).sort((a, b) => a.formattedName.localeCompare(b.formattedName)),
       modifierBlock: modifierBlock,
+      damageSources: ActorSheetCpRedCharacter.damageSources,
     };
   }
 
@@ -240,5 +248,48 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
       {"data.attributes.is_equipped.value": !item.data.data.attributes.is_equipped.value},
       null
     );
+  }
+
+  public async applyDamage(): Promise<void> {
+    const parentData = this.getData();
+    const data = parentData.data;
+    const damage = Number((this.form.querySelector("#damageAmount") as HTMLFormElement).value);
+    const armorTreatment = (this.form.querySelector("#armorTreatment") as HTMLFormElement).value;
+
+    console.log(damage);
+
+    let finalDamage = damage;
+    let armorDamage = 0;
+    if (armorTreatment == "fullArmor") {
+      const armorValue = data.attributes.armor_body.value;
+      if (armorValue < finalDamage) {
+        finalDamage -= armorValue;
+        armorDamage = 1;
+      } else {
+        finalDamage = 0;
+      }
+    }
+    else if (armorTreatment == "halfArmor") {
+      const armorValue = Math.floor(data.attributes.armor_body.value / 2);
+      if (armorValue < finalDamage) {
+        finalDamage -= armorValue;
+        armorDamage = 1;
+      } else {
+        finalDamage = 0;
+      }
+    }
+
+    // Update character hitpoints
+    await this.actor.update({"data.attributes.hp.value": data.attributes.hp.value - finalDamage});
+
+    // Ablate all equipped armor
+    parentData.items
+      .map((item) => item)
+      .filter((item) => item.type === "armor")
+      .filter((item) => item.data.attributes.is_equipped.value === true)
+      .forEach(async (item) => {
+        const ownedItem = this.actor.items.get(item._id, {strict: true});
+        await ownedItem.update({"data.attributes.sp.value": item.data.attributes.sp.value - armorDamage}, {});
+      });
   }
 }
