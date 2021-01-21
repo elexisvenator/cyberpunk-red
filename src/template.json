@@ -829,6 +829,9 @@
           "type": {
             "value": ""
           },
+          "is_foundation": {
+            "value": false
+          },
           "foundation": {
             "value": ""
           },
@@ -843,6 +846,9 @@
           },
           "humanity_loss_roll": {
             "value": "1d6"
+          },
+          "humanity_loss_creation": {
+            "value": 7
           }
         }
       },
