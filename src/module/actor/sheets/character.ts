@@ -73,8 +73,8 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
     return getFullTemplatePath("character-sheet.html");
   }
 
-  getData(): ActorSheetDataCpRedCharacter {
-    const parentData = super.getData();
+  getData(options?: unknown): ActorSheetDataCpRedCharacter {
+    const parentData = super.getData(options);
     const data = parentData.data;
     const actor: ActorCpRed = this.actor;
 

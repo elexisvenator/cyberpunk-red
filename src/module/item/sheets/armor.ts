@@ -33,8 +33,8 @@ export default class ItemSheetCpRedArmor extends ItemSheetCpRed<ItemDataCpRedArm
     return `${localize("cpred.sheet.labels.armor")}: ${this.item.name}`;
   }
 
-  getData(): ItemSheetDataCpRedArmor {
-    const parentData = super.getData();
+  getData(options?: unknown): ItemSheetDataCpRedArmor {
+    const parentData = super.getData(options);
 
     return {
       ...parentData,

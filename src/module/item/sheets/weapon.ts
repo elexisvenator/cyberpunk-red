@@ -17,7 +17,8 @@ interface ItemSheetDataCpRedWeapon extends ItemSheetData<ItemDataCpRedWeapon> {
 
 export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWeapon, ItemCpRed<ItemDataCpRedWeapon>> {
   private static actionHandlers: ActionHandlers<ItemSheetCpRedWeapon, WeaponAction> = {
-    removeTag: async (sheet, _action, data) => sheet.item.update({ "data.tags": sheet.item.data.data.tags.filter((tag) => tag !== data) }, null),
+    removeTag: async (sheet, _action, data) =>
+      sheet.item.update({ "data.tags": sheet.item.data.data.tags.filter((tag) => tag !== data) }, null),
   };
 
   private static weapon_skill_list: { [key: string]: string } = {
@@ -90,8 +91,8 @@ export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWe
     return `${localize("cpred.sheet.weapon")}: ${this.item.name}`;
   }
 
-  getData(): ItemSheetDataCpRedWeapon {
-    const parentData = super.getData();
+  getData(options?: unknown): ItemSheetDataCpRedWeapon {
+    const parentData = super.getData(options);
 
     return {
       ...parentData,
@@ -104,7 +105,7 @@ export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWe
   protected activateListeners(html: JQuery): void {
     super.activateListeners(html);
 
-    const data = super.getData().data;
+    const data = this.getData().data;
 
     html.find("#tag-selector").on("change", (ev) => {
       ev.preventDefault();

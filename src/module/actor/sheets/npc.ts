@@ -64,8 +64,8 @@ export default class ActorSheetCpRedNpc extends ActorSheetCpRed<ActorDataCpRedNp
     return getFullTemplatePath("npc-sheet.html");
   }
 
-  getData(): ActorSheetDataCpRedNpc {
-    const parentData = super.getData();
+  getData(options?: unknown): ActorSheetDataCpRedNpc {
+    const parentData = super.getData(options);
     const data = parentData.data;
     const actor: ActorCpRed = this.actor;
 

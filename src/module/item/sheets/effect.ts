@@ -64,8 +64,8 @@ export default class ItemSheetCpRedEffect extends ItemSheetCpRed<ItemDataCpRedEf
     return `${localize("cpred.sheet.labels.effect")}: ${this.item.name}`;
   }
 
-  getData(): ItemSheetDataCpRedEffect {
-    const parentData = super.getData();
+  getData(options?: unknown): ItemSheetDataCpRedEffect {
+    const parentData = super.getData(options);
 
     return {
       ...parentData,

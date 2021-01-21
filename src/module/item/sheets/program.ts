@@ -39,8 +39,8 @@ export default class ItemSheetCpRedProgram extends ItemSheetCpRed<ItemDataCpRedP
     return `${localize("cpred.sheet.program")}: ${this.item.name}`;
   }
 
-  getData(): ItemSheetDataCpRedProgram {
-    const parentData = super.getData();
+  getData(options?: unknown): ItemSheetDataCpRedProgram {
+    const parentData = super.getData(options);
 
     return {
       ...parentData,

@@ -29,8 +29,8 @@ export default class ItemSheetCpRed<
     return options;
   }
 
-  getData(): ItemSheetDataCpRed<DataType> {
-    const parentData = super.getData() as ItemSheetData<DataType>;
+  getData(options: unknown): ItemSheetDataCpRed<DataType> {
+    const parentData = super.getData(options) as ItemSheetData<DataType>;
 
     const sheetData: ItemSheetDataCpRed<DataType> = {
       ...parentData,

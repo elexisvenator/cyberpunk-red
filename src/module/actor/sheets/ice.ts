@@ -56,8 +56,8 @@ export default class ActorSheetCpRedIce extends ActorSheetCpRed<ActorDataCpRedIc
       : `${localize("cpred.sheet.ice")}: ${this.actor.name}`;
   }
 
-  getData(): ActorSheetDataCpRedIce {
-    const parentData = super.getData();
+  getData(options?: unknown): ActorSheetDataCpRedIce {
+    const parentData = super.getData(options);
 
     return {
       ...parentData,

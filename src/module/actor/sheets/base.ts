@@ -30,8 +30,8 @@ export default class ActorSheetCpRed<DataType extends ActorDataCpRed, ActorType 
     return options;
   }
 
-  getData(): ActorSheetDataCpRed<DataType> {
-    const parentData = super.getData() as ActorSheetData<DataType>;
+  getData(options: unknown): ActorSheetDataCpRed<DataType> {
+    const parentData = super.getData(options) as ActorSheetData<DataType>;
 
     const sheetData: ActorSheetDataCpRed<DataType> = {
       ...parentData,
