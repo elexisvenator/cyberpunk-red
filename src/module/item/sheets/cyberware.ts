@@ -35,8 +35,8 @@ export default class ItemSheetCpRedCyberware extends ItemSheetCpRed<ItemDataCpRe
     return `${localize("cpred.sheet.cyberware")}: ${this.item.name}`;
   }
 
-  getData(): ItemSheetDataCpRedCyberware {
-    const parentData = super.getData();
+  getData(options?: unknown): ItemSheetDataCpRedCyberware {
+    const parentData = super.getData(options);
 
     return {
       ...parentData,

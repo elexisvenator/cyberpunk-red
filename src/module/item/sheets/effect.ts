@@ -1,8 +1,7 @@
 import { getFullTemplatePath } from "../../templates";
 import { ItemCpRed } from "../../item/item";
 import ItemSheetCpRed from "./base";
-import { LanguageItem, localize } from "../../language";
-import { Path } from "../../types/dot-notation";
+import { localize } from "../../language";
 import { ActionHandlers } from "../../entity";
 
 type EffectAction = "addStat" | "addSkill";
@@ -20,7 +19,7 @@ export default class ItemSheetCpRedEffect extends ItemSheetCpRed<ItemDataCpRedEf
     addStat: async (sheet, action, value) => sheet.addModifier(value, "stats"),
     addSkill: async (sheet, action, value) => sheet.addModifier(value, "skills"),
   };
-    
+
   private static statList: { [key: string]: string } = {
     "": "cpred.sheet.labels.add_stat_modifier",
     atk: "cpred.sheet.stats.atk",
@@ -65,8 +64,8 @@ export default class ItemSheetCpRedEffect extends ItemSheetCpRed<ItemDataCpRedEf
     return `${localize("cpred.sheet.labels.effect")}: ${this.item.name}`;
   }
 
-  getData(): ItemSheetDataCpRedEffect {
-    const parentData = super.getData();
+  getData(options?: unknown): ItemSheetDataCpRedEffect {
+    const parentData = super.getData(options);
 
     return {
       ...parentData,
@@ -77,8 +76,6 @@ export default class ItemSheetCpRedEffect extends ItemSheetCpRed<ItemDataCpRedEf
 
   protected activateListeners(html: JQuery): void {
     super.activateListeners(html);
-
-    const data = super.getData().data;
 
     html.find("[data-change]").on("change", this._onSheetActionChange.bind(this));
   }
