@@ -59,6 +59,7 @@ export interface Sheet {
   program_types: ProgramTypes
   armor_types: ArmorTypes
   armor_locations: ArmorLocations
+  ammunition_size_types: AmmunitionSizeTypes
 }
 
 export interface Labels {
@@ -76,6 +77,12 @@ export interface Labels {
   description: string
   effect: string
   add_stat_modifier: string
+  full_armor: string
+  half_armor: string
+  bypass_armor: string
+  ammunition: string
+  ammunition_size_type: string
+  count: string
 }
 
 export interface Common {
@@ -253,6 +260,18 @@ export interface ArmorTypes {
 export interface ArmorLocations {
   body: string
   head: string
+}
+
+export interface AmmunitionSizeTypes {
+  medium_pistol: string
+  heavy_pistol: string
+  very_heavy_pistol: string
+  slug: string
+  rifle: string
+  shotgun_shell: string
+  arrow: string
+  grenade: string
+  rocket: string
 }
 
 export interface Tab {

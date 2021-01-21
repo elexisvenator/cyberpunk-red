@@ -43,7 +43,10 @@
                 "add_stat_modifier": "Add Stat Modifier",
                 "full_armor": "Full Armor",
                 "half_armor": "Half Armor",
-                "bypass_armor": "Bypass Armor"
+                "bypass_armor": "Bypass Armor",
+                "ammunition": "Ammunition",
+                "ammunition_size_type": "Ammunition Size",
+                "count": "Count"
             },
             "common": {
                 "attack": "Attack",
@@ -209,6 +212,17 @@
             "armor_locations": {
                 "body": "Body",
                 "head": "Head"
+            },
+            "ammunition_size_types": {
+                "medium_pistol": "Medium Pistol",
+                "heavy_pistol": "Heavy Pistol",
+                "very_heavy_pistol": "Very Heavy Pistol",
+                "slug": "Slug",
+                "rifle": "Rifle",
+                "shotgun_shell": "Shotgun Shell",
+                "arrow": "Arrow",
+                "grenade": "Grenade",
+                "rocket": "Rocket"
             }
         },
         "tab": {

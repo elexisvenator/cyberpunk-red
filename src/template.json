@@ -751,6 +751,7 @@
   "Item": {
     "types": [
       "weapon",
+      "ammunition",
       "armor",
       "gear",
       "cyberwear",
@@ -801,6 +802,9 @@
             "value": 0,
             "max": 10
           },
+          "ammunition_type": {
+            "value": ""
+          },
           "is_ranged": {
             "value": true
           },
@@ -809,6 +813,21 @@
           }
         },
         "tags": []
+      },
+      "ammunition": {
+        "attributes": {
+          "count": {
+            "value": 0
+          },
+          "type": {
+            "value": ""
+          }
+        },
+        "details": {
+          "effect": {
+            "value": ""
+          }
+        }
       },
       "armor": {
         "attributes": {
@@ -886,6 +905,12 @@
       "templates": [
         "common",
         "weapon"
+      ]
+    },
+    "ammunition": {
+      "templates": [
+        "common",
+        "ammunition"
       ]
     },
     "gear": {

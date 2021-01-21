@@ -25,10 +25,21 @@ interface WeaponTemplate {
     reload_turns: NumberProp;
     autofire_max: NumberProp;
     magazine: NumberResource;
+    ammunition_type: StringProp;
     is_ranged: BooleanProp;
     is_concealable: BooleanProp;
   };
   tags: string[];
+}
+
+interface AmmunitionTemplate {
+  attributes: {
+    count: NumberProp;
+    type: StringProp;
+  };
+  details: {
+    effect: StringProp;
+  };
 }
 
 interface CyberwareTemplate {
@@ -73,3 +84,4 @@ declare type ItemDataCpRedCyberware = ItemDataCpRed & CyberwareTemplate;
 declare type ItemDataCpRedProgram = ItemDataCpRed & ProgramTemplate;
 declare type ItemDataCpRedArmor = ItemDataCpRed & ArmorTemplate;
 declare type ItemDataCpRedEffect = ItemDataCpRed;
+declare type ItemDataCpRedAmmunition = ItemDataCpRed & AmmunitionTemplate;
