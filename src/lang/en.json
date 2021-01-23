@@ -46,7 +46,8 @@
                 "bypass_armor": "Bypass Armor",
                 "ammunition": "Ammunition",
                 "ammunition_size_type": "Ammunition Size",
-                "count": "Count"
+                "count": "Count",
+                "modifiers": "Modifiers"
             },
             "common": {
                 "attack": "Attack",
@@ -223,6 +224,20 @@
                 "arrow": "Arrow",
                 "grenade": "Grenade",
                 "rocket": "Rocket"
+            },
+            "modifiers": {
+                "serious_injury": "Serious Injury",
+                "mortal_injury": "Mortal Injury",
+                "under_stress": "Under Stress",
+                "never_done_before": "Never Done Before",
+                "low_light": "Low Light",
+                "obscured_vision": "Obscured Vision",
+                "complex_task": "Complex Task",
+                "wrong_tools": "Wrong Tools",
+                "drunk_drugged": "Drunk / Drugged",
+                "attempting_secretly": "Attempting Secretly",
+                "lost_facedown": "Lost Facedown",
+                "spend_extra_time": "Spend Extra Time"
             }
         },
         "tab": {

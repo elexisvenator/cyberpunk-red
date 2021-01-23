@@ -85,6 +85,12 @@ export default class ActorSheetCpRed<DataType extends ActorDataCpRed, ActorType 
     };
   }
 
+  protected _getEffects() {
+    return this.actor.items
+      .map((item) => item)
+      .filter((item) => item.type === "effect");
+  }
+
   private static _getAppSizeClass(width: number): string {
     const breakPoints = {
       xs: 0,

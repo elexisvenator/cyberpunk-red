@@ -60,6 +60,7 @@ export interface Sheet {
   armor_types: ArmorTypes
   armor_locations: ArmorLocations
   ammunition_size_types: AmmunitionSizeTypes
+  modifiers: Modifiers
 }
 
 export interface Labels {
@@ -83,6 +84,7 @@ export interface Labels {
   ammunition: string
   ammunition_size_type: string
   count: string
+  modifiers: string
 }
 
 export interface Common {
@@ -272,6 +274,21 @@ export interface AmmunitionSizeTypes {
   arrow: string
   grenade: string
   rocket: string
+}
+
+export interface Modifiers {
+  serious_injury: string
+  mortal_injury: string
+  under_stress: string
+  never_done_before: string
+  low_light: string
+  obscured_vision: string
+  complex_task: string
+  wrong_tools: string
+  drunk_drugged: string
+  attempting_secretly: string
+  lost_facedown: string
+  spend_extra_time: string
 }
 
 export interface Tab {
