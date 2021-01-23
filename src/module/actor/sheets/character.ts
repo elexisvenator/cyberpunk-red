@@ -71,17 +71,17 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
 
   private static modifierList: { [key: string]: ModifierEntry } = {
     serious_injury: {label: "serious_injury", modifier: -2, active: false},
-    mortal_injury: {label: "mortal_injury", modifier: 0, active: false},
-    under_stress: {label: "under_stress", modifier: 0, active: false},
-    never_done_before: {label: "never_done_before", modifier: 0, active: false},
-    low_light: {label: "low_light", modifier: 0, active: false},
-    obscured_vision: {label: "obscured_vision", modifier: 0, active: false},
-    complex_task: {label: "complex_task", modifier: 0, active: false},
-    wrong_tools: {label: "wrong_tools", modifier: 0, active: false},
-    drunk_drugged: {label: "drunk_drugged", modifier: 0, active: false},
-    attempting_secretly: {label: "attempting_secretly", modifier: 0, active: false},
-    lost_facedown: {label: "lost_facedown", modifier: 0, active: false},
-    spend_extra_time: {label: "spend_extra_time", modifier: 0, active: false}
+    mortal_injury: {label: "mortal_injury", modifier: -4, active: false},
+    under_stress: {label: "under_stress", modifier: -2, active: false},
+    never_done_before: {label: "never_done_before", modifier: -1, active: false},
+    low_light: {label: "low_light", modifier: -1, active: false},
+    obscured_vision: {label: "obscured_vision", modifier: -4, active: false},
+    complex_task: {label: "complex_task", modifier: -2, active: false},
+    wrong_tools: {label: "wrong_tools", modifier: -2, active: false},
+    drunk_drugged: {label: "drunk_drugged", modifier: -4, active: false},
+    attempting_secretly: {label: "attempting_secretly", modifier: -4, active: false},
+    lost_facedown: {label: "lost_facedown", modifier: -2, active: false},
+    spend_extra_time: {label: "spend_extra_time", modifier: 1, active: false}
   };
 
   constructor(object: ActorCpRed<ActorDataCpRedCharacter>, options: FormApplicationOptions) {
@@ -346,7 +346,7 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
       await this.actor.createOwnedItem({
         name: modifierPath,
         type: "effect",
-        data: { modifiers: {"0": {"path": "global.roll", "delta": -2}}}
+        data: { modifiers: {"0": {"path": "global.roll", "offset": ActorSheetCpRedCharacter.modifierList[modifier].modifier}}}
       });
     }
   }
