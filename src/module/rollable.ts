@@ -42,6 +42,20 @@ export abstract class Rollable {
         });
       });
   }
+
+  protected _globalModifier(): string {
+    if (!this.actor) {
+      return "";
+    }
+
+    const rollModifier = this.actor.items
+      .filter((item) => item.type === "effect")
+      .map((item) => Object.values(item.data.data.modifiers)).flat()
+      .filter((item: Modifier) => item.path === "global.roll")
+      .map((item: Modifier) => item.offset)
+      .reduce((a, b) => a + b, 0);
+    return rollModifier == 0 ? "" : rollModifier.toString();
+  }
 }
 
 /**
@@ -57,6 +71,6 @@ export class FormulaRollable extends Rollable {
       rolldata["stats"] = this.actor.data.data.stats;
       rolldata["roles"] = this.actor.data.data.roles;
     }
-    this._executeRoll(new Roll(this.formula, rolldata));
+    this._executeRoll(new Roll(`${this.formula} + ${this._globalModifier()}`, rolldata));
   }
 }
