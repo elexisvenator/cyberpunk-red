@@ -157,86 +157,103 @@ Handlebars.registerHelper("weaponActions", function (item) {
       {
         name: "cpred.sheet.common.attack",
         roll: `1d10cp + @stats.ref.value + @skills.${weapon_data.attributes.skill.value}.level`,
+        type: "skillcheck",
       },
       {
         name: "cpred.sheet.common.damage",
         roll: weapon_data.attributes.damage.value,
+        type: "damage",
       },
     ],
     aimed_shot: [
       {
         name: "cpred.sheet.common.attack",
         roll: `1d10cp + @stats.ref.value + @skills.${weapon_data.attributes.skill.value}.level - 8`,
+        type: "skillcheck",
       },
       {
         name: "cpred.sheet.common.damage",
         roll: weapon_data.attributes.damage.value,
+        type: "damage",
       },
     ],
     autofire: [
       {
         name: "cpred.sheet.common.attack",
         roll: `1d10cp + @stats.ref.value + @skills.autofire.level`,
+        type: "skillcheck",
       },
       {
         name: "cpred.sheet.common.damage",
         roll: "2d6",
+        type: "damage",
       },
     ],
     suppressive_fire: [
       {
         name: "cpred.sheet.common.attack",
         roll: `1d10cp + @stats.ref.value + @skills.autofire.level`,
+        type: "skillcheck",
       },
     ],
     shotgun_shell: [
       {
         name: "cpred.sheet.common.attack",
         roll: `1d10cp + @stats.ref.value + @skills.${weapon_data.attributes.skill.value}.level`,
+        type: "skillcheck",
       },
       {
         name: "cpred.sheet.common.damage",
         roll: "3d6",
+        type: "damage",
       },
     ],
     throwable: [
       {
         name: "cpred.sheet.common.attack",
         roll: `1d10cp + @stats.dex.value + @skills.athletics.level`,
+        type: "skillcheck",
       },
       {
         name: "cpred.sheet.common.damage",
         roll: weapon_data.attributes.damage.value,
+        type: "damage",
       },
     ],
     bayonet: [
       {
         name: "cpred.sheet.common.attack",
         roll: `1d10cp + @stats.dex.value + @skills.melee_weapon.level`,
+        type: "skillcheck",
       },
       {
         name: "cpred.sheet.common.damage",
         roll: "1d6",
+        type: "damage",
       },
     ],
     underbarrel_grenade_launcher: [
       {
         name: "cpred.sheet.common.attack",
         roll: `1d10cp + @stats.ref.value + @skills.heavy_weapons.level`,
+        type: "skillcheck",
       },
       {
         name: "cpred.sheet.common.damage",
         roll: "6d6",
+        type: "damage",
       },
     ],
     underbarrel_shotgun: [
       {
         name: "cpred.sheet.common.attack",
         roll: `1d10cp + @stats.ref.value + @skills.shoulder_weapon.level`,
+        type: "skillcheck",
       },
       {
         name: "cpred.sheet.common.damage",
         roll: "5d6",
+        type: "damage",
       },
     ],
   };
@@ -255,6 +272,18 @@ Handlebars.registerHelper("weaponActions", function (item) {
 
   return action_groups;
 });
+
+Handlebars.registerHelper("rollType", function (action) {
+  if (action.type === "damage") {
+    return "rollDamage";
+  }
+  else if(action.type === "skillcheck") {
+    return "rollSkillcheck";
+  }
+  else {
+    return "rollAction";
+  }
+})
 
 Handlebars.registerHelper("programActions", function (item) {
   const programData = new ItemSheetCpRedProgram(item, null).item.data.data;

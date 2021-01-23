@@ -8,8 +8,8 @@ import { Path } from "../../types/dot-notation";
 import { FormulaRollable } from "../../rollable";
 import { Cpred } from "../../types/language-types";
 
-type CharacterAction = "removeItem" | "showItem" | "rollAction" | "addSubSkill" | "removeSubSkill" |
-  "equipToggle" | "applyDamage" | "toggleModifier";
+type CharacterAction = "removeItem" | "showItem" | "rollAction" | "rollDamage" | "rollSkillcheck" |
+  "addSubSkill" | "removeSubSkill" | "equipToggle" | "applyDamage" | "toggleModifier";
 
 interface SkillBlock {
   name: string;
@@ -56,6 +56,8 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
     removeItem: (sheet, _action, value) => sheet.actor.deleteOwnedItem(value),
     showItem: async (sheet, _action, value) => sheet.actor.getOwnedItem(value).sheet.render(true),
     rollAction: async (sheet, _action, value) => new FormulaRollable(value, sheet.actor).roll(),
+    rollDamage: async (sheet, _action, value) => new FormulaRollable(value, sheet.actor, null, true).roll(),
+    rollSkillcheck: async (sheet, _action, value) => new FormulaRollable(value, sheet.actor, null, false).roll(),
     addSubSkill: (sheet, _action, value) => sheet.addSubSkill(value),
     removeSubSkill: (sheet, _action, value) => sheet.removeSubSkill(value),
     equipToggle: (sheet, _action, value) => sheet.equipToggle(value),

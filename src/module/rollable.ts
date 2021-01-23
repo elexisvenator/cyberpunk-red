@@ -64,6 +64,21 @@ export abstract class Rollable {
  * Performs a roll according to the provided formula only.
  */
 export class FormulaRollable extends Rollable {
+
+  isDamage: boolean;
+
+  /**
+   * Creates a new rollable instance.
+   *
+   * @param formula Formula to use during rolling
+   * @param actor Actor whose statistics are to be used for rolling
+   * @param item Item whose statistics are to be used for rolling
+   */
+  constructor(formula: string, actor: Actor, item?: Item, isDamage: boolean=false) {
+    super(formula, actor, item);
+    this.isDamage = isDamage;
+  }
+
   roll(): void {
     const rolldata = {};
     if (this.actor) {
@@ -71,6 +86,12 @@ export class FormulaRollable extends Rollable {
       rolldata["stats"] = this.actor.data.data.stats;
       rolldata["roles"] = this.actor.data.data.roles;
     }
-    this._executeRoll(new Roll(`${this.formula} + ${this._globalModifier()}`, rolldata));
+
+    if (this.isDamage) {
+      this._executeRoll(new Roll(this.formula, rolldata));
+    }
+    else {
+      this._executeRoll(new Roll(`${this.formula} + ${this._globalModifier()}`, rolldata));
+    }
   }
 }
