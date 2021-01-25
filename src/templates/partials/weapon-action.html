@@ -3,7 +3,7 @@
     <div class="p-1 me-auto">{{group.formattedName}}</div>
     {{#each group.actions as |action|}}
       <div class="p-1">
-        <button type="button" class="btn btn-outline-primary text-nowrap" data-action="{{rollType action}}" data-value="{{roll}}">
+        <button type="button" class="btn btn-outline-primary text-nowrap" data-action="rollWeapon" data-value='{{json action}}'>
           <i class="fas fa-dice-d6"></i> {{localize name}}
         </button>
       </div>

@@ -7,9 +7,10 @@ import { LanguageItem, localize } from "../../language";
 import { Path } from "../../types/dot-notation";
 import { FormulaRollable } from "../../rollable";
 import { Cpred } from "../../types/language-types";
+import { WeaponAction } from "../../../cpred";
 
-type CharacterAction = "removeItem" | "showItem" | "rollAction" | "rollDamage" | "rollSkillcheck" |
-  "addSubSkill" | "removeSubSkill" | "equipToggle" | "applyDamage" | "toggleModifier";
+type CharacterAction = "removeItem" | "showItem" | "rollAction" | "rollWeapon" |
+  "addSubSkill" | "removeSubSkill" | "equipToggle" | "applyDamage" | "toggleModifier" | "reloadWeapon";
 
 interface SkillBlock {
   name: string;
@@ -56,13 +57,13 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
     removeItem: (sheet, _action, value) => sheet.actor.deleteOwnedItem(value),
     showItem: async (sheet, _action, value) => sheet.actor.getOwnedItem(value).sheet.render(true),
     rollAction: async (sheet, _action, value) => new FormulaRollable(value, sheet.actor).roll(),
-    rollDamage: async (sheet, _action, value) => new FormulaRollable(value, sheet.actor, null, true).roll(),
-    rollSkillcheck: async (sheet, _action, value) => new FormulaRollable(value, sheet.actor, null, false).roll(),
+    rollWeapon: (sheet, _action, value) => sheet.rollWeapon(JSON.parse(value)),
     addSubSkill: (sheet, _action, value) => sheet.addSubSkill(value),
     removeSubSkill: (sheet, _action, value) => sheet.removeSubSkill(value),
     equipToggle: (sheet, _action, value) => sheet.equipToggle(value),
     applyDamage: (sheet, _action, _value) => sheet.applyDamage(),
     toggleModifier: (sheet, _action, value) => sheet.toggleModifier(value),
+    reloadWeapon: (sheet, _action, value) => sheet.reloadWeapon(value),
   };
 
   private static damageSources: { [key: string]: string } = {
@@ -202,6 +203,23 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
       damageSources: ActorSheetCpRedCharacter.damageSources,
       modifierList: modifierList2,
     };
+  }
+
+  public activateListeners(html: JQuery): void {
+    super.activateListeners(html);
+
+    const data = this.getData().data;
+
+    html.find("input.item-mod").on("change", (event) => {
+      event.preventDefault();
+
+      // Modify item
+      const dataset = event.currentTarget.dataset;
+      const element = ((event as unknown) as HTMLFormElement);
+      const changeData = {}
+      changeData[dataset.path] = element.currentTarget.valueAsNumber;;
+      this.actor.items.get(dataset.id).update(changeData, null);
+    });
   }
 
   public async addSubSkill(skill: string): Promise<void> {
@@ -350,6 +368,38 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
         type: "effect",
         data: { modifiers: {"0": {"path": "global.roll", "offset": ActorSheetCpRedCharacter.modifierList[modifier].modifier}}}
       });
+    }
+  }
+
+  public async reloadWeapon(itemId: string): Promise<void> {
+    const item = this.actor.items.get(itemId);
+    const changeData = {}
+    changeData["data.attributes.magazine.value"] = item.data.data.attributes.magazine.max;
+    await item.update(changeData, null);
+  }
+
+  public async rollWeapon(actionData: WeaponAction): Promise<void> {
+    if (actionData.type === "attack") {
+      if (actionData.hasOwnProperty("count") && actionData.count > 0)
+      {
+        const weapon = this.actor.items.get(actionData.weaponId);
+        const bulletCount = weapon.data.data.attributes.magazine.value;
+        if (bulletCount < actionData.count) {
+          const actor = this.actor;
+          const msg = ChatMessage.create({
+            user: game.user._id,
+            speaker: ChatMessage.getSpeaker({ actor }),
+            content: `Attempting to use "${localize(actionData.name)}" with insufficient bullets`
+          });
+        }
+        else {
+          new FormulaRollable(actionData.roll, this.actor, null, false).roll();
+          await weapon.update({"data.attributes.magazine.value": bulletCount - actionData.count}, null);
+        }
+      }
+    }
+    else if (actionData.name === "cpred.sheet.common.damage") {
+      new FormulaRollable(actionData.roll, this.actor, null, true).roll();
     }
   }
 }

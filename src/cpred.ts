@@ -25,13 +25,19 @@ import { registerSettings } from "./module/settings";
 import { preloadTemplates } from "./module/templates";
 import { getValueByPath, Path } from "./module/types/dot-notation";
 
-interface ActionGroup {
+
+export interface WeaponAction {
+  name: Path<LanguageItem>;
+  roll: string;
+  weaponId: string;
+  count?: number;
+  type: string;
+};
+
+export interface ActionGroup {
   name: string;
   formattedName: string;
-  actions: {
-    name: string;
-    roll: string;
-  }[];
+  actions: WeaponAction[];
 }
 
 interface ProgramGroup {
@@ -150,30 +156,33 @@ Handlebars.registerHelper({
  * Generate a set of actions corresponding to the capabilities of the provided weapon item.
  */
 Handlebars.registerHelper("weaponActions", function (item) {
-  const weapon_data = new ItemSheetCpRedWeapon(item, null).item.data.data;
+  const weaponItem = new ItemSheetCpRedWeapon(item, null).item;
+  const weaponData = weaponItem.data.data;
 
   const lookup = {
     single_shot: [
       {
         name: "cpred.sheet.common.attack",
-        roll: `1d10cp + @stats.ref.value + @skills.${weapon_data.attributes.skill.value}.level`,
-        type: "skillcheck",
+        roll: `1d10cp + @stats.ref.value + @skills.${weaponData.attributes.skill.value}.level`,
+        count: 1,
+        type: "attack",
       },
       {
         name: "cpred.sheet.common.damage",
-        roll: weapon_data.attributes.damage.value,
+        roll: weaponData.attributes.damage.value,
         type: "damage",
       },
     ],
     aimed_shot: [
       {
         name: "cpred.sheet.common.attack",
-        roll: `1d10cp + @stats.ref.value + @skills.${weapon_data.attributes.skill.value}.level - 8`,
-        type: "skillcheck",
+        roll: `1d10cp + @stats.ref.value + @skills.${weaponData.attributes.skill.value}.level - 8`,
+        count: 1,
+        type: "attack",
       },
       {
         name: "cpred.sheet.common.damage",
-        roll: weapon_data.attributes.damage.value,
+        roll: weaponData.attributes.damage.value,
         type: "damage",
       },
     ],
@@ -181,7 +190,8 @@ Handlebars.registerHelper("weaponActions", function (item) {
       {
         name: "cpred.sheet.common.attack",
         roll: `1d10cp + @stats.ref.value + @skills.autofire.level`,
-        type: "skillcheck",
+        count: 10,
+        type: "attack",
       },
       {
         name: "cpred.sheet.common.damage",
@@ -193,14 +203,16 @@ Handlebars.registerHelper("weaponActions", function (item) {
       {
         name: "cpred.sheet.common.attack",
         roll: `1d10cp + @stats.ref.value + @skills.autofire.level`,
-        type: "skillcheck",
+        count: 10,
+        type: "attack",
       },
     ],
     shotgun_shell: [
       {
         name: "cpred.sheet.common.attack",
-        roll: `1d10cp + @stats.ref.value + @skills.${weapon_data.attributes.skill.value}.level`,
-        type: "skillcheck",
+        roll: `1d10cp + @stats.ref.value + @skills.${weaponData.attributes.skill.value}.level`,
+        count: 1,
+        type: "attack",
       },
       {
         name: "cpred.sheet.common.damage",
@@ -212,11 +224,11 @@ Handlebars.registerHelper("weaponActions", function (item) {
       {
         name: "cpred.sheet.common.attack",
         roll: `1d10cp + @stats.dex.value + @skills.athletics.level`,
-        type: "skillcheck",
+        type: "attack",
       },
       {
         name: "cpred.sheet.common.damage",
-        roll: weapon_data.attributes.damage.value,
+        roll: weaponData.attributes.damage.value,
         type: "damage",
       },
     ],
@@ -224,7 +236,7 @@ Handlebars.registerHelper("weaponActions", function (item) {
       {
         name: "cpred.sheet.common.attack",
         roll: `1d10cp + @stats.dex.value + @skills.melee_weapon.level`,
-        type: "skillcheck",
+        type: "attack",
       },
       {
         name: "cpred.sheet.common.damage",
@@ -236,7 +248,7 @@ Handlebars.registerHelper("weaponActions", function (item) {
       {
         name: "cpred.sheet.common.attack",
         roll: `1d10cp + @stats.ref.value + @skills.heavy_weapons.level`,
-        type: "skillcheck",
+        type: "attack",
       },
       {
         name: "cpred.sheet.common.damage",
@@ -248,7 +260,7 @@ Handlebars.registerHelper("weaponActions", function (item) {
       {
         name: "cpred.sheet.common.attack",
         roll: `1d10cp + @stats.ref.value + @skills.shoulder_weapon.level`,
-        type: "skillcheck",
+        type: "attack",
       },
       {
         name: "cpred.sheet.common.damage",
@@ -259,13 +271,14 @@ Handlebars.registerHelper("weaponActions", function (item) {
   };
 
   // Use the tag system to decide which actions exist
-  const action_groups = weapon_data.tags
+  const action_groups = weaponData.tags
     .map((tag) => {
       const entry: ActionGroup = {
         name: tag,
         formattedName: localize(`cpred.sheet.weapon_tags.${tag}` as Path<LanguageItem>),
         actions: lookup[tag],
       };
+      entry.actions.forEach((action) => action.weaponId = weaponItem.id);
       return tag in lookup ? entry : null;
     })
     .filter((entry) => entry !== null);
@@ -283,7 +296,7 @@ Handlebars.registerHelper("rollType", function (action) {
   else {
     return "rollAction";
   }
-})
+});
 
 Handlebars.registerHelper("programActions", function (item) {
   const programData = new ItemSheetCpRedProgram(item, null).item.data.data;

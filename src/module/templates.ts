@@ -23,6 +23,7 @@ export const preloadTemplates = async function (): Promise<void> {
     "partials/weapon-description-tab.html",
     "partials/weapon-combat-tab.html",
     "partials/weapon-listing.html",
+    "partials/weapon-magazine.html",
   ];
 
   return loadTemplates(templatePaths.map(getFullTemplatePath));
