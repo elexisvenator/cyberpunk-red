@@ -1,6 +1,7 @@
 import { ActionHandlers, CpRedSheetOptions } from "../../entity";
 import { Tooltip } from "../../bootstrap/index.esm";
 import { ActorCpRed } from "../actor";
+import { ItemCpRed } from "../../item/item"
 
 // this is the model that gets sent to the handlebars template
 // If you want to use some computed values, declare them here and populate them in getData()
@@ -89,6 +90,16 @@ export default class ActorSheetCpRed<DataType extends ActorDataCpRed, ActorType 
     return this.actor.items
       .map((item) => item)
       .filter((item) => item.type === "effect");
+  }
+
+  protected _getAmmunitionByName(name: string): ItemCpRed<ItemDataCpRedAmmunition> | null {
+    const items = this.actor.items.filter((item) => item.name == name);
+    if (items.length > 0) {
+      return items[0];
+    }
+    else {
+      return null;
+    }
   }
 
   private static _getAppSizeClass(width: number): string {

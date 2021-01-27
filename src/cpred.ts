@@ -298,6 +298,15 @@ Handlebars.registerHelper("rollType", function (action) {
   }
 });
 
+Handlebars.registerHelper("validAmmoTypes", function (weapon) {
+  let ammoTypes = {};
+  weapon.actor.items
+    .filter((item) => item.type === "ammunition")
+    .filter((ammo) => weapon.data.data.attributes.ammunition_types.includes(ammo.data.data.attributes.type.value))
+    .forEach((item) => ammoTypes[item.name] = item.name);
+  return ammoTypes;
+});
+
 Handlebars.registerHelper("programActions", function (item) {
   const programData = new ItemSheetCpRedProgram(item, null).item.data.data;
 
