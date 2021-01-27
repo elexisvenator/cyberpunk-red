@@ -3,6 +3,7 @@ import { ItemCpRed } from "../../item/item";
 import ItemSheetCpRed from "./base";
 import { localize } from "../../language";
 import { ActionHandlers } from "../../entity";
+import { cyberwareTypeLists, cyberwareFoundationList, cyberwareInstallList } from "../../static_data";
 
 type CyberwareAction = "none";
 
@@ -10,9 +11,9 @@ type CyberwareAction = "none";
 // to use some computed values, declare them here and populate them in getData().
 
 interface ItemSheetDataCpRedCyberware extends ItemSheetData<ItemDataCpRedCyberware> {
-  type_types: { [key: string]: string };
-  foundation_types: { [key: string]: string };
-  install_types: { [key: string]: string };
+  type_types: StringDictionary;
+  foundation_types: StringDictionary;
+  install_types: StringDictionary;
 }
 
 export default class ItemSheetCpRedCyberware extends ItemSheetCpRed<ItemDataCpRedCyberware, ItemCpRed<ItemDataCpRedCyberware>> {
@@ -40,30 +41,9 @@ export default class ItemSheetCpRedCyberware extends ItemSheetCpRed<ItemDataCpRe
 
     return {
       ...parentData,
-      type_types: {
-        fashionware: "Fashionware",
-        neuralware: "Neuralware",
-        cyberoptics: "Cyberoptics",
-        cyberaudio: "Cyberaudio",
-        internal_body: "Internal Body Cyberware",
-        external_body: "External Body Cyberware",
-        cyberlimbs: "Cyberlimbs",
-        borgware: "Borgware",
-      },
-      foundation_types: {
-        na: "N/A",
-        cyberarm: "Cyberarm",
-        cyberaudio_suite: "Cyberaudio Suite",
-        cybereye: "Cybereye",
-        cyberleg: "Cyberleg",
-        neural_link: "Neural Link",
-      },
-      install_types: {
-        na: "N/A",
-        mall: "Mall",
-        clinic: "Clinic",
-        hospital: "Hospital",
-      },
+      type_types: cyberwareTypeLists,
+      foundation_types: cyberwareFoundationList,
+      install_types: cyberwareInstallList,
     };
   }
 }

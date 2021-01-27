@@ -3,6 +3,7 @@ import { ItemCpRed } from "../../item/item";
 import ItemSheetCpRed from "./base";
 import { localize } from "../../language";
 import { ActionHandlers } from "../../entity";
+import { effectStatList, effectSkillList } from "../../static_data";
 
 type EffectAction = "addStat" | "addSkill";
 
@@ -10,43 +11,14 @@ type EffectAction = "addStat" | "addSkill";
 // to use some computed values, declare them here and populate them in getData().
 
 interface ItemSheetDataCpRedEffect extends ItemSheetData<ItemDataCpRedEffect> {
-  statList: { [key: string]: string };
-  skillList: { [key: string]: string };
+  statList: StringDictionary;
+  skillList: StringDictionary;
 }
 
 export default class ItemSheetCpRedEffect extends ItemSheetCpRed<ItemDataCpRedEffect, ItemCpRed<ItemDataCpRedEffect>> {
   private static actionHandlers: ActionHandlers<ItemSheetCpRedEffect, EffectAction> = {
     addStat: async (sheet, action, value) => sheet.addModifier(value, "stats"),
     addSkill: async (sheet, action, value) => sheet.addModifier(value, "skills"),
-  };
-
-  private static statList: { [key: string]: string } = {
-    "": "cpred.sheet.labels.add_stat_modifier",
-    atk: "cpred.sheet.stats.atk",
-    def: "cpred.sheet.stats.def",
-    rez: "cpred.sheet.stats.rez",
-    int: "cpred.sheet.stats.int",
-    ref: "cpred.sheet.stats.ref",
-    dex: "cpred.sheet.stats.dex",
-    tech: "cpred.sheet.stats.tech",
-    cool: "cpred.sheet.stats.cool",
-    will: "cpred.sheet.stats.will",
-    luck: "cpred.sheet.stats.luck",
-    move: "cpred.sheet.stats.move",
-    body: "cpred.sheet.stats.body",
-    emp: "cpred.sheet.stats.emp",
-  };
-
-  private static skillList: { [key: string]: string } = {
-    accounting: "cpred.skills.accounting",
-    acting: "cpred.skills.acting",
-    air_vehicle_tech: "cpred.skills.air_vehicle_tech",
-    animal_handling: "cpred.skills.animal_handling",
-    archery: "cpred.skills.archery",
-    athletics: "cpred.skills.athletics",
-    autofire: "cpred.skills.autofire",
-    basic_tech: "cpred.skills.basic_tech",
-    brawling: "cpred.skills.brawling",
   };
 
   constructor(object: ItemCpRed<ItemDataCpRedEffect>, options: FormApplicationOptions) {
@@ -69,8 +41,8 @@ export default class ItemSheetCpRedEffect extends ItemSheetCpRed<ItemDataCpRedEf
 
     return {
       ...parentData,
-      statList: ItemSheetCpRedEffect.statList,
-      skillList: ItemSheetCpRedEffect.skillList,
+      statList: effectStatList,
+      skillList: effectSkillList,
     };
   }
 

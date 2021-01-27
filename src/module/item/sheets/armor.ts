@@ -3,6 +3,7 @@ import { ItemCpRed } from "../../item/item";
 import ItemSheetCpRed from "./base";
 import { localize } from "../../language";
 import { ActionHandlers } from "../../entity";
+import { armorTypeList, armorLocationList } from "../../static_data";
 
 type ArmorAction = "none";
 
@@ -39,20 +40,8 @@ export default class ItemSheetCpRedArmor extends ItemSheetCpRed<ItemDataCpRedArm
 
     return {
       ...parentData,
-      armorTypes: {
-        leathers: "cpred.sheet.armor_types.leathers",
-        kevlar: "cpred.sheet.armor_types.kevlar",
-        light_armorjack: "cpred.sheet.armor_types.light_armorjack",
-        bodyweight_suit: "cpred.sheet.armor_types.bodyweight_suit",
-        medium_armorjack: "cpred.sheet.armor_types.medium_armorjack",
-        heavy_armorjack: "cpred.sheet.armor_types.heavy_armorjack",
-        flak: "cpred.sheet.armor_types.flak",
-        metalgear: "cpred.sheet.armor_types.metalgear",
-      },
-      armorLocations: {
-        body: "cpred.sheet.armor_locations.body",
-        head: "cpred.sheet.armor_locations.head",
-      }
+      armorTypes: armorTypeList,
+      armorLocations: armorLocationList
     };
   }
 }
