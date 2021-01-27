@@ -275,7 +275,7 @@ Handlebars.registerHelper("weaponActions", function (item) {
     .map((tag) => {
       const entry: ActionGroup = {
         name: tag,
-        formattedName: localize(`cpred.sheet.weapon_tags.${tag}` as Path<LanguageItem>),
+        formattedName: localize(`cpred.sheet.weaponTags.${tag}` as Path<LanguageItem>),
         actions: lookup[tag],
       };
       entry.actions.forEach((action) => action.weaponId = weaponItem.id);

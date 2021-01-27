@@ -165,11 +165,12 @@
                 "hands_required": "Required Hands",
                 "reload_turns": "Turns to reload",
                 "autofire_max": "Max autofire effect",
+                "ammunition_type": "Ammunition Type",
                 "magazine": "Magazine",
                 "is_ranged": "Is Ranged",
                 "is_concealable": "Is Concealable"
             },
-            "weapon_tags": {
+            "weaponTags": {
                 "single_shot": "Single Shot",
                 "aimed_shot": "Aimed Shot",
                 "autofire": "Autofire",
@@ -185,6 +186,17 @@
                 "underbarrel_shotgun": "Underbarrel Shotgun",
                 "smargun_link": "Smartgun Link",
                 "sniping_scope": "Sniping Scope"
+            },
+            "ammunitionTypes": {
+                "medium_pistol": "Medium Pistol",
+                "heavy_pistol": "Heavy Pistol",
+                "very_heavy_pistol": "Very Heavy Pistol",
+                "slug": "Slug",
+                "shotgun_shell": "Shotgun Shell",
+                "rifle": "Rifle",
+                "arrow": "Arrow",
+                "grenade": "Grenade",
+                "rocket": "Rocket"
             },
             "cyberware_stats": {
                 "foundation": "Foundational Cyberware",

@@ -54,7 +54,8 @@ export interface Sheet {
   select_weapon_skill: string
   weapon_types: WeaponTypes
   weapon_stats: WeaponStats
-  weapon_tags: WeaponTags
+  weaponTags: WeaponTags
+  ammunitionTypes: AmmunitionTypes
   cyberware_stats: CyberwareStats
   program_types: ProgramTypes
   armor_types: ArmorTypes
@@ -209,6 +210,7 @@ export interface WeaponStats {
   hands_required: string
   reload_turns: string
   autofire_max: string
+  ammunition_type: string
   magazine: string
   is_ranged: string
   is_concealable: string
@@ -230,6 +232,18 @@ export interface WeaponTags {
   underbarrel_shotgun: string
   smargun_link: string
   sniping_scope: string
+}
+
+export interface AmmunitionTypes {
+  medium_pistol: string
+  heavy_pistol: string
+  very_heavy_pistol: string
+  slug: string
+  shotgun_shell: string
+  rifle: string
+  arrow: string
+  grenade: string
+  rocket: string
 }
 
 export interface CyberwareStats {
