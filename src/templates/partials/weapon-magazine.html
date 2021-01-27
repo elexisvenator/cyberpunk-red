@@ -1,8 +1,50 @@
 <div class="d-flex">
 
-  {{> "systems/cpred/templates/partials/actor-resource.html"
-    resource=weapon.data.data.attributes.magazine
-    resourcePath="weapon.data.data.attributes.magazine"
-    name="cpred.sheet.labels.stopping_power"
-  }}
+  <div class="d-flex align-items-center justify-content-between">
+    <div class="p-1">
+      <span class="lead">&nbsp;{{localize name}}</span>
+    </div>
+
+    <div class="p-1">{{gear.data.data.attributes.loaded_ammunition.value}}</div>
+
+    <div class="form-floating p-1">
+      <input
+        type="number"
+        class="form-control item-mod"
+        id="{{gear.id}}_value"
+        value="{{gear.data.data.attributes.magazine.value}}"
+        data-id={{gear.id}}
+        data-path="data.attributes.magazine.value"
+      />
+      <label for="{{gear.id}}_value">{{localize "cpred.sheet.current"}}</label>
+    </div>
+
+    <div class="p-1">
+      <span class="d-inline-block lead">
+        <i class="fas fa-minus rotate-300deg"></i>
+      </span>
+    </div>
+
+    <div class="form-floating p-1">
+      <input
+        type="number"
+        class="form-control"
+        id="{{gear.id}}_max"
+        value="{{gear.data.data.attributes.magazine.max}}"
+      />
+      <label for="{{gear.id}}_max">{{localize "cpred.sheet.max"}}</label>
+    </div>
+
+    <div class="p-1">
+      <button type="button" class="btn btn-outline-danger" data-action="reloadWeapon" data-value="{{gear.id}}">Reload</button>
+    </div>
+
+    <div class="p-1 flex-column">
+      <select class="form-select" id="ammoSelector">
+      {{selectOptions (validAmmoTypes gear) selected=data.attributes.loaded_ammunition.value localize=false}}
+      </select>
+      <button type="button" class="btn btn-outline-success" data-action="loadAmmunition" data-value="{{gear.id}}">Load Ammunition</button>
+    </div>
+  </div>
+
 </div>

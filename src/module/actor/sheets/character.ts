@@ -8,9 +8,12 @@ import { Path } from "../../types/dot-notation";
 import { FormulaRollable } from "../../rollable";
 import { Cpred } from "../../types/language-types";
 import { WeaponAction } from "../../../cpred";
+import { ammunitionTypes } from "../../static_data";
+import ItemSheetCpRedAmmunition from "../../item/sheets/ammunition";
 
 type CharacterAction = "removeItem" | "showItem" | "rollAction" | "rollWeapon" |
-  "addSubSkill" | "removeSubSkill" | "equipToggle" | "applyDamage" | "toggleModifier" | "reloadWeapon";
+  "addSubSkill" | "removeSubSkill" | "equipToggle" | "applyDamage" | "toggleModifier" |
+  "reloadWeapon" | "loadAmmunition";
 
 interface SkillBlock {
   name: string;
@@ -64,6 +67,7 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
     applyDamage: (sheet, _action, _value) => sheet.applyDamage(),
     toggleModifier: (sheet, _action, value) => sheet.toggleModifier(value),
     reloadWeapon: (sheet, _action, value) => sheet.reloadWeapon(value),
+    loadAmmunition: (sheet, _action, value) => sheet.loadAmmunition(value),
   };
 
   private static damageSources: { [key: string]: string } = {
@@ -222,6 +226,22 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
     });
   }
 
+  async _onDropItemCreate(itemData) {
+    // If the item being added is ammunition and we already have some of it do not create
+    // another item but copy the amount to the already existing item to ensure only one
+    // instance of any type of ammunition exists.
+    if (itemData.type === "ammunition") {
+      const hasIdentical = this.actor.items.filter((item) => item.name === itemData.name).length > 0;
+      if (hasIdentical) {
+        const ammunitionItem = this._getAmmunitionByName(itemData.name);
+        await ammunitionItem.update({"data.attributes.count.value": ammunitionItem.data.data.attributes.count.value + itemData.data.attributes.count.value}, null);
+        return;
+      }
+    }
+
+    return this.actor.createEmbeddedEntity("OwnedItem", itemData);
+  }
+
   public async addSubSkill(skill: string): Promise<void> {
     const formData = this.getData();
     if (!(skill in formData.actor.data.skills)) {
@@ -372,10 +392,27 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
   }
 
   public async reloadWeapon(itemId: string): Promise<void> {
-    const item = this.actor.items.get(itemId);
-    const changeData = {}
-    changeData["data.attributes.magazine.value"] = item.data.data.attributes.magazine.max;
-    await item.update(changeData, null);
+    const weapon = this.actor.items.get(itemId) as ItemCpRed<ItemDataCpRedWeapon>;
+    const selectedAmmo = weapon.data.data.attributes.loaded_ammunition.value;
+
+    // Find ammunition storage to use
+    const ammunitionItem = this._getAmmunitionByName(selectedAmmo);
+
+    // Compute ammunition and reload data
+    const ammoAvailable = ammunitionItem.data.data.attributes.count.value;
+    const magazineMax = weapon.data.data.attributes.magazine.max;
+    const magazineValue = weapon.data.data.attributes.magazine.value;
+    let reloadAmount = magazineMax - magazineValue;
+
+    if (ammoAvailable < reloadAmount) {
+      reloadAmount = ammoAvailable;
+    }
+
+    // Update ammunition amount
+    await ammunitionItem.update({"data.attributes.count.value": ammoAvailable - reloadAmount}, null);
+
+    // Update magazine count
+    await weapon.update({"data.attributes.magazine.value": magazineValue + reloadAmount}, null);
   }
 
   public async rollWeapon(actionData: WeaponAction): Promise<void> {
@@ -401,5 +438,19 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
     else if (actionData.name === "cpred.sheet.common.damage") {
       new FormulaRollable(actionData.roll, this.actor, null, true).roll();
     }
+  }
+
+  public async loadAmmunition(itemId: string): Promise<void> {
+    const weapon = this.actor.items.get(itemId) as ItemCpRed<ItemDataCpRedWeapon>;
+
+    const currentAmmunitionItem = this._getAmmunitionByName(weapon.data.data.attributes.loaded_ammunition.value);
+    await currentAmmunitionItem.update({"data.attributes.count.value": currentAmmunitionItem.data.data.attributes.count.value + weapon.data.data.attributes.magazine.value}, null);
+    await weapon.update({
+        "data.attributes.loaded_ammunition.value": this.form["ammoSelector"].value,
+        "data.attributes.magazine.value": 0,
+      },
+      null)
+    ;
+    this.reloadWeapon(itemId);
   }
 }
