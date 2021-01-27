@@ -25,7 +25,8 @@ interface WeaponTemplate {
     reload_turns: NumberProp;
     autofire_max: NumberProp;
     magazine: NumberResource;
-    ammunition_type: StringProp;
+    ammunition_types: string[];
+    loaded_ammunition: StringProp;
     is_ranged: BooleanProp;
     is_concealable: BooleanProp;
   };

@@ -5,7 +5,7 @@ import { localize } from "../../language";
 import { ActionHandlers } from "../../entity";
 import { weaponSkillList, weaponTypeList, weaponTagList, ammunitionTypes } from "../../static_data"
 
-type WeaponAction = "removeTag";
+type WeaponAction = "addTag" | "removeTag" | "addAmmunitionType" | "removeAmmunitionType";
 
 // This is the model that gets sent to the handlebars template. If you want
 // to use some computed values, declare them here and populate them in getData().
@@ -19,10 +19,12 @@ interface ItemSheetDataCpRedWeapon extends ItemSheetData<ItemDataCpRedWeapon> {
 
 export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWeapon, ItemCpRed<ItemDataCpRedWeapon>> {
   private static actionHandlers: ActionHandlers<ItemSheetCpRedWeapon, WeaponAction> = {
+    addTag: async (sheet, _action, _value) => sheet.addTag(),
     removeTag: async (sheet, _action, data) =>
       sheet.item.update({ "data.tags": sheet.item.data.data.tags.filter((tag) => tag !== data) }, null),
-  };
-
+    addAmmunitionType: async (sheet, _action, _value) => sheet.addAmmunitionType(),
+    removeAmmunitionType: (sheet, _action, data) =>
+      sheet.item.update({ "data.attributes.ammunition_types": sheet.item.data.data.attributes.ammunition_types.filter((entry) => entry !== data) }, null),
   };
 
   constructor(object: ItemCpRed<ItemDataCpRedWeapon>, options: FormApplicationOptions) {
@@ -65,20 +67,25 @@ export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWe
     };
   }
 
-  protected activateListeners(html: JQuery): void {
-    super.activateListeners(html);
-
+  async addTag(): Promise<void> {
     const data = this.getData().data;
 
-    html.find("#tag-selector").on("change", (ev) => {
-      ev.preventDefault();
+    const tag = this.form["tag-selector"].value;
+    const new_tags: string[] = data.tags;
+    if (!data.tags.includes(tag)) {
+      new_tags.push(tag);
+    }
+    await this.item.update({ "data.tags": new_tags }, null);
+  }
 
-      const tag = (ev.currentTarget as HTMLSelectElement).selectedOptions[0].value;
-      const new_tags: string[] = data.tags;
-      if (tag !== "" && !data.tags.includes(tag)) {
-        new_tags.push(tag);
-      }
-      this.item.update({ "data.tags": new_tags }, null);
-    });
+  async addAmmunitionType(): Promise<void> {
+    const data = this.getData().data;
+
+    const type = this.form["ammunition-selector"].value;
+    const new_types: string[] = data.attributes.ammunition_types;
+    if (!data.attributes.ammunition_types.includes(type)) {
+      new_types.push(type);
+    }
+    await this.item.update({ "data.attributes.ammunition_types": new_types }, null);
   }
 }

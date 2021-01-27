@@ -802,7 +802,8 @@
             "value": 0,
             "max": 10
           },
-          "ammunition_type": {
+          "ammunition_types": [],
+          "loaded_ammunition": {
             "value": ""
           },
           "is_ranged": {

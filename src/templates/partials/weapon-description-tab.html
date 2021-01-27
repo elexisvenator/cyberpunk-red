@@ -32,31 +32,56 @@
 <div class="d-flex flex-wrap justify-content-start statblock">
   {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.damage" path="attributes.damage.value" type="string"}}
   {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.rof" path="attributes.rof.value" type="number"}}
-  {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.magazine" path="attributes.magazine.max" type="number"}}
   {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.hands_required" path="attributes.hands_required.value" type="number"}}
   {{#if (eq data.attributes.is_ranged.value true)}}
+    {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.magazine" path="attributes.magazine.max" type="number"}}
     {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.reload_turns" path="attributes.reload_turns.value" type="number"}}
+    {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.autofire_max" path="attributes.autofire_max.value" type="number"}}
   {{/if}}
-  {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.autofire_max" path="attributes.autofire_max.value" type="number"}}
   {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.cost" path="attributes.cost.value" type="number"}}
   {{> "systems/cpred/templates/partials/attribute-checkbox.html" root=item name="cpred.sheet.weapon_stats.is_concealable" path="attributes.is_concealable.value"}}
   {{> "systems/cpred/templates/partials/attribute-checkbox.html" root=item name="cpred.sheet.weapon_stats.is_ranged" path="attributes.is_ranged.value"}}
-  {{> "systems/cpred/templates/partials/attribute-select.html" root=item name="cpred.sheet.weapon_stats.type" path="attributes.type.value" choices=weapon_types}}
-  {{> "systems/cpred/templates/partials/attribute-select.html" root=item name="cpred.sheet.weapon_stats.skill" path="attributes.skill.value" choices=weapon_skills}}
+  <div class="d-flex flex-grow-1 p-1">
+    {{> "systems/cpred/templates/partials/attribute-select.html" root=item name="cpred.sheet.weapon_stats.type" path="attributes.type.value" choices=weaponTypes}}
+  </div>
+  <div class="d-flex flex-grow-1 p-1">
+    {{> "systems/cpred/templates/partials/attribute-select.html" root=item name="cpred.sheet.weapon_stats.skill" path="attributes.skill.value" choices=weaponSkills}}
+  </div>
 </div>
 
 <div class="d-flex flex-wrap justify-content-between">
-  {{#each data.tags as |tag|}}
+  <div class="d-flex p-1">
+    <label for="ammunition-selector">{{localize name}}</label>
+    <select class="form-select" id="ammunition-selector">
+      {{selectOptions ammunitionTypes selected=data.ammunition_selection localize=false}}
+    </select>
+    <button class="btn btn-outline-success" type="button" data-action="addAmmunitionType">
+      <i class="fas fa-plus"></i> Add
+    </button>
+  </div>
+
+  {{#each data.attributes.ammunition_types as |ammo|}}
   <div class="p-1 border border-1">
-    {{localize (join "." "cpred.sheet.weapon_tags" tag)}}
-    <a title="Remove tag" data-action="removeTag" data-value="{{tag}}"><i class="fas fa-minus-square"></i></a>
+    {{localize (join "." "cpred.sheet.ammunitionTypes" ammo)}}
+    <a title="Remove Ammunition" data-action="removeAmmunitionType" data-value="{{ammo}}"><i class="fas fa-times"></i></a>
   </div>
   {{/each}}
+</div>
 
-  <div class="p-1">
-    <label for="data.{{path}}">{{localize name}}</label>
+<div class="d-flex flex-wrap">
+  <div class="d-flex p-1">
     <select class="form-select" id="tag-selector">
-      {{selectOptions weapon_tags selected=data.tag_selection localize=false}}
+      {{selectOptions weaponTags selected=data.tag_selection localize=false}}
     </select>
+    <button class="btn btn-outline-success" type="button" data-action="addTag">
+      <i class="fas fa-plus"></i> Add
+    </button>
   </div>
+
+  {{#each data.tags as |tag|}}
+  <div class="p-1 m-1 border border-1">
+    {{localize (join "." "cpred.sheet.weaponTags" tag)}}
+    <a title="Remove tag" data-action="removeTag" data-value="{{tag}}"><i class="fas fa-times"></i></a>
+  </div>
+  {{/each}}
 </div>
