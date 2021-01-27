@@ -13,3 +13,9 @@ interface BooleanProp {
 interface NumberResource extends NumberProp {
   max: number;
 }
+
+interface Dictionary<T> {
+  [key: string]: T
+};
+
+declare type StringDictionary = Dictionary<string>;
