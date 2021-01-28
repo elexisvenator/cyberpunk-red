@@ -47,7 +47,9 @@
                 "ammunition": "Ammunition",
                 "ammunition_size_type": "Ammunition Size",
                 "count": "Count",
-                "modifiers": "Modifiers"
+                "modifiers": "Modifiers",
+                "money": "Money",
+                "improvement_points": "Improvement Points"
             },
             "common": {
                 "attack": "Attack",

@@ -86,6 +86,8 @@ export interface Labels {
   ammunition_size_type: string
   count: string
   modifiers: string
+  money: string
+  improvement_points: string
 }
 
 export interface Common {

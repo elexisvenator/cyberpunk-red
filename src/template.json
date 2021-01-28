@@ -32,6 +32,15 @@
           "humanity": {
             "value": 10,
             "max": 10
+          },
+          "money": {
+            "value": 0
+          },
+          "deathSave": {
+            "value": 0
+          },
+          "improvementPoints": {
+            "value": 0
           }
         }
       },

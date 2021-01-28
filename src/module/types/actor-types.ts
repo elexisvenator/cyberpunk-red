@@ -9,6 +9,15 @@ interface CommonTemplate {
   };
 }
 
+interface CharacterTemplate {
+  attributes: {
+    humanity: NumberResource;
+    money: NumberProp;
+    deathSave: NumberProp;
+    improvementPoints: NumberProp;
+  };
+};
+
 interface StatsTemplate {
   stats: {
     int: NumberProp;
@@ -102,6 +111,6 @@ interface RolesTemplate {
 }
 
 declare type ActorDataCpRed = CommonTemplate;
-declare type ActorDataCpRedCharacter = ActorDataCpRed & StatsTemplate & SkillsTemplate & RolesTemplate;
+declare type ActorDataCpRedCharacter = ActorDataCpRed & CharacterTemplate & StatsTemplate & SkillsTemplate & RolesTemplate;
 declare type ActorDataCpRedNpc = ActorDataCpRed & StatsTemplate & SkillsTemplate & RolesTemplate;
 declare type ActorDataCpRedIce = ActorDataCpRed & IceTemplate;

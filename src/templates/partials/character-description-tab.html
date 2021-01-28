@@ -14,6 +14,14 @@
       />
       <label for="actor.name">{{localize "cpred.sheet.name"}}</label>
     </div>
+    <div class="d-flex">
+      <div class="p-1 flex-grow-1">
+        {{> "systems/cpred/templates/partials/attribute-input.html" root=actor name="cpred.sheet.labels.money" path="attributes.money.value" type="number"}}
+      </div>
+      <div class="p-1 flex-grow-1">
+        {{> "systems/cpred/templates/partials/attribute-input.html" root=actor name="cpred.sheet.labels.improvement_points" path="attributes.improvementPoints.value" type="number"}}
+      </div>
+    </div>
   </div>
 </div>
 
