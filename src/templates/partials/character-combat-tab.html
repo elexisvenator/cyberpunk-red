@@ -13,6 +13,15 @@
     {{> "systems/cpred/templates/partials/actor-resource.html" resource=data.attributes.armor_head resourcePath="data.attributes.armor_head"
     name="cpred.sheet.labels.armor_head" linkMax=false disableMax=true}}
   </div>
+  <div class="d-flex">
+    {{> "systems/cpred/templates/partials/attribute-input.html" root=actor name="cpred.sheet.labels.death_save_penalty" path="attributes.deathSavePenalty.value" type="number"}}
+    <div class="p-1">
+      <button type="button" class="btn btn-outline-primary" data-action="rollDeathSave">Make Death Save</button>
+    </div>
+    <div class="p-1">
+      <button type="button" class="btn btn-outline-success" data-action="resetDeathSavePenalty">Reset Death Save</button>
+    </div>
+  </div>
 
   <div class="d-flex align-items-center justify-content-between">
     <div class="p-1">

@@ -36,7 +36,7 @@
           "money": {
             "value": 0
           },
-          "deathSave": {
+          "deathSavePenalty": {
             "value": 0
           },
           "improvementPoints": {

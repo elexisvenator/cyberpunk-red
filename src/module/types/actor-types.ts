@@ -13,7 +13,7 @@ interface CharacterTemplate {
   attributes: {
     humanity: NumberResource;
     money: NumberProp;
-    deathSave: NumberProp;
+    deathSavePenalty: NumberProp;
     improvementPoints: NumberProp;
   };
 };

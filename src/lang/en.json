@@ -49,7 +49,8 @@
                 "count": "Count",
                 "modifiers": "Modifiers",
                 "money": "Money",
-                "improvement_points": "Improvement Points"
+                "improvement_points": "Improvement Points",
+                "death_save_penalty": "Death Save Penalty"
             },
             "common": {
                 "attack": "Attack",

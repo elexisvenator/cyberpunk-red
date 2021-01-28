@@ -88,6 +88,7 @@ export interface Labels {
   modifiers: string
   money: string
   improvement_points: string
+  death_save_penalty: string
 }
 
 export interface Common {

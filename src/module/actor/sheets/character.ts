@@ -14,7 +14,7 @@ import { characterDamageSources, characterModifierList, ModifierEntry } from "..
 
 type CharacterAction = "removeItem" | "showItem" | "rollAction" | "rollWeapon" |
   "addSubSkill" | "removeSubSkill" | "equipToggle" | "applyDamage" | "toggleModifier" |
-  "reloadWeapon" | "loadAmmunition";
+  "reloadWeapon" | "loadAmmunition" | "rollDeathSave" | "resetDeathSavePenalty";
 
 interface SkillBlock {
   name: string;
@@ -62,6 +62,8 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
     toggleModifier: (sheet, _action, value) => sheet.toggleModifier(value),
     reloadWeapon: (sheet, _action, value) => sheet.reloadWeapon(value),
     loadAmmunition: (sheet, _action, value) => sheet.loadAmmunition(value),
+    rollDeathSave: (sheet, _action, _value) => sheet.rollDeathSave(),
+    resetDeathSavePenalty: (sheet, _action, _value) => sheet.resetDeathSavePenalty(),
   };
 
   constructor(object: ActorCpRed<ActorDataCpRedCharacter>, options: FormApplicationOptions) {
@@ -425,5 +427,14 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
       null)
     ;
     this.reloadWeapon(itemId);
+  }
+
+  public async rollDeathSave(): Promise<void> {
+    await new FormulaRollable("1d10 + @attributes.deathSavePenalty.value", this.actor).roll();
+    await this.actor.update({"data.attributes.deathSavePenalty.value": this.actor.data.data.attributes.deathSavePenalty.value + 1});
+  }
+
+  public async resetDeathSavePenalty(): Promise<void> {
+    await this.actor.update({"data.attributes.deathSavePenalty.value": 0});
   }
 }
