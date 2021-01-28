@@ -5,7 +5,7 @@
       <span class="lead">&nbsp;{{localize name}}</span>
     </div>
 
-    <div class="p-1">{{gear.data.data.attributes.loaded_ammunition.value}}</div>
+    <div class="p-1">{{gear.data.data.attributes.loadedAmmunition.value}}</div>
 
     <div class="form-floating p-1">
       <input
@@ -41,7 +41,7 @@
 
     <div class="p-1 flex-column">
       <select class="form-select" id="ammoSelector">
-      {{selectOptions (validAmmoTypes gear) selected=data.attributes.loaded_ammunition.value localize=false}}
+      {{selectOptions (validAmmoTypes gear) selected=data.attributes.loadedAmmunition.value localize=false}}
       </select>
       <button type="button" class="btn btn-outline-success" data-action="loadAmmunition" data-value="{{gear.id}}">Load Ammunition</button>
     </div>

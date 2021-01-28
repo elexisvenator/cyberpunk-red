@@ -70,7 +70,7 @@ export default class ActorSheetCpRedNpc extends ActorSheetCpRed<ActorDataCpRedNp
     const actor: ActorCpRed = this.actor;
 
     // Update derived attributes when retrieving data instead of when modifying underlyign data
-    data.attributes.hp.max = 10 + 5 * Math.ceil((data.stats.body.value + data.stats.will.value) / 2.0);
+    data.attributes.hitPoints.max = 10 + 5 * Math.ceil((data.stats.body.value + data.stats.will.value) / 2.0);
 
     // Retrieve and sort all items the character owns
     const items: ItemCpRed[] = Array.from(actor.items.values());

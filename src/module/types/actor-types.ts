@@ -1,8 +1,8 @@
 interface CommonTemplate {
   attributes: {
-    hp: NumberResource;
-    armor_body: NumberResource;
-    armor_head: NumberResource;
+    hitPoints: NumberResource;
+    armorBody: NumberResource;
+    armorHead: NumberResource;
   };
   details: {
     description: StringProp;
@@ -72,26 +72,26 @@ interface IceTemplate {
 
 interface RolesTemplate {
   rockerboy: {
-    charismatic_impact: NumberProp;
+    charismaticImpact: NumberProp;
   };
   solo: {
-    combat_awareness: NumberProp;
+    combatAwareness: NumberProp;
   };
   netrunner: {
     interface: NumberProp;
   };
   tech: {
     maker: NumberProp;
-    field_expertise: NumberProp;
-    upgrade_expertise: NumberProp;
-    fabrication_expertise: NumberProp;
-    invention_expertise: NumberProp;
+    fieldExpertise: NumberProp;
+    upgradeExpertise: NumberProp;
+    fabricationExpertise: NumberProp;
+    inventionExpertise: NumberProp;
   };
   medtech: {
     medicine: NumberProp;
     surgery: NumberProp;
     pharmaceuticals: NumberProp;
-    cryosystem_operation: NumberProp;
+    cryosystemOperation: NumberProp;
   };
   media: {
     credibility: NumberProp;

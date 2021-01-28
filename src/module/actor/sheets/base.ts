@@ -70,18 +70,18 @@ export default class ActorSheetCpRed<DataType extends ActorDataCpRed, ActorType 
     const armorList = this.actor.items
       .map((item) => item)
       .filter((item) => item.type === "armor")
-      .filter((item) => item.data.data.attributes.is_equipped.value === true);
+      .filter((item) => item.data.data.attributes.isEquipped.value === true);
     const bodyArmor = armorList.filter((item) => item.data.data.attributes.location.value === "body");
     const headArmor = armorList.filter((item) => item.data.data.attributes.location.value === "head");
 
     return {
-      armor_body: {
-        value: Math.max(...bodyArmor.map((item) => item.data.data.attributes.sp.value), 0),
-        max: Math.max(...bodyArmor.map((item) => item.data.data.attributes.sp.max), 0),
+      armorBody: {
+        value: Math.max(...bodyArmor.map((item) => item.data.data.attributes.stoppingPower.value), 0),
+        max: Math.max(...bodyArmor.map((item) => item.data.data.attributes.stoppingPower.max), 0),
       },
-      armor_head: {
-        value: Math.max(...headArmor.map((item) => item.data.data.attributes.sp.value), 0),
-        max: Math.max(...headArmor.map((item) => item.data.data.attributes.sp.max), 0),
+      armorHead: {
+        value: Math.max(...headArmor.map((item) => item.data.data.attributes.stoppingPower.value), 0),
+        max: Math.max(...headArmor.map((item) => item.data.data.attributes.stoppingPower.max), 0),
       }
     };
   }
@@ -98,7 +98,7 @@ export default class ActorSheetCpRed<DataType extends ActorDataCpRed, ActorType 
       return items[0];
     }
     else {
-      return null;
+      throw Error(`Unable to find ammunition with name "${name}`);
     }
   }
 

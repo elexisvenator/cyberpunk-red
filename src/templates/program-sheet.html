@@ -19,7 +19,7 @@
         <div class="p-1 d-flex flex-grow-1">
           {{> "systems/cpred/templates/partials/attribute-select.html"
             root=item
-            name="cpred.sheet.labels.program_type"
+            name="cpred.sheet.labels.programType"
             path="attributes.class.value"
             choices=programTypes
           }}
@@ -28,8 +28,8 @@
     </div>
     <div class="d-flex flex-wrap statblock justify-content-between">
       {{> "systems/cpred/templates/partials/actor-resource.html"
-        resource=data.attributes.hp
-        resourcePath="data.attributes.hp"
+        resource=data.attributes.hitPoints
+        resourcePath="data.attributes.hitPoints"
         name="cpred.sheet.rez"
       }}
       <div class="d-flex">

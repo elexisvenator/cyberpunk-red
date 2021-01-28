@@ -7,7 +7,7 @@ interface Modifier {
 interface CommonItemTemplate {
   attributes: {
     cost: NumberProp;
-    is_equipped: BooleanProp;
+    isEquipped: BooleanProp;
   };
   details: {
     description: StringProp;
@@ -21,14 +21,14 @@ interface WeaponTemplate {
     rof: NumberProp;
     type: StringProp;
     skill: StringProp;
-    hands_required: NumberProp;
-    reload_turns: NumberProp;
-    autofire_max: NumberProp;
+    handsRequired: NumberProp;
+    turnsToReload: NumberProp;
+    autofireMaxEffect: NumberProp;
     magazine: NumberResource;
-    ammunition_types: string[];
-    loaded_ammunition: StringProp;
-    is_ranged: BooleanProp;
-    is_concealable: BooleanProp;
+    ammunitionTypes: string[];
+    loadedAmmunition: StringProp;
+    isRanged: BooleanProp;
+    isConcealable: BooleanProp;
   };
   tags: string[];
 }
@@ -49,8 +49,9 @@ interface CyberwareTemplate {
     foundation: StringProp;
     install: StringProp;
     slots: NumberProp;
-    humanity_loss: NumberProp;
-    humanity_loss_roll: StringProp;
+    humanityLoss: NumberProp;
+    humanityLossRoll: StringProp;
+    humanityLossCreation: NumberProp;
   }
 }
 
@@ -72,7 +73,7 @@ interface ProgramTemplate {
 
 interface ArmorTemplate {
   attributes: {
-    sp: NumberResource;
+    stoppingPower: NumberResource;
     type: StringProp;
     location: StringProp;
   }

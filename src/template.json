@@ -8,15 +8,15 @@
     "templates": {
       "common": {
         "attributes": {
-          "hp": {
+          "hitPoints": {
             "value": 10,
             "max": 10
           },
-          "armor_body": {
+          "armorBody": {
             "value": 0,
             "max": 0
           },
-          "armor_head": {
+          "armorHead": {
             "value": 0,
             "max": 0
           }
@@ -47,12 +47,12 @@
       "roles": {
         "roles": {
           "rockerboy": {
-            "charismatic_impact": {
+            "charismaticImpact": {
               "value": 0
             }
           },
           "solo": {
-            "combat_awareness": {
+            "combatAwareness": {
               "value": 0
             }
           },
@@ -65,16 +65,16 @@
             "maker": {
               "value": 0
             },
-            "field_expertise": {
+            "fieldExpertise": {
               "value": 0
             },
-            "upgrade_expertise": {
+            "upgradeExpertise": {
               "value": 0
             },
-            "fabrication_expertise": {
+            "fabricationExpertise": {
               "value": 0
             },
-            "invention_expertise": {
+            "inventionExpertise": {
               "value": 0
             }
           },
@@ -88,7 +88,7 @@
             "pharmaceuticals": {
               "value": 0
             },
-            "cryosystem_operation": {
+            "cryosystemOperation": {
               "value": 0
             }
           },
@@ -773,7 +773,7 @@
           "cost": {
             "value": 100
           },
-          "is_equipped": {
+          "isEquipped": {
             "value": true
           }
         },
@@ -798,27 +798,27 @@
           "skill": {
             "value": "handgun"
           },
-          "hands_required": {
+          "handsRequired": {
             "value": 1
           },
-          "reload_turns": {
+          "turnsToReload": {
             "value:": 1
           },
-          "autofire_max": {
+          "autofireMaxEffect": {
             "value": 0
           },
           "magazine": {
             "value": 0,
             "max": 10
           },
-          "ammunition_types": [],
-          "loaded_ammunition": {
+          "ammunitionTypes": [],
+          "loadedAmmunition": {
             "value": ""
           },
-          "is_ranged": {
+          "isRanged": {
             "value": true
           },
-          "is_concealable": {
+          "isConcealable": {
             "value": false
           }
         },
@@ -841,7 +841,7 @@
       },
       "armor": {
         "attributes": {
-          "sp": {
+          "stoppingPower": {
             "value": 11,
             "max": 11
           },
@@ -858,7 +858,7 @@
           "type": {
             "value": ""
           },
-          "is_foundation": {
+          "isFoundational": {
             "value": false
           },
           "foundation": {
@@ -870,13 +870,13 @@
           "slots": {
             "value": 1
           },
-          "humanity_loss": {
+          "humanityLoss": {
             "value": "0"
           },
-          "humanity_loss_roll": {
+          "humanityLossRoll": {
             "value": "1d6"
           },
-          "humanity_loss_creation": {
+          "humanityLossCreation": {
             "value": 7
           }
         }

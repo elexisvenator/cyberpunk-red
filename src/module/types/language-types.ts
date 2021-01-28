@@ -65,9 +65,9 @@ export interface Sheet {
 }
 
 export interface Labels {
-  armor_body: string
-  armor_head: string
-  program_type: string
+  armorBody: string
+  armorHead: string
+  programType: string
   armor_type: string
   role_actions: string
   weapons: string
@@ -131,18 +131,18 @@ export interface Roles {
 }
 
 export interface RoleAbilities {
-  charismatic_impact: string
-  combat_awareness: string
+  charismaticImpact: string
+  combatAwareness: string
   interface: string
   maker: string
-  field_expertise: string
-  upgrade_expertise: string
-  fabrication_expertise: string
-  invention_expertise: string
+  fieldExpertise: string
+  upgradeExpertise: string
+  fabricationExpertise: string
+  inventionExpertise: string
   medicine: string
   surgery: string
   pharmaceuticals: string
-  cryosystem_operation: string
+  cryosystemOperation: string
   credibility: string
   teamwork: string
   backup: string
@@ -210,13 +210,13 @@ export interface WeaponStats {
   rof: string
   type: string
   skill: string
-  hands_required: string
-  reload_turns: string
-  autofire_max: string
+  handsRequired: string
+  turnsToReload: string
+  autofireMaxEffect: string
   ammunition_type: string
   magazine: string
-  is_ranged: string
-  is_concealable: string
+  isRanged: string
+  isConcealable: string
 }
 
 export interface WeaponTags {
@@ -254,9 +254,9 @@ export interface CyberwareStats {
   type: string
   install: string
   slots: string
-  humanity_loss: string
-  humanity_loss_roll: string
-  humanity_loss_creation: string
+  humanityLoss: string
+  humanityLossRoll: string
+  humanityLossCreation: string
 }
 
 export interface ProgramTypes {

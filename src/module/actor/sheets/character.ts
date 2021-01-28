@@ -96,11 +96,11 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
     const actor: ActorCpRed = this.actor;
 
     // Update derived attributes when retrieving data instead of when modifying underlyign data
-    data.attributes.hp.max = 10 + 5 * Math.ceil((data.stats.body.value + data.stats.will.value) / 2.0);
+    data.attributes.hitPoints.max = 10 + 5 * Math.ceil((data.stats.body.value + data.stats.will.value) / 2.0);
 
     const armorData = this._getArmor();
-    data.attributes.armor_body = armorData.armor_body;
-    data.attributes.armor_head = armorData.armor_head;
+    data.attributes.armorBody = armorData.armorBody;
+    data.attributes.armorHead = armorData.armorHead;
 
     // Retrieve and sort all items the character owns
     const items: ItemCpRed[] = Array.from(actor.items.values());
@@ -297,7 +297,7 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
     }
 
     await item.update(
-      {"data.attributes.is_equipped.value": !item.data.data.attributes.is_equipped.value},
+      {"data.attributes.isEquipped.value": !item.data.data.attributes.isEquipped.value},
       null
     );
   }
@@ -313,7 +313,7 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
     let finalDamage = damage;
     let armorDamage = 0;
     if (armorTreatment == "fullArmor") {
-      const armorValue = data.attributes.armor_body.value;
+      const armorValue = data.attributes.armorBody.value;
       if (armorValue < finalDamage) {
         finalDamage -= armorValue;
         armorDamage = 1;
@@ -322,7 +322,7 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
       }
     }
     else if (armorTreatment == "halfArmor") {
-      const armorValue = Math.floor(data.attributes.armor_body.value / 2);
+      const armorValue = Math.floor(data.attributes.armorBody.value / 2);
       if (armorValue < finalDamage) {
         finalDamage -= armorValue;
         armorDamage = 1;
@@ -332,16 +332,16 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
     }
 
     // Update character hitpoints
-    await this.actor.update({"data.attributes.hp.value": data.attributes.hp.value - finalDamage});
+    await this.actor.update({"data.attributes.hitPoints.value": data.attributes.hitPoints.value - finalDamage});
 
     // Ablate all equipped armor
     parentData.items
       .map((item) => item)
       .filter((item) => item.type === "armor")
-      .filter((item) => item.data.attributes.is_equipped.value === true)
+      .filter((item) => item.data.attributes.isEquipped.value === true)
       .forEach(async (item) => {
         const ownedItem = this.actor.items.get(item._id, {strict: true});
-        await ownedItem.update({"data.attributes.sp.value": item.data.attributes.sp.value - armorDamage}, {});
+        await ownedItem.update({"data.attributes.stoppingPower.value": item.data.attributes.stoppingPower.value - armorDamage}, {});
       });
   }
 
@@ -368,7 +368,7 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
 
   public async reloadWeapon(itemId: string): Promise<void> {
     const weapon = this.actor.items.get(itemId) as ItemCpRed<ItemDataCpRedWeapon>;
-    const selectedAmmo = weapon.data.data.attributes.loaded_ammunition.value;
+    const selectedAmmo = weapon.data.data.attributes.loadedAmmunition.value;
 
     // Find ammunition storage to use
     const ammunitionItem = this._getAmmunitionByName(selectedAmmo);
@@ -418,10 +418,13 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
   public async loadAmmunition(itemId: string): Promise<void> {
     const weapon = this.actor.items.get(itemId) as ItemCpRed<ItemDataCpRedWeapon>;
 
-    const currentAmmunitionItem = this._getAmmunitionByName(weapon.data.data.attributes.loaded_ammunition.value);
-    await currentAmmunitionItem.update({"data.attributes.count.value": currentAmmunitionItem.data.data.attributes.count.value + weapon.data.data.attributes.magazine.value}, null);
+    try {
+      const currentAmmunitionItem = this._getAmmunitionByName(weapon.data.data.attributes.loadedAmmunition.value);
+      await currentAmmunitionItem.update({"data.attributes.count.value": currentAmmunitionItem.data.data.attributes.count.value + weapon.data.data.attributes.magazine.value}, null);
+    }
+    catch (error) {}
     await weapon.update({
-        "data.attributes.loaded_ammunition.value": this.form["ammoSelector"].value,
+        "data.attributes.loadedAmmunition.value": this.form["ammoSelector"].value,
         "data.attributes.magazine.value": 0,
       },
       null)

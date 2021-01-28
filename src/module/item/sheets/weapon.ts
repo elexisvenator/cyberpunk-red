@@ -24,7 +24,7 @@ export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWe
       sheet.item.update({ "data.tags": sheet.item.data.data.tags.filter((tag) => tag !== data) }, null),
     addAmmunitionType: async (sheet, _action, _value) => sheet.addAmmunitionType(),
     removeAmmunitionType: (sheet, _action, data) =>
-      sheet.item.update({ "data.attributes.ammunition_types": sheet.item.data.data.attributes.ammunition_types.filter((entry) => entry !== data) }, null),
+      sheet.item.update({ "data.attributes.ammunitionTypes": sheet.item.data.data.attributes.ammunitionTypes.filter((entry) => entry !== data) }, null),
   };
 
   constructor(object: ItemCpRed<ItemDataCpRedWeapon>, options: FormApplicationOptions) {
@@ -82,10 +82,10 @@ export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWe
     const data = this.getData().data;
 
     const type = this.form["ammunition-selector"].value;
-    const new_types: string[] = data.attributes.ammunition_types;
-    if (!data.attributes.ammunition_types.includes(type)) {
+    const new_types: string[] = data.attributes.ammunitionTypes;
+    if (!data.attributes.ammunitionTypes.includes(type)) {
       new_types.push(type);
     }
-    await this.item.update({ "data.attributes.ammunition_types": new_types }, null);
+    await this.item.update({ "data.attributes.ammunitionTypes": new_types }, null);
   }
 }

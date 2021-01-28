@@ -32,15 +32,15 @@
 <div class="d-flex flex-wrap justify-content-start statblock">
   {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.damage" path="attributes.damage.value" type="string"}}
   {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.rof" path="attributes.rof.value" type="number"}}
-  {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.hands_required" path="attributes.hands_required.value" type="number"}}
-  {{#if (eq data.attributes.is_ranged.value true)}}
+  {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.handsRequired" path="attributes.handsRequired.value" type="number"}}
+  {{#if (eq data.attributes.isRanged.value true)}}
     {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.magazine" path="attributes.magazine.max" type="number"}}
-    {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.reload_turns" path="attributes.reload_turns.value" type="number"}}
-    {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.autofire_max" path="attributes.autofire_max.value" type="number"}}
+    {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.turnsToReload" path="attributes.turnsToReload.value" type="number"}}
+    {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.weapon_stats.autofireMaxEffect" path="attributes.autofireMaxEffect.value" type="number"}}
   {{/if}}
   {{> "systems/cpred/templates/partials/attribute-input.html" root=item name="cpred.sheet.cost" path="attributes.cost.value" type="number"}}
-  {{> "systems/cpred/templates/partials/attribute-checkbox.html" root=item name="cpred.sheet.weapon_stats.is_concealable" path="attributes.is_concealable.value"}}
-  {{> "systems/cpred/templates/partials/attribute-checkbox.html" root=item name="cpred.sheet.weapon_stats.is_ranged" path="attributes.is_ranged.value"}}
+  {{> "systems/cpred/templates/partials/attribute-checkbox.html" root=item name="cpred.sheet.weapon_stats.isConcealable" path="attributes.isConcealable.value"}}
+  {{> "systems/cpred/templates/partials/attribute-checkbox.html" root=item name="cpred.sheet.weapon_stats.isRanged" path="attributes.isRanged.value"}}
   <div class="d-flex flex-grow-1 p-1">
     {{> "systems/cpred/templates/partials/attribute-select.html" root=item name="cpred.sheet.weapon_stats.type" path="attributes.type.value" choices=weaponTypes}}
   </div>
@@ -60,7 +60,7 @@
     </button>
   </div>
 
-  {{#each data.attributes.ammunition_types as |ammo|}}
+  {{#each data.attributes.ammunitionTypes as |ammo|}}
   <div class="p-1 border border-1">
     {{localize (join "." "cpred.sheet.ammunitionTypes" ammo)}}
     <a title="Remove Ammunition" data-action="removeAmmunitionType" data-value="{{ammo}}"><i class="fas fa-times"></i></a>
