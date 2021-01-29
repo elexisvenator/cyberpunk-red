@@ -25,14 +25,13 @@ import { registerSettings } from "./module/settings";
 import { preloadTemplates } from "./module/templates";
 import { getValueByPath, Path } from "./module/types/dot-notation";
 
-
 export interface WeaponAction {
   name: Path<LanguageItem>;
   roll: string;
   weaponId: string;
   count?: number;
   type: string;
-};
+}
 
 export interface ActionGroup {
   name: string;
@@ -276,9 +275,9 @@ Handlebars.registerHelper("weaponActions", function (item) {
       const entry: ActionGroup = {
         name: tag,
         formattedName: localize(`cpred.sheet.weaponTags.${tag}` as Path<LanguageItem>),
-        actions: tag in lookup ? lookup[tag] : []
+        actions: tag in lookup ? lookup[tag] : [],
       };
-      entry.actions.forEach((action) => action.weaponId = weaponItem.id);
+      entry.actions.forEach((action) => (action.weaponId = weaponItem.id));
       return tag in lookup ? entry : null;
     })
     .filter((entry) => entry !== null);
@@ -289,21 +288,19 @@ Handlebars.registerHelper("weaponActions", function (item) {
 Handlebars.registerHelper("rollType", function (action) {
   if (action.type === "damage") {
     return "rollDamage";
-  }
-  else if(action.type === "skillcheck") {
+  } else if (action.type === "skillcheck") {
     return "rollSkillcheck";
-  }
-  else {
+  } else {
     return "rollAction";
   }
 });
 
 Handlebars.registerHelper("validAmmoTypes", function (weapon) {
-  let ammoTypes = {};
+  const ammoTypes = {};
   weapon.actor.items
     .filter((item) => item.type === "ammunition")
     .filter((ammo) => weapon.data.data.attributes.ammunitionTypes.includes(ammo.data.data.attributes.type.value))
-    .forEach((item) => ammoTypes[item.name] = item.name);
+    .forEach((item) => (ammoTypes[item.name] = item.name));
   return ammoTypes;
 });
 

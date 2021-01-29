@@ -50,7 +50,8 @@ export abstract class Rollable {
 
     const rollModifier = this.actor.items
       .filter((item) => item.type === "effect")
-      .map((item) => Object.values(item.data.data.modifiers)).flat()
+      .map((item) => Object.values(item.data.data.modifiers))
+      .flat()
       .filter((item: Modifier) => item.path === "global.roll")
       .map((item: Modifier) => item.offset)
       .reduce((a, b) => a + b, 0);
@@ -64,7 +65,6 @@ export abstract class Rollable {
  * Performs a roll according to the provided formula only.
  */
 export class FormulaRollable extends Rollable {
-
   isDamage: boolean;
 
   /**
@@ -74,7 +74,7 @@ export class FormulaRollable extends Rollable {
    * @param actor Actor whose statistics are to be used for rolling
    * @param item Item whose statistics are to be used for rolling
    */
-  constructor(formula: string, actor: Actor, item?: Item, isDamage: boolean=false) {
+  constructor(formula: string, actor: Actor, item?: Item, isDamage = false) {
     super(formula, actor, item);
     this.isDamage = isDamage;
   }
@@ -90,8 +90,7 @@ export class FormulaRollable extends Rollable {
 
     if (this.isDamage) {
       this._executeRoll(new Roll(this.formula, rolldata));
-    }
-    else {
+    } else {
       this._executeRoll(new Roll(`${this.formula} + ${this._globalModifier()}`, rolldata));
     }
   }

@@ -1,11 +1,22 @@
 import { ActionHandlers, CpRedSheetOptions } from "../../entity";
 import { Tooltip } from "../../bootstrap/index.esm";
 import { ActorCpRed } from "../actor";
-import { ItemCpRed } from "../../item/item"
+import { ItemCpRed } from "../../item/item";
 
 // this is the model that gets sent to the handlebars template
 // If you want to use some computed values, declare them here and populate them in getData()
 export type ActorSheetDataCpRed<DataType extends ActorDataCpRed = ActorDataCpRed> = ActorSheetData<DataType>;
+
+interface EquippedArmor {
+  armorBody: {
+    value: number;
+    max: number;
+  };
+  armorHead: {
+    value: number;
+    max: number;
+  };
+}
 
 export default class ActorSheetCpRed<DataType extends ActorDataCpRed, ActorType extends ActorCpRed<DataType>> extends ActorSheet<
   DataType,
@@ -66,10 +77,10 @@ export default class ActorSheetCpRed<DataType extends ActorDataCpRed, ActorType 
     }
   }
 
-  protected _getArmor() {
+  protected _getArmor(): EquippedArmor {
     const armorList = this.actor.items
-      .map((item) => item)
       .filter((item) => item.type === "armor")
+      .map((item) => item as ItemCpRed<ItemDataCpRedArmor>)
       .filter((item) => item.data.data.attributes.isEquipped.value === true);
     const bodyArmor = armorList.filter((item) => item.data.data.attributes.location.value === "body");
     const headArmor = armorList.filter((item) => item.data.data.attributes.location.value === "head");
@@ -82,22 +93,19 @@ export default class ActorSheetCpRed<DataType extends ActorDataCpRed, ActorType 
       armorHead: {
         value: Math.max(...headArmor.map((item) => item.data.data.attributes.stoppingPower.value), 0),
         max: Math.max(...headArmor.map((item) => item.data.data.attributes.stoppingPower.max), 0),
-      }
+      },
     };
   }
 
-  protected _getEffects() {
-    return this.actor.items
-      .map((item) => item)
-      .filter((item) => item.type === "effect");
+  protected _getEffects(): ItemCpRed<ItemDataCpRedEffect>[] {
+    return this.actor.items.filter((item) => item.type === "effect");
   }
 
   protected _getAmmunitionByName(name: string): ItemCpRed<ItemDataCpRedAmmunition> | null {
-    const items = this.actor.items.filter((item) => item.name == name);
+    const items = this.actor.items.filter((item) => item.type == "ammunition" && item.name == name) as ItemCpRed<ItemDataCpRedAmmunition>[];
     if (items.length > 0) {
       return items[0];
-    }
-    else {
+    } else {
       throw Error(`Unable to find ammunition with name "${name}`);
     }
   }

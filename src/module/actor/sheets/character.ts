@@ -6,15 +6,23 @@ import { ActionHandlers } from "../../entity";
 import { LanguageItem, localize } from "../../language";
 import { Path } from "../../types/dot-notation";
 import { FormulaRollable } from "../../rollable";
-import { Cpred } from "../../types/language-types";
 import { WeaponAction } from "../../../cpred";
-import { ammunitionTypes } from "../../static_data";
-import ItemSheetCpRedAmmunition from "../../item/sheets/ammunition";
 import { characterDamageSources, characterModifierList, ModifierEntry } from "../../static_data";
 
-type CharacterAction = "removeItem" | "showItem" | "rollAction" | "rollWeapon" |
-  "addSubSkill" | "removeSubSkill" | "equipToggle" | "applyDamage" | "toggleModifier" |
-  "reloadWeapon" | "loadAmmunition" | "rollDeathSave" | "resetDeathSavePenalty";
+type CharacterAction =
+  | "removeItem"
+  | "showItem"
+  | "rollAction"
+  | "rollWeapon"
+  | "addSubSkill"
+  | "removeSubSkill"
+  | "equipToggle"
+  | "applyDamage"
+  | "toggleModifier"
+  | "reloadWeapon"
+  | "loadAmmunition"
+  | "rollDeathSave"
+  | "resetDeathSavePenalty";
 
 interface SkillBlock {
   name: string;
@@ -44,8 +52,8 @@ interface ActorSheetDataCpRedCharacter extends ActorSheetDataCpRed<ActorDataCpRe
   skillGroups: SkillGroup[];
   trainedSkills: SkillBlock[];
   modifierBlock: ModifierBlock[];
-  damageSources: { [key: string]: string; };
-  modifierList: { [key: string]: ModifierEntry; };
+  damageSources: { [key: string]: string };
+  modifierList: { [key: string]: ModifierEntry };
 }
 
 export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataCpRedCharacter, ActorCpRed<ActorDataCpRedCharacter>> {
@@ -58,12 +66,12 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
     addSubSkill: (sheet, _action, value) => sheet.addSubSkill(value),
     removeSubSkill: (sheet, _action, value) => sheet.removeSubSkill(value),
     equipToggle: (sheet, _action, value) => sheet.equipToggle(value),
-    applyDamage: (sheet, _action, _value) => sheet.applyDamage(),
+    applyDamage: (sheet) => sheet.applyDamage(),
     toggleModifier: (sheet, _action, value) => sheet.toggleModifier(value),
     reloadWeapon: (sheet, _action, value) => sheet.reloadWeapon(value),
     loadAmmunition: (sheet, _action, value) => sheet.loadAmmunition(value),
-    rollDeathSave: (sheet, _action, _value) => sheet.rollDeathSave(),
-    resetDeathSavePenalty: (sheet, _action, _value) => sheet.resetDeathSavePenalty(),
+    rollDeathSave: (sheet) => sheet.rollDeathSave(),
+    resetDeathSavePenalty: (sheet) => sheet.resetDeathSavePenalty(),
   };
 
   constructor(object: ActorCpRed<ActorDataCpRedCharacter>, options: FormApplicationOptions) {
@@ -163,15 +171,12 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
     const modifierBlock = Object.values(accumulatedModifiers) as ModifierBlock[];
 
     // Global modifier list for the combat tab
-    const effectNames = parentData.items
-      .filter((item) => item.type === "effect") 
-      .map((item) => item.name);
+    const effectNames = parentData.items.filter((item) => item.type === "effect").map((item) => item.name);
     const modifierList2 = {};
-    Object.values(characterModifierList)
-      .forEach((mod) => {
-        modifierList2[mod.label] = mod;
-        modifierList2[mod.label].active = effectNames.includes(`cpred.sheet.modifiers.${mod.label}`);
-      });
+    Object.values(characterModifierList).forEach((mod) => {
+      modifierList2[mod.label] = mod;
+      modifierList2[mod.label].active = effectNames.includes(`cpred.sheet.modifiers.${mod.label}`);
+    });
 
     return {
       ...parentData,
@@ -186,35 +191,40 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
 
   public activateListeners(html: JQuery): void {
     super.activateListeners(html);
-
-    const data = this.getData().data;
-
     html.find("input.item-mod").on("change", (event) => {
       event.preventDefault();
 
       // Modify item
       const dataset = event.currentTarget.dataset;
-      const element = ((event as unknown) as HTMLFormElement);
-      const changeData = {}
-      changeData[dataset.path] = element.currentTarget.valueAsNumber;;
+      const element = (event as unknown) as HTMLFormElement;
+      const changeData = {};
+      changeData[dataset.path] = element.currentTarget.valueAsNumber;
       this.actor.items.get(dataset.id).update(changeData, null);
     });
   }
 
-  async _onDropItemCreate(itemData) {
+  async _onDropItemCreate(itemData: ItemData<ItemDataCpRed>): Promise<void> {
     // If the item being added is ammunition and we already have some of it do not create
     // another item but copy the amount to the already existing item to ensure only one
     // instance of any type of ammunition exists.
     if (itemData.type === "ammunition") {
-      const hasIdentical = this.actor.items.filter((item) => item.name === itemData.name).length > 0;
+      const newAmmunition = itemData as ItemData<ItemDataCpRedAmmunition>;
+      const hasIdentical = this.actor.items.filter((item) => item.name === newAmmunition.name).length > 0;
       if (hasIdentical) {
-        const ammunitionItem = this._getAmmunitionByName(itemData.name);
-        await ammunitionItem.update({"data.attributes.count.value": ammunitionItem.data.data.attributes.count.value + itemData.data.attributes.count.value}, null);
+        const ammunitionItem = this._getAmmunitionByName(newAmmunition.name);
+        await ammunitionItem.update(
+          {
+            "data.attributes.count.value": ammunitionItem.data.data.attributes.count.value + newAmmunition.data.attributes.count.value,
+          },
+          null
+        );
         return;
       }
     }
 
-    return this.actor.createEmbeddedEntity("OwnedItem", itemData);
+    await this.actor.createEmbeddedEntity("OwnedItem", itemData);
+
+    return;
   }
 
   public async addSubSkill(skill: string): Promise<void> {
@@ -296,10 +306,7 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
       return;
     }
 
-    await item.update(
-      {"data.attributes.isEquipped.value": !item.data.data.attributes.isEquipped.value},
-      null
-    );
+    await item.update({ "data.attributes.isEquipped.value": !item.data.data.attributes.isEquipped.value }, null);
   }
 
   public async applyDamage(): Promise<void> {
@@ -320,8 +327,7 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
       } else {
         finalDamage = 0;
       }
-    }
-    else if (armorTreatment == "halfArmor") {
+    } else if (armorTreatment == "halfArmor") {
       const armorValue = Math.floor(data.attributes.armorBody.value / 2);
       if (armorValue < finalDamage) {
         finalDamage -= armorValue;
@@ -332,7 +338,7 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
     }
 
     // Update character hitpoints
-    await this.actor.update({"data.attributes.hitPoints.value": data.attributes.hitPoints.value - finalDamage});
+    await this.actor.update({ "data.attributes.hitPoints.value": data.attributes.hitPoints.value - finalDamage });
 
     // Ablate all equipped armor
     parentData.items
@@ -340,8 +346,8 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
       .filter((item) => item.type === "armor")
       .filter((item) => item.data.attributes.isEquipped.value === true)
       .forEach(async (item) => {
-        const ownedItem = this.actor.items.get(item._id, {strict: true});
-        await ownedItem.update({"data.attributes.stoppingPower.value": item.data.attributes.stoppingPower.value - armorDamage}, {});
+        const ownedItem = this.actor.items.get(item._id, { strict: true });
+        await ownedItem.update({ "data.attributes.stoppingPower.value": item.data.attributes.stoppingPower.value - armorDamage }, {});
       });
   }
 
@@ -355,13 +361,12 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
         if (effect.name == modifierPath) {
           await this.actor.deleteOwnedItem(effect._id);
         }
-      })
-    }
-    else {
+      });
+    } else {
       await this.actor.createOwnedItem({
         name: modifierPath,
         type: "effect",
-        data: { modifiers: {"0": {"path": "global.roll", "offset": characterModifierList[modifier].modifier}}}
+        data: { modifiers: { "0": { path: "global.roll", offset: characterModifierList[modifier].modifier } } },
       });
     }
   }
@@ -384,38 +389,35 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
     }
 
     // Update ammunition amount
-    await ammunitionItem.update({"data.attributes.count.value": ammoAvailable - reloadAmount}, null);
+    await ammunitionItem.update({ "data.attributes.count.value": ammoAvailable - reloadAmount }, null);
 
     // Update magazine count
-    await weapon.update({"data.attributes.magazine.value": magazineValue + reloadAmount}, null);
+    await weapon.update({ "data.attributes.magazine.value": magazineValue + reloadAmount }, null);
   }
 
   public async rollWeapon(actionData: WeaponAction): Promise<void> {
     if (actionData.type === "attack") {
-      // Handle attacks which specify the number of buullets being fired
-      if (actionData.hasOwnProperty("count") && actionData.count > 0)
-      {
-        const weapon = this.actor.items.get(actionData.weaponId);
+      // Handle attacks which specify the number of bullets being fired
+      if (actionData.count > 0) {
+        const weapon = this.actor.items.get(actionData.weaponId) as ItemCpRed<ItemDataCpRedWeapon>;
         const bulletCount = weapon.data.data.attributes.magazine.value;
         if (bulletCount < actionData.count) {
           const actor = this.actor;
-          const msg = ChatMessage.create({
+          await ChatMessage.create({
             user: game.user._id,
             speaker: ChatMessage.getSpeaker({ actor }),
-            content: `Attempting to use "${localize(actionData.name)}" with insufficient bullets`
+            content: `Attempting to use "${localize(actionData.name)}" with insufficient bullets`,
           });
-        }
-        else {
+        } else {
           new FormulaRollable(actionData.roll, this.actor, null, false).roll();
-          await weapon.update({"data.attributes.magazine.value": bulletCount - actionData.count}, null);
+          await weapon.update({ "data.attributes.magazine.value": bulletCount - actionData.count }, null);
         }
       }
       // Handle all other types of attacks
       else {
         new FormulaRollable(actionData.roll, this.actor, null, false).roll();
       }
-    }
-    else if (actionData.type === "damage") {
+    } else if (actionData.type === "damage") {
       new FormulaRollable(actionData.roll, this.actor, null, true).roll();
     }
   }
@@ -425,24 +427,32 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
 
     try {
       const currentAmmunitionItem = this._getAmmunitionByName(weapon.data.data.attributes.loadedAmmunition.value);
-      await currentAmmunitionItem.update({"data.attributes.count.value": currentAmmunitionItem.data.data.attributes.count.value + weapon.data.data.attributes.magazine.value}, null);
+      await currentAmmunitionItem.update(
+        {
+          "data.attributes.count.value":
+            currentAmmunitionItem.data.data.attributes.count.value + weapon.data.data.attributes.magazine.value,
+        },
+        null
+      );
+    } catch (error) {
+      console.log(error);
     }
-    catch (error) {}
-    await weapon.update({
+    await weapon.update(
+      {
         "data.attributes.loadedAmmunition.value": this.form["ammoSelector"].value,
         "data.attributes.magazine.value": 0,
       },
-      null)
-    ;
+      null
+    );
     this.reloadWeapon(itemId);
   }
 
   public async rollDeathSave(): Promise<void> {
     await new FormulaRollable("1d10 + @attributes.deathSavePenalty.value", this.actor).roll();
-    await this.actor.update({"data.attributes.deathSavePenalty.value": this.actor.data.data.attributes.deathSavePenalty.value + 1});
+    await this.actor.update({ "data.attributes.deathSavePenalty.value": this.actor.data.data.attributes.deathSavePenalty.value + 1 });
   }
 
   public async resetDeathSavePenalty(): Promise<void> {
-    await this.actor.update({"data.attributes.deathSavePenalty.value": 0});
+    await this.actor.update({ "data.attributes.deathSavePenalty.value": 0 });
   }
 }

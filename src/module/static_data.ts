@@ -123,15 +123,15 @@ export const armorLocationList: StringDictionary = {
 };
 
 export const ammunitionTypeList: StringDictionary = {
-  "mediumPistol": "cpred.sheet.ammunitionSizeTypes.mediumPistol",
-  "heavyPistol": "cpred.sheet.ammunitionSizeTypes.heavyPistol",
-  "veryHeavyPistol": "cpred.sheet.ammunitionSizeTypes.veryHeavyPistol",
-  "slug": "cpred.sheet.ammunitionSizeTypes.slug",
-  "rifle": "cpred.sheet.ammunitionSizeTypes.rifle",
-  "shotgunShell": "cpred.sheet.ammunitionSizeTypes.shotgunShell",
-  "arrow": "cpred.sheet.ammunitionSizeTypes.arrow",
-  "grenade": "cpred.sheet.ammunitionSizeTypes.grenade",
-  "rocket": "cpred.sheet.ammunitionSizeTypes.rocket"
+  mediumPistol: "cpred.sheet.ammunitionSizeTypes.mediumPistol",
+  heavyPistol: "cpred.sheet.ammunitionSizeTypes.heavyPistol",
+  veryHeavyPistol: "cpred.sheet.ammunitionSizeTypes.veryHeavyPistol",
+  slug: "cpred.sheet.ammunitionSizeTypes.slug",
+  rifle: "cpred.sheet.ammunitionSizeTypes.rifle",
+  shotgunShell: "cpred.sheet.ammunitionSizeTypes.shotgunShell",
+  arrow: "cpred.sheet.ammunitionSizeTypes.arrow",
+  grenade: "cpred.sheet.ammunitionSizeTypes.grenade",
+  rocket: "cpred.sheet.ammunitionSizeTypes.rocket",
 };
 
 export const characterDamageSources: StringDictionary = {
@@ -144,19 +144,19 @@ export interface ModifierEntry {
   label: string;
   modifier: number;
   active: boolean;
-};
+}
 
 export const characterModifierList: Dictionary<ModifierEntry> = {
-  seriousInjury: {label: "seriousInjury", modifier: -2, active: false},
-  mortalInjury: {label: "mortalInjury", modifier: -4, active: false},
-  underStress: {label: "underStress", modifier: -2, active: false},
-  neverDoneBefore: {label: "neverDoneBefore", modifier: -1, active: false},
-  lowLight: {label: "lowLight", modifier: -1, active: false},
-  obscuredVision: {label: "obscuredVision", modifier: -4, active: false},
-  complexTask: {label: "complexTask", modifier: -2, active: false},
-  wrongTools: {label: "wrongTools", modifier: -2, active: false},
-  drunkDrugged: {label: "drunkDrugged", modifier: -4, active: false},
-  attemptingSecretly: {label: "attemptingSecretly", modifier: -4, active: false},
-  lostFacedown: {label: "lostFacedown", modifier: -2, active: false},
-  spendExtraTime: {label: "spendExtraTime", modifier: 1, active: false}
+  seriousInjury: { label: "seriousInjury", modifier: -2, active: false },
+  mortalInjury: { label: "mortalInjury", modifier: -4, active: false },
+  underStress: { label: "underStress", modifier: -2, active: false },
+  neverDoneBefore: { label: "neverDoneBefore", modifier: -1, active: false },
+  lowLight: { label: "lowLight", modifier: -1, active: false },
+  obscuredVision: { label: "obscuredVision", modifier: -4, active: false },
+  complexTask: { label: "complexTask", modifier: -2, active: false },
+  wrongTools: { label: "wrongTools", modifier: -2, active: false },
+  drunkDrugged: { label: "drunkDrugged", modifier: -4, active: false },
+  attemptingSecretly: { label: "attemptingSecretly", modifier: -4, active: false },
+  lostFacedown: { label: "lostFacedown", modifier: -2, active: false },
+  spendExtraTime: { label: "spendExtraTime", modifier: 1, active: false },
 };

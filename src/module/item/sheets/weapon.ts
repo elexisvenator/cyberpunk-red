@@ -3,7 +3,7 @@ import { ItemCpRed } from "../../item/item";
 import ItemSheetCpRed from "./base";
 import { localize } from "../../language";
 import { ActionHandlers } from "../../entity";
-import { weaponSkillList, weaponTypeList, weaponTagList, ammunitionTypes } from "../../static_data"
+import { weaponSkillList, weaponTypeList, weaponTagList, ammunitionTypes } from "../../static_data";
 
 type WeaponAction = "addTag" | "removeTag" | "addAmmunitionType" | "removeAmmunitionType";
 
@@ -19,12 +19,15 @@ interface ItemSheetDataCpRedWeapon extends ItemSheetData<ItemDataCpRedWeapon> {
 
 export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWeapon, ItemCpRed<ItemDataCpRedWeapon>> {
   private static actionHandlers: ActionHandlers<ItemSheetCpRedWeapon, WeaponAction> = {
-    addTag: async (sheet, _action, _value) => sheet.addTag(),
+    addTag: async (sheet) => sheet.addTag(),
     removeTag: async (sheet, _action, data) =>
       sheet.item.update({ "data.tags": sheet.item.data.data.tags.filter((tag) => tag !== data) }, null),
-    addAmmunitionType: async (sheet, _action, _value) => sheet.addAmmunitionType(),
+    addAmmunitionType: async (sheet) => sheet.addAmmunitionType(),
     removeAmmunitionType: (sheet, _action, data) =>
-      sheet.item.update({ "data.attributes.ammunitionTypes": sheet.item.data.data.attributes.ammunitionTypes.filter((entry) => entry !== data) }, null),
+      sheet.item.update(
+        { "data.attributes.ammunitionTypes": sheet.item.data.data.attributes.ammunitionTypes.filter((entry) => entry !== data) },
+        null
+      ),
   };
 
   constructor(object: ItemCpRed<ItemDataCpRedWeapon>, options: FormApplicationOptions) {

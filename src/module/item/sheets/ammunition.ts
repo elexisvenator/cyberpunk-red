@@ -5,7 +5,7 @@ import { localize } from "../../language";
 import { ActionHandlers } from "../../entity";
 import { ammunitionTypeList } from "../../static_data";
 
-type AmmunitionAction = "";
+// type AmmunitionAction = "";
 
 // This is the model that gets sent to the handlebars template. If you want
 // to use some computed values, declare them here and populate them in getData().
@@ -15,9 +15,7 @@ interface ItemSheetDataCpRedAmmunition extends ItemSheetData<ItemDataCpRedAmmuni
 }
 
 export default class ItemSheetCpRedAmmunition extends ItemSheetCpRed<ItemDataCpRedAmmunition, ItemCpRed<ItemDataCpRedAmmunition>> {
-  private static actionHandlers: ActionHandlers<ItemSheetCpRedAmmunition, AmmunitionAction> = {
-    "": async () => {},
-  };
+  private static actionHandlers: ActionHandlers<ItemSheetCpRedAmmunition, undefined> = {};
 
   constructor(object: ItemCpRed<ItemDataCpRedAmmunition>, options: FormApplicationOptions) {
     super(object, {
