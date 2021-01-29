@@ -392,6 +392,7 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
 
   public async rollWeapon(actionData: WeaponAction): Promise<void> {
     if (actionData.type === "attack") {
+      // Handle attacks which specify the number of buullets being fired
       if (actionData.hasOwnProperty("count") && actionData.count > 0)
       {
         const weapon = this.actor.items.get(actionData.weaponId);
@@ -409,8 +410,12 @@ export default class ActorSheetCpRedCharacter extends ActorSheetCpRed<ActorDataC
           await weapon.update({"data.attributes.magazine.value": bulletCount - actionData.count}, null);
         }
       }
+      // Handle all other types of attacks
+      else {
+        new FormulaRollable(actionData.roll, this.actor, null, false).roll();
+      }
     }
-    else if (actionData.name === "cpred.sheet.common.damage") {
+    else if (actionData.type === "damage") {
       new FormulaRollable(actionData.roll, this.actor, null, true).roll();
     }
   }
