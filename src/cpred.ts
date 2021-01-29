@@ -235,7 +235,7 @@ Handlebars.registerHelper("weaponActions", function (item) {
     bayonet: [
       {
         name: "cpred.sheet.common.attack",
-        roll: `1d10cp + @stats.dex.value + @skills.melee_weapon.level`,
+        roll: `1d10cp + @stats.dex.value + @skills.meleeWeapon.level`,
         type: "attack",
       },
       {
@@ -247,7 +247,7 @@ Handlebars.registerHelper("weaponActions", function (item) {
     underbarrel_grenade_launcher: [
       {
         name: "cpred.sheet.common.attack",
-        roll: `1d10cp + @stats.ref.value + @skills.heavy_weapons.level`,
+        roll: `1d10cp + @stats.ref.value + @skills.heavyWeapons.level`,
         type: "attack",
       },
       {
@@ -302,7 +302,7 @@ Handlebars.registerHelper("validAmmoTypes", function (weapon) {
   let ammoTypes = {};
   weapon.actor.items
     .filter((item) => item.type === "ammunition")
-    .filter((ammo) => weapon.data.data.attributes.ammunition_types.includes(ammo.data.data.attributes.type.value))
+    .filter((ammo) => weapon.data.data.attributes.ammunitionTypes.includes(ammo.data.data.attributes.type.value))
     .forEach((item) => ammoTypes[item.name] = item.name);
   return ammoTypes;
 });

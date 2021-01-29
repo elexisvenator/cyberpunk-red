@@ -328,18 +328,18 @@ export interface SkillGroups {
 export interface Skills {
   accounting: string
   acting: string
-  air_vehicle_tech: string
-  animal_handling: string
+  airVehicleTech: string
+  animalHandling: string
   archery: string
   athletics: string
   autofire: string
-  basic_tech: string
+  basicTech: string
   brawling: string
   bribery: string
   bureaucracy: string
   business: string
   composition: string
-  conceal_object: string
+  concealObject: string
   concentration: string
   contortionist: string
   conversation: string
@@ -349,41 +349,41 @@ export interface Skills {
   dance: string
   deduction: string
   demolitions: string
-  drive_air: string
-  drive_land: string
-  drive_sea: string
+  driveAir: string
+  driveLand: string
+  driveSea: string
   education: string
-  electronics_security_tech: string
+  electronicsSecurityTech: string
   endurance: string
   evasion: string
-  first_aid: string
+  firstAid: string
   forgery: string
   gamble: string
   handgun: string
-  heavy_weapons: string
-  human_perception: string
+  heavyWeapons: string
+  humanPerception: string
   interrogation: string
-  land_vehicle_tech: string
+  landVehicleTech: string
   language: string
-  library_search: string
-  lip_reading: string
-  local_expert: string
-  martial_arts: string
+  librarySearch: string
+  lipReading: string
+  localExpert: string
+  martialArts: string
   melee_weapon: string
-  paint_draw_sculpt: string
+  paintDrawSculpt: string
   paramedic: string
   perception: string
-  personal_grooming: string
+  personalGrooming: string
   persuasion: string
-  photography_film: string
-  pick_lock: string
-  pick_pocket: string
-  play_instrument: string
-  resist_torture: string
+  photographyFilm: string
+  pickLock: string
+  pickPocket: string
+  playInstrument: string
+  resistTorture: string
   riding: string
   science: string
-  sea_vehicle_tech: string
-  shoulder_arms: string
+  seaVehicleTech: string
+  shoulderArms: string
   stealth: string
   streetwise: string
   tactics: string

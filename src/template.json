@@ -189,7 +189,7 @@
       },
       "skills": {
         "skills": {
-          "conceal_object": {
+          "concealObject": {
             "group": "awareness",
             "stat": "int",
             "mandatory": false,
@@ -205,7 +205,7 @@
             "subSkills": null,
             "level": 2
           },
-          "lip_reading": {
+          "lipReading": {
             "group": "awareness",
             "stat": "int",
             "mandatory": false,
@@ -261,7 +261,7 @@
             "subSkills": null,
             "level": 0
           },
-          "resist_torture": {
+          "resistTorture": {
             "group": "body",
             "stat": "will",
             "mandatory": false,
@@ -277,7 +277,7 @@
             "subSkills": null,
             "level": 2
           },
-          "drive_air": {
+          "driveAir": {
             "group": "control",
             "stat": "ref",
             "mandatory": false,
@@ -285,7 +285,7 @@
             "subSkills": null,
             "level": 0
           },
-          "drive_land": {
+          "driveLand": {
             "group": "control",
             "stat": "ref",
             "mandatory": false,
@@ -293,7 +293,7 @@
             "subSkills": null,
             "level": 0
           },
-          "drive_sea": {
+          "driveSea": {
             "group": "control",
             "stat": "ref",
             "mandatory": false,
@@ -317,7 +317,7 @@
             "subSkills": null,
             "level": 0
           },
-          "animal_handling": {
+          "animalHandling": {
             "group": "education",
             "stat": "int",
             "mandatory": false,
@@ -404,7 +404,7 @@
             },
             "level": null
           },
-          "library_search": {
+          "librarySearch": {
             "group": "education",
             "stat": "int",
             "mandatory": false,
@@ -412,7 +412,7 @@
             "subSkills": null,
             "level": 0
           },
-          "local_expert": {
+          "localExpert": {
             "group": "education",
             "stat": "int",
             "mandatory": false,
@@ -467,7 +467,7 @@
             "subSkills": null,
             "level": 2
           },
-          "martial_arts": {
+          "martialArts": {
             "group": "fighting",
             "stat": "dex",
             "mandatory": false,
@@ -475,7 +475,7 @@
             "subSkills": null,
             "level": 0
           },
-          "melee_weapon": {
+          "meleeWeapon": {
             "group": "fighting",
             "stat": "dex",
             "mandatory": false,
@@ -491,7 +491,7 @@
             "subSkills": null,
             "level": 0
           },
-          "play_instrument": {
+          "playInstrument": {
             "group": "performance",
             "stat": "tech",
             "mandatory": false,
@@ -523,7 +523,7 @@
             "subSkills": null,
             "level": 0
           },
-          "heavy_weapons": {
+          "heavyWeapons": {
             "group": "ranged",
             "stat": "ref",
             "mandatory": false,
@@ -531,7 +531,7 @@
             "subSkills": null,
             "level": 0
           },
-          "shoulder_arms": {
+          "shoulderArms": {
             "group": "ranged",
             "stat": "ref",
             "mandatory": false,
@@ -555,7 +555,7 @@
             "subSkills": null,
             "level": 2
           },
-          "human_perception": {
+          "humanPerception": {
             "group": "social",
             "stat": "emp",
             "mandatory": true,
@@ -571,7 +571,7 @@
             "subSkills": null,
             "level": 0
           },
-          "personal_grooming": {
+          "personalGrooming": {
             "group": "social",
             "stat": "cool",
             "mandatory": false,
@@ -611,7 +611,7 @@
             "subSkills": null,
             "level": 0
           },
-          "air_vehicle_tech": {
+          "airVehicleTech": {
             "group": "technique",
             "stat": "tech",
             "mandatory": false,
@@ -619,7 +619,7 @@
             "subSkills": null,
             "level": 0
           },
-          "basic_tech": {
+          "basicTech": {
             "group": "technique",
             "stat": "tech",
             "mandatory": false,
@@ -643,7 +643,7 @@
             "subSkills": null,
             "level": 0
           },
-          "electronics_security_tech": {
+          "electronicsSecurityTech": {
             "group": "technique",
             "stat": "tech",
             "mandatory": false,
@@ -651,7 +651,7 @@
             "subSkills": null,
             "level": 0
           },
-          "first_aid": {
+          "firstAid": {
             "group": "technique",
             "stat": "tech",
             "mandatory": true,
@@ -667,7 +667,7 @@
             "subSkills": null,
             "level": 0
           },
-          "land_vehicle_tech": {
+          "landVehicleTech": {
             "group": "technique",
             "stat": "tech",
             "mandatory": false,
@@ -675,7 +675,7 @@
             "subSkills": null,
             "level": 0
           },
-          "paint_draw_sculpt": {
+          "paintDrawSculpt": {
             "group": "technique",
             "stat": "tech",
             "mandatory": false,
@@ -691,7 +691,7 @@
             "subSkills": null,
             "level": 0
           },
-          "photography_film": {
+          "photographyFilm": {
             "group": "technique",
             "stat": "tech",
             "mandatory": false,
@@ -699,7 +699,7 @@
             "subSkills": null,
             "level": 0
           },
-          "pick_lock": {
+          "pickLock": {
             "group": "technique",
             "stat": "tech",
             "mandatory": false,
@@ -707,7 +707,7 @@
             "subSkills": null,
             "level": 0
           },
-          "pick_pocket": {
+          "pickPocket": {
             "group": "technique",
             "stat": "tech",
             "mandatory": false,
@@ -715,7 +715,7 @@
             "subSkills": null,
             "level": 0
           },
-          "sea_vehicle_tech": {
+          "seaVehicleTech": {
             "group": "technique",
             "stat": "tech",
             "mandatory": false,

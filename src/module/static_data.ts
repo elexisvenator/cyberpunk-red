@@ -1,7 +1,7 @@
 export const weaponSkillList: StringDictionary = {
   brawling: "Brawling",
-  martial_arts: "Martial Arts",
-  melee_weapon: "Melee Weapon",
+  martialArts: "Martial Arts",
+  meleeWeapon: "Melee Weapon",
   archery: "Archery",
   autofire: "Autofire",
   handgun: "Handgun",
@@ -71,12 +71,12 @@ export const effectStatList: StringDictionary = {
 export const effectSkillList: StringDictionary = {
   accounting: "cpred.skills.accounting",
   acting: "cpred.skills.acting",
-  air_vehicle_tech: "cpred.skills.air_vehicle_tech",
-  animal_handling: "cpred.skills.animal_handling",
+  airVehicleTech: "cpred.skills.airVehicleTech",
+  animalHandling: "cpred.skills.animalHandling",
   archery: "cpred.skills.archery",
   athletics: "cpred.skills.athletics",
   autofire: "cpred.skills.autofire",
-  basic_tech: "cpred.skills.basic_tech",
+  basicTech: "cpred.skills.basicTech",
   brawling: "cpred.skills.brawling",
 };
 
