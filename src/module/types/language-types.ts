@@ -35,8 +35,8 @@ export interface Sheet {
   description: string
   slots: string
   effect: string
-  weapon_type: string
-  combat_skill: string
+  weaponType: string
+  combatSkill: string
   reload: string
   health: string
   luck: string
@@ -44,23 +44,23 @@ export interface Sheet {
   common: Common
   stats: Stats
   roles: Roles
-  role_abilities: RoleAbilities
-  role_actions: RoleActions
+  roleAbilities: RoleAbilities
+  roleActions: RoleActions
   iceactions: Iceactions
   selecticeclass: string
   iceclasses: Iceclasses
-  weapon_actions: WeaponActions
-  select_weapon_type: string
-  select_weapon_skill: string
-  weapon_types: WeaponTypes
-  weapon_stats: WeaponStats
+  weaponActions: WeaponActions
+  selectWeaponType: string
+  selectWeaponSkill: string
+  weaponTypes: WeaponTypes
+  weaponStats: WeaponStats
   weaponTags: WeaponTags
   ammunitionTypes: AmmunitionTypes
-  cyberware_stats: CyberwareStats
-  program_types: ProgramTypes
-  armor_types: ArmorTypes
-  armor_locations: ArmorLocations
-  ammunition_size_types: AmmunitionSizeTypes
+  cyberwareStats: CyberwareStats
+  programTypes: ProgramTypes
+  armorTypes: ArmorTypes
+  armorLocations: ArmorLocations
+  ammunitionSizeTypes: AmmunitionSizeTypes
   modifiers: Modifiers
 }
 
@@ -68,27 +68,27 @@ export interface Labels {
   armorBody: string
   armorHead: string
   programType: string
-  armor_type: string
-  role_actions: string
+  armorType: string
+  roleActions: string
   weapons: string
   programs: string
   skills: string
   armor: string
-  stopping_power: string
+  stoppingPower: string
   cost: string
   description: string
   effect: string
-  add_stat_modifier: string
-  full_armor: string
-  half_armor: string
-  bypass_armor: string
+  addStatModifier: string
+  fullArmor: string
+  halfArmor: string
+  bypassArmor: string
   ammunition: string
-  ammunition_size_type: string
+  ammunitionSizeType: string
   count: string
   modifiers: string
   money: string
-  improvement_points: string
-  death_save_penalty: string
+  improvementPoints: string
+  deathSavePenalty: string
 }
 
 export interface Common {
@@ -151,23 +151,23 @@ export interface RoleAbilities {
 }
 
 export interface RoleActions {
-  jack_in_out: string
-  activate_deactivate_program: string
+  jackInOut: string
+  activateDeactivateProgram: string
   scanner: string
   backdoor: string
   cloak: string
   control: string
-  eye_dee: string
+  eyeDee: string
   pathfinder: string
   slide: string
   virus: string
-  zap_attack: string
-  zap_damage: string
-  impact_single_fan: string
-  impact_small_group: string
-  impact_huge_group: string
-  call_backup: string
-  backup_turns: string
+  zapAttack: string
+  zapDamage: string
+  impactSingleFan: string
+  impactSmallGroup: string
+  impactHugeGroup: string
+  callBackup: string
+  backupTurns: string
   haggle: string
 }
 
@@ -184,11 +184,11 @@ export interface Iceclasses {
 }
 
 export interface WeaponActions {
-  aimed_shot: string
-  single_shot: string
+  aimedShot: string
+  singleShot: string
   autofire: string
-  suppressive_fire: string
-  shotgun_shell: string
+  suppressiveFire: string
+  shotgunShell: string
   explosive: string
   damage: string
 }
@@ -197,12 +197,12 @@ export interface WeaponTypes {
   pistol: string
   smg: string
   shotgun: string
-  assault_rifle: string
-  sniper_rifle: string
-  bow_crossbow: string
-  grenade_launcher: string
-  rocket_launcher: string
-  melee_weapon: string
+  assaultRifle: string
+  sniperRifle: string
+  bowCrossbow: string
+  grenadeLauncher: string
+  rocketLauncher: string
+  meleeWeapon: string
 }
 
 export interface WeaponStats {
@@ -213,36 +213,36 @@ export interface WeaponStats {
   handsRequired: string
   turnsToReload: string
   autofireMaxEffect: string
-  ammunition_type: string
+  ammunitionType: string
   magazine: string
   isRanged: string
   isConcealable: string
 }
 
 export interface WeaponTags {
-  single_shot: string
-  aimed_shot: string
+  singleShot: string
+  aimedShot: string
   autofire: string
-  suppressive_fire: string
-  shotgun_shell: string
+  suppressiveFire: string
+  shotgunShell: string
   explosive: string
   throwable: string
   bayonet: string
-  drum_magazine: string
-  extended_magazine: string
-  underbarrel_grenade_launcher: string
-  infrared_nightvision_scope: string
-  underbarrel_shotgun: string
-  smargun_link: string
-  sniping_scope: string
+  drumMagazine: string
+  extendedMagazine: string
+  underbarrelGrenadeLauncher: string
+  infraredNightvisionScope: string
+  underbarrelShotgun: string
+  smargunLink: string
+  snipingScope: string
 }
 
 export interface AmmunitionTypes {
-  medium_pistol: string
-  heavy_pistol: string
-  very_heavy_pistol: string
+  mediumPistol: string
+  heavyPistol: string
+  veryHeavyPistol: string
   slug: string
-  shotgun_shell: string
+  shotgunShell: string
   rifle: string
   arrow: string
   grenade: string
@@ -268,10 +268,10 @@ export interface ProgramTypes {
 export interface ArmorTypes {
   leathers: string
   kevlar: string
-  light_armorjack: string
-  bodyweight_suit: string
-  medium_armorjack: string
-  heavy_armorjack: string
+  lightArmorjack: string
+  bodyweightSuit: string
+  mediumArmorjack: string
+  heavyArmorjack: string
   flak: string
   metalgear: string
 }
@@ -282,30 +282,30 @@ export interface ArmorLocations {
 }
 
 export interface AmmunitionSizeTypes {
-  medium_pistol: string
-  heavy_pistol: string
-  very_heavy_pistol: string
+  mediumPistol: string
+  heavyPistol: string
+  veryHeavyPistol: string
   slug: string
   rifle: string
-  shotgun_shell: string
+  shotgunShell: string
   arrow: string
   grenade: string
   rocket: string
 }
 
 export interface Modifiers {
-  serious_injury: string
-  mortal_injury: string
-  under_stress: string
-  never_done_before: string
-  low_light: string
-  obscured_vision: string
-  complex_task: string
-  wrong_tools: string
-  drunk_drugged: string
-  attempting_secretly: string
-  lost_facedown: string
-  spend_extra_time: string
+  seriousInjury: string
+  mortalInjury: string
+  underStress: string
+  neverDoneBefore: string
+  lowLight: string
+  obscuredVision: string
+  complexTask: string
+  wrongTools: string
+  drunkDrugged: string
+  attemptingSecretly: string
+  lostFacedown: string
+  spendExtraTime: string
 }
 
 export interface Tab {
@@ -369,7 +369,7 @@ export interface Skills {
   lipReading: string
   localExpert: string
   martialArts: string
-  melee_weapon: string
+  meleeWeapon: string
   paintDrawSculpt: string
   paramedic: string
   perception: string

@@ -5,46 +5,46 @@ export const weaponSkillList: StringDictionary = {
   archery: "Archery",
   autofire: "Autofire",
   handgun: "Handgun",
-  heavy_weapons: "Heavy Weapons",
-  shoulder_arms: "Shoulder Arms",
+  heavyWeapons: "Heavy Weapons",
+  shoulderArms: "Shoulder Arms",
 };
 
 export const weaponTypeList: StringDictionary = {
   pistol: "Pistol",
   smg: "SMG",
   shotgun: "Shotgun",
-  assault_rifle: "Assault Rifle",
-  sniper_rifle: "Sniper Rifle",
-  bow_crossbow: "Bow / Crossbow",
-  grenade_launcher: "Grenade Launcher",
-  rocket_launcher: "Rocket Launcher",
-  melee_weapon: "Melee Weapon",
+  assaultRifle: "Assault Rifle",
+  sniperRifle: "Sniper Rifle",
+  bowCrossbow: "Bow / Crossbow",
+  grenadeLauncher: "Grenade Launcher",
+  rocketLauncher: "Rocket Launcher",
+  meleeWeapon: "Melee Weapon",
 };
 
 export const weaponTagList: StringDictionary = {
-  single_shot: "Single Shot",
-  aimed_shot: "Aimed Shot",
+  singleShot: "Single Shot",
+  aimedShot: "Aimed Shot",
   autofire: "Autofire",
-  suppressive_fire: "Suppressive Fire",
-  shotgun_shell: "Shotgun Shell",
+  suppressiveFire: "Suppressive Fire",
+  shotgunShell: "Shotgun Shell",
   explosive: "Explosive",
   throwable: "Throwable",
   bayonet: "Bayonet",
-  drum_magazine: "Drum Magazine",
-  extended_magazine: "Extended Magazine",
-  underbarrel_grenade_launcher: "Underbarrel Grenade Launcher",
-  infrared_nightvision_scope: "Infrared Nightvision Scope",
-  underbarrel_shotgun: "Underbarrel Shotgun",
-  smargun_link: "Smartgun Link",
-  sniping_scope: "Sniping Scope",
+  drumMagazine: "Drum Magazine",
+  extendedMagazine: "Extended Magazine",
+  underbarrelGrenadeLauncher: "Underbarrel Grenade Launcher",
+  infraredNightvisionScope: "Infrared Nightvision Scope",
+  underbarrelShotgun: "Underbarrel Shotgun",
+  smargunLink: "Smartgun Link",
+  snipingScope: "Sniping Scope",
 };
 
 export const ammunitionTypes: StringDictionary = {
-  medium_pistol: "Medium Pistol",
-  heavy_pistol: "Heavy Pistol",
-  very_heavy_pistol: "Very Heavy Pistol",
+  mediumPistol: "Medium Pistol",
+  heavyPistol: "Heavy Pistol",
+  veryHeavyPistol: "Very Heavy Pistol",
   slug: "Slug",
-  shotgun_shell: "Shotgun Shell",
+  shotgunShell: "Shotgun Shell",
   rifle: "Rifle",
   arrow: "Arrow",
   grenade: "Grenade",
@@ -52,7 +52,6 @@ export const ammunitionTypes: StringDictionary = {
 };
 
 export const effectStatList: StringDictionary = {
-  "": "cpred.sheet.labels.add_stat_modifier",
   atk: "cpred.sheet.stats.atk",
   def: "cpred.sheet.stats.def",
   rez: "cpred.sheet.stats.rez",
@@ -85,8 +84,8 @@ export const cyberwareTypeLists: StringDictionary = {
   neuralware: "Neuralware",
   cyberoptics: "Cyberoptics",
   cyberaudio: "Cyberaudio",
-  internal_body: "Internal Body Cyberware",
-  external_body: "External Body Cyberware",
+  internalBody: "Internal Body Cyberware",
+  externalBody: "External Body Cyberware",
   cyberlimbs: "Cyberlimbs",
   borgware: "Borgware",
 };
@@ -94,10 +93,10 @@ export const cyberwareTypeLists: StringDictionary = {
 export const cyberwareFoundationList: StringDictionary = {
   na: "N/A",
   cyberarm: "Cyberarm",
-  cyberaudio_suite: "Cyberaudio Suite",
+  cyberaudioSuite: "Cyberaudio Suite",
   cybereye: "Cybereye",
   cyberleg: "Cyberleg",
-  neural_link: "Neural Link",
+  neuralLink: "Neural Link",
 };
 
 export const cyberwareInstallList: StringDictionary = {
@@ -108,37 +107,37 @@ export const cyberwareInstallList: StringDictionary = {
 };
 
 export const armorTypeList: StringDictionary = {
-  leathers: "cpred.sheet.armor_types.leathers",
-  kevlar: "cpred.sheet.armor_types.kevlar",
-  light_armorjack: "cpred.sheet.armor_types.light_armorjack",
-  bodyweight_suit: "cpred.sheet.armor_types.bodyweight_suit",
-  medium_armorjack: "cpred.sheet.armor_types.medium_armorjack",
-  heavy_armorjack: "cpred.sheet.armor_types.heavy_armorjack",
-  flak: "cpred.sheet.armor_types.flak",
-  metalgear: "cpred.sheet.armor_types.metalgear",
+  leathers: "cpred.sheet.armorTypes.leathers",
+  kevlar: "cpred.sheet.armorTypes.kevlar",
+  lightArmorjack: "cpred.sheet.armorTypes.lightArmorjack",
+  bodyweightSuit: "cpred.sheet.armorTypes.bodyweightSuit",
+  mediumArmorjack: "cpred.sheet.armorTypes.mediumArmorjack",
+  heavyArmorjack: "cpred.sheet.armorTypes.heavyArmorjack",
+  flak: "cpred.sheet.armorTypes.flak",
+  metalgear: "cpred.sheet.armorTypes.metalgear",
 };
 
 export const armorLocationList: StringDictionary = {
-  body: "cpred.sheet.armor_locations.body",
-  head: "cpred.sheet.armor_locations.head",
+  body: "cpred.sheet.armorLocations.body",
+  head: "cpred.sheet.armorLocations.head",
 };
 
 export const ammunitionTypeList: StringDictionary = {
-  "medium_pistol": "cpred.sheet.ammunition_size_types.medium_pistol",
-  "heavy_pistol": "cpred.sheet.ammunition_size_types.heavy_pistol",
-  "very_heavy_pistol": "cpred.sheet.ammunition_size_types.very_heavy_pistol",
-  "slug": "cpred.sheet.ammunition_size_types.slug",
-  "rifle": "cpred.sheet.ammunition_size_types.rifle",
-  "shotgun_shell": "cpred.sheet.ammunition_size_types.shotgun_shell",
-  "arrow": "cpred.sheet.ammunition_size_types.arrow",
-  "grenade": "cpred.sheet.ammunition_size_types.grenade",
-  "rocket": "cpred.sheet.ammunition_size_types.rocket"
+  "mediumPistol": "cpred.sheet.ammunitionSizeTypes.mediumPistol",
+  "heavyPistol": "cpred.sheet.ammunitionSizeTypes.heavyPistol",
+  "veryHeavyPistol": "cpred.sheet.ammunitionSizeTypes.veryHeavyPistol",
+  "slug": "cpred.sheet.ammunitionSizeTypes.slug",
+  "rifle": "cpred.sheet.ammunitionSizeTypes.rifle",
+  "shotgunShell": "cpred.sheet.ammunitionSizeTypes.shotgunShell",
+  "arrow": "cpred.sheet.ammunitionSizeTypes.arrow",
+  "grenade": "cpred.sheet.ammunitionSizeTypes.grenade",
+  "rocket": "cpred.sheet.ammunitionSizeTypes.rocket"
 };
 
 export const characterDamageSources: StringDictionary = {
-  fullArmor: "cpred.sheet.labels.full_armor",
-  halfArmor: "cpred.sheet.labels.half_armor",
-  bypassArmor: "cpred.sheet.labels.bypass_armor",
+  fullArmor: "cpred.sheet.labels.fullArmor",
+  halfArmor: "cpred.sheet.labels.halfArmor",
+  bypassArmor: "cpred.sheet.labels.bypassArmor",
 };
 
 export interface ModifierEntry {
@@ -148,16 +147,16 @@ export interface ModifierEntry {
 };
 
 export const characterModifierList: Dictionary<ModifierEntry> = {
-  serious_injury: {label: "serious_injury", modifier: -2, active: false},
-  mortal_injury: {label: "mortal_injury", modifier: -4, active: false},
-  under_stress: {label: "under_stress", modifier: -2, active: false},
-  never_done_before: {label: "never_done_before", modifier: -1, active: false},
-  low_light: {label: "low_light", modifier: -1, active: false},
-  obscured_vision: {label: "obscured_vision", modifier: -4, active: false},
-  complex_task: {label: "complex_task", modifier: -2, active: false},
-  wrong_tools: {label: "wrong_tools", modifier: -2, active: false},
-  drunk_drugged: {label: "drunk_drugged", modifier: -4, active: false},
-  attempting_secretly: {label: "attempting_secretly", modifier: -4, active: false},
-  lost_facedown: {label: "lost_facedown", modifier: -2, active: false},
-  spend_extra_time: {label: "spend_extra_time", modifier: 1, active: false}
+  seriousInjury: {label: "seriousInjury", modifier: -2, active: false},
+  mortalInjury: {label: "mortalInjury", modifier: -4, active: false},
+  underStress: {label: "underStress", modifier: -2, active: false},
+  neverDoneBefore: {label: "neverDoneBefore", modifier: -1, active: false},
+  lowLight: {label: "lowLight", modifier: -1, active: false},
+  obscuredVision: {label: "obscuredVision", modifier: -4, active: false},
+  complexTask: {label: "complexTask", modifier: -2, active: false},
+  wrongTools: {label: "wrongTools", modifier: -2, active: false},
+  drunkDrugged: {label: "drunkDrugged", modifier: -4, active: false},
+  attemptingSecretly: {label: "attemptingSecretly", modifier: -4, active: false},
+  lostFacedown: {label: "lostFacedown", modifier: -2, active: false},
+  spendExtraTime: {label: "spendExtraTime", modifier: 1, active: false}
 };

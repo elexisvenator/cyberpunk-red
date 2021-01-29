@@ -71,21 +71,21 @@ export default class ItemSheetCpRedWeapon extends ItemSheetCpRed<ItemDataCpRedWe
     const data = this.getData().data;
 
     const tag = this.form["tag-selector"].value;
-    const new_tags: string[] = data.tags;
+    const newTags: string[] = data.tags;
     if (!data.tags.includes(tag)) {
-      new_tags.push(tag);
+      newTags.push(tag);
     }
-    await this.item.update({ "data.tags": new_tags }, null);
+    await this.item.update({ "data.tags": newTags }, null);
   }
 
   async addAmmunitionType(): Promise<void> {
     const data = this.getData().data;
 
     const type = this.form["ammunition-selector"].value;
-    const new_types: string[] = data.attributes.ammunitionTypes;
+    const newTypes: string[] = data.attributes.ammunitionTypes;
     if (!data.attributes.ammunitionTypes.includes(type)) {
-      new_types.push(type);
+      newTypes.push(type);
     }
-    await this.item.update({ "data.attributes.ammunitionTypes": new_types }, null);
+    await this.item.update({ "data.attributes.ammunitionTypes": newTypes }, null);
   }
 }

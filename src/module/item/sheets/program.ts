@@ -62,9 +62,9 @@ export default class ItemSheetCpRedProgram extends ItemSheetCpRed<ItemDataCpRedP
         },
       ],
       programTypes: {
-        attacker: "cpred.sheet.program_types.attacker",
-        booster: "cpred.sheet.program_types.booster",
-        defender: "cpred.sheet.program_types.defender",
+        attacker: "cpred.sheet.programTypes.attacker",
+        booster: "cpred.sheet.programTypes.booster",
+        defender: "cpred.sheet.programTypes.defender",
       },
     };
   }

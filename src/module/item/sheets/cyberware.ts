@@ -11,9 +11,9 @@ type CyberwareAction = "none";
 // to use some computed values, declare them here and populate them in getData().
 
 interface ItemSheetDataCpRedCyberware extends ItemSheetData<ItemDataCpRedCyberware> {
-  type_types: StringDictionary;
-  foundation_types: StringDictionary;
-  install_types: StringDictionary;
+  cyberwareTypes: StringDictionary;
+  foundationTypes: StringDictionary;
+  installTypes: StringDictionary;
 }
 
 export default class ItemSheetCpRedCyberware extends ItemSheetCpRed<ItemDataCpRedCyberware, ItemCpRed<ItemDataCpRedCyberware>> {
@@ -41,9 +41,9 @@ export default class ItemSheetCpRedCyberware extends ItemSheetCpRed<ItemDataCpRe
 
     return {
       ...parentData,
-      type_types: cyberwareTypeLists,
-      foundation_types: cyberwareFoundationList,
-      install_types: cyberwareInstallList,
+      cyberwareTypes: cyberwareTypeLists,
+      foundationTypes: cyberwareFoundationList,
+      installTypes: cyberwareInstallList,
     };
   }
 }

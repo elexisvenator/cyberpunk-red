@@ -160,7 +160,7 @@ Handlebars.registerHelper("weaponActions", function (item) {
   const weaponData = weaponItem.data.data;
 
   const lookup = {
-    single_shot: [
+    singleShot: [
       {
         name: "cpred.sheet.common.attack",
         roll: `1d10cp + @stats.ref.value + @skills.${weaponData.attributes.skill.value}.level`,
@@ -173,7 +173,7 @@ Handlebars.registerHelper("weaponActions", function (item) {
         type: "damage",
       },
     ],
-    aimed_shot: [
+    aimedShot: [
       {
         name: "cpred.sheet.common.attack",
         roll: `1d10cp + @stats.ref.value + @skills.${weaponData.attributes.skill.value}.level - 8`,
@@ -199,7 +199,7 @@ Handlebars.registerHelper("weaponActions", function (item) {
         type: "damage",
       },
     ],
-    suppressive_fire: [
+    suppressiveFire: [
       {
         name: "cpred.sheet.common.attack",
         roll: `1d10cp + @stats.ref.value + @skills.autofire.level`,
@@ -207,7 +207,7 @@ Handlebars.registerHelper("weaponActions", function (item) {
         type: "attack",
       },
     ],
-    shotgun_shell: [
+    shotgunShell: [
       {
         name: "cpred.sheet.common.attack",
         roll: `1d10cp + @stats.ref.value + @skills.${weaponData.attributes.skill.value}.level`,
@@ -244,7 +244,7 @@ Handlebars.registerHelper("weaponActions", function (item) {
         type: "damage",
       },
     ],
-    underbarrel_grenade_launcher: [
+    underbarrelGrenadeLauncher: [
       {
         name: "cpred.sheet.common.attack",
         roll: `1d10cp + @stats.ref.value + @skills.heavyWeapons.level`,
@@ -256,10 +256,10 @@ Handlebars.registerHelper("weaponActions", function (item) {
         type: "damage",
       },
     ],
-    underbarrel_shotgun: [
+    underbarrelShotgun: [
       {
         name: "cpred.sheet.common.attack",
-        roll: `1d10cp + @stats.ref.value + @skills.shoulder_weapon.level`,
+        roll: `1d10cp + @stats.ref.value + @skills.shoulderWeapon.level`,
         type: "attack",
       },
       {
@@ -271,19 +271,19 @@ Handlebars.registerHelper("weaponActions", function (item) {
   };
 
   // Use the tag system to decide which actions exist
-  const action_groups = weaponData.tags
+  const actionGroups = weaponData.tags
     .map((tag) => {
       const entry: ActionGroup = {
         name: tag,
         formattedName: localize(`cpred.sheet.weaponTags.${tag}` as Path<LanguageItem>),
-        actions: lookup[tag],
+        actions: tag in lookup ? lookup[tag] : []
       };
       entry.actions.forEach((action) => action.weaponId = weaponItem.id);
       return tag in lookup ? entry : null;
     })
     .filter((entry) => entry !== null);
 
-  return action_groups;
+  return actionGroups;
 });
 
 Handlebars.registerHelper("rollType", function (action) {
