@@ -14,7 +14,9 @@
 		"outDir": "./types",
 		"types": [
 			"@elexisvenator/foundry-pc-types"
-		]
+		],
+		"resolveJsonModule": true,
+		"esModuleInterop": true
 	},
 	"include": [
 		"src"
